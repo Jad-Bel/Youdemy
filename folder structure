@@ -8,11 +8,20 @@ youdemy/
 ├── config/                  # Configuration files (database, constants, etc.)
 │   └── database.php         # Database connection settings
 │
-├── includes/                # Reusable PHP components (header, footer, functions, etc.)
+├── classes/                 # PHP classes (OOP)
+│   ├── User.php             # User class (parent class for Student, Teacher, Admin)
+│   ├── Student.php          # Student class
+│   ├── Teacher.php          # Teacher class
+│   ├── Admin.php            # Admin class
+│   ├── Course.php           # Course class
+│   ├── Category.php         # Category class
+│   ├── Tag.php              # Tag class
+│   └── Auth.php             # Authentication class
+│
+├── includes/                # Reusable PHP components (header, footer, etc.)
 │   ├── header.php           # Common header
 │   ├── footer.php           # Common footer
-│   ├── functions.php        # Helper functions
-│   └── auth.php             # Authentication and authorization logic
+│   └── functions.php        # Helper functions
 │
 ├── uploads/                 # Uploaded files (documents, videos, etc.)
 │   ├── documents/           # Course documents
