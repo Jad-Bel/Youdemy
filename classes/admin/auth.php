@@ -5,10 +5,10 @@ require_once 'Teacher.php';
 require_once 'Student.php';
 
 class Auth {
-    private $db;
+    private $conn;
 
     public function __construct() {
-        $this->db = new Database();
+        $this->conn = new Database();
     }
 
     public function register($username, $email, $password, $role) {
@@ -26,7 +26,7 @@ class Auth {
 
     public function login($email, $password) {
         $sql = "SELECT * FROM users WHERE email = :email";
-        $stmt = $this->db->getConnection()->prepare($sql);
+        $stmt = $this->conn->getConnection()->prepare($sql);
         $stmt->execute(['email' => $email]);
         $userData = $stmt->fetch(PDO::FETCH_ASSOC);
 

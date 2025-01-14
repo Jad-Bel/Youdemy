@@ -1,5 +1,5 @@
 <?php
-require_once 'Database.php';
+require_once '../config/database.php';
 
 class User {
     protected $id;
@@ -9,10 +9,10 @@ class User {
     protected $role;
     protected $created_at;
     protected $updated_at;
-    protected $db;
+    protected $conn;
 
     public function __construct($username, $email, $password, $role) {
-        $this->db = new Database();
+        $this->conn = new Database();
         $this->username = $username;
         $this->email = $email;
         $this->password = $this->hashPassword($password);
@@ -56,7 +56,7 @@ class User {
     public function save() {
         $sql = "INSERT INTO users (username, email, password, role, created_at, updated_at)
                 VALUES (:username, :email, :password, :role, :created_at, :updated_at)";
-        $stmt = $this->db->getConnection()->prepare($sql);
+        $stmt = $this->conn->getConnection()->prepare($sql);
         $stmt->execute([
             'username' => $this->username,
             'email' => $this->email,
@@ -65,13 +65,13 @@ class User {
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ]);
-        $this->id = $this->db->getConnection()->lastInsertId();
+        $this->id = $this->conn->getConnection()->lastInsertId();
     }
 
     public static function findByEmail($email) {
-        $db = new Database();
+        $conn = new Database();
         $sql = "SELECT * FROM users WHERE email = :email";
-        $stmt = $db->getConnection()->prepare($sql);
+        $stmt = $conn->getConnection()->prepare($sql);
         $stmt->execute(['email' => $email]);
         $userData = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -79,10 +79,11 @@ class User {
             $user = new User(
                 $userData['username'],
                 $userData['email'],
-                $userData['password'],
+                '', // Do not pass the password here
                 $userData['role']
             );
             $user->id = $userData['id'];
+            $user->password = $userData['password']; // Set the hashed password directly
             $user->created_at = $userData['created_at'];
             $user->updated_at = $userData['updated_at'];
             return $user;
@@ -102,5 +103,20 @@ class User {
     protected function getPassword() {
         return $this->password;
     }
+}
+
+// Test code
+$user = User::findByEmail('john@example.com');
+if ($user) {
+    echo "User fetched successfully! Username: " . $user->getUsername() . "<br>";
+} else {
+    echo "Failed to fetch user.<br>";
+}
+
+$verifiedUser = User::verifyCredentials('john@example.com', 'password123');
+if ($verifiedUser) {
+    echo "Credentials verified successfully!<br>";
+} else {
+    echo "Invalid credentials.<br>";
 }
 ?>
