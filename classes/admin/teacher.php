@@ -1,26 +1,14 @@
-<?php 
+<?php
+require_once 'User.php';
 
-require_once '../user.php';
-
-class teacher extends user
-{
-    public function addCourse ($title, $description, $content, $video_link, $category_id, $tags) 
-    {
-
+class Teacher extends User {
+    public function __construct($username, $email, $password) {
+        parent::__construct($username, $email, $password, 'teacher');
     }
 
-    public function editCourse ($course_id, $title, $description, $video_link, $category_id, $tags) 
-    {
-
-    }
-
-    public function deleteCourse ($course_id) 
-    {
-
-    }
-
-    public function viewStatistics () 
-    {
-
-    }
+    public function addCourse($title, $description, $content, $video_link, $category_id, $tags) {}
+    public function editCourse($course_id, $title, $description, $content, $video_link, $category_id, $tags) {}
+    public function deleteCourse($course_id) {}
+    public function viewStatistics() {}
 }
+?>
