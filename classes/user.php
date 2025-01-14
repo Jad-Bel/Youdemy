@@ -21,7 +21,9 @@ class User {
         $this->updated_at = date('Y-m-d H:i:s');
     }
 
-    public function getId() {}
+    public function getId() {
+        
+    }
     public function getUsername() {}
     public function getEmail() {}
     public function getRole() {}
