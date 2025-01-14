@@ -22,13 +22,28 @@ class User {
     }
 
     public function getId() {
-        
+        return $this->id;
     }
-    public function getUsername() {}
-    public function getEmail() {}
-    public function getRole() {}
-    public function getCreatedAt() {}
-    public function getUpdatedAt() {}
+
+    public function getUsername() {
+        return $this->username;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function getRole() {
+        return $this->role;
+    }
+
+    public function getCreatedAt() {
+        return $this->created_at;
+    }
+
+    public function getUpdatedAt() {
+        return $this->updated_at;
+    }
 
     protected function hashPassword($password) {
         return password_hash($password, PASSWORD_BCRYPT);
@@ -51,6 +66,41 @@ class User {
             'updated_at' => $this->updated_at
         ]);
         $this->id = $this->db->getConnection()->lastInsertId();
+    }
+
+    public static function findByEmail($email) {
+        $db = new Database();
+        $sql = "SELECT * FROM users WHERE email = :email";
+        $stmt = $db->getConnection()->prepare($sql);
+        $stmt->execute(['email' => $email]);
+        $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($userData) {
+            $user = new User(
+                $userData['username'],
+                $userData['email'],
+                $userData['password'],
+                $userData['role']
+            );
+            $user->id = $userData['id'];
+            $user->created_at = $userData['created_at'];
+            $user->updated_at = $userData['updated_at'];
+            return $user;
+        }
+
+        return null;
+    }
+
+    public static function verifyCredentials($email, $password) {
+        $user = self::findByEmail($email);
+        if ($user && $user->verifyPassword($password, $user->getPassword())) {
+            return $user;
+        }
+        return null;
+    }
+
+    protected function getPassword() {
+        return $this->password;
     }
 }
 ?>
