@@ -1,12 +1,12 @@
 <?php
-require_once 'User.php';
+require_once '../user.php';
 
 class Teacher extends User {
     public function __construct($username, $email, $password) {
         parent::__construct($username, $email, $password, 'teacher');
     }
 
-    public function addCourse($title, $description, $content, $video_link, $category_id, $tags) {
+    public function addCourse($title, $teacher_id, $description, $content, $video_link, $category_id, $tags) {
         $sql = "INSERT INTO courses (title, description, content, video_link, teacher_id, category_id, created_at, updated_at)
                 VALUES (:title, :description, :content, :video_link, :teacher_id, :category_id, NOW(), NOW())";
         $stmt = $this->conn->getConnection()->prepare($sql);
@@ -15,7 +15,8 @@ class Teacher extends User {
             'description' => $description,
             'content' => $content,
             'video_link' => $video_link,
-            'teacher_id' => $this->getId(),
+            // 'teacher_id' => $this->getId(),
+            'teacher_id' => $teacher_id,
             'category_id' => $category_id
         ]);
 
@@ -92,5 +93,31 @@ class Teacher extends User {
 
         $this->addTagsToCourse($course_id, $tags);
     }
+}
+
+
+$teacher = new Teacher('john_doe', 'john@example.com', 'password123');
+
+$courseId = $teacher->addCourse(
+    'Introduction to PHP',
+    1,
+    'Learn PHP basics',
+    null, 
+    'https://example.com/video',
+    1,
+    [1, 2]
+);
+if ($courseId) {
+    echo "Course added successfully! Course ID: " . $courseId . "<br>";
+} else {
+    echo "Failed to add course.<br>";
+}
+
+$statistics = $teacher->viewStatistics();
+if (!empty($statistics)) {
+    echo "Statistics fetched successfully!<br>";
+    print_r($statistics);
+} else {
+    echo "Failed to fetch statistics.<br>";
 }
 ?>

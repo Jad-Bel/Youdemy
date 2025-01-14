@@ -1,5 +1,5 @@
 <?php
-require_once '../config/database.php';
+require_once '../../config/database.php';
 
 class User {
     protected $id;
@@ -79,11 +79,11 @@ class User {
             $user = new User(
                 $userData['username'],
                 $userData['email'],
-                '', // Do not pass the password here
+                '', 
                 $userData['role']
             );
             $user->id = $userData['id'];
-            $user->password = $userData['password']; // Set the hashed password directly
+            $user->password = $userData['password'];
             $user->created_at = $userData['created_at'];
             $user->updated_at = $userData['updated_at'];
             return $user;
@@ -105,7 +105,6 @@ class User {
     }
 }
 
-// Test code
 $user = User::findByEmail('john@example.com');
 if ($user) {
     echo "User fetched successfully! Username: " . $user->getUsername() . "<br>";
