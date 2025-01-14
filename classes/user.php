@@ -1,74 +1,54 @@
-<?php 
+<?php
+require_once 'Database.php';
 
-class user {
+class User {
     protected $id;
     protected $username;
     protected $email;
     protected $password;
     protected $role;
-    protected $status;
+    protected $created_at;
+    protected $updated_at;
+    protected $db;
 
-    public function __construct () 
-    {
-
-    }
-
-    public function setId ($id) {
-        $this->id = $id;
-    }
-
-    public function getId () {
-        return $this->id;
-    }
-
-    public function setUsername ($username) {
+    public function __construct($username, $email, $password, $role) {
+        $this->db = new Database();
         $this->username = $username;
-    }
-    
-    public function getUsername () {
-        return $this->username;
-    }
-
-    public function setEmail ($email) {
         $this->email = $email;
-    }
-    
-    public function getEmail () {
-        return $this->email;
-    }
-    
-    public function setPassword ($password) {
-        $this->password = $password;
-    }
-    
-    public function getPassword () {
-        return $this->password;
-    }
-
-    public function setRole ($role) {
+        $this->password = $this->hashPassword($password);
         $this->role = $role;
-    }
-    
-    public function getRole () {
-        return $this->role;
+        $this->created_at = date('Y-m-d H:i:s');
+        $this->updated_at = date('Y-m-d H:i:s');
     }
 
-    public function setStatus ($status) {
-        $this->status = $status;
-    }
-    
-    public function getStatus () {
-        return $this->status;
-    }
+    public function getId() {}
+    public function getUsername() {}
+    public function getEmail() {}
+    public function getRole() {}
+    public function getCreatedAt() {}
+    public function getUpdatedAt() {}
 
-    public function login ($email, $passwordm, $role)
-    {
-
+    protected function hashPassword($password) {
+        return password_hash($password, PASSWORD_BCRYPT);
     }
 
-    public function logout() 
-    {
-
+    protected function verifyPassword($password, $hashedPassword) {
+        return password_verify($password, $hashedPassword);
     }
 
+    public function save() {
+        $sql = "INSERT INTO users (username, email, password, role, created_at, updated_at)
+                VALUES (:username, :email, :password, :role, :created_at, :updated_at)";
+        $stmt = $this->db->getConnection()->prepare($sql);
+        $stmt->execute([
+            'username' => $this->username,
+            'email' => $this->email,
+            'password' => $this->password,
+            'role' => $this->role,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
+        ]);
+        $this->id = $this->db->getConnection()->lastInsertId();
+    }
 }
+?>
