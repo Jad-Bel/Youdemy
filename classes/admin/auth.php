@@ -39,6 +39,10 @@ class Auth {
                 throw new Exception("Invalid role.");
             }
 
+            $_SESSION['user_id'] = $userData['id'];
+            $_SESSION['role'] = $userData['role'];
+            $_SESSION['username'] = $userData['username'];
+
             return $user;
         }
 
@@ -57,6 +61,18 @@ class Auth {
 
     private function verifyPassword($password, $hashedPassword) {
         return password_verify($password, $hashedPassword);
+    }
+
+    public function getUserRole() {
+        return $_SESSION['role'] ?? null;
+    }
+
+    public function getUserId() {
+        return $_SESSION['user_id'] ?? null;
+    }
+
+    public function getUsername() {
+        return $_SESSION['username'] ?? null;
     }
 }
 ?>
