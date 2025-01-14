@@ -1,6 +1,13 @@
 <?php 
 
 class auth {
+    private $conn;
+
+    public function __construct()
+    {
+        $this->conn = new database();
+    }
+
     public static function isLoggedIn () 
     {
         return isset($_SESSION['user_id']);

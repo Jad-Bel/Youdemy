@@ -7,5 +7,11 @@ class DocumentCourse extends Course {
 
     }
 
-    
+    public function getDocumentPath() {}
+    public function setDocumentPath($document_path) {}
+
+    public function displayContent() {}
+
+    public function save() {}
+
 }
