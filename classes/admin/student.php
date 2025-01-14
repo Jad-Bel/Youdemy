@@ -1,17 +1,13 @@
-<?php 
+<?php
+require_once 'User.php';
 
-require_once '../user.php';
-
-
-class student extends user 
-{
-    public function enroll($course_id)
-    {
-
+class Student extends User {
+    public function __construct($username, $email, $password) {
+        parent::__construct($username, $email, $password, 'student');
     }
 
-    public function viewCourses() 
-    {
-        
-    }
+    public function enroll($course_id) {}
+    public function viewCourses() {}
+    public function searchCourses($keyword) {}
 }
+?>
