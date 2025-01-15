@@ -1,14 +1,15 @@
 <?php
-require_once 'Database.php';
-require_once 'User.php';
-require_once 'Teacher.php';
-require_once 'Student.php';
+// require_once '../../config/database.php';
+// require_once 'user.php';
+// require_once '../teacher.php';
+// require_once '../student.php';
 
 class Auth {
     private $conn;
 
     public function __construct() {
-        $this->conn = new Database();
+        $db = new Database();
+        $this->conn = $db->getConnection();
     }
 
     public function register($username, $email, $password, $role) {
@@ -26,7 +27,7 @@ class Auth {
 
     public function login($email, $password) {
         $sql = "SELECT * FROM users WHERE email = :email";
-        $stmt = $this->conn->getConnection()->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
         $stmt->execute(['email' => $email]);
         $userData = $stmt->fetch(PDO::FETCH_ASSOC);
 

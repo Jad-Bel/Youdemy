@@ -1,5 +1,5 @@
 <?php
-require_once '../../config/database.php';
+// require_once '../../config/database.php';
 
 class User {
     protected $id;
@@ -12,7 +12,8 @@ class User {
     protected $conn;
 
     public function __construct($username, $email, $password, $role) {
-        $this->conn = new Database();
+        $db = new Database();
+        $this->conn = $db->getConnection();
         $this->username = $username;
         $this->email = $email;
         $this->password = $this->hashPassword($password);
@@ -56,7 +57,7 @@ class User {
     public function save() {
         $sql = "INSERT INTO users (username, email, password, role, created_at, updated_at)
                 VALUES (:username, :email, :password, :role, :created_at, :updated_at)";
-        $stmt = $this->conn->getConnection()->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             'username' => $this->username,
             'email' => $this->email,
@@ -65,11 +66,11 @@ class User {
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ]);
-        $this->id = $this->conn->getConnection()->lastInsertId();
+        $this->id = $this->conn->lastInsertId();
     }
 
     public static function findByEmail($email) {
-        $conn = new Database();
+        $conn = new database();
         $sql = "SELECT * FROM users WHERE email = :email";
         $stmt = $conn->getConnection()->prepare($sql);
         $stmt->execute(['email' => $email]);
@@ -105,17 +106,17 @@ class User {
     }
 }
 
-$user = User::findByEmail('john@example.com');
-if ($user) {
-    echo "User fetched successfully! Username: " . $user->getUsername() . "<br>";
-} else {
-    echo "Failed to fetch user.<br>";
-}
+// $user = User::findByEmail('john@example.com');
+// if ($user) {
+//     echo "User fetched successfully! Username: " . $user->getUsername() . "<br>";
+// } else {
+//     echo "Failed to fetch user.<br>";
+// }
 
-$verifiedUser = User::verifyCredentials('john@example.com', 'password123');
-if ($verifiedUser) {
-    echo "Credentials verified successfully!<br>";
-} else {
-    echo "Invalid credentials.<br>";
-}
+// $verifiedUser = User::verifyCredentials('john@example.com', 'password123');
+// if ($verifiedUser) {
+//     echo "Credentials verified successfully!<br>";
+// } else {
+//     echo "Invalid credentials.<br>";
+// }
 ?>
