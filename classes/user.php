@@ -1,74 +1,121 @@
-<?php 
+<?php
+require_once '../../config/database.php';
 
-class user {
+class User {
     protected $id;
     protected $username;
     protected $email;
     protected $password;
     protected $role;
-    protected $status;
+    protected $created_at;
+    protected $updated_at;
+    protected $conn;
 
-    public function __construct () 
-    {
-
+    public function __construct($username, $email, $password, $role) {
+        $this->conn = new Database();
+        $this->username = $username;
+        $this->email = $email;
+        $this->password = $this->hashPassword($password);
+        $this->role = $role;
+        $this->created_at = date('Y-m-d H:i:s');
+        $this->updated_at = date('Y-m-d H:i:s');
     }
 
-    public function setId ($id) {
-        $this->id = $id;
-    }
-
-    public function getId () {
+    public function getId() {
         return $this->id;
     }
 
-    public function setUsername ($username) {
-        $this->username = $username;
-    }
-    
-    public function getUsername () {
+    public function getUsername() {
         return $this->username;
     }
 
-    public function setEmail ($email) {
-        $this->email = $email;
-    }
-    
-    public function getEmail () {
+    public function getEmail() {
         return $this->email;
     }
-    
-    public function setPassword ($password) {
-        $this->password = $password;
-    }
-    
-    public function getPassword () {
-        return $this->password;
-    }
 
-    public function setRole ($role) {
-        $this->role = $role;
-    }
-    
-    public function getRole () {
+    public function getRole() {
         return $this->role;
     }
 
-    public function setStatus ($status) {
-        $this->status = $status;
-    }
-    
-    public function getStatus () {
-        return $this->status;
+    public function getCreatedAt() {
+        return $this->created_at;
     }
 
-    public function login ($email, $passwordm, $role)
-    {
-
+    public function getUpdatedAt() {
+        return $this->updated_at;
     }
 
-    public function logout() 
-    {
-
+    protected function hashPassword($password) {
+        return password_hash($password, PASSWORD_BCRYPT);
     }
 
+    protected function verifyPassword($password, $hashedPassword) {
+        return password_verify($password, $hashedPassword);
+    }
+
+    public function save() {
+        $sql = "INSERT INTO users (username, email, password, role, created_at, updated_at)
+                VALUES (:username, :email, :password, :role, :created_at, :updated_at)";
+        $stmt = $this->conn->getConnection()->prepare($sql);
+        $stmt->execute([
+            'username' => $this->username,
+            'email' => $this->email,
+            'password' => $this->password,
+            'role' => $this->role,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at
+        ]);
+        $this->id = $this->conn->getConnection()->lastInsertId();
+    }
+
+    public static function findByEmail($email) {
+        $conn = new Database();
+        $sql = "SELECT * FROM users WHERE email = :email";
+        $stmt = $conn->getConnection()->prepare($sql);
+        $stmt->execute(['email' => $email]);
+        $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($userData) {
+            $user = new User(
+                $userData['username'],
+                $userData['email'],
+                '', 
+                $userData['role']
+            );
+            $user->id = $userData['id'];
+            $user->password = $userData['password'];
+            $user->created_at = $userData['created_at'];
+            $user->updated_at = $userData['updated_at'];
+            return $user;
+        }
+
+        return null;
+    }
+
+    public static function verifyCredentials($email, $password) {
+        $user = self::findByEmail($email);
+        if ($user && $user->verifyPassword($password, $user->getPassword())) {
+            return $user;
+        }
+        return null;
+    }
+
+    protected function getPassword() {
+        return $this->password;
+    }
 }
+
+$user = User::findByEmail('john@example.com');
+if ($user) {
+    echo "User fetched successfully! Username: " . $user->getUsername() . "<br>";
+} else {
+    echo "Failed to fetch user.<br>";
+}
+
+$verifiedUser = User::verifyCredentials('john@example.com', 'password123');
+if ($verifiedUser) {
+    echo "Credentials verified successfully!<br>";
+} else {
+    echo "Invalid credentials.<br>";
+}
+?>
