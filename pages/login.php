@@ -1,8 +1,8 @@
 <?php
 // require_once '';
 require_once '../config/database.php';
-require_once '../classes/auth.php';
-
+require_once '../classes/admin/auth.php';
+require_once '../classes/user.php';
 
 $auth = new Auth();
 
@@ -45,8 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<meta name="format-detection" content="telephone=no">
 	
 	<!-- FAVICONS ICON ============================================= -->
-	<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
-	<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
+	<link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.png" />
 	
 	<!-- PAGE TITLE HERE ============================================= -->
 	<title>EduChamp : Education HTML Template </title>
@@ -60,17 +60,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<![endif]-->
 	
 	<!-- All PLUGINS CSS ============================================= -->
-	<link rel="stylesheet" type="text/css" href="assets/css/assets.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/assets.css">
 	
 	<!-- TYPOGRAPHY ============================================= -->
-	<link rel="stylesheet" type="text/css" href="assets/css/typography.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/typography.css">
 	
 	<!-- SHORTCODES ============================================= -->
-	<link rel="stylesheet" type="text/css" href="assets/css/shortcodes/shortcodes.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/shortcodes/shortcodes.css">
 	
 	<!-- STYLESHEETS ============================================= -->
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<link class="skin" rel="stylesheet" type="text/css" href="assets/css/color/color-1.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+	<link class="skin" rel="stylesheet" type="text/css" href="../assets/css/color/color-1.css">
 	
 </head>
 <body id="bg">
@@ -91,8 +91,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 						<div class="col-lg-12">
 							<div class="form-group">
 								<div class="input-group">
-									<label>Your Name</label>
-									<input name="dzName" type="text" required="" class="form-control">
+									<label>Your Email</label>
+									<input name="email" type="email" required="" class="form-control">
 								</div>
 							</div>
 						</div>
@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 							<div class="form-group">
 								<div class="input-group"> 
 									<label>Your Password</label>
-									<input name="dzEmail" type="password" class="form-control" required="">
+									<input name="password" type="password" class="form-control" required="">
 								</div>
 							</div>
 						</div>
@@ -130,21 +130,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	</div>
 </div>
 <!-- External JavaScripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/vendors/bootstrap/js/popper.min.js"></script>
-<script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
-<script src="assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
-<script src="assets/vendors/magnific-popup/magnific-popup.js"></script>
-<script src="assets/vendors/counter/waypoints-min.js"></script>
-<script src="assets/vendors/counter/counterup.min.js"></script>
-<script src="assets/vendors/imagesloaded/imagesloaded.js"></script>
-<script src="assets/vendors/masonry/masonry.js"></script>
-<script src="assets/vendors/masonry/filter.js"></script>
-<script src="assets/vendors/owl-carousel/owl.carousel.js"></script>
-<script src="assets/js/functions.js"></script>
-<script src="assets/js/contact.js"></script>
-<script src='assets/vendors/switcher/switcher.js'></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/vendors/bootstrap/js/popper.min.js"></script>
+<script src="../assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+<script src="../assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+<script src="../assets/vendors/magnific-popup/magnific-popup.js"></script>
+<script src="../assets/vendors/counter/waypoints-min.js"></script>
+<script src="../assets/vendors/counter/counterup.min.js"></script>
+<script src="../assets/vendors/imagesloaded/imagesloaded.js"></script>
+<script src="../assets/vendors/masonry/masonry.js"></script>
+<script src="../assets/vendors/masonry/filter.js"></script>
+<script src="../assets/vendors/owl-carousel/owl.carousel.js"></script>
+<script src="../assets/js/functions.js"></script>
+<script src="../assets/js/contact.js"></script>
+<script src='../assets/vendors/switcher/switcher.js'></script>
 </body>
 
 </html>

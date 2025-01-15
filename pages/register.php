@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<div class="account-container">
 				<div class="heading-bx left">
 					<h2 class="title-head">Sign Up <span>Now</span></h2>
-					<p>Login Your Account <a href="login.html">Click here</a></p>
+					<p>Login Your Account <a href="login.php">Click here</a></p>
 				</div>	
 				<form class="contact-bx">
 					<div class="row placeani">
