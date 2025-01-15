@@ -1,5 +1,5 @@
 <?php
-require_once '../config/database.php';
+// require_once '../../config/database.php';
 
 class User {
     protected $id;
@@ -22,6 +22,62 @@ class User {
         $this->status = $status;
         $this->created_at = date('Y-m-d H:i:s');
         $this->updated_at = date('Y-m-d H:i:s');
+    }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getUsername() {
+        return $this->username;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function getPassword() {
+        return $this->password;
+    }
+
+    public function getRole() {
+        return $this->role;
+    }
+
+    public function getStatus() {
+        return $this->status;
+    }
+
+    public function getCreatedAt() {
+        return $this->created_at;
+    }
+
+    public function getUpdatedAt() {
+        return $this->updated_at;
+    }
+
+    public function setUsername($username) {
+        $this->username = $username;
+    }
+
+    public function setEmail($email) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->email = $email;
+        } else {
+            throw new Exception("Invalid email format.");
+        }
+    }
+
+    public function setPassword($password) {
+        $this->password = $this->hashPassword($password);
+    }
+
+    public function setRole($role) {
+        $this->role = $role;
+    }
+
+    public function setStatus($status) {
+        $this->status = $status;
     }
 
     public function save() {

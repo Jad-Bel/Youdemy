@@ -1,9 +1,9 @@
 <?php
-require_once '../classes/user.php';
+// require_once '../classes/user.php';
 
 class Teacher extends User {
-    public function __construct($username, $email, $password) {
-        parent::__construct($username, $email, $password, 'teacher');
+    public function __construct($username, $email, $password, $status) {
+        parent::__construct($username, $email, $password, 'teacher', $status);
     }
 
     public function addCourse($title, $teacher_id, $description, $content, $video_link, $category_id, $tags) {

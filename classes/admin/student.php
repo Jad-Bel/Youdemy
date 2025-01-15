@@ -8,16 +8,15 @@ class Student extends User {
         parent::__construct($username, $email, $password, $role, $status);
     }
 
-    public function enroll($student_id ,$course_id) {
+    public function enroll($student_id, $course_id) {
         $sql = "INSERT INTO enrollments (student_id, course_id, enrolled_at)
                 VALUES (:student_id, :course_id, NOW())";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
-            // 'student_id' => $this->getId(),
             'student_id' => $student_id,
             'course_id' => $course_id
         ]);
-
+    
         return $stmt->rowCount() > 0;
     }
 
@@ -28,7 +27,7 @@ class Student extends User {
                 WHERE e.student_id = :student_id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['student_id' => $this->getId()]);
-
+    
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -38,7 +37,7 @@ class Student extends User {
                 WHERE c.title LIKE :keyword OR c.description LIKE :keyword";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['keyword' => "%$keyword%"]);
-
+    
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
