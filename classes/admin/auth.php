@@ -22,7 +22,8 @@ class Auth {
         }
 
         $user->save();
-        return $user;
+        header('location: login.php');
+        return true;
     }
 
     public function login($email, $password) {

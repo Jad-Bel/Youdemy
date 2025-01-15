@@ -1,5 +1,5 @@
 <?php
-require_once '../user.php';
+require_once '../classes/user.php';
 
 class Student extends User {
     public function __construct($username, $email, $password) {

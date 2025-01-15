@@ -1,9 +1,9 @@
 <?php
 require_once '../config/database.php';
 require_once '../classes/admin/auth.php';
-require_once '../classes/user.php';
-// require_once '../classes/admin/student.php';
-// require_once '../classes/admin/teacher.php';
+// require_once '../classes/user.php';
+require_once '../classes/admin/student.php';
+require_once '../classes/admin/teacher.php';
 
 $auth = new Auth();
 
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					<h2 class="title-head">Sign Up <span>Now</span></h2>
 					<p>Login Your Account <a href="login.php">Click here</a></p>
 				</div>	
-				<form class="contact-bx">
+				<form class="contact-bx" method="POST">
 					<div class="row placeani">
 						<div class="col-lg-12">
 							<div class="form-group">
