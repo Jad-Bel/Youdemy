@@ -5,18 +5,22 @@ abstract class Course {
     protected $id;
     protected $title;
     protected $description;
+    protected $content;
+    protected $video_link;
     protected $teacher_id;
     protected $category_id;
     protected $created_at;
     protected $updated_at;
     protected $conn;
 
-    public function __construct($title, $description, $teacher_id, $category_id) {
+    public function __construct($title, $description, $content, $video_link, $teacher_id, $category_id) {
         $database = new Database();
         $this->conn = $database->getConnection();
 
         $this->title = $title;
         $this->description = $description;
+        $this->content = $content;
+        $this->video_link = $video_link;
         $this->teacher_id = $teacher_id;
         $this->category_id = $category_id;
         $this->created_at = date('Y-m-d H:i:s');
@@ -45,6 +49,22 @@ abstract class Course {
 
     public function getDescription() {
         return $this->description;
+    }
+    
+    public function setVideo($video_link) {
+        $this->video_link = $video_link;
+    }
+
+    public function getContent() {
+        return $this->content;
+    }
+
+    public function setContent($content) {
+        $this->content = $content;
+    }
+
+    public function getVideo() {
+        return $this->video_link;
     }
 
     public function setTeacherId($teacher_id) {
@@ -82,51 +102,36 @@ abstract class Course {
     abstract public function displayContent();
 
     public function save() {
-        $sql = "INSERT INTO courses (title, description, teacher_id, category_id, created_at, updated_at)
-                VALUES (:title, :description, :teacher_id, :category_id, :created_at, :updated_at)";
+        $sql = "INSERT INTO courses (title, description, content, video_link, teacher_id, category_id, created_at, updated_at)
+                VALUES (:title, :description, :content, :video_link, :teacher_id, :category_id, :created_at, :updated_at)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             'title' => $this->title,
             'description' => $this->description,
+            'content' => $this->content,
+            'video_link' => $this->video_link,
             'teacher_id' => $this->teacher_id,
             'category_id' => $this->category_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ]);
-
+    
         $this->id = $this->conn->lastInsertId();
         return true;
     }
 }
 
-class Course1 extends course {
-    protected $conn;
-    protected $document_path;
+// class Course1 extends course {
+//     protected $conn;
+//     protected $document_path;
 
-    public function __construct($title, $description, $teacher_id, $category_id)
-    {
-        parent::__construct($title, $description, $teacher_id, $category_id);
-    }
+//     public function __construct($title, $description, $teacher_id, $category_id)
+//     {
+//         parent::__construct($title, $description, $teacher_id, $category_id);
+//     }
 
-    public function displayContent() {
-        return "<a href='{$this->document_path}' download>Download Document</a>";
-    }
-}
-$course = new Course1('test', 'PHP basics', 1, 1);
-
-if ($course->save()) {
-    echo "Course saved successfully! Course ID: " . $course->getId() . "<br>";
-} else {
-    echo "Failed to save course.<br>";
-}
-// $course->displayContent();
-// $saveCourse = $course->save();
-// var_dump($saveCourse);
-
-// $fetchedCourse = Course::findById($course->getId());
-// if ($fetchedCourse) {
-//     echo "Course fetched successfully! Title: " . $fetchedCourse->getTitle() . "<br>";
-// } else {
-//     echo "Failed to fetch course.<br>";
+//     public function displayContent() {
+//         return "<a href='{$this->document_path}' download>Download Document</a>";
+//     }
 // }
 ?>
