@@ -32,6 +32,7 @@ class Auth {
                 session_start();
                 $_SESSION['user_id'] = $userData['id'];
                 $_SESSION['role'] = $userData['role'];
+                header('location: dashboard.php');
                 return true;
             }
         }
