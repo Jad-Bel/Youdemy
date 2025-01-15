@@ -41,30 +41,27 @@ class Student extends User {
     }
 }
 
-$student = new Student('jane_doe', 'jane@example.com', 'password123');
+// $student = new Student('jane_doe', 'jane@example.com', 'password123');
 
-// Test enrolling in a course
-if ($student->enroll(1,1)) { // Course ID
-    echo "Enrollment successful!<br>";
-} else {
-    echo "Failed to enroll in the course.<br>";
-}
+// if ($student->enroll(1,1)) {
+//     echo "Enrollment successful!<br>";
+// } else {
+//     echo "Failed to enroll in the course.<br>";
+// }
 
-// Test viewing enrolled courses
-$courses = $student->viewCourses();
-if (!empty($courses)) {
-    echo "Enrolled courses fetched successfully!<br>";
-    print_r($courses);
-} else {
-    echo "No courses found.<br>";
-}
+// $courses = $student->viewCourses();
+// if (!empty($courses)) {
+//     echo "Enrolled courses fetched successfully!<br>";
+//     print_r($courses);
+// } else {
+//     echo "No courses found.<br>";
+// }
 
-// Test searching for courses
-$searchResults = $student->searchCourses('PHP');
-if (!empty($searchResults)) {
-    echo "Search results fetched successfully!<br>";
-    print_r($searchResults);
-} else {
-    echo "No courses found.<br>";
-}
+// $searchResults = $student->searchCourses('PHP');
+// if (!empty($searchResults)) {
+//     echo "Search results fetched successfully!<br>";
+//     print_r($searchResults);
+// } else {
+//     echo "No courses found.<br>";
+// }
 ?>

@@ -95,6 +95,38 @@ abstract class Course {
         ]);
 
         $this->id = $this->conn->lastInsertId();
+        return true;
     }
 }
+
+class Course1 extends course {
+    protected $conn;
+    protected $document_path;
+
+    public function __construct($title, $description, $teacher_id, $category_id)
+    {
+        parent::__construct($title, $description, $teacher_id, $category_id);
+    }
+
+    public function displayContent() {
+        return "<a href='{$this->document_path}' download>Download Document</a>";
+    }
+}
+$course = new Course1('test', 'PHP basics', 1, 1);
+
+if ($course->save()) {
+    echo "Course saved successfully! Course ID: " . $course->getId() . "<br>";
+} else {
+    echo "Failed to save course.<br>";
+}
+// $course->displayContent();
+// $saveCourse = $course->save();
+// var_dump($saveCourse);
+
+// $fetchedCourse = Course::findById($course->getId());
+// if ($fetchedCourse) {
+//     echo "Course fetched successfully! Title: " . $fetchedCourse->getTitle() . "<br>";
+// } else {
+//     echo "Failed to fetch course.<br>";
+// }
 ?>
