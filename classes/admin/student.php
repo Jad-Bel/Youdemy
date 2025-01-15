@@ -1,9 +1,11 @@
 <?php
-require_once '../classes/user.php';
+// require_once '../classes/user.php';
+// require_once '../../config/database.php';
+// require_once '../user.php';
 
 class Student extends User {
-    public function __construct($username, $email, $password) {
-        parent::__construct($username, $email, $password, 'student');
+    public function __construct($username, $email, $password, $role, $status) {
+        parent::__construct($username, $email, $password, $role, $status);
     }
 
     public function enroll($student_id ,$course_id) {
@@ -41,8 +43,9 @@ class Student extends User {
     }
 }
 
-// $student = new Student('jane_doe', 'jane@example.com', 'password123');
-
+// $student = new Student('jane_doe', 'jane@example.com', 'password123', 'student', 1);
+// $register = new user('jane_doe', 'jane@example.com', 'password123', 'student');
+// $register->register();
 // if ($student->enroll(1,1)) {
 //     echo "Enrollment successful!<br>";
 // } else {

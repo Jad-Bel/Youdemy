@@ -13,17 +13,21 @@ class Auth {
     }
 
     public function register($username, $email, $password, $role) {
-        if ($role === 'teacher') {
-            $user = new Teacher($username, $email, $password);
-        } elseif ($role === 'student') {
-            $user = new Student($username, $email, $password);
-        } else {
-            throw new Exception("Invalid role.");
+        try {
+            if ($role === 'teacher') {
+                $user = new Teacher($username, $email, $password, 'pending');
+            } elseif ($role === 'student') {
+                $user = new Student($username, $email, $password, $role, 'active');
+            } else {
+                throw new Exception("Invalid role.");
+            }
+    
+            $user->save();
+            header('location: login.php');
+            return true;
+        } catch (Exception $e) {
+            throw new Exception('Erreur d enregistrer lutilisateur' . $e->getMessage() );
         }
-
-        $user->save();
-        header('location: login.php');
-        return true;
     }
 
     public function login($email, $password) {
@@ -36,7 +40,7 @@ class Auth {
             if ($userData['role'] === 'teacher') {
                 $user = new Teacher($userData['username'], $userData['email'], $userData['password']);
             } elseif ($userData['role'] === 'student') {
-                $user = new Student($userData['username'], $userData['email'], $userData['password']);
+                $user = new Student($userData['username'], $userData['email'], $userData['password'], $userData[''], $userData['']);
             } else {
                 throw new Exception("Invalid role.");
             }

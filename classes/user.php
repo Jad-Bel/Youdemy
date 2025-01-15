@@ -1,78 +1,100 @@
 <?php
 // require_once '../../config/database.php';
 
-class User {
+class User
+{
     protected $id;
     protected $username;
     protected $email;
     protected $password;
     protected $role;
+    protected $status;
     protected $created_at;
     protected $updated_at;
     protected $conn;
 
-    public function __construct($username, $email, $password, $role) {
+    public function __construct($username, $email, $password, $role, $status)
+    {   
         $db = new Database();
         $this->conn = $db->getConnection();
         $this->username = $username;
         $this->email = $email;
         $this->password = $this->hashPassword($password);
         $this->role = $role;
+        $this->status = $status;
         $this->created_at = date('Y-m-d H:i:s');
         $this->updated_at = date('Y-m-d H:i:s');
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getUsername() {
+    public function getUsername()
+    {
         return $this->username;
     }
 
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    public function getRole() {
+    public function getRole()
+    {
         return $this->role;
     }
 
-    public function getCreatedAt() {
+    public function getCreatedAt()
+    {
         return $this->created_at;
     }
 
-    public function getUpdatedAt() {
+    public function getUpdatedAt()
+    {
         return $this->updated_at;
     }
 
-    protected function hashPassword($password) {
+
+
+    protected function hashPassword($password)
+    {
         return password_hash($password, PASSWORD_BCRYPT);
     }
 
-    protected function verifyPassword($password, $hashedPassword) {
+    protected function verifyPassword($password, $hashedPassword)
+    {
         return password_verify($password, $hashedPassword);
     }
 
-    public function save() {
-        $sql = "INSERT INTO users (username, email, password, role, created_at, updated_at)
-                VALUES (:username, :email, :password, :role, :created_at, :updated_at)";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([
-            'username' => $this->username,
-            'email' => $this->email,
-            'password' => $this->password,
-            'role' => $this->role,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
-        ]);
-        $this->id = $this->conn->lastInsertId();
+    public function save()
+    {
+        try {
+            $sql = "INSERT INTO `users` (`username`, `email`, `password`, `role`, `status`, `created_at`, `updated_at`)
+                    VALUES (:username, :email, :password, :role, :status, :created_at, :updated_at);";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([
+                'username' => $this->username,
+                'email' => $this->email,
+                'password' => $this->password,
+                'role' => $this->role,
+                'status' => $this->status,
+                'created_at' => $this->created_at,
+                'updated_at' => $this->updated_at
+            ]);
+            $this->id = $this->conn->lastInsertId();
+            return true;
+        } catch (PDOException $e) {
+            error_log("Error saving user: " . $e->getMessage());
+            return false;
+        }
     }
 
-    public static function findByEmail($email) {
-        $conn = new database();
+    public static function findByEmail($email, $conn)
+    {
         $sql = "SELECT * FROM users WHERE email = :email";
-        $stmt = $conn->getConnection()->prepare($sql);
+        $stmt = $conn->prepare($sql);
         $stmt->execute(['email' => $email]);
         $userData = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -81,7 +103,8 @@ class User {
                 $userData['username'],
                 $userData['email'],
                 '', 
-                $userData['role']
+                $userData['role'],
+                $userData['status']
             );
             $user->id = $userData['id'];
             $user->password = $userData['password'];
@@ -93,15 +116,17 @@ class User {
         return null;
     }
 
-    public static function verifyCredentials($email, $password) {
-        $user = self::findByEmail($email);
-        if ($user && $user->verifyPassword($password, $user->getPassword())) {
-            return $user;
-        }
-        return null;
+    public static function verifyCredentials($email, $password, $conn)
+    {
+    $user = self::findByEmail($email, $conn);
+    if ($user && $user->verifyPassword($password, $user->getPassword())) {
+        return $user;
+    }
+    return null;
     }
 
-    protected function getPassword() {
+    protected function getPassword()
+    {
         return $this->password;
     }
 }
@@ -119,4 +144,3 @@ class User {
 // } else {
 //     echo "Invalid credentials.<br>";
 // }
-?>

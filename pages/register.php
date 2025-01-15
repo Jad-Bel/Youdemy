@@ -1,7 +1,7 @@
 <?php
 require_once '../config/database.php';
 require_once '../classes/admin/auth.php';
-// require_once '../classes/user.php';
+require_once '../classes/user.php';
 require_once '../classes/admin/student.php';
 require_once '../classes/admin/teacher.php';
 
@@ -12,9 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $role = $_POST['role'];
+    $status = 'active';
 
     try {
-        $user = $auth->register($username, $email, $password, $role);
+        $user = $auth->register($username, $email, $password, $role, $status);
         echo "Registration successful!";
     } catch (Exception $e) {
         echo "Registration failed: " . $e->getMessage();
