@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $auth = new Auth();
     try {
         $auth->register($username, $email, $password, $role);
-        echo "Registration successful!";
+        // echo "Registration successful!";
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }

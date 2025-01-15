@@ -4,23 +4,17 @@ require_once '../config/database.php';
 require_once '../classes/admin/auth.php';
 require_once '../classes/user.php';
 
-$auth = new Auth();
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $user = $auth->login($email, $password);
-    if ($user) {
-        echo "Login successful!";
-        if ($user->getRole() === 'teacher') {
-            header('Location: teacher_dashboard.php');
-        } elseif ($user->getRole() === 'student') {
-            header('Location: student_dashboard.php');
-        }
+    $auth = new Auth();
+    try {
+        $auth->login($email, $password);
+        header('Location: dashboard.php');
         exit();
-    } else {
-        echo "Invalid email or password.";
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
     }
 }
 ?>
@@ -86,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					<h2 class="title-head">Login to your <span>Account</span></h2>
 					<p>Don't have an account? <a href="register.html">Create one here</a></p>
 				</div>	
-				<form class="contact-bx">
+				<form class="contact-bx" method="POST">
 					<div class="row placeani">
 						<div class="col-lg-12">
 							<div class="form-group">
