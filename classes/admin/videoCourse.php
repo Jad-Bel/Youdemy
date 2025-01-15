@@ -2,11 +2,8 @@
 require_once "Course.php";
 
 class VideoCourse extends Course {
-    private $video_link;
-
-    public function __construct($title, $description, $teacher_id, $category_id, $video_link) {
-        parent::__construct($title, $description, $teacher_id, $category_id);
-        $this->video_link = $video_link;
+    public function __construct($title, $description, $content, $video_link, $teacher_id, $category_id) {
+        parent::__construct($title, $description, $content, $video_link, $teacher_id, $category_id);
     }
 
     public function getVideoLink() {
@@ -30,6 +27,7 @@ class VideoCourse extends Course {
             'video_link' => $this->video_link,
             'id' => $this->id
         ]);
+        return true;
     }
 }
 ?>
