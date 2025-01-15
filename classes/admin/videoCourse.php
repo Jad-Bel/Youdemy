@@ -30,4 +30,21 @@ class VideoCourse extends Course {
         return true;
     }
 }
+
+// $videoCourse = new VideoCourse(
+//     'Introduction to PHP', 
+//     'Learn PHP basics',    
+//     'This course covers PHP fundamentals.',
+//     'https://www.youtube.com/embed/xyz123',
+//     1,                     
+//     1                      
+// );
+
+// if ($videoCourse->save()) {
+//     echo "Course saved successfully! Course ID: " . $videoCourse->getId() . "<br>";
+// } else {
+//     echo "Failed to save course.<br>";
+// }
+
+// echo $videoCourse->displayContent();
 ?>
