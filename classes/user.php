@@ -1,7 +1,8 @@
 <?php
 // require_once '../../config/database.php';
 
-class User {
+class User
+{
     protected $id;
     protected $username;
     protected $email;
@@ -12,7 +13,8 @@ class User {
     protected $updated_at;
     protected $conn;
 
-    public function __construct($username, $email, $password, $role, $status = 'pending') {
+    public function __construct($username, $email, $password, $role, $status = 'pending')
+    {
         $db = new Database();
         $this->conn = $db->getConnection();
         $this->username = $username;
@@ -24,43 +26,53 @@ class User {
         $this->updated_at = date('Y-m-d H:i:s');
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getUsername() {
+    public function getUsername()
+    {
         return $this->username;
     }
 
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->password;
     }
 
-    public function getRole() {
+    public function getRole()
+    {
         return $this->role;
     }
 
-    public function getStatus() {
+    public function getStatus()
+    {
         return $this->status;
     }
 
-    public function getCreatedAt() {
+    public function getCreatedAt()
+    {
         return $this->created_at;
     }
 
-    public function getUpdatedAt() {
+    public function getUpdatedAt()
+    {
         return $this->updated_at;
     }
 
-    public function setUsername($username) {
+    public function setUsername($username)
+    {
         $this->username = $username;
     }
 
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->email = $email;
         } else {
@@ -68,19 +80,33 @@ class User {
         }
     }
 
-    public function setPassword($password) {
+    public function setPassword($password)
+    {
         $this->password = $this->hashPassword($password);
     }
 
-    public function setRole($role) {
+    public function setRole($role)
+    {
         $this->role = $role;
     }
 
-    public function setStatus($status) {
+    public function setStatus($status)
+    {
         $this->status = $status;
     }
 
-    public function save() {
+    public function save()
+    {
+
+        $checkEmailSql = "SELECT id FROM users WHERE email = :email";
+        $checkEmailStmt = $this->conn->prepare($checkEmailSql);
+        $checkEmailStmt->execute(['email' => $this->email]);
+        $existingUser = $checkEmailStmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($existingUser) {
+            header('location: register.php');
+        }
+
         $sql = "INSERT INTO users (username, email, password, role, status, created_at, updated_at)
                 VALUES (:username, :email, :password, :role, :status, :created_at, :updated_at)";
         $stmt = $this->conn->prepare($sql);
@@ -97,7 +123,8 @@ class User {
         return true;
     }
 
-    public static function findByEmail($email) {
+    public static function findByEmail($email)
+    {
         $db = new Database();
         $conn = $db->getConnection();
         $sql = "SELECT * FROM users WHERE email = :email";
@@ -106,15 +133,19 @@ class User {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    protected function hashPassword($password) {
+
+    protected function hashPassword($password)
+    {
         return password_hash($password, PASSWORD_BCRYPT);
     }
 
-    public function verifyPassword($password, $hashedPassword) {
+    public function verifyPassword($password, $hashedPassword)
+    {
         return password_verify($password, $hashedPassword);
     }
 
-    public static function getAllUsers($currentUser) {
+    public static function getAllUsers($currentUser)
+    {
         if ($currentUser->getRole() == 'admin') {
             $db = new Database();
             $conn = $db->getConnection();
@@ -122,7 +153,14 @@ class User {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     }
+
+    public static function getAllTeachers($currentUser)
+    {
+        if ($currentUser->getRole() == 'admin') {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $stmt = $conn->query("SELECT * FROM users WHERE role = 'Teacher'");
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+    }
 }
-
-
-?>

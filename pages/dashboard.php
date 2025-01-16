@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'delete_user':
             $userData = User::findByEmail($_POST['email']);
             if ($userData) {
-                $admin->deleteUser($userData['id']);
+                $admin->deleteUser($userData['email']);
                 echo "User deleted successfully!";
             } else {
                 throw new Exception("User not found.");
@@ -231,30 +231,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <th>Nom</th>
                             <th>Email</th>
                             <th>Date demande</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php
                         $currentUser = new Admin('test', 'test@test.com', 'test', 'admin');
-                        $allUsers = User::getAllUsers($currentUser);
+                        $allTeacher = User::getAllTeachers($currentUser);
 
-                        foreach ($allUsers as $user):
+                        foreach ($allTeacher as $teacher):
                     ?>
                         <tr>
-                            <td><?= $user['id'] ?></td>
-                            <td><?= $user['username'] ?></td>
-                            <td><?= $user['email'] ?></td>
-                            <td><?= $user['created_at'] ?></td>
+                            <td><?= $teacher['id'] ?></td>
+                            <td><?= $teacher['username'] ?></td>
+                            <td><?= $teacher['email'] ?></td>
+                            <td><?= $teacher['created_at'] ?></td>
+                            <td><?= $teacher['status'] ?></td>
                             <td>
                                 <form method="POST" action="" style="display:inline;">
                                     <input type="hidden" name="action" value="accept_teacher">
-                                    <input type="hidden" name="email" value="<?= $user['id'] ?>">
+                                    <input type="hidden" name="email" value="<?= $teacher['email'] ?>">
                                     <button type="submit" class="btn btn-success btn-sm">Accepter</button>
                                 </form>
                                 <form method="POST" action="" style="display:inline;">
                                     <input type="hidden" name="action" value="refuse_teacher">
-                                    <input type="hidden" name="email" value="<?= $user['id'] ?>">
+                                    <input type="hidden" name="email" value="<?= $teacher['email'] ?>">
                                     <button type="submit" class="btn btn-danger btn-sm">Refuser</button>
                                 </form>
                             </td>
@@ -275,34 +277,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <th>ID</th>
                             <th>Nom</th>
                             <th>Type</th>
+                            <th>Role</th>
+                            <th>Date Creation</th>
                             <th>Statut</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td>
-                            <td>Jane Doe</td>
-                            <td>Étudiant</td>
-                            <td>Actif</td>
+                            <?php 
+                             $currentUser = new Admin('test', 'test@test.com', 'test', 'admin');
+                             $allUsers = User::getAllUsers($currentUser);
+
+                             foreach($allUsers as $user):
+                            ?>
+                            <td><?= $user['id'] ?></td>
+                            <td><?= $user['username'] ?></td>
+                            <td><?= $user['email'] ?></td>
+                            <td><?= $user['role'] ?></td>
+                            <td><?= $user['created_at'] ?></td>
+                            <td><?= $user['status'] ?></td>
                             <td>
                                 <form method="POST" action="" style="display:inline;">
                                     <input type="hidden" name="action" value="ban_user">
-                                    <input type="hidden" name="email" value="jane@example.com">
+                                    <input type="hidden" name="email" value="<?= $user['email'] ?>">
                                     <button type="submit" class="btn btn-warning btn-sm">Bannir</button>
                                 </form>
                                 <form method="POST" action="" style="display:inline;">
                                     <input type="hidden" name="action" value="unban_user">
-                                    <input type="hidden" name="email" value="jane@example.com">
+                                    <input type="hidden" name="email" value="<?= $user['email'] ?>">
                                     <button type="submit" class="btn btn-success btn-sm">Débannir</button>
                                 </form>
                                 <form method="POST" action="" style="display:inline;">
                                     <input type="hidden" name="action" value="delete_user">
-                                    <input type="hidden" name="email" value="jane@example.com">
+                                    <input type="hidden" name="email" value="<?= $user['email'] ?>">
                                     <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                                 </form>
                             </td>
                         </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

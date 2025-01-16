@@ -22,13 +22,13 @@ class Admin extends User {
         $this->updateUserStatus($id, 'active');
     }
 
-    public function deleteUser($id) {
-        if ($this->id == $id) {
+    public function deleteUser($email) {
+        if ($this->email == $email) {
             throw new Exception('Admin cannot delete themselves');
         }
-        $query = "DELETE FROM users WHERE id = :id";
+        $query = "DELETE FROM users WHERE email = :email";
         $stmt = $this->conn->prepare($query);
-        $stmt->execute(['id' => $id]);
+        $stmt->execute(['email' => $email]);
     }
 
     public function acceptTeacher($id) {
@@ -36,6 +36,6 @@ class Admin extends User {
     }
 
     public function declineTeacher($id) {
-        $this->updateUserStatus($id, 'declined');
+        $this->updateUserStatus($id, 'suspended');
     }
 }
