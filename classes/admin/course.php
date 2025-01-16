@@ -99,8 +99,18 @@ abstract class Course {
         return $this->updated_at;
     }
 
-    abstract public function displayContent();
+    abstract public function displayContent($title, $description, $content, $video_link, $category_id, $tags);
 
+    abstract public function addCourse();
+
+    abstract public function editCourse($course_id, $title, $description, $content, $video_link, $category_id, $tags);
+
+    abstract public function deleteCourse($course_id);
+
+    public function viewStatistics() {
+
+    
+    
     public function save() {
         $sql = "INSERT INTO courses (title, description, content, video_link, teacher_id, category_id, created_at, updated_at)
                 VALUES (:title, :description, :content, :video_link, :teacher_id, :category_id, :created_at, :updated_at)";

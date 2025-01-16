@@ -1,66 +1,38 @@
 <?php
-// Required database connections and model includes would go here
-// session_start();
 
-// Check if user is logged in and is admin
-// if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'admin') {
-//     header('Location: login.php');
-//     exit();
-// }
-
-// Handle POST requests for all admin actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     switch ($_POST['action']) {
-        // Teacher account validation
         case 'accept_teacher':
-            // Accept teacher account logic
             break;
         case 'refuse_teacher':
-            // Refuse teacher account logic
             break;
             
-        // User management
         case 'ban_user':
-            // Ban user logic
             break;
         case 'unban_user':
-            // Unban user logic
             break;
         case 'delete_user':
-            // Delete user logic
             break;
             
-        // Course management
         case 'add_course':
-            // Add course logic
             break;
         case 'modify_course':
-            // Modify course logic
             break;
         case 'delete_course':
-            // Delete course logic
             break;
             
-        // Category management
         case 'add_category':
-            // Add category logic
             break;
         case 'modify_category':
-            // Modify category logic
             break;
         case 'delete_category':
-            // Delete category logic
             break;
             
-        // Tag management
         case 'add_tags':
-            // Add multiple tags logic
             break;
         case 'modify_tag':
-            // Modify tag logic
             break;
         case 'delete_tag':
-            // Delete tag logic
             break;
     }
 }
@@ -393,7 +365,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
+    <!-- <script>
         function acceptTeacher(id) {
             if(confirm('Confirmer l\'acceptation de cet enseignant ?')) {
             }
@@ -411,23 +383,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         function unbanUser(id) {
             if(confirm('Confirmer le débannissement de cet utilisateur ?')) {
-                // AJAX call to unban user
             }
         }
 
         function deleteUser(id) {
             if(confirm('Confirmer la suppression de cet utilisateur ?')) {
-                // AJAX call to delete user
             }
         }
 
         function modifyCourse(id) {
-            // Show course modification modal
         }
 
         function deleteCourse(id) {
             if(confirm('Confirmer la suppression de ce cours ?')) {
-                // AJAX call to delete course
             }
         }
 
@@ -439,17 +407,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             new bootstrap.Modal(document.getElementById('tagsModal')).show();
         }
 
-        // Form submission handlers
         document.getElementById('categoryForm')?.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Handle category form submission
         });
 
         document.getElementById('tagsForm')?.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Handle tags form submission
         });
-    </script>
+    </script> -->
 </body>
 </html>
 

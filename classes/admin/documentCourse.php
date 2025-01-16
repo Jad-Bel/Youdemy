@@ -17,6 +17,27 @@ class DocumentCourse extends Course {
         $this->document_link = $document_link;
     }
 
+    public function addCourse($title, $teacher_id, $description, $content, $video_link, $category_id, $tags) {
+        $sql = "INSERT INTO courses (title, description, content, video_link, teacher_id, category_id, created_at, updated_at)
+                VALUES (:title, :description, :content, :video_link, :teacher_id, :category_id, NOW(), NOW())";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'title' => $title,
+            'description' => $description,
+            'content' => $content,
+            'video_link' => $video_link,
+            // 'teacher_id' => $this->getId(),
+            'teacher_id' => $teacher_id,
+            'category_id' => $category_id
+        ]);
+
+        $course_id = $this->conn->lastInsertId();
+
+        $this->addTagsToCourse($course_id, $tags);
+
+        return $course_id;
+    }
+
     public function displayContent() {
         return "<a href='{$this->document_link}' download>Download Document</a>";
     }
