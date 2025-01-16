@@ -5,7 +5,7 @@
 
 class Student extends User {
     public function __construct($username, $email, $password, $role, $status) {
-        parent::__construct($username, $email, $password, $role, $status);
+        parent::__construct($username, $email, $password, 'student', $status);
     }
 
     public function enroll($student_id, $course_id) {

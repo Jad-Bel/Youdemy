@@ -1,88 +1,94 @@
 <?php
-    require_once '../classes/user.php';
-    require_once '../classes/admin/student.php';
-    require_once '../classes/admin/teacher.php';
+require_once '../config/database.php';
+require_once '../classes/user.php';
+require_once '../classes/admin/student.php';
+require_once '../classes/admin/teacher.php';
+require_once '../classes/admin/admin.php';
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $admin = new Admin('admin_username', 'admin@example.com', 'admin_password');
 
-        switch ($_POST['action']) {
-            case 'accept_teacher':
-                $teacherData = User::findByEmail($_POST['email']);
-                if ($teacherData) {
-                    $admin->acceptTeacher($teacherData['id']);
-                    echo "Teacher accepted successfully!";
-                } else {
-                    throw new Exception("Teacher not found.");
-                }
-                break;
 
-            case 'refuse_teacher':
-                $teacherData = User::findByEmail($_POST['email']);
-                if ($teacherData) {
-                    $admin->declineTeacher($teacherData['id']);
-                    echo "Teacher declined successfully!";
-                } else {
-                    throw new Exception("Teacher not found.");
-                }
-                break;
 
-            case 'ban_user':
-                $userData = User::findByEmail($_POST['email']);
-                if ($userData) {
-                    $admin->banUser($userData['id']);
-                    echo "User banned successfully!";
-                } else {
-                    throw new Exception("User not found.");
-                }
-                break;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $admin = new Admin('test', 'test@test.com', 'test', 'admin');
 
-            case 'unban_user':
-                $userData = User::findByEmail($_POST['email']);
-                if ($userData) {
-                    $admin->unbanUser($userData['id']);
-                    echo "User unbanned successfully!";
-                } else {
-                    throw new Exception("User not found.");
-                }
-                break;
+    switch ($_POST['action']) {
+        case 'accept_teacher':
+            $teacherData = User::findByEmail($_POST['email']);
+            if ($teacherData) {
+                $admin->acceptTeacher($teacherData['id']);
+                echo "Teacher accepted successfully!";
+            } else {
+                throw new Exception("Teacher not found.");
+            }
+            break;
 
-            case 'delete_user':
-                $userData = User::findByEmail($_POST['email']);
-                if ($userData) {
-                    $admin->deleteUser($userData['id']);
-                    echo "User deleted successfully!";
-                } else {
-                    throw new Exception("User not found.");
-                }
-                break;
-    
-            case 'add_course':
-                break;
-            case 'modify_course':
-                break;
-            case 'delete_course':
-                break;
-    
-            case 'add_category':
-                break;
-            case 'modify_category':
-                break;
-            case 'delete_category':
-                break;
-    
-            case 'add_tags':
-                break;
-            case 'modify_tag':
-                break;
-            case 'delete_tag':
-                break;
-        }
+        case 'refuse_teacher':
+            $teacherData = User::findByEmail($_POST['email']);
+            if ($teacherData) {
+                $admin->declineTeacher($teacherData['id']);
+                echo "Teacher declined successfully!";
+            } else {
+                throw new Exception("Teacher not found.");
+            }
+            break;
+
+        case 'ban_user':
+            $userData = User::findByEmail($_POST['email']);
+            if ($userData) {
+                $admin->banUser($userData['id']);
+                echo "User banned successfully!";
+            } else {
+                throw new Exception("User not found.");
+            }
+            break;
+
+        case 'unban_user':
+            $userData = User::findByEmail($_POST['email']);
+            if ($userData) {
+                $admin->unbanUser($userData['id']);
+                echo "User unbanned successfully!";
+            } else {
+                throw new Exception("User not found.");
+            }
+            break;
+
+        case 'delete_user':
+            $userData = User::findByEmail($_POST['email']);
+            if ($userData) {
+                $admin->deleteUser($userData['id']);
+                echo "User deleted successfully!";
+            } else {
+                throw new Exception("User not found.");
+            }
+            break;
+
+        case 'add_course':
+            break;
+        case 'modify_course':
+            break;
+        case 'delete_course':
+            break;
+
+        case 'add_category':
+            break;
+        case 'modify_category':
+            break;
+        case 'delete_category':
+            break;
+
+        case 'add_tags':
+            break;
+        case 'modify_tag':
+            break;
+        case 'delete_tag':
+            break;
     }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -100,18 +106,22 @@
             z-index: 100;
             width: 250px;
         }
+
         .main-content {
             margin-left: 250px;
             padding: 56px 20px 20px 20px;
         }
+
         .statistics-card {
             transition: transform 0.3s;
         }
+
         .statistics-card:hover {
             transform: scale(1.02);
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -214,6 +224,7 @@
             <h2>Validation des comptes Enseignants</h2>
             <div class="table-responsive">
                 <table class="table">
+                    
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -224,25 +235,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- PHP foreach for pending teacher accounts -->
+                    <?php
+                        $currentUser = new Admin('test', 'test@test.com', 'test', 'admin');
+                        $allUsers = User::getAllUsers($currentUser);
+
+                        foreach ($allUsers as $user):
+                    ?>
                         <tr>
-                            <td>1</td>
-                            <td>John Doe</td>
-                            <td>john@example.com</td>
-                            <td>2023-10-15</td>
+                            <td><?= $user['id'] ?></td>
+                            <td><?= $user['username'] ?></td>
+                            <td><?= $user['email'] ?></td>
+                            <td><?= $user['created_at'] ?></td>
                             <td>
                                 <form method="POST" action="" style="display:inline;">
                                     <input type="hidden" name="action" value="accept_teacher">
-                                    <input type="hidden" name="email" value="john@example.com">
+                                    <input type="hidden" name="email" value="<?= $user['id'] ?>">
                                     <button type="submit" class="btn btn-success btn-sm">Accepter</button>
                                 </form>
                                 <form method="POST" action="" style="display:inline;">
                                     <input type="hidden" name="action" value="refuse_teacher">
-                                    <input type="hidden" name="email" value="john@example.com">
+                                    <input type="hidden" name="email" value="<?= $user['id'] ?>">
                                     <button type="submit" class="btn btn-danger btn-sm">Refuser</button>
                                 </form>
                             </td>
                         </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -451,4 +468,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

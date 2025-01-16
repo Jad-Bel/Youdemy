@@ -113,5 +113,16 @@ class User {
     public function verifyPassword($password, $hashedPassword) {
         return password_verify($password, $hashedPassword);
     }
+
+    public static function getAllUsers($currentUser) {
+        if ($currentUser->getRole() == 'admin') {
+            $db = new Database();
+            $conn = $db->getConnection();
+            $stmt = $conn->query("SELECT * FROM users");
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+    }
 }
+
+
 ?>
