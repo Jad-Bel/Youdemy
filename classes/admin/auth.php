@@ -27,12 +27,18 @@ class Auth {
     public function login($email, $password) {
         $userData = User::findByEmail($email);
         if ($userData) {
+            if ($userData['status'] === 'suspended') {
+                header('Location: 404.php');
+                exit();
+            }
+    
             $user = new User($userData['username'], $userData['email'], '', $userData['role'], $userData['status']);
+    
             if ($user->verifyPassword($password, $userData['password'])) {
                 session_start();
                 $_SESSION['user_id'] = $userData['id'];
                 $_SESSION['role'] = $userData['role'];
-                header('location: dashboard.php');
+                header('Location: dashboard.php');
                 return true;
             }
         }

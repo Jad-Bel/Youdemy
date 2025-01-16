@@ -4,7 +4,7 @@ require_once 'course.php';
 class DocumentCourse extends Course {
     private $document_link;
 
-    public function __construct($title, $description, $content, $document_link, $video_link, $teacher_id, $category_id, $document_link) {
+    public function __construct($title, $description, $content, $document_link, $video_link, $teacher_id, $category_id) {
         parent::__construct($title, $description, $content, $document_link, $teacher_id, $category_id);
         $this->document_link = $document_link;
     }
@@ -26,6 +26,7 @@ class DocumentCourse extends Course {
             'description' => $description,
             'content' => $content,
             'document_link' => $document_link,
+            'video_link' => $video_link,
             // 'teacher_id' => $this->getId(),
             'teacher_id' => $teacher_id,
             'category_id' => $category_id
@@ -38,12 +39,13 @@ class DocumentCourse extends Course {
         return $course_id;
     }
 
-    public function editCourse($course_id, $title, $description, $content, $document_link, $category_id, $tags) {
+    public function editCourse($course_id, $title, $description, $content, $document_link, $video_link, $category_id, $tags) {
         $sql = "UPDATE courses
                 SET title = :title,
                     description = :description,
                     content = :content,
                     document_link = :document_link,
+                    video_link = :video_link,
                     category_id = :category_id,
                     updated_at = NOW()
                 WHERE id = :course_id AND teacher_id = :teacher_id";
@@ -53,6 +55,7 @@ class DocumentCourse extends Course {
             'description' => $description,
             'content' => $content,
             'document_link' => $document_link,
+            'video_link' => $video_link,
             'category_id' => $category_id,
             'course_id' => $course_id,
             'teacher_id' => $this->getId()

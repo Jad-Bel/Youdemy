@@ -1,41 +1,84 @@
 <?php
+    require_once '../classes/user.php';
+    require_once '../classes/admin/student.php';
+    require_once '../classes/admin/teacher.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    switch ($_POST['action']) {
-        case 'accept_teacher':
-            break;
-        case 'refuse_teacher':
-            break;
-            
-        case 'ban_user':
-            break;
-        case 'unban_user':
-            break;
-        case 'delete_user':
-            break;
-            
-        case 'add_course':
-            break;
-        case 'modify_course':
-            break;
-        case 'delete_course':
-            break;
-            
-        case 'add_category':
-            break;
-        case 'modify_category':
-            break;
-        case 'delete_category':
-            break;
-            
-        case 'add_tags':
-            break;
-        case 'modify_tag':
-            break;
-        case 'delete_tag':
-            break;
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $admin = new Admin('admin_username', 'admin@example.com', 'admin_password');
+
+        switch ($_POST['action']) {
+            case 'accept_teacher':
+                $teacherData = User::findByEmail($_POST['email']);
+                if ($teacherData) {
+                    $admin->acceptTeacher($teacherData['id']);
+                    echo "Teacher accepted successfully!";
+                } else {
+                    throw new Exception("Teacher not found.");
+                }
+                break;
+
+            case 'refuse_teacher':
+                $teacherData = User::findByEmail($_POST['email']);
+                if ($teacherData) {
+                    $admin->declineTeacher($teacherData['id']);
+                    echo "Teacher declined successfully!";
+                } else {
+                    throw new Exception("Teacher not found.");
+                }
+                break;
+
+            case 'ban_user':
+                $userData = User::findByEmail($_POST['email']);
+                if ($userData) {
+                    $admin->banUser($userData['id']);
+                    echo "User banned successfully!";
+                } else {
+                    throw new Exception("User not found.");
+                }
+                break;
+
+            case 'unban_user':
+                $userData = User::findByEmail($_POST['email']);
+                if ($userData) {
+                    $admin->unbanUser($userData['id']);
+                    echo "User unbanned successfully!";
+                } else {
+                    throw new Exception("User not found.");
+                }
+                break;
+
+            case 'delete_user':
+                $userData = User::findByEmail($_POST['email']);
+                if ($userData) {
+                    $admin->deleteUser($userData['id']);
+                    echo "User deleted successfully!";
+                } else {
+                    throw new Exception("User not found.");
+                }
+                break;
+    
+            case 'add_course':
+                break;
+            case 'modify_course':
+                break;
+            case 'delete_course':
+                break;
+    
+            case 'add_category':
+                break;
+            case 'modify_category':
+                break;
+            case 'delete_category':
+                break;
+    
+            case 'add_tags':
+                break;
+            case 'modify_tag':
+                break;
+            case 'delete_tag':
+                break;
+        }
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -188,8 +231,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <td>john@example.com</td>
                             <td>2023-10-15</td>
                             <td>
-                                <button class="btn btn-success btn-sm" onclick="acceptTeacher(1)">Accepter</button>
-                                <button class="btn btn-danger btn-sm" onclick="refuseTeacher(1)">Refuser</button>
+                                <form method="POST" action="" style="display:inline;">
+                                    <input type="hidden" name="action" value="accept_teacher">
+                                    <input type="hidden" name="email" value="john@example.com">
+                                    <button type="submit" class="btn btn-success btn-sm">Accepter</button>
+                                </form>
+                                <form method="POST" action="" style="display:inline;">
+                                    <input type="hidden" name="action" value="refuse_teacher">
+                                    <input type="hidden" name="email" value="john@example.com">
+                                    <button type="submit" class="btn btn-danger btn-sm">Refuser</button>
+                                </form>
                             </td>
                         </tr>
                     </tbody>
@@ -218,9 +269,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <td>Étudiant</td>
                             <td>Actif</td>
                             <td>
-                                <button class="btn btn-warning btn-sm" onclick="banUser(1)">Bannir</button>
-                                <button class="btn btn-success btn-sm" onclick="unbanUser(1)">Débannir</button>
-                                <button class="btn btn-danger btn-sm" onclick="deleteUser(1)">Supprimer</button>
+                                <form method="POST" action="" style="display:inline;">
+                                    <input type="hidden" name="action" value="ban_user">
+                                    <input type="hidden" name="email" value="jane@example.com">
+                                    <button type="submit" class="btn btn-warning btn-sm">Bannir</button>
+                                </form>
+                                <form method="POST" action="" style="display:inline;">
+                                    <input type="hidden" name="action" value="unban_user">
+                                    <input type="hidden" name="email" value="jane@example.com">
+                                    <button type="submit" class="btn btn-success btn-sm">Débannir</button>
+                                </form>
+                                <form method="POST" action="" style="display:inline;">
+                                    <input type="hidden" name="action" value="delete_user">
+                                    <input type="hidden" name="email" value="jane@example.com">
+                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                </form>
                             </td>
                         </tr>
                     </tbody>
@@ -249,8 +312,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <td>John Doe</td>
                             <td>Programmation</td>
                             <td>
-                                <button class="btn btn-primary btn-sm" onclick="modifyCourse(1)">Modifier</button>
-                                <button class="btn btn-danger btn-sm" onclick="deleteCourse(1)">Supprimer</button>
+                                <form method="POST" action="" style="display:inline;">
+                                    <input type="hidden" name="action" value="modify_course">
+                                    <input type="hidden" name="course_id" value="1">
+                                    <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
+                                </form>
+                                <form method="POST" action="" style="display:inline;">
+                                    <input type="hidden" name="action" value="delete_course">
+                                    <input type="hidden" name="course_id" value="1">
+                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                </form>
                             </td>
                         </tr>
                     </tbody>
@@ -276,8 +347,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <td>1</td>
                             <td>Programmation</td>
                             <td>
-                                <button class="btn btn-primary btn-sm" onclick="modifyCategory(1)">Modifier</button>
-                                <button class="btn btn-danger btn-sm" onclick="deleteCategory(1)">Supprimer</button>
+                                <form method="POST" action="" style="display:inline;">
+                                    <input type="hidden" name="action" value="modify_category">
+                                    <input type="hidden" name="category_id" value="1">
+                                    <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
+                                </form>
+                                <form method="POST" action="" style="display:inline;">
+                                    <input type="hidden" name="action" value="delete_category">
+                                    <input type="hidden" name="category_id" value="1">
+                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                </form>
                             </td>
                         </tr>
                     </tbody>
@@ -303,16 +382,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <td>1</td>
                             <td>PHP</td>
                             <td>
-                                <button class="btn btn-primary btn-sm" onclick="modifyTag(1)">Modifier</button>
-                                <button class="btn btn-danger btn-sm" onclick="deleteTag(1)">Supprimer</button>
+                                <form method="POST" action="" style="display:inline;">
+                                    <input type="hidden" name="action" value="modify_tag">
+                                    <input type="hidden" name="tag_id" value="1">
+                                    <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
+                                </form>
+                                <form method="POST" action="" style="display:inline;">
+                                    <input type="hidden" name="action" value="delete_tag">
+                                    <input type="hidden" name="tag_id" value="1">
+                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                </form>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </section>
-
-       
     </div>
 
     <!-- Modals for Add/Edit operations -->
@@ -365,56 +450,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- <script>
-        function acceptTeacher(id) {
-            if(confirm('Confirmer l\'acceptation de cet enseignant ?')) {
-            }
-        }
-
-        function refuseTeacher(id) {
-            if(confirm('Confirmer le refus de cet enseignant ?')) {
-            }
-        }
-
-        function banUser(id) {
-            if(confirm('Confirmer le bannissement de cet utilisateur ?')) {
-            }
-        }
-
-        function unbanUser(id) {
-            if(confirm('Confirmer le débannissement de cet utilisateur ?')) {
-            }
-        }
-
-        function deleteUser(id) {
-            if(confirm('Confirmer la suppression de cet utilisateur ?')) {
-            }
-        }
-
-        function modifyCourse(id) {
-        }
-
-        function deleteCourse(id) {
-            if(confirm('Confirmer la suppression de ce cours ?')) {
-            }
-        }
-
-        function showAddCategoryModal() {
-            new bootstrap.Modal(document.getElementById('categoryModal')).show();
-        }
-
-        function showAddTagsModal() {
-            new bootstrap.Modal(document.getElementById('tagsModal')).show();
-        }
-
-        document.getElementById('categoryForm')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-        });
-
-        document.getElementById('tagsForm')?.addEventListener('submit', function(e) {
-            e.preventDefault();
-        });
-    </script> -->
 </body>
 </html>
-
