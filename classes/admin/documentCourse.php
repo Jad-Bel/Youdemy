@@ -4,8 +4,8 @@ require_once 'course.php';
 class DocumentCourse extends Course {
     private $document_link;
 
-    public function __construct($title, $description, $content, $video_link, $teacher_id, $category_id, $document_link) {
-        parent::__construct($title, $description, $content, $video_link, $teacher_id, $category_id);
+    public function __construct($title, $description, $content, $document_link, $video_link, $teacher_id, $category_id, $document_link) {
+        parent::__construct($title, $description, $content, $document_link, $teacher_id, $category_id);
         $this->document_link = $document_link;
     }
 
@@ -17,15 +17,15 @@ class DocumentCourse extends Course {
         $this->document_link = $document_link;
     }
 
-    public function addCourse($title, $teacher_id, $description, $content, $video_link, $category_id, $tags) {
-        $sql = "INSERT INTO courses (title, description, content, video_link, teacher_id, category_id, created_at, updated_at)
-                VALUES (:title, :description, :content, :video_link, :teacher_id, :category_id, NOW(), NOW())";
+    public function addCourse($title, $teacher_id, $description, $content, $document_link, $video_link, $category_id, $tags) {
+        $sql = "INSERT INTO courses (title, description, content, document_link, teacher_id, category_id, created_at, updated_at)
+                VALUES (:title, :description, :content, :document_link, :teacher_id, :category_id, NOW(), NOW())";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             'title' => $title,
             'description' => $description,
             'content' => $content,
-            'video_link' => $video_link,
+            'document_link' => $document_link,
             // 'teacher_id' => $this->getId(),
             'teacher_id' => $teacher_id,
             'category_id' => $category_id
@@ -33,9 +33,45 @@ class DocumentCourse extends Course {
 
         $course_id = $this->conn->lastInsertId();
 
-        $this->addTagsToCourse($course_id, $tags);
+        // $this->addTagsToCourse($course_id, $tags);
 
         return $course_id;
+    }
+
+    public function editCourse($course_id, $title, $description, $content, $document_link, $category_id, $tags) {
+        $sql = "UPDATE courses
+                SET title = :title,
+                    description = :description,
+                    content = :content,
+                    document_link = :document_link,
+                    category_id = :category_id,
+                    updated_at = NOW()
+                WHERE id = :course_id AND teacher_id = :teacher_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'title' => $title,
+            'description' => $description,
+            'content' => $content,
+            'document_link' => $document_link,
+            'category_id' => $category_id,
+            'course_id' => $course_id,
+            'teacher_id' => $this->getId()
+        ]);
+
+        // $this->updateTagsForCourse($course_id, $tags);
+
+        return $stmt->rowCount() > 0;
+    }
+
+    public function deleteCourse($course_id) {
+        $sql = "DELETE FROM courses WHERE id = :course_id AND teacher_id = :teacher_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'course_id' => $course_id,
+            'teacher_id' => $this->getId()
+        ]);
+
+        return $stmt->rowCount() > 0;
     }
 
     public function displayContent() {

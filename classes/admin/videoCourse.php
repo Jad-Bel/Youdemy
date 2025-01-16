@@ -14,6 +14,66 @@ class VideoCourse extends Course {
         $this->video_link = $video_link;
     }
 
+    public function addCourse($title, $teacher_id, $description, $content, $document_link, $video_link, $category_id, $tags) {
+        $sql = "INSERT INTO courses (title, description, content, document_link, video_link, teacher_id, category_id, created_at, updated_at)
+                VALUES (:title, :description, :content, :video_link, :teacher_id, :category_id, NOW(), NOW())";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'title' => $title,
+            'description' => $description,
+            'content' => $content,
+            'document_link' => $document_link,
+            'video_link' => $video_link,
+            // 'teacher_id' => $this->getId(),
+            'teacher_id' => $teacher_id,
+            'category_id' => $category_id
+        ]);
+
+        $course_id = $this->conn->lastInsertId();
+
+        // $this->addTagsToCourse($course_id, $tags);
+
+        return $course_id;
+    }
+
+    public function editCourse($course_id, $title, $description, $content, $document_link, $video_link, $category_id, $tags) {
+        $sql = "UPDATE courses
+                SET title = :title,
+                    description = :description,
+                    content = :content,
+                    document_linkt = :document_link,
+                    video_link = :video_link,
+                    category_id = :category_id,
+                    updated_at = NOW()
+                WHERE id = :course_id AND teacher_id = :teacher_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'title' => $title,
+            'description' => $description,
+            'content' => $content,
+            'document_link' => $document_link,
+            'video_link' => $video_link,
+            'category_id' => $category_id,
+            'course_id' => $course_id,
+            'teacher_id' => $this->getId()
+        ]);
+
+        // $this->updateTagsForCourse($course_id, $tags);
+
+        return $stmt->rowCount() > 0;
+    }
+
+    public function deleteCourse($course_id) {
+        $sql = "DELETE FROM courses WHERE id = :course_id AND teacher_id = :teacher_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'course_id' => $course_id,
+            'teacher_id' => $this->getId()
+        ]);
+
+        return $stmt->rowCount() > 0;
+    }
+
     public function displayContent() {
         return "<iframe src='{$this->video_link}' width='560' height='315' frameborder='0' allowfullscreen></iframe>";
     }

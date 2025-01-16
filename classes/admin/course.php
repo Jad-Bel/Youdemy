@@ -6,6 +6,7 @@ abstract class Course {
     protected $title;
     protected $description;
     protected $content;
+    protected $document_link;
     protected $video_link;
     protected $teacher_id;
     protected $category_id;
@@ -13,7 +14,7 @@ abstract class Course {
     protected $updated_at;
     protected $conn;
 
-    public function __construct($title, $description, $content, $video_link, $teacher_id, $category_id) {
+    public function __construct($title, $description, $content ,$document_link, $video_link, $teacher_id, $category_id) {
         $database = new Database();
         $this->conn = $database->getConnection();
 
@@ -99,26 +100,26 @@ abstract class Course {
         return $this->updated_at;
     }
 
-    abstract public function displayContent($title, $description, $content, $video_link, $category_id, $tags);
+    abstract public function displayContent();
 
-    abstract public function addCourse();
+    abstract public function addCourse($title, $teacher_id, $description, $content,$document_link, $video_link, $category_id, $tags);
 
-    abstract public function editCourse($course_id, $title, $description, $content, $video_link, $category_id, $tags);
+    abstract public function editCourse($course_id, $title, $description, $content,$document_link, $video_link, $category_id, $tags);
 
     abstract public function deleteCourse($course_id);
 
-    public function viewStatistics() {
-
+    // abstract public function viewStatistics();
     
     
     public function save() {
-        $sql = "INSERT INTO courses (title, description, content, video_link, teacher_id, category_id, created_at, updated_at)
-                VALUES (:title, :description, :content, :video_link, :teacher_id, :category_id, :created_at, :updated_at)";
+        $sql = "INSERT INTO courses (title, description, content, document_link, video_link, teacher_id, category_id, created_at, updated_at)
+                VALUES (:title, :description, :content, :document_link, :video_link, :teacher_id, :category_id, :created_at, :updated_at)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             'title' => $this->title,
             'description' => $this->description,
             'content' => $this->content,
+            'document_link' => $this->document_link,
             'video_link' => $this->video_link,
             'teacher_id' => $this->teacher_id,
             'category_id' => $this->category_id,
