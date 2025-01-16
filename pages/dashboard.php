@@ -4,6 +4,8 @@ require_once '../classes/user.php';
 require_once '../classes/admin/student.php';
 require_once '../classes/admin/teacher.php';
 require_once '../classes/admin/admin.php';
+require_once '../classes/admin/category.php';
+require_once '../classes/admin/tag.php';
 
 
 
@@ -70,10 +72,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
         case 'add_category':
+            $categories = new Category();
+            $name = $_POST['name'];
+
+            $categories->createCategory($name);
             break;
         case 'modify_category':
+            $categories = new Category();
+            $id = $_POST['id'];
+            $name = $_POST['name'];
+
+            $categories->updateCategory($id, $name);
             break;
         case 'delete_category':
+            $categories = new Category();
+            $id = $_POST['id'];
+
+            $categories->deleteCategory($id);
             break;
 
         case 'add_tags':
@@ -224,7 +239,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h2>Validation des comptes Enseignants</h2>
             <div class="table-responsive">
                 <table class="table">
-                    
+
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -236,31 +251,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </tr>
                     </thead>
                     <tbody>
-                    <?php
+                        <?php
                         $currentUser = new Admin('test', 'test@test.com', 'test', 'admin');
                         $allTeacher = User::getAllTeachers($currentUser);
 
                         foreach ($allTeacher as $teacher):
-                    ?>
-                        <tr>
-                            <td><?= $teacher['id'] ?></td>
-                            <td><?= $teacher['username'] ?></td>
-                            <td><?= $teacher['email'] ?></td>
-                            <td><?= $teacher['created_at'] ?></td>
-                            <td><?= $teacher['status'] ?></td>
-                            <td>
-                                <form method="POST" action="" style="display:inline;">
-                                    <input type="hidden" name="action" value="accept_teacher">
-                                    <input type="hidden" name="email" value="<?= $teacher['email'] ?>">
-                                    <button type="submit" class="btn btn-success btn-sm">Accepter</button>
-                                </form>
-                                <form method="POST" action="" style="display:inline;">
-                                    <input type="hidden" name="action" value="refuse_teacher">
-                                    <input type="hidden" name="email" value="<?= $teacher['email'] ?>">
-                                    <button type="submit" class="btn btn-danger btn-sm">Refuser</button>
-                                </form>
-                            </td>
-                        </tr>
+                        ?>
+                            <tr>
+                                <td><?= $teacher['id'] ?></td>
+                                <td><?= $teacher['username'] ?></td>
+                                <td><?= $teacher['email'] ?></td>
+                                <td><?= $teacher['created_at'] ?></td>
+                                <td><?= $teacher['status'] ?></td>
+                                <td>
+                                    <form method="POST" action="" style="display:inline;">
+                                        <input type="hidden" name="action" value="accept_teacher">
+                                        <input type="hidden" name="email" value="<?= $teacher['email'] ?>">
+                                        <button type="submit" class="btn btn-success btn-sm">Accepter</button>
+                                    </form>
+                                    <form method="POST" action="" style="display:inline;">
+                                        <input type="hidden" name="action" value="refuse_teacher">
+                                        <input type="hidden" name="email" value="<?= $teacher['email'] ?>">
+                                        <button type="submit" class="btn btn-danger btn-sm">Refuser</button>
+                                    </form>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -285,37 +300,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </thead>
                     <tbody>
                         <tr>
-                            <?php 
-                             $currentUser = new Admin('test', 'test@test.com', 'test', 'admin');
-                             $allUsers = User::getAllUsers($currentUser);
+                            <?php
+                            $currentUser = new Admin('test', 'test@test.com', 'test', 'admin');
+                            $allUsers = User::getAllUsers($currentUser);
 
-                             foreach($allUsers as $user):
+                            foreach ($allUsers as $user):
                             ?>
-                            <td><?= $user['id'] ?></td>
-                            <td><?= $user['username'] ?></td>
-                            <td><?= $user['email'] ?></td>
-                            <td><?= $user['role'] ?></td>
-                            <td><?= $user['created_at'] ?></td>
-                            <td><?= $user['status'] ?></td>
-                            <td>
-                                <form method="POST" action="" style="display:inline;">
-                                    <input type="hidden" name="action" value="ban_user">
-                                    <input type="hidden" name="email" value="<?= $user['email'] ?>">
-                                    <button type="submit" class="btn btn-warning btn-sm">Bannir</button>
-                                </form>
-                                <form method="POST" action="" style="display:inline;">
-                                    <input type="hidden" name="action" value="unban_user">
-                                    <input type="hidden" name="email" value="<?= $user['email'] ?>">
-                                    <button type="submit" class="btn btn-success btn-sm">Débannir</button>
-                                </form>
-                                <form method="POST" action="" style="display:inline;">
-                                    <input type="hidden" name="action" value="delete_user">
-                                    <input type="hidden" name="email" value="<?= $user['email'] ?>">
-                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                                </form>
-                            </td>
+                                <td><?= $user['id'] ?></td>
+                                <td><?= $user['username'] ?></td>
+                                <td><?= $user['email'] ?></td>
+                                <td><?= $user['role'] ?></td>
+                                <td><?= $user['created_at'] ?></td>
+                                <td><?= $user['status'] ?></td>
+                                <td>
+                                    <form method="POST" action="" style="display:inline;">
+                                        <input type="hidden" name="action" value="ban_user">
+                                        <input type="hidden" name="email" value="<?= $user['email'] ?>">
+                                        <button type="submit" class="btn btn-warning btn-sm">Bannir</button>
+                                    </form>
+                                    <form method="POST" action="" style="display:inline;">
+                                        <input type="hidden" name="action" value="unban_user">
+                                        <input type="hidden" name="email" value="<?= $user['email'] ?>">
+                                        <button type="submit" class="btn btn-success btn-sm">Débannir</button>
+                                    </form>
+                                    <form method="POST" action="" style="display:inline;">
+                                        <input type="hidden" name="action" value="delete_user">
+                                        <input type="hidden" name="email" value="<?= $user['email'] ?>">
+                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                    </form>
+                                </td>
                         </tr>
-                        <?php endforeach; ?>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -359,36 +374,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </section>
 
+
         <!-- Category Management Section -->
         <section id="category-management" class="mb-4">
             <h2>Gestion des catégories</h2>
-            <button class="btn btn-primary mb-3" onclick="showAddCategoryModal()">Ajouter une catégorie</button>
+            <button class="btn btn-primary mb-3" id="addCategoryBtn">Ajouter une catégorie</button>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Nom</th>
+                            <th>created_at</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Programmation</td>
-                            <td>
-                                <form method="POST" action="" style="display:inline;">
-                                    <input type="hidden" name="action" value="modify_category">
-                                    <input type="hidden" name="category_id" value="1">
-                                    <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
-                                </form>
-                                <form method="POST" action="" style="display:inline;">
-                                    <input type="hidden" name="action" value="delete_category">
-                                    <input type="hidden" name="category_id" value="1">
-                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                                </form>
-                            </td>
-                        </tr>
+                        <?php
+                        $category = new Category();
+                        $categories = $category->getAllCategories();
+
+                        foreach ($categories as $category):
+                        ?>
+                            <tr>
+                                <td><?= $category['id'] ?></td>
+                                <td><?= $category['name'] ?></td>
+                                <td><?= $category['created_at'] ?></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm editCategoryBtn" data-id="1" data-name="Programmation">Modifier</button>
+                                    <form method="POST" action="" style="display:inline;">
+                                        <input type="hidden" name="action" value="delete_category">
+                                        <input type="hidden" name="category_id" value="1">
+                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -412,12 +433,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <td>1</td>
                             <td>PHP</td>
                             <td>
-                                <form method="POST" action="" style="display:inline;">
+                                <form method="POST" action="" class="d-inline">
                                     <input type="hidden" name="action" value="modify_tag">
                                     <input type="hidden" name="tag_id" value="1">
                                     <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
                                 </form>
-                                <form method="POST" action="" style="display:inline;">
+                                <form method="POST" action="" class="d-inline">
                                     <input type="hidden" name="action" value="delete_tag">
                                     <input type="hidden" name="tag_id" value="1">
                                     <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
@@ -428,6 +449,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </table>
             </div>
         </section>
+
+
     </div>
 
     <!-- Modals for Add/Edit operations -->
@@ -436,14 +459,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Ajouter une catégorie</h5>
+                    <h5 class="modal-title" id="categoryModalTitle">Ajouter une catégorie</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="categoryForm">
+                    <form id="categoryForm" method="POST">
+                        <input type="hidden" name="action" value="add_category">
+                        <input type="hidden" name="id" id="categoryId" value="">
                         <div class="mb-3">
                             <label for="categoryName" class="form-label">Nom de la catégorie</label>
-                            <input type="text" class="form-control" id="categoryName" required>
+                            <input type="text" name="name" class="form-control" id="categoryName" required>
+                            <div class="invalid-feedback">
+                                Le nom de la catégorie doit contenir uniquement des lettres, des chiffres, des espaces et des tirets.
+                            </div>
                         </div>
                         <div class="text-end">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
@@ -480,6 +508,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryModal = new bootstrap.Modal(document.getElementById('categoryModal'));
+            const categoryForm = document.getElementById('categoryForm');
+            const categoryNameInput = document.getElementById('categoryName');
+            const categoryModalTitle = document.getElementById('categoryModalTitle');
+            const categoryIdInput = document.getElementById('categoryId');
+
+            const categoryNameRegex = /^[a-zA-Z0-9\s-]+$/;
+
+            document.getElementById('addCategoryBtn').addEventListener('click', function() {
+                categoryModalTitle.textContent = 'Ajouter une catégorie';
+                categoryForm.action.value = 'add_category';
+                categoryIdInput.value = '';
+                categoryNameInput.value = '';
+                categoryModal.show();
+            });
+
+            document.querySelectorAll('.editCategoryBtn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const categoryId = this.getAttribute('data-id');
+                    const categoryName = this.getAttribute('data-name');
+                    categoryModalTitle.textContent = 'Modifier la catégorie';
+                    categoryForm.action.value = 'modify_category';
+                    categoryIdInput.value = categoryId;
+                    categoryNameInput.value = categoryName;
+                    categoryModal.show();
+                });
+            });
+
+            categoryNameInput.addEventListener('input', function() {
+                if (categoryNameRegex.test(this.value)) {
+                    this.classList.remove('is-invalid');
+                    this.classList.add('is-valid');
+                } else {
+                    this.classList.remove('is-valid');
+                    this.classList.add('is-invalid');
+                }
+            });
+
+            categoryForm.addEventListener('submit', function(e) {
+                if (!categoryNameRegex.test(categoryNameInput.value)) {
+                    e.preventDefault();
+                    categoryNameInput.classList.add('is-invalid');
+                }
+            });
+
+            document.getElementById('tagsForm')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+            });
+        });
+    </script>
 </body>
 
 </html>
