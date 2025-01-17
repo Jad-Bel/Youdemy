@@ -93,9 +93,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         case 'add_tags':
             $tags = new Tag();
-            $name = $_POST['name'];
-
-            $tags->createTag($name);
+            $tagNames = $_POST['tag_name'];
+            foreach ($tagNames as $name) {
+                if (!empty($name)) {
+                    $tags->createTag($name);
+                }
+            }
             break;
         case 'modify_tag':
             $tags = new Tag();
@@ -414,10 +417,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <td><?= $category['name'] ?></td>
                                 <td><?= $category['created_at'] ?></td>
                                 <td>
-                                    <button class="btn btn-primary btn-sm editCategoryBtn" data-id="1" data-name="Programmation">Modifier</button>
+                                    <form method="POST" action="" style="display:inline;">
+                                        <input type="hidden" name="action" value="modify_category">
+                                        <input type="hidden" name="category_id" value="<?= $category['id'] ?>">
+                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                    </form>
                                     <form method="POST" action="" style="display:inline;">
                                         <input type="hidden" name="action" value="delete_category">
-                                        <input type="hidden" name="category_id" value="1">
+                                        <input type="hidden" name="category_id" value="<?= $category['id'] ?>">
                                         <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                                     </form>
                                 </td>
@@ -431,7 +438,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Tag Management Section -->
         <section id="tag-management" class="mb-4">
             <h2>Gestion des tags</h2>
-            <button class="btn btn-primary mb-3" onclick="showAddTagsModal()">Ajouter en masse</button>
+            <button class="btn btn-primary mb-3">Ajouter en masse</button>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -444,26 +451,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </thead>
                     <tbody>
                         <?php
-                            $tags = new Tag();
-                            foreach ($tags as $tag):
+                        $tags = new Tag();
+                        foreach ($tags as $tag):
                         ?>
-                        <tr>
-                            <td><?= $tag['id'] ?></td>
-                            <td><?= $tag['name'] ?></td>
-                            <td><?= $tag['created_at'] ?></td>
-                            <td>
-                                <form method="POST" action="" class="d-inline">
-                                    <input type="hidden" name="action" value="modify_tag">
-                                    <input type="hidden" name="tag_id" value="1">
-                                    <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
-                                </form>
-                                <form method="POST" action="" class="d-inline">
-                                    <input type="hidden" name="action" value="delete_tag">
-                                    <input type="hidden" name="tag_id" value="1">
-                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                                </form>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td><?= $tag['id'] ?></td>
+                                <td><?= $tag['name'] ?></td>
+                                <td><?= $tag['created_at'] ?></td>
+                                <td>
+                                    <form method="POST" action="" class="d-inline">
+                                        <input type="hidden" name="action" value="modify_tag">
+                                        <input type="hidden" name="tag_id" value="<?= $tag['id'] ?>">
+                                        <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
+                                    </form>
+                                    <form method="POST" action="" class="d-inline">
+                                        <input type="hidden" name="action" value="delete_tag">
+                                        <input type="hidden" name="tag_id" value="<?= $tag['id'] ?>">
+                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
                         <?php endforeach ?>
                     </tbody>
                 </table>
@@ -505,27 +512,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Add Tags Modal -->
     <div class="modal fade" id="tagsModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Ajouter des tags</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="tagsForm">
-                        <div class="mb-3">
-                            <label for="tagsList" class="form-label">Tags (séparés par des virgules)</label>
-                            <textarea class="form-control" id="tagsList" rows="3" required></textarea>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ajouter des tags</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="tagsForm" method="POST" action="">
+                    <input type="hidden" name="action" value="add_tags">
+                    <div id="tagInputsContainer">
+                        <div class="mb-3 tag-input-group">
+                            <label class="form-label" for="tag_1">Tag 1</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="tag_1" name="tag_name[]" required>
+                            </div>
                         </div>
-                        <div class="text-end">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                            <button type="submit" class="btn btn-primary">Ajouter</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary mb-3" id="addTagBtn">Ajouter un tag</button>
+                    <div class="text-end">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
