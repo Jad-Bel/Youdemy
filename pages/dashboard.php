@@ -680,7 +680,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     categoryNameInput.classList.add('is-invalid');
                 }
             });
+            document.querySelectorAll('.editCategoryBtn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const categoryId = this.getAttribute('data-id');
+                    const categoryName = this.getAttribute('data-name');
 
+                    categoryIdInput.value = categoryId;
+                    categoryNameInput.value = categoryName;
+
+                    categoryModal.show();
+                });
+            });
             // tag
             const tagsModal = new bootstrap.Modal(document.getElementById('tagsModal'));
             const tagsForm = document.getElementById('tagsForm');
@@ -705,7 +715,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 tagsModal.show();
             });
 
-            // dynamic tag input
             addTagBtn.addEventListener('click', function() {
                 tagCount++;
                 const newTagInput = document.createElement('div');
@@ -722,7 +731,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 tagInputsContainer.appendChild(newTagInput);
             });
 
-            // Delete Tag Input
             tagInputsContainer.addEventListener('click', function(e) {
                 if (e.target.classList.contains('delete-tag') || e.target.parentElement.classList.contains('delete-tag')) {
                     const tagInputGroup = e.target.closest('.tag-input-group');
@@ -733,7 +741,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             });
 
-            // update Tag
             function updateTagLabels() {
                 const tagLabels = tagInputsContainer.querySelectorAll('.form-label');
                 tagLabels.forEach((label, index) => {
@@ -742,6 +749,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     label.nextElementSibling.querySelector('input').id = `tag_${index + 1}`;
                 });
             }
+        });
+
+        document.querySelectorAll('.editTagBtn').forEach(button => {
+            button.addEventListener('click', function() {
+                const tagId = this.getAttribute('data-id');
+                const tagName = this.getAttribute('data-name');
+
+                tagIdInput.value = tagId;
+                tagNameInput.value = tagName;
+
+                tagModal.show();
+            });
         });
     </script>
 </body>
