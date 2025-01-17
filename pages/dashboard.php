@@ -374,6 +374,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <th>Titre</th>
                             <th>Enseignant</th>
                             <th>Catégorie</th>
+                            <th>Status</th>
                             <th>Created at</th>
                             <th>Modifier at</th>
                             <th>Actions</th>
@@ -389,6 +390,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <td><?= $course['title'] ?></td>
                                 <td><?= $course['teacher_username'] ?></td>
                                 <td><?= $course['ctg_name'] ?></td>
+                                <td><?= $course['status'] ?></td>
                                 <td><?= $course['crs_created_at'] ?></td>
                                 <td><?= $course['course_updated_at'] ?></td>
                                 <td>
