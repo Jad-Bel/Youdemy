@@ -48,5 +48,11 @@ class Category
         $stmt->execute(['id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function getPopularCategories() {
+        $query = "SELECT nom FROM categories LIMIT (5)";
+        $stmt = $this->conn->prepare($query);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

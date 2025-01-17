@@ -83,6 +83,7 @@ abstract class Course
                 c.video_link,
                 c.created_at AS crs_created_at,
                 c.updated_at AS course_updated_at,
+                c.course_bnr AS banner,
                 ctg.name AS ctg_name,
                 u.username AS teacher_username,
                 u.email AS teacher_email
