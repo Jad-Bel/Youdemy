@@ -44,7 +44,7 @@ class Admin extends User {
         if ($id) {
             $sql = "UPDATE courses SET status = 'approved' WHERE id = :id";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             return $stmt->execute();
         }
         return false;
