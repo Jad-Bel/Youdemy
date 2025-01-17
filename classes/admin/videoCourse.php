@@ -1,31 +1,31 @@
 <?php
 require_once 'course.php';
 
-class DocumentCourse extends Course {
-    private $document_link;
+class VideoCourse extends Course {
+    private $video_link;
 
-    public function __construct($title, $description, $content, $document_link, $teacher_id, $category_id) {
+    public function __construct($title, $description, $content, $video_link, $teacher_id, $category_id) {
         parent::__construct($title, $description, $content, $teacher_id, $category_id);
-        $this->document_link = $document_link;
+        $this->video_link = $video_link;
     }
 
-    public function getDocumentLink() {
-        return $this->document_link;
+    public function getVideoLink() {
+        return $this->video_link;
     }
 
-    public function setDocumentLink($document_link) {
-        $this->document_link = $document_link;
+    public function setVideoLink($video_link) {
+        $this->video_link = $video_link;
     }
 
     public function save() {
-        $sql = "INSERT INTO courses (title, description, content, document_link, teacher_id, category_id, created_at, updated_at)
-                VALUES (:title, :description, :content, :document_link, :teacher_id, :category_id, NOW(), NOW())";
+        $sql = "INSERT INTO courses (title, description, content, video_link, teacher_id, category_id, created_at, updated_at)
+                VALUES (:title, :description, :content, :video_link, :teacher_id, :category_id, NOW(), NOW())";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             'title' => $this->title,
             'description' => $this->description,
             'content' => $this->content,
-            'document_link' => $this->document_link,
+            'video_link' => $this->video_link,
             'teacher_id' => $this->teacher_id,
             'category_id' => $this->category_id
         ]);
