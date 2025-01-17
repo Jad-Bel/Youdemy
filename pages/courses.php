@@ -319,7 +319,7 @@ require_once '../classes/admin/category.php';
                             <div class="col-lg-9 col-md-8 col-sm-12">
                                 <div class="row">
                                     <?php 
-                                        $courses::getAllCourses();
+                                        $courses = course::getAllCourses();
                                         foreach ($courses as $course):
                                     ?>
                                         <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
