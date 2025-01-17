@@ -66,12 +66,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
         case 'add_course':
+
             break;
         case 'modify_course':
-            $courses = new DocumentCourse($title, $description, $content, $document_link, $teacher_id, $category_id);
 
             break;
         case 'delete_course':
+            $courseId = $_POST['id'];
+
+            $course = new Course(null, null, null, null, null); 
+            $course->decline($courseId);
             break;
 
         case 'add_category':
@@ -94,18 +98,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $categories->deleteCategory($id);
             break;
 
-            case 'add_tags':
-                $tags = new Tag();
-                if (isset($_POST['tag_name']) && is_array($_POST['tag_name'])) {            
-                    foreach ($_POST['tag_name'] as $name) {
-                        if (!empty($name)) {
-                            $tagId = $tags->createTag($name);
-                        }
+        case 'add_tags':
+            $tags = new Tag();
+            if (isset($_POST['tag_name']) && is_array($_POST['tag_name'])) {
+                foreach ($_POST['tag_name'] as $name) {
+                    if (!empty($name)) {
+                        $tagId = $tags->createTag($name);
                     }
-                } else {
-                    echo "No tags provided.";
                 }
-                break;
+            } else {
+                echo "No tags provided.";
+            }
+            break;
         case 'modify_tag':
             $tags = new Tag();
             $id = $_POST['id'];
@@ -376,30 +380,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
-                            $courses = Course::getAllCourses();
-                            foreach ($courses as $course):
+                        <?php
+                        $courses = Course::getAllCourses();
+                        foreach ($courses as $course):
                         ?>
-                        <tr>
-                            <td><?= $course['id'] ?></td>
-                            <td><?= $course['title'] ?></td>
-                            <td><?= $course['teacher_username'] ?></td>
-                            <td><?= $course['ctg_name'] ?></td>
-                            <td><?= $course['crs_created_at'] ?></td>
-                            <td><?= $course['course_updated_at'] ?></td>
-                            <td>
-                                <form method="POST" action="" style="display:inline;">
-                                    <input type="hidden" name="action" value="modify_course">
-                                    <input type="hidden" name="course_id" value="$course['id'] . $course['teacher_id'] ">
-                                    <button type="submit" class="btn btn-primary btn-sm">Approver</button>
-                                </form>
-                                <form method="POST" action="" style="display:inline;">
-                                    <input type="hidden" name="action" value="delete_course">
-                                    <input type="hidden" name="course_id" value="<?= $course['id'] . $course['teacher_id'] ?>">
-                                    <button type="submit" class="btn btn-danger btn-sm">Rejecter</button>
-                                </form>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td><?= $course['id'] ?></td>
+                                <td><?= $course['title'] ?></td>
+                                <td><?= $course['teacher_username'] ?></td>
+                                <td><?= $course['ctg_name'] ?></td>
+                                <td><?= $course['crs_created_at'] ?></td>
+                                <td><?= $course['course_updated_at'] ?></td>
+                                <td>
+                                    <form method="POST" action="" style="display:inline;">
+                                        <input type="hidden" name="action" value="modify_course">
+                                        <input type="hidden" name="course_id" value="$course['id'] . $course['teacher_id'] ">
+                                        <button type="submit" class="btn btn-primary btn-sm">Approver</button>
+                                    </form>
+                                    <form method="POST" action="" style="display:inline;">
+                                        <input type="hidden" name="action" value="delete_course">
+                                        <input type="hidden" name="course_id" value="<?= $course['id'] . $course['teacher_id'] ?>">
+                                        <button type="submit" class="btn btn-danger btn-sm">Rejecter</button>
+                                    </form>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -572,63 +576,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-    // category
-    const categoryModal = new bootstrap.Modal(document.getElementById('categoryModal'));
-    const categoryForm = document.getElementById('categoryForm');
-    const categoryNameInput = document.getElementById('categoryName');
-    const categoryModalTitle = document.getElementById('categoryModalTitle');
-    const categoryIdInput = document.getElementById('categoryId');
+        document.addEventListener('DOMContentLoaded', function() {
+            // category
+            const categoryModal = new bootstrap.Modal(document.getElementById('categoryModal'));
+            const categoryForm = document.getElementById('categoryForm');
+            const categoryNameInput = document.getElementById('categoryName');
+            const categoryModalTitle = document.getElementById('categoryModalTitle');
+            const categoryIdInput = document.getElementById('categoryId');
 
-    const categoryNameRegex = /^[a-zA-Z0-9\s-]+$/;
+            const categoryNameRegex = /^[a-zA-Z0-9\s-]+$/;
 
-    document.getElementById('addCategoryBtn').addEventListener('click', function () {
-        categoryModalTitle.textContent = 'Ajouter une catégorie';
-        categoryForm.action.value = 'add_category';
-        categoryIdInput.value = '';
-        categoryNameInput.value = '';
-        categoryModal.show();
-    });
+            document.getElementById('addCategoryBtn').addEventListener('click', function() {
+                categoryModalTitle.textContent = 'Ajouter une catégorie';
+                categoryForm.action.value = 'add_category';
+                categoryIdInput.value = '';
+                categoryNameInput.value = '';
+                categoryModal.show();
+            });
 
-    document.querySelectorAll('.editCategoryBtn').forEach(button => {
-        button.addEventListener('click', function () {
-            const categoryId = this.getAttribute('data-id');
-            const categoryName = this.getAttribute('data-name');
-            categoryModalTitle.textContent = 'Modifier la catégorie';
-            categoryForm.action.value = 'modify_category';
-            categoryIdInput.value = categoryId;
-            categoryNameInput.value = categoryName;
-            categoryModal.show();
-        });
-    });
+            document.querySelectorAll('.editCategoryBtn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const categoryId = this.getAttribute('data-id');
+                    const categoryName = this.getAttribute('data-name');
+                    categoryModalTitle.textContent = 'Modifier la catégorie';
+                    categoryForm.action.value = 'modify_category';
+                    categoryIdInput.value = categoryId;
+                    categoryNameInput.value = categoryName;
+                    categoryModal.show();
+                });
+            });
 
-    categoryNameInput.addEventListener('input', function () {
-        if (categoryNameRegex.test(this.value)) {
-            this.classList.remove('is-invalid');
-            this.classList.add('is-valid');
-        } else {
-            this.classList.remove('is-valid');
-            this.classList.add('is-invalid');
-        }
-    });
+            categoryNameInput.addEventListener('input', function() {
+                if (categoryNameRegex.test(this.value)) {
+                    this.classList.remove('is-invalid');
+                    this.classList.add('is-valid');
+                } else {
+                    this.classList.remove('is-valid');
+                    this.classList.add('is-invalid');
+                }
+            });
 
-    categoryForm.addEventListener('submit', function (e) {
-        if (!categoryNameRegex.test(categoryNameInput.value)) {
-            e.preventDefault();
-            categoryNameInput.classList.add('is-invalid');
-        }
-    });
+            categoryForm.addEventListener('submit', function(e) {
+                if (!categoryNameRegex.test(categoryNameInput.value)) {
+                    e.preventDefault();
+                    categoryNameInput.classList.add('is-invalid');
+                }
+            });
 
-    // tag
-    const tagsModal = new bootstrap.Modal(document.getElementById('tagsModal'));
-    const tagsForm = document.getElementById('tagsForm');
-    const tagInputsContainer = document.getElementById('tagInputsContainer');
-    const addTagBtn = document.getElementById('addTagBtn');
-    let tagCount = 1;
+            // tag
+            const tagsModal = new bootstrap.Modal(document.getElementById('tagsModal'));
+            const tagsForm = document.getElementById('tagsForm');
+            const tagInputsContainer = document.getElementById('tagInputsContainer');
+            const addTagBtn = document.getElementById('addTagBtn');
+            let tagCount = 1;
 
-    document.getElementById('addTagsBtn').addEventListener('click', function () {
-        tagsForm.reset();
-        tagInputsContainer.innerHTML = `
+            document.getElementById('addTagsBtn').addEventListener('click', function() {
+                tagsForm.reset();
+                tagInputsContainer.innerHTML = `
             <div class="mb-3 tag-input-group">
                 <label class="form-label" for="tag_1">Tag 1</label>
                 <div class="input-group">
@@ -639,16 +643,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
         `;
-        tagCount = 1; 
-        tagsModal.show();
-    });
+                tagCount = 1;
+                tagsModal.show();
+            });
 
-    // dynamic tag input
-    addTagBtn.addEventListener('click', function () {
-        tagCount++;
-        const newTagInput = document.createElement('div');
-        newTagInput.className = 'mb-3 tag-input-group';
-        newTagInput.innerHTML = `
+            // dynamic tag input
+            addTagBtn.addEventListener('click', function() {
+                tagCount++;
+                const newTagInput = document.createElement('div');
+                newTagInput.className = 'mb-3 tag-input-group';
+                newTagInput.innerHTML = `
             <label class="form-label" for="tag_${tagCount}">Tag ${tagCount}</label>
             <div class="input-group">
                 <input type="text" class="form-control" id="tag_${tagCount}" name="tag_name[]" required>
@@ -657,30 +661,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </button>
             </div>
         `;
-        tagInputsContainer.appendChild(newTagInput);
-    });
+                tagInputsContainer.appendChild(newTagInput);
+            });
 
-    // Delete Tag Input
-    tagInputsContainer.addEventListener('click', function (e) {
-        if (e.target.classList.contains('delete-tag') || e.target.parentElement.classList.contains('delete-tag')) {
-            const tagInputGroup = e.target.closest('.tag-input-group');
-            if (tagInputsContainer.children.length > 1) {
-                tagInputGroup.remove();
-                updateTagLabels();
+            // Delete Tag Input
+            tagInputsContainer.addEventListener('click', function(e) {
+                if (e.target.classList.contains('delete-tag') || e.target.parentElement.classList.contains('delete-tag')) {
+                    const tagInputGroup = e.target.closest('.tag-input-group');
+                    if (tagInputsContainer.children.length > 1) {
+                        tagInputGroup.remove();
+                        updateTagLabels();
+                    }
+                }
+            });
+
+            // update Tag
+            function updateTagLabels() {
+                const tagLabels = tagInputsContainer.querySelectorAll('.form-label');
+                tagLabels.forEach((label, index) => {
+                    label.textContent = `Tag ${index + 1}`;
+                    label.setAttribute('for', `tag_${index + 1}`);
+                    label.nextElementSibling.querySelector('input').id = `tag_${index + 1}`;
+                });
             }
-        }
-    });
-
-    // update Tag
-    function updateTagLabels() {
-        const tagLabels = tagInputsContainer.querySelectorAll('.form-label');
-        tagLabels.forEach((label, index) => {
-            label.textContent = `Tag ${index + 1}`;
-            label.setAttribute('for', `tag_${index + 1}`);
-            label.nextElementSibling.querySelector('input').id = `tag_${index + 1}`;
         });
-    }
-});
     </script>
 </body>
 
