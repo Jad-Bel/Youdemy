@@ -542,6 +542,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
+    <div class="modal fade" id="categoryModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="categoryModalTitle">Modifier la catégorie</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="categoryForm" method="POST">
+                        <input type="hidden" name="action" value="modify_category">
+                        <input type="hidden" name="category_id" id="categoryId">
+                        <div class="mb-3">
+                            <label for="categoryName" class="form-label">Nom de la catégorie</label>
+                            <input type="text" name="name" class="form-control" id="categoryName" required>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Add Tags Modal -->
     <!-- Button to Open Tag Modal -->
     <button class="btn btn-primary mb-3" id="addTagsBtn" data-bs-toggle="modal" data-bs-target="#tagsModal">
@@ -571,6 +596,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                         </div>
                         <button type="button" class="btn btn-secondary mb-3" id="addTagBtn">Ajouter un tag</button>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="tagModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tagModalTitle">Modifier le tag</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="tagForm" method="POST">
+                        <input type="hidden" name="action" value="modify_tag">
+                        <input type="hidden" name="tag_id" id="tagId">
+                        <div class="mb-3">
+                            <label for="tagName" class="form-label">Nom du tag</label>
+                            <input type="text" name="name" class="form-control" id="tagName" required>
+                        </div>
                         <div class="text-end">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
                             <button type="submit" class="btn btn-primary">Sauvegarder</button>
