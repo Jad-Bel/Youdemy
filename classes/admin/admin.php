@@ -38,4 +38,25 @@ class Admin extends User {
     public function declineTeacher($id) {
         $this->updateUserStatus($id, 'suspended');
     }
+
+    public function approve($id)
+    {
+        if ($id) {
+            $sql = "UPDATE courses SET status = 'approved' WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+            return $stmt->execute();
+        }
+        return false;
+    }
+
+    public function decline($id)
+    {
+        if ($id) {
+            $sql = "UPDATE courses SET status = 'declined' WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            return $stmt->execute();
+        }
+    }
 }
