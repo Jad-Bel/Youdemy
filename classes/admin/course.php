@@ -1,6 +1,7 @@
 <?php
 
-abstract class Course {
+abstract class Course
+{
     protected $id;
     protected $title;
     protected $description;
@@ -11,7 +12,8 @@ abstract class Course {
     protected $updated_at;
     protected $conn;
 
-    public function __construct($title, $description, $content, $teacher_id, $category_id) {
+    public function __construct($title, $description, $content, $teacher_id, $category_id)
+    {
         $db = new Database();
         $this->conn = $db->getConnection();
 
@@ -23,35 +25,43 @@ abstract class Course {
     }
 
     // getters
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getTitle() {
+    public function getTitle()
+    {
         return $this->title;
     }
 
-    public function getDescription() {
+    public function getDescription()
+    {
         return $this->description;
     }
 
-    public function getContent() {
+    public function getContent()
+    {
         return $this->content;
     }
 
-    public function getTeacherId() {
+    public function getTeacherId()
+    {
         return $this->teacher_id;
     }
 
-    public function getCategoryId() {
+    public function getCategoryId()
+    {
         return $this->category_id;
     }
 
-    public function getCreatedAt() {
+    public function getCreatedAt()
+    {
         return $this->created_at;
     }
 
-    public function getUpdatedAt() {
+    public function getUpdatedAt()
+    {
         return $this->updated_at;
     }
 
@@ -59,11 +69,29 @@ abstract class Course {
 
     abstract public function displayContent();
 
-    public static function getAllCourses() {
+    public static function getAllCourses()
+    {
         $db = new Database();
         $conn = $db->getConnection();
 
-        $sql = "SELECT * FROM courses";
+        $sql = "SELECT 
+                c.id AS id,
+                c.title AS title,
+                c.description AS dsc,
+                c.content AS cnt,
+                c.document_link,
+                c.video_link,
+                c.created_at AS crs_created_at,
+                c.updated_at AS course_updated_at,
+                ctg.name AS ctg_name,
+                u.username AS teacher_username,
+                u.email AS teacher_email
+            FROM 
+                courses c
+            JOIN 
+                users u ON c.teacher_id = u.id
+            JOIN 
+                categories ctg ON c.category_id = ctg.id";
         $stmt = $conn->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -82,4 +110,3 @@ abstract class Course {
 //         return "<a href='{$this->document_path}' download>Download Document</a>";
 //     }
 // }
-?>

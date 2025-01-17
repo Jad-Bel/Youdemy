@@ -327,8 +327,8 @@ require_once '../classes/admin/course.php';
 											<a href="#" class="btn">Read More</a>
 										</div>
 										<div class="info-bx text-center">
-											<h5><a href="#"><?= $courses['title'] ?></a></h5>
-											<span></span>
+											<h5><a href="#"><?= $course['title'] ?></a></h5>
+											<span><?= $course['category_id'] ?></span>
 										</div>
 										<div class="cours-more-info">
 											<div class="review">
@@ -349,7 +349,7 @@ require_once '../classes/admin/course.php';
 									</div>
 								</div>
                                 <?php endforeach; ?>
-								<div class="col-md-6 col-lg-4 col-sm-6 m-b30">
+								<!-- <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
 									<div class="cours-bx">
 										<div class="action-box">
 											<img src="assets/images/courses/pic2.jpg" alt="">
@@ -572,7 +572,7 @@ require_once '../classes/admin/course.php';
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 								<div class="col-lg-12 m-b20">
 									<div class="pagination-bx rounded-sm gray clearfix">
 										<ul class="pagination">
