@@ -59,4 +59,14 @@ class Admin extends User {
             return $stmt->execute();
         }
     }
+
+    public function deleteCourse($id)
+    {
+        if ($id) {
+            $sql = "DELETE FROM courses WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            return $stmt->execute();
+        }
+    }
 }
