@@ -65,10 +65,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             break;
 
-        case 'add_course':
+        case 'approve_course':
+            $id = $_POST['id'];
 
+            $course = new admin('test', 'test@test.com', 'test', 'admin'); 
+            $course->approve($id);
             break;
-        case 'modify_course':
+        case 'decline_course':
 
             break;
         case 'delete_course':
