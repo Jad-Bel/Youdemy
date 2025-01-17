@@ -49,9 +49,11 @@ class Category
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getPopularCategories() {
+    public static function getPopularCategories() {
+        $db = new Database();
+        $conn = $db->getConnection();
         $query = "SELECT nom FROM categories LIMIT (5)";
-        $stmt = $this->conn->prepare($query);
+        $stmt = $conn->prepare($query);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
