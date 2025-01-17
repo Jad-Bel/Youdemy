@@ -54,7 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 throw new Exception("User not found.");
             }
             break;
+        case 'approve_course':
+            $id = $_POST['id'];
 
+            $course = new admin('test', 'test@test.com', 'test', 'admin');
+            $course->approve($id);
+            break;
         case 'delete_user':
             $userData = User::findByEmail($_POST['email']);
             if ($userData) {
@@ -64,21 +69,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 throw new Exception("User not found.");
             }
             break;
-
-        case 'approve_course':
-            $id = $_POST['id'];
-
-            $course = new admin('test', 'test@test.com', 'test', 'admin'); 
-            $course->approve($id);
-            break;
         case 'decline_course':
 
             break;
         case 'delete_course':
             $id = $_POST['id'];
 
-            $course = new admin('test', 'test@test.com', 'test', 'admin'); 
-            $course->decline($id);
+            $course = new admin('test', 'test@test.com', 'test', 'admin');
+            $course->deleteCourse($id);
             break;
 
         case 'add_category':
@@ -399,17 +397,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <td>
                                     <form method="POST" action="" style="display:inline;">
                                         <input type="hidden" name="action" value="approve_course">
-                                        <input type="hidden" name="id" value="<?= $course['id']?>">
+                                        <input type="hidden" name="id" value="<?= $course['id'] ?>">
                                         <button type="submit" class="btn btn-primary btn-sm">Approver</button>
                                     </form>
                                     <form method="POST" action="" style="display:inline;">
                                         <input type="hidden" name="action" value="decline_course">
-                                        <input type="hidden" name="id" value="<?= $course['id']?>">
+                                        <input type="hidden" name="id" value="<?= $course['id'] ?>">
                                         <button type="submit" class="btn btn-danger btn-sm">Rejecter</button>
                                     </form>
                                     <form method="POST" action="" style="display:inline;">
                                         <input type="hidden" name="action" value="delete_course">
-                                        <input type="hidden" name="id" value="<?= $course['id']?>">
+                                        <input type="hidden" name="id" value="<?= $course['id'] ?>">
                                         <button type="submit" class="btn btn-secondary btn-sm">Supprimer</button>
                                     </form>
                                 </td>
