@@ -2,6 +2,13 @@
 require_once '../config/database.php';
 require_once '../classes/admin/course.php';
 require_once '../classes/admin/category.php';
+
+
+$categories = Category::getPopularCategories();
+echo "<pre>";
+print_r($categories);
+echo "</pre>";
+die;
 ?>
 
 
@@ -265,14 +272,14 @@ require_once '../classes/admin/category.php';
                                 </div>
                                 <div class="widget widget_archive">
                                     <h5 class="widget-title style-1">Popular Categories</h5>
-                                    <?php 
+                                    <ul>
+                                        <?php
                                         $categories = Category::getPopularCategories();
                                         foreach ($categories as $category):
-                                    ?>
-                                    <ul>
-                                        <li class="active"><a href="#"><?= $category['name'] ?></a></li>
+                                        ?>
+                                            <li><a href="#"><?= $category['name'] ?></a></li>
+                                        <?php endforeach; ?>
                                     </ul>
-                                    <?php endforeach; ?>
                                 </div>
                                 <div class="widget">
                                     <a href="#"><img src="../assets/images/adv/adv.jpg" alt="" /></a>
@@ -319,9 +326,9 @@ require_once '../classes/admin/category.php';
                             </div>
                             <div class="col-lg-9 col-md-8 col-sm-12">
                                 <div class="row">
-                                    <?php 
-                                        $courses = course::getAllCourses();
-                                        foreach ($courses as $course):
+                                    <?php
+                                    $courses = course::getAllCourses();
+                                    foreach ($courses as $course):
                                     ?>
                                         <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
                                             <div class="cours-bx">
@@ -346,7 +353,7 @@ require_once '../classes/admin/category.php';
                                                 </div>
                                             </div>
                                         </div>
-                                        <?php endforeach; ?>
+                                    <?php endforeach; ?>
                                     <div class="col-lg-12 m-b20">
                                         <div class="pagination-bx rounded-sm gray clearfix">
                                             <ul class="pagination">
