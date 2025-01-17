@@ -1,5 +1,5 @@
 <?php
-require_once "../../config/database.php";
+// require_once "../../config/database.php";
 
 abstract class Course {
     protected $id;
@@ -131,6 +131,8 @@ abstract class Course {
         return true;
     }
 }
+
+$courses = new Course();
 
 // class Course1 extends course {
 //     protected $conn;

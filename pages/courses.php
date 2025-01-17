@@ -1,3 +1,12 @@
+<?php
+require_once '../config/database.php';
+require_once '../classes/admin/course.php';
+
+$courses = new DocumentCourse();
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
