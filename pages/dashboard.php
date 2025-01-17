@@ -398,14 +398,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <td><?= $course['course_updated_at'] ?></td>
                                 <td>
                                     <form method="POST" action="" style="display:inline;">
-                                        <input type="hidden" name="action" value="modify_course">
+                                        <input type="hidden" name="action" value="approve_course">
                                         <input type="hidden" name="id" value="<?= $course['id']?>">
                                         <button type="submit" class="btn btn-primary btn-sm">Approver</button>
                                     </form>
                                     <form method="POST" action="" style="display:inline;">
-                                        <input type="hidden" name="action" value="delete_course">
+                                        <input type="hidden" name="action" value="decline_course">
                                         <input type="hidden" name="id" value="<?= $course['id']?>">
                                         <button type="submit" class="btn btn-danger btn-sm">Rejecter</button>
+                                    </form>
+                                    <form method="POST" action="" style="display:inline;">
+                                        <input type="hidden" name="action" value="delete_course">
+                                        <input type="hidden" name="id" value="<?= $course['id']?>">
+                                        <button type="submit" class="btn btn-secondary btn-sm">Supprimer</button>
                                     </form>
                                 </td>
                             </tr>
