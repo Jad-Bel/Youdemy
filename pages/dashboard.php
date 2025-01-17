@@ -445,10 +445,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <td><?= $category['name'] ?></td>
                                 <td><?= $category['created_at'] ?></td>
                                 <td>
-                                    <form method="POST" action="" style="display:inline;">
+                                    <form method="POST" action="" class="d-inline">
                                         <input type="hidden" name="action" value="modify_category">
                                         <input type="hidden" name="category_id" value="<?= $category['id'] ?>">
-                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                        <button type="button" class="btn btn-primary btn-sm editCategoryBtn" data-id="<?= $category['id'] ?>" data-name="<?= $category['name'] ?>">Modifier</button>
                                     </form>
                                     <form method="POST" action="" style="display:inline;">
                                         <input type="hidden" name="action" value="delete_category">
@@ -494,7 +494,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <form method="POST" action="" class="d-inline">
                                         <input type="hidden" name="action" value="modify_tag">
                                         <input type="hidden" name="tag_id" value="<?= $tag['id'] ?>">
-                                        <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
+                                        <button type="button" class="btn btn-primary btn-sm editTagBtn" data-id="<?= $tag['id'] ?>" data-name="<?= $tag['name'] ?>">Modifier</button>
                                     </form>
                                     <form method="POST" action="" class="d-inline">
                                         <input type="hidden" name="action" value="delete_tag">
