@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'delete_course':
             $id = $_POST['id'];
 
-            $course = new Course(null, null, null, null, null); 
+            $course = new admin('test', 'test@test.com', 'test', 'admin'); 
             $course->decline($id);
             break;
 
