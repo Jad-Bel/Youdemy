@@ -72,10 +72,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             break;
         case 'delete_course':
-            $courseId = $_POST['id'];
+            $id = $_POST['id'];
 
             $course = new Course(null, null, null, null, null); 
-            $course->decline($courseId);
+            $course->decline($id);
             break;
 
         case 'add_category':
@@ -396,7 +396,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <td>
                                     <form method="POST" action="" style="display:inline;">
                                         <input type="hidden" name="action" value="modify_course">
-                                        <input type="hidden" name="course_id" value="$course['id'] . $course['teacher_id'] ">
+                                        <input type="hidden" name="course_id" value="<?= $course['id'] . $course['teacher_id'] ?>">
                                         <button type="submit" class="btn btn-primary btn-sm">Approver</button>
                                     </form>
                                     <form method="POST" action="" style="display:inline;">
