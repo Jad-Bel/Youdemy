@@ -10,6 +10,7 @@ abstract class Course
     protected $category_id;
     protected $created_at;
     protected $updated_at;
+    protected $status; 
     protected $conn;
 
     public function __construct($title, $description, $content, $teacher_id, $category_id)
@@ -22,6 +23,7 @@ abstract class Course
         $this->content = $content;
         $this->teacher_id = $teacher_id;
         $this->category_id = $category_id;
+        $this->status = 'pending'; 
     }
 
     // getters
@@ -65,9 +67,41 @@ abstract class Course
         return $this->updated_at;
     }
 
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
     abstract public function save();
 
     abstract public function displayContent();
+
+    public function approve()
+    {
+        if ($this->id) {
+            $sql = "UPDATE courses SET status = 'approved' WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+            return $stmt->execute();
+        }
+        return false;
+    }
+
+    public function decline()
+    {
+        if ($this->id) {
+            $sql = "UPDATE courses SET status = 'declined' WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+            return $stmt->execute();
+        }
+        return false;
+    }
 
     public static function getAllCourses()
     {
