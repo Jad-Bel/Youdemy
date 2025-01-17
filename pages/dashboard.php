@@ -6,6 +6,7 @@ require_once '../classes/admin/teacher.php';
 require_once '../classes/admin/admin.php';
 require_once '../classes/admin/category.php';
 require_once '../classes/admin/tag.php';
+require_once '../classes/admin/course.php';
 
 
 
@@ -371,10 +372,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </tr>
                     </thead>
                     <tbody>
+                        <?php 
+                            $courses = Course::getAllCourses();
+                            foreach ($courses as $course):
+                        ?>
                         <tr>
-                            <td>1</td>
-                            <td>Introduction PHP</td>
-                            <td>John Doe</td>
+                            <td><?= $course['id'] ?></td>
+                            <td><?= $course['title'] ?></td>
+                            <td><?= $course['teacher_name'] ?></td>
                             <td>Programmation</td>
                             <td>
                                 <form method="POST" action="" style="display:inline;">
@@ -389,6 +394,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </form>
                             </td>
                         </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
