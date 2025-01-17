@@ -92,10 +92,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
 
         case 'add_tags':
+            $tags = new Tag();
+            $name = $_POST['name'];
+
+            $tags->createTag($name);
             break;
         case 'modify_tag':
+            $tags = new Tag();
+            $id = $_POST['id'];
+            $name = $_POST['name'];
+
+            $tags->updateTag($id, $name);
             break;
         case 'delete_tag':
+            $tags = new Tag();
+            $id = $_POST['id'];
+
+            $tags->deleteTag($id);
             break;
     }
 }
@@ -425,13 +438,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <tr>
                             <th>ID</th>
                             <th>Nom</th>
+                            <th>Date Creation</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                            $tags = new Tag();
+                            foreach ($tags as $tag):
+                        ?>
                         <tr>
-                            <td>1</td>
-                            <td>PHP</td>
+                            <td><?= $tag['id'] ?></td>
+                            <td><?= $tag['name'] ?></td>
+                            <td><?= $tag['created_at'] ?></td>
                             <td>
                                 <form method="POST" action="" class="d-inline">
                                     <input type="hidden" name="action" value="modify_tag">
@@ -445,6 +464,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </form>
                             </td>
                         </tr>
+                        <?php endforeach ?>
                     </tbody>
                 </table>
             </div>

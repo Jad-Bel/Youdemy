@@ -2,6 +2,10 @@
 
 class Tag
 {
+    private $id;
+    private $name;
+    private $created_at;
+    private $updated_at;
     private $conn;
 
     public function __construct()
@@ -10,14 +14,44 @@ class Tag
         $this->conn = $db->getConnection();
     }
 
-    public function getConn()
+    public function getId()
     {
-        return $this->conn;
+        return $this->id;
     }
 
-    public function setConn($conn)
+    public function getName()
     {
-        $this->conn = $conn;
+        return $this->name;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function setCreatedAt($created_at)
+    {
+        $this->created_at = $created_at;
+    }
+
+    public function setUpdatedAt($updated_at)
+    {
+        $this->updated_at = $updated_at;
     }
 
     public function createTag($name)
@@ -25,7 +59,8 @@ class Tag
         $sql = "INSERT INTO tags (name, created_at, updated_at) VALUES (:name, NOW(), NOW())";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['name' => $name]);
-        return $this->conn->lastInsertId();
+        $this->id = $this->conn->lastInsertId();
+        return $this->id;
     }
 
     public function updateTag($id, $name)
@@ -56,7 +91,18 @@ class Tag
         $sql = "SELECT * FROM tags WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $tag = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($tag) {
+            $this->id = $tag['id'];
+            $this->name = $tag['name'];
+            $this->created_at = $tag['created_at'];
+            $this->updated_at = $tag['updated_at'];
+        }
+
+        return $tag;
     }
+
+    
 }
 ?>
