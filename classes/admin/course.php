@@ -145,4 +145,31 @@ abstract class Course {
 //         return "<a href='{$this->document_path}' download>Download Document</a>";
 //     }
 // }
+
+interface crud {
+    public function display();
+    public function delete($id);
+}
+
+class vehicule {
+    private $nom;
+    private $model;
+
+    public function __construct ($nom, $model) {
+        $this->nom = $nom;
+        $this->model = $model;
+    }
+
+    public function display() {
+
+    }
+
+    public function delete($id) {
+
+    }
+
+    public function modify () {
+
+    }
+}
 ?>
