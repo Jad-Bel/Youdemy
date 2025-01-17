@@ -78,7 +78,12 @@ class DocumentCourse extends Course {
     }
 
     public function displayContent() {
-        return "<a href='{$this->document_link}' download>Download Document</a>";
+        $sql  = "SELECT * FROM courses WHERE video_link = null";
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function save() {

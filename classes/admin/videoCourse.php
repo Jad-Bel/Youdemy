@@ -75,7 +75,12 @@ class VideoCourse extends Course {
     }
 
     public function displayContent() {
-        return "<iframe src='{$this->video_link}' width='560' height='315' frameborder='0' allowfullscreen></iframe>";
+        $sql  = "SELECT * FROM courses WHERE document_link = null";
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function save() {

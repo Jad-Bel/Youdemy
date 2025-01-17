@@ -132,8 +132,6 @@ abstract class Course {
     }
 }
 
-$courses = new Course();
-
 // class Course1 extends course {
 //     protected $conn;
 //     protected $document_path;
