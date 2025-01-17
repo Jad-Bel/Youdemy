@@ -264,14 +264,15 @@ require_once '../classes/admin/category.php';
                                     </div>
                                 </div>
                                 <div class="widget widget_archive">
-                                    <h5 class="widget-title style-1">All Courses</h5>
+                                    <h5 class="widget-title style-1">Popular Categories</h5>
+                                    <?php 
+                                        $categories = Category::getPopularCategories();
+                                        foreach ($categories as $category):
+                                    ?>
                                     <ul>
-                                        <li class="active"><a href="#">General</a></li>
-                                        <li><a href="#">IT & Software</a></li>
-                                        <li><a href="#">Photography</a></li>
-                                        <li><a href="#">Programming Language</a></li>
-                                        <li><a href="#">Technology</a></li>
+                                        <li class="active"><a href="#"><?= $category['name'] ?></a></li>
                                     </ul>
+                                    <?php endforeach; ?>
                                 </div>
                                 <div class="widget">
                                     <a href="#"><img src="../assets/images/adv/adv.jpg" alt="" /></a>
