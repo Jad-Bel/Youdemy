@@ -1,5 +1,4 @@
 <?php
-require_once 'database.php'; // Assuming you have a Database class for connection
 
 abstract class Course {
     protected $id;

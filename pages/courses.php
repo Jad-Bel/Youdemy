@@ -1,8 +1,6 @@
 <?php
 require_once '../config/database.php';
 require_once '../classes/admin/course.php';
-
-$courses = new DocumentCourse();
 ?>
 
 
@@ -274,13 +272,14 @@ $courses = new DocumentCourse();
                                 </ul>
                             </div>
 							<div class="widget">
-								<a href="#"><img src="assets/images/adv/adv.jpg" alt=""/></a>
+								<a href="#"><img src="../assets/images/adv/adv.jpg" alt=""/></a>
 							</div>
 							<div class="widget recent-posts-entry widget-courses">
                                 <h5 class="widget-title style-1">Recent Courses</h5>
+                            
                                 <div class="widget-post-bx">
                                     <div class="widget-post clearfix">
-                                        <div class="ttr-post-media"> <img src="assets/images/blog/recent-blog/pic1.jpg" width="200" height="143" alt=""> </div>
+                                        <div class="ttr-post-media"> <img src="../assets/images/blog/recent-blog/pic1.jpg" width="200" height="143" alt=""> </div>
                                         <div class="ttr-post-info">
                                             <div class="ttr-post-header">
                                                 <h6 class="post-title"><a href="#">Introduction EduChamp</a></h6>
@@ -317,15 +316,19 @@ $courses = new DocumentCourse();
 						</div>
 						<div class="col-lg-9 col-md-8 col-sm-12">
 							<div class="row">
+                                <?php 
+                                    $courses = Course::getAllCourses();
+                                    foreach($courses as $course):
+                                ?>
 								<div class="col-md-6 col-lg-4 col-sm-6 m-b30">
 									<div class="cours-bx">
 										<div class="action-box">
-											<img src="assets/images/courses/pic1.jpg" alt="">
+											<img src="../assets/images/courses/pic1.jpg" alt="">
 											<a href="#" class="btn">Read More</a>
 										</div>
 										<div class="info-bx text-center">
-											<h5><a href="#">Introduction EduChamp – LMS plugin</a></h5>
-											<span>Programming</span>
+											<h5><a href="#"><?= $courses['title'] ?></a></h5>
+											<span></span>
 										</div>
 										<div class="cours-more-info">
 											<div class="review">
@@ -345,6 +348,7 @@ $courses = new DocumentCourse();
 										</div>
 									</div>
 								</div>
+                                <?php endforeach; ?>
 								<div class="col-md-6 col-lg-4 col-sm-6 m-b30">
 									<div class="cours-bx">
 										<div class="action-box">
