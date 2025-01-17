@@ -4,11 +4,11 @@ require_once '../classes/admin/course.php';
 require_once '../classes/admin/category.php';
 
 
-$categories = Category::getPopularCategories();
-echo "<pre>";
-print_r($categories);
-echo "</pre>";
-die;
+// $categories = Category::getPopularCategories();
+// echo "<pre>";
+// print_r($categories);
+// echo "</pre>";
+// die;
 ?>
 
 
