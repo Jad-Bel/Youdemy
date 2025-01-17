@@ -85,6 +85,7 @@ abstract class Course
                 c.updated_at AS course_updated_at,
                 c.course_bnr AS banner,
                 ctg.name AS ctg_name,
+                c.teacher_id,
                 u.username AS teacher_username,
                 u.email AS teacher_email
             FROM 

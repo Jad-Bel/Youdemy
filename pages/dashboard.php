@@ -68,6 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'add_course':
             break;
         case 'modify_course':
+            $courses = new DocumentCourse($title, $description, $content, $document_link, $teacher_id, $category_id);
+
             break;
         case 'delete_course':
             break;
@@ -388,13 +390,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <td>
                                 <form method="POST" action="" style="display:inline;">
                                     <input type="hidden" name="action" value="modify_course">
-                                    <input type="hidden" name="course_id" value="1">
-                                    <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
+                                    <input type="hidden" name="course_id" value="$course['id'] . $course['teacher_id'] ">
+                                    <button type="submit" class="btn btn-primary btn-sm">Approver</button>
                                 </form>
                                 <form method="POST" action="" style="display:inline;">
                                     <input type="hidden" name="action" value="delete_course">
-                                    <input type="hidden" name="course_id" value="1">
-                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                    <input type="hidden" name="course_id" value="<?= $course['id'] . $course['teacher_id'] ?>">
+                                    <button type="submit" class="btn btn-danger btn-sm">Rejecter</button>
                                 </form>
                             </td>
                         </tr>
