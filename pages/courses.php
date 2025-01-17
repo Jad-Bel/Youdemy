@@ -9,6 +9,13 @@ require_once '../classes/admin/category.php';
 // print_r($categories);
 // echo "</pre>";
 // die;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$perPage = 5;
+
+$paginationData = Category::getPaginatedCategories($page, $perPage);
+$categories = $paginationData['categories'];
+$totalPages = $paginationData['totalPages'];
+$currentPage = $paginationData['currentPage'];
 ?>
 
 
@@ -357,11 +364,23 @@ require_once '../classes/admin/category.php';
                                     <div class="col-lg-12 m-b20">
                                         <div class="pagination-bx rounded-sm gray clearfix">
                                             <ul class="pagination">
-                                                <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
-                                                <li class="active"><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                                <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
+                                                <?php if ($currentPage > 1): ?>
+                                                    <li class="previous">
+                                                        <a href="?page=<?= $currentPage - 1 ?>"><i class="ti-arrow-left"></i> Prev</a>
+                                                    </li>
+                                                <?php endif; ?>
+
+                                                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                                    <li class="<?= $i === $currentPage ? 'active' : '' ?>">
+                                                        <a href="?page=<?= $i ?>"><?= $i ?></a>
+                                                    </li>
+                                                <?php endfor; ?>
+
+                                                <?php if ($currentPage < $totalPages): ?>
+                                                    <li class="next">
+                                                        <a href="?page=<?= $currentPage + 1 ?>">Next <i class="ti-arrow-right"></i></a>
+                                                    </li>
+                                                <?php endif; ?>
                                             </ul>
                                         </div>
                                     </div>
