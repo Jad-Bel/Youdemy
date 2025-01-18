@@ -379,7 +379,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </thead>
                     <tbody>
                         <?php
-                        $courses = Course::getAllApprovedCourses();
+                        $courses = Course::getAllCourses();
                         foreach ($courses as $course):
                         ?>
                             <tr>
