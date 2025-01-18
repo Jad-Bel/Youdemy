@@ -1,5 +1,5 @@
 <?php
-class CourseService {
+class CourseService extends Course {
     private $courseModel;
     private $categoryModel;
 
@@ -7,6 +7,9 @@ class CourseService {
         $this->courseModel = $courseModel;
         $this->categoryModel = $categoryModel;
     }
+
+    public function save() {}
+    public function displayContent() {}
 
     public static function getAllCourses () 
     {

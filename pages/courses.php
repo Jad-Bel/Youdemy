@@ -6,19 +6,32 @@ require_once '../classes/user.php';
 require_once '../classes/admin/student.php';
 require_once '../classes/admin/category.php';
 
+// Initialize models
+$courseModel = new Course();
+$categoryModel = new Category();
 
-// $categories = Category::getPopularCategories();
-// echo "<pre>";
-// print_r($categories);
-// echo "</pre>";
-// die;
+// Initialize service
+$courseService = new CourseService($courseModel, $categoryModel);
+
+// Get query parameters
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $perPage = 5;
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$categoryId = isset($_GET['category_id']) ? $_GET['category_id'] : null;
 
-$paginationData = course::getPaginatedCourses($page, $perPage);
+// Fetch paginated data
+$paginationData = $courseService->getPaginatedCourses($page, $perPage, $search, $categoryId);
 $courses = $paginationData['courses'];
 $totalPages = $paginationData['totalPages'];
 $currentPage = $paginationData['currentPage'];
+
+// Fetch popular categories
+$categories = Category::getPopularCategories();
+
+// Helper function for pagination links
+function pagination_link($categoryId, $page, $perPage, $search) {
+    return "?category_id=$categoryId&page=$page&perPage=$perPage&search=" . urlencode($search);
+}
 function dd(...$var)
 {
     foreach ($var as $elem) {
@@ -33,9 +46,6 @@ function dd(...$var)
 }
 dd($paginationData);
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -349,8 +359,13 @@ dd($paginationData);
                             </div>
                             <div class="col-lg-9 col-md-8 col-sm-12">
                                 <div class="row">
+                                <?php if (empty($courses)): ?>
+                                        <div class="col-12">
+                                            <div class="alert alert-info">No courses found.</div>
+                                        </div>
+                                    <?php endif; ?>
                                     <?php
-                                    $paginationData = Student::getPaginatedCourses();
+                                    $paginationData = $courseService->getPaginatedCourses($page, $perPage, $search, $categoryId);
                                     $courses = $paginationData['courses'];
                                     foreach ($courses as $course):
                                     ?>
