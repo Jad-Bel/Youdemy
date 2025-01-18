@@ -1,5 +1,7 @@
 <?php
-require_once '../classes/admin/documentCourse.php';
+require_once '../config/database.php';
+require_once '../classes/admin/courseService.php';
+require_once '../classes/admin/course.php';
 require_once '../classes/admin/auth.php';
 
 if (isset($_GET['id'])) {
@@ -8,13 +10,25 @@ if (isset($_GET['id'])) {
 	// Handle the case where no ID is provided
 	die("Course ID is missing.");
 }
-
-$courseService = new CourseService($courseModel, $categoryModel); // Assuming you have these models initialized
+$courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL);
+$courseService = new CourseService(NULL, NULL); // Assuming you have these models initialized
 $course = $courseService->getCourseById($courseId);
 
-if (!$course) {
-	die("Course not found.");
+// if (!$course) {
+// 	die("Course not found.");
+// }
+function dd(...$var) {
+    foreach ($var as $elem) {
+        echo '<pre class="codespan">';
+        echo '<code>';
+        !$elem || $elem == '' ? var_dump($elem) : print_r($elem);
+        echo '</code>';
+        echo '</pre>';
+    }
+
+    die();
 }
+dd($course);
 ?>
 
 <!DOCTYPE html>
