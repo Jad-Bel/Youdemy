@@ -38,7 +38,13 @@ class Auth {
                 session_start();
                 $_SESSION['user_id'] = $userData['id'];
                 $_SESSION['role'] = $userData['role'];
-                header('Location: dashboard.php');
+                if ($_SESSION['role'] == 'admin') {
+                    header('location: /pages/dashboard.php');
+                } elseif ($_SESSION['role'] == 'student') {
+                    header('location: /pages/index.php');
+                } elseif ($_SESSION['role'] == 'teacher') {
+                    header('location: /pages/courses.php');
+                }
                 return true;
             }
         }

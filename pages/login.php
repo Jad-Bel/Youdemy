@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $auth = new Auth();
     try {
         $auth->login($email, $password);
-        header('Location: dashboard.php');
         exit();
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
