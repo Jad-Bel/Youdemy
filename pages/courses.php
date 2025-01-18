@@ -7,7 +7,7 @@ require_once '../classes/admin/student.php';
 require_once '../classes/admin/category.php';
 
 // Initialize models
-$coursesModel = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL);
+$courseModel = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL);
 $categoryModel = new Category();
 
 // Initialize service
@@ -17,10 +17,10 @@ $courseService = new CourseService($courseModel, $categoryModel);
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $perPage = 5;
 $search = isset($_GET['search']) ? $_GET['search'] : '';
-$categoryId = isset($_GET['category_id']) ? $_GET['category_id'] : null;
-
+$categoryId = isset($_GET['id']) ? $_GET['id'] : null;
+var_dump($categoryId);
 // Fetch paginated data
-$paginationData = $courseService->getPaginatedCourses($page, $perPage, $search, $categoryId);
+$paginationData = $courseService->getPaginatedCourses($page, $perPage, $search, 1);
 $courses = $paginationData['courses'];
 $totalPages = $paginationData['totalPages'];
 $currentPage = $paginationData['currentPage'];
