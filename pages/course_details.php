@@ -1,3 +1,10 @@
+<?php 
+	require_once '../classes/admin/documentCourse.php';
+	require_once '../classes/admin/auth.php';
+
+	$courses = new DocumentCourse(NULL, NULL, NULL, NULL, NULL, NULL);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -679,22 +686,22 @@
 							<div class="widget widget_gallery gallery-grid-4">
 								<h5 class="footer-title">Our Gallery</h5>
 								<ul class="magnific-image">
-									<li><a href="assets/images/gallery/pic1.jpg" class="magnific-anchor"><img
-												src="assets/images/gallery/pic1.jpg" alt=""></a></li>
-									<li><a href="assets/images/gallery/pic2.jpg" class="magnific-anchor"><img
-												src="assets/images/gallery/pic2.jpg" alt=""></a></li>
+									<li><a href="../assets/images/gallery/pic1.jpg" class="magnific-anchor"><img
+												src="../assets/images/gallery/pic1.jpg" alt=""></a></li>
+									<li><a href="../assets/images/gallery/pic2.jpg" class="magnific-anchor"><img
+												src="../assets/images/gallery/pic2.jpg" alt=""></a></li>
 									<li><a href="assets/images/gallery/pic3.jpg" class="magnific-anchor"><img
-												src="assets/images/gallery/pic3.jpg" alt=""></a></li>
-									<li><a href="assets/images/gallery/pic4.jpg" class="magnific-anchor"><img
-												src="assets/images/gallery/pic4.jpg" alt=""></a></li>
-									<li><a href="assets/images/gallery/pic5.jpg" class="magnific-anchor"><img
-												src="assets/images/gallery/pic5.jpg" alt=""></a></li>
-									<li><a href="assets/images/gallery/pic6.jpg" class="magnific-anchor"><img
-												src="assets/images/gallery/pic6.jpg" alt=""></a></li>
-									<li><a href="assets/images/gallery/pic7.jpg" class="magnific-anchor"><img
-												src="assets/images/gallery/pic7.jpg" alt=""></a></li>
-									<li><a href="assets/images/gallery/pic8.jpg" class="magnific-anchor"><img
-												src="assets/images/gallery/pic8.jpg" alt=""></a></li>
+												src="../assets/images/gallery/pic3.jpg" alt=""></a></li>
+									<li><a href="../assets/images/gallery/pic4.jpg" class="magnific-anchor"><img
+												src="../assets/images/gallery/pic4.jpg" alt=""></a></li>
+									<li><a href="../assets/images/gallery/pic5.jpg" class="magnific-anchor"><img
+												src="../assets/images/gallery/pic5.jpg" alt=""></a></li>
+									<li><a href="../assets/images/gallery/pic6.jpg" class="magnific-anchor"><img
+												src="../assets/images/gallery/pic6.jpg" alt=""></a></li>
+									<li><a href="../assets/images/gallery/pic7.jpg" class="magnific-anchor"><img
+												src="../assets/images/gallery/pic7.jpg" alt=""></a></li>
+									<li><a href="../assets/images/gallery/pic8.jpg" class="magnific-anchor"><img
+												src="../assets/images/gallery/pic8.jpg" alt=""></a></li>
 								</ul>
 							</div>
 						</div>
