@@ -56,32 +56,5 @@ class Category
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    public static function getPaginatedCategories($page = 1, $perPage = 5)
-    {
-        $db = new Database();
-        $conn = $db->getConnection();
-
-        $offset = ($page - 1) * $perPage;
-
-        $query = "SELECT * FROM categories LIMIT :limit OFFSET :offset";
-        $stmt = $conn->prepare($query);
-        $stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
-        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-        $stmt->execute();
-        $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $totalQuery = "SELECT COUNT(*) as total FROM categories";
-        $totalStmt = $conn->query($totalQuery);
-        $total = $totalStmt->fetch(PDO::FETCH_ASSOC)['total'];
-
-        $totalPages = ceil($total / $perPage);
-
-        return [
-            'categories' => $categories,
-            'totalPages' => $totalPages,
-            'currentPage' => $page,
-        ];
-    }
 }
 ?>

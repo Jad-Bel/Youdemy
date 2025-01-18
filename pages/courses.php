@@ -1,6 +1,8 @@
 <?php
 require_once '../config/database.php';
 require_once '../classes/admin/course.php';
+require_once '../classes/user.php';
+require_once '../classes/admin/student.php';
 require_once '../classes/admin/category.php';
 
 
@@ -12,10 +14,23 @@ require_once '../classes/admin/category.php';
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $perPage = 5;
 
-$paginationData = Category::getPaginatedCategories($page, $perPage);
-$categories = $paginationData['categories'];
+$paginationData = Student::getPaginatedCourses($page, $perPage);
+$courses = $paginationData['courses'];
 $totalPages = $paginationData['totalPages'];
 $currentPage = $paginationData['currentPage'];
+function dd(...$var)
+{
+    foreach ($var as $elem) {
+        echo '<pre class="codespan">';
+        echo '<code>';
+        !$elem || $elem == '' ? var_dump($elem) : print_r($elem);
+        echo '</code>';
+        echo '</pre>';
+    }
+
+    die();
+}
+dd($paginationData);
 ?>
 
 
@@ -334,7 +349,8 @@ $currentPage = $paginationData['currentPage'];
                             <div class="col-lg-9 col-md-8 col-sm-12">
                                 <div class="row">
                                     <?php
-                                    $courses = course::getAllApprovedCourses();
+                                    $paginationData = Student::getPaginatedCourses();
+                                    $courses = $paginationData['courses'];
                                     foreach ($courses as $course):
                                     ?>
                                         <div class="col-md-6 col-lg-4 col-sm-6 m-b30">

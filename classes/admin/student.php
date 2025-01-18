@@ -40,6 +40,53 @@ class Student extends User {
     
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function getPaginatedCourses($page, $perPage) {
+        $db = new Database();
+        $conn = $db->getConnection();
+    
+        $offset = ($page - 1) * $perPage;
+    
+        $sql = "SELECT 
+                    c.id AS id,
+                    c.title AS title,
+                    c.description AS dsc,
+                    c.content AS cnt,
+                    c.document_link,
+                    c.video_link,
+                    c.created_at AS crs_created_at,
+                    c.updated_at AS course_updated_at,
+                    c.course_bnr AS banner,
+                    ctg.name AS ctg_name,
+                    u.username AS teacher_username,
+                    u.email AS teacher_email
+                FROM 
+                    courses c
+                JOIN 
+                    users u ON c.teacher_id = u.id
+                JOIN 
+                    categories ctg ON c.category_id = ctg.id
+                WHERE 
+                    c.status = 'approved'
+                LIMIT :limit OFFSET :offset";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+        $courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        $totalQuery = "SELECT COUNT(*) as total FROM courses WHERE status = 'approved'";
+        $totalStmt = $conn->query($totalQuery);
+        $total = $totalStmt->fetch(PDO::FETCH_ASSOC)['total'];
+    
+        $totalPages = ceil($total / $perPage);
+    
+        return [
+            'courses' => $courses,
+            'totalPages' => $totalPages,
+            'currentPage' => $page,
+        ];
+    }
 }
 
 // $student = new Student('jane_doe', 'jane@example.com', 'password123', 'student', 1);
