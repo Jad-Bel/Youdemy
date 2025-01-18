@@ -1,8 +1,6 @@
 <?php 
 	require_once '../classes/admin/documentCourse.php';
 	require_once '../classes/admin/auth.php';
-
-	$courses = new DocumentCourse(NULL, NULL, NULL, NULL, NULL, NULL);
 ?>
 
 <!DOCTYPE html>
