@@ -82,6 +82,19 @@ abstract class Course
     abstract public function displayContent();
 }
 
+class ConcreteCourse extends Course {
+        public function save () {}
+        public function displayContent() {}
+
+        public function countCourses () {
+            $query = "SELECT COUNT(*) FROM courses";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+}
+
 // class Course1 extends course {
 //     protected $conn;
 //     protected $document_path;

@@ -7,7 +7,7 @@ require_once '../classes/admin/student.php';
 require_once '../classes/admin/category.php';
 
 // Initialize models
-$courseModel = new Course();
+$coursesModel = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL);
 $categoryModel = new Category();
 
 // Initialize service

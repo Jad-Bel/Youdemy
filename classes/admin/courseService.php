@@ -1,5 +1,5 @@
 <?php
-class CourseService extends Course {
+class CourseService {
     private $courseModel;
     private $categoryModel;
 
