@@ -51,7 +51,7 @@ class Category
     public static function getPopularCategories() {
         $db = new Database();
         $conn = $db->getConnection();
-        $query = "SELECT `name` FROM categories LIMIT 5";
+        $query = "SELECT * FROM categories LIMIT 5";
         $stmt = $conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
