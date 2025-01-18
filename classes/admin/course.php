@@ -85,13 +85,27 @@ abstract class Course
 class ConcreteCourse extends Course {
         public function save () {}
         public function displayContent() {}
-
-        public function countCourses () {
-            $query = "SELECT COUNT(*) FROM courses";
+        
+        public function countCourses($search = '', $categoryId = null) {
+            $query = "SELECT COUNT(*) as total FROM courses WHERE status = 'approved'";
+            if ($search) {
+                $query .= " AND (title LIKE :search OR description LIKE :search)";
+            }
+            if ($categoryId) {
+                $query .= " AND category_id = :category_id";
+            }
+    
             $stmt = $this->conn->prepare($query);
+            if ($search) {
+                $stmt->bindValue(':search', "%$search%");
+            }
+            if ($categoryId) {
+                $stmt->bindValue(':category_id', $categoryId, PDO::PARAM_INT);
+            }
             $stmt->execute();
-
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return (int)$result['total'];
         }
 }
 
