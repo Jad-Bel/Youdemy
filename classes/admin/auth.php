@@ -43,7 +43,7 @@ class Auth {
                 } elseif ($_SESSION['role'] == 'student') {
                     header('location: /pages/index.php');
                 } elseif ($_SESSION['role'] == 'teacher') {
-                    header('location: /pages/courses.php');
+                    header('location: ../pages/courses.php');
                 }
                 return true;
             }
