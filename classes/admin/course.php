@@ -13,11 +13,12 @@ abstract class Course
     protected $status; 
     protected $conn;
 
-    public function __construct($title, $description, $content, $teacher_id, $category_id)
+    public function __construct($id, $title, $description, $content, $teacher_id, $category_id)
     {
         $db = new Database();
         $this->conn = $db->getConnection();
-
+        
+        $this->id = $id;
         $this->title = $title;
         $this->description = $description;
         $this->content = $content;

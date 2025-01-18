@@ -11,7 +11,7 @@ class CourseService {
     public function save() {}
     public function displayContent() {}
 
-    public static function getCourseById ($id) 
+    public function getCourseById ($id) 
     {
         $db = new Database();
         $conn = $db->getConnection();
@@ -41,7 +41,8 @@ class CourseService {
                 c.id = :id";            
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':id', $id);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);   
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);   
     }
 
     public static function getAllCourses () 

@@ -10,7 +10,7 @@ if (isset($_GET['id'])) {
 	// Handle the case where no ID is provided
 	die("Course ID is missing.");
 }
-$courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL);
+$courseModal = new ConcreteCourse($courseId, NULL, NULL, NULL, NULL, NULL);
 $courseService = new CourseService(NULL, NULL); // Assuming you have these models initialized
 $course = $courseService->getCourseById($courseId);
 
