@@ -30,6 +30,7 @@ class CourseService {
                 c.certification AS certification,
                 c.skill_level AS level,
                 c.language AS language,
+                c.duration AS duration,
                 ctg.name AS ctg_name,
                 c.teacher_id,
                 u.username AS teacher_username,
