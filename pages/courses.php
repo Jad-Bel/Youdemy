@@ -13,14 +13,13 @@ $categoryModel = new Category();
 // Initialize service
 $courseService = new CourseService($courseModel, $categoryModel);
 
-// Get query parameters
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $perPage = 5;
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 $categoryId = isset($_GET['id']) ? $_GET['id'] : null;
-var_dump($categoryId);
+
 // Fetch paginated data
-$paginationData = $courseService->getPaginatedCourses($page, $perPage, $search, 1);
+$paginationData = $courseService->getPaginatedCourses($page, $perPage, $search, $categoryId);
 $courses = $paginationData['courses'];
 $totalPages = $paginationData['totalPages'];
 $currentPage = $paginationData['currentPage'];
@@ -32,19 +31,19 @@ $categories = Category::getPopularCategories();
 function pagination_link($categoryId, $page, $perPage, $search) {
     return "?category_id=$categoryId&page=$page&perPage=$perPage&search=" . urlencode($search);
 }
-function dd(...$var)
-{
-    foreach ($var as $elem) {
-        echo '<pre class="codespan">';
-        echo '<code>';
-        !$elem || $elem == '' ? var_dump($elem) : print_r($elem);
-        echo '</code>';
-        echo '</pre>';
-    }
+// function dd(...$var)
+// {
+//     foreach ($var as $elem) {
+//         echo '<pre class="codespan">';
+//         echo '<code>';
+//         !$elem || $elem == '' ? var_dump($elem) : print_r($elem);
+//         echo '</code>';
+//         echo '</pre>';
+//     }
 
-    die();
-}
-dd($paginationData);
+//     die();
+// }
+// dd($paginationData);
 ?>
 <!DOCTYPE html>
 <html lang="en">
