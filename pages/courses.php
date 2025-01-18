@@ -1,6 +1,7 @@
 <?php
 require_once '../config/database.php';
 require_once '../classes/admin/course.php';
+require_once '../classes/admin/courseService.php';
 require_once '../classes/user.php';
 require_once '../classes/admin/student.php';
 require_once '../classes/admin/category.php';
@@ -14,7 +15,7 @@ require_once '../classes/admin/category.php';
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $perPage = 5;
 
-$paginationData = Student::getPaginatedCourses($page, $perPage);
+$paginationData = course::getPaginatedCourses($page, $perPage);
 $courses = $paginationData['courses'];
 $totalPages = $paginationData['totalPages'];
 $currentPage = $paginationData['currentPage'];
