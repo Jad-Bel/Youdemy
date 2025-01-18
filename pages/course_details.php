@@ -280,7 +280,7 @@ $course = $courseService->getCourseById($courseId);
 										<h4 class="price">FREE</h4>
 									</div>
 									<div class="course-buy-now text-center">
-										<a href="#" class="btn radius-xl text-uppercase">Enroll To This Course</a>
+										<a href="login.php" class="btn radius-xl text-uppercase">Enroll To This Course</a>
 									</div>
 									<div class="teacher-bx">
 										<div class="teacher-info">
