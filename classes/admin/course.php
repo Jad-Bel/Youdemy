@@ -107,6 +107,53 @@ class ConcreteCourse extends Course {
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             return (int)$result['total'];
         }
+
+        public function getCoursesByPage($perPage, $offset, $search = '', $categoryId = null) {
+            $query = "SELECT 
+                        c.id AS id,
+                        c.title AS title,
+                        c.description AS dsc,
+                        c.content AS cnt,
+                        c.document_link,
+                        c.video_link,
+                        c.status,
+                        c.created_at AS crs_created_at,
+                        c.updated_at AS course_updated_at,
+                        c.course_bnr AS banner,
+                        ctg.name AS ctg_name,
+                        c.teacher_id,
+                        u.username AS teacher_username,
+                        u.email AS teacher_email
+                    FROM 
+                        courses c
+                    JOIN 
+                        users u ON c.teacher_id = u.id
+                    JOIN 
+                        categories ctg ON c.category_id = ctg.id
+                    WHERE c.status = 'approved'";
+    
+            if ($search) {
+                $query .= " AND (c.title LIKE :search OR c.description LIKE :search)";
+            }
+            if ($categoryId) {
+                $query .= " AND c.category_id = :category_id";
+            }
+    
+            $query .= " LIMIT :limit OFFSET :offset";
+    
+            $stmt = $this->conn->prepare($query);
+            if ($search) {
+                $stmt->bindValue(':search', "%$search%");
+            }
+            if ($categoryId) {
+                $stmt->bindValue(':category_id', $categoryId, PDO::PARAM_INT);
+            }
+            $stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+            $stmt->execute();
+    
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
 }
 
 // class Course1 extends course {
