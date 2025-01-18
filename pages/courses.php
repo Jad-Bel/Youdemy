@@ -305,6 +305,9 @@ function pagination_link($categoryId, $page, $perPage, $search) {
                                 <div class="widget widget_archive">
                                     <h5 class="widget-title style-1">Popular Categories</h5>
                                     <ul>
+                                        <li>
+                                            <a href="?">All Categories</a>
+                                        </li>
                                         <?php
                                         $categories = Category::getPopularCategories();
                                         foreach ($categories as $category):
