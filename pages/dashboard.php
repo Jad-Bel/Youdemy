@@ -92,13 +92,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $categories->updateCategory($id, $name);
             break;
-        case 'delete_category':
-            $categories = new Category();
-            $id = $_POST['id'];
-
-            $categories->deleteCategory($id);
-            break;
-
+            case 'delete_category':
+                $id = $_POST['category_id'];
+                $categories = new Category();
+                $categories->deleteCategory($id);
+                break;
         case 'add_tags':
             $tags = new Tag();
             if (isset($_POST['tag_name']) && is_array($_POST['tag_name'])) {
@@ -118,12 +116,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $tags->updateTag($id, $name);
             break;
-        case 'delete_tag':
-            $tags = new Tag();
-            $id = $_POST['id'];
-
-            $tags->deleteTag($id);
-            break;
+            case 'delete_tag':
+                $id = $_POST['tag_id'];
+                $tags = new Tag();
+                $tags->deleteTag($id);
+                break;
     }
 }
 ?>
