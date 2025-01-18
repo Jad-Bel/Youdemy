@@ -17,18 +17,18 @@ $course = $courseService->getCourseById($courseId);
 // if (!$course) {
 // 	die("Course not found.");
 // }
-function dd(...$var) {
-    foreach ($var as $elem) {
-        echo '<pre class="codespan">';
-        echo '<code>';
-        !$elem || $elem == '' ? var_dump($elem) : print_r($elem);
-        echo '</code>';
-        echo '</pre>';
-    }
+// function dd(...$var) {
+//     foreach ($var as $elem) {
+//         echo '<pre class="codespan">';
+//         echo '<code>';
+//         !$elem || $elem == '' ? var_dump($elem) : print_r($elem);
+//         echo '</code>';
+//         echo '</pre>';
+//     }
 
-    die();
-}
-dd($course);
+//     die();
+// }
+// dd($course);
 ?>
 
 <!DOCTYPE html>
@@ -341,13 +341,10 @@ dd($course);
 									</div>
 									<div class="ttr-post-info">
 										<div class="ttr-post-title ">
-											<h2 class="post-title">Nvidia and UE4 Technologies Practice</h2>
+											<h2 class="post-title"><?= $course['title'] ?></h2>
 										</div>
 										<div class="ttr-post-text">
-											<p>Lorem Ipsum is simply dummy text of the printing and typesetting
-												industry. Lorem Ipsum has been the industry's standard dummy text ever
-												since the 1500s, when an unknown printer took a galley of type and
-												scrambled it to make a type specimen book.</p>
+											<p><?= $course['dsc'] ?></p>
 										</div>
 									</div>
 								</div>
