@@ -309,7 +309,11 @@ function pagination_link($categoryId, $page, $perPage, $search) {
                                         $categories = Category::getPopularCategories();
                                         foreach ($categories as $category):
                                         ?>
-                                            <li><a href="?category_id=<?= $category['id'] ?>"><?= $category['name'] ?></a></li>
+                                            <li>
+                                                <a href="?id=<?= $category['id'] ?>">
+                                                    <?= $category['name'] ?>
+                                                </a>
+                                            </li>
                                         <?php endforeach; ?>
                                     </ul>
                                 </div>
