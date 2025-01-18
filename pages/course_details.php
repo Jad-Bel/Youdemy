@@ -1,6 +1,20 @@
-<?php 
-	require_once '../classes/admin/documentCourse.php';
-	require_once '../classes/admin/auth.php';
+<?php
+require_once '../classes/admin/documentCourse.php';
+require_once '../classes/admin/auth.php';
+
+if (isset($_GET['id'])) {
+	$courseId = intval($_GET['id']); // Ensure the ID is an integer
+} else {
+	// Handle the case where no ID is provided
+	die("Course ID is missing.");
+}
+
+$courseService = new CourseService($courseModel, $categoryModel); // Assuming you have these models initialized
+$course = $courseService->getCourseById($courseId);
+
+if (!$course) {
+	die("Course not found.");
+}
 ?>
 
 <!DOCTYPE html>

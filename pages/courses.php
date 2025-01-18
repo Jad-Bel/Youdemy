@@ -379,7 +379,7 @@ function pagination_link($categoryId, $page, $perPage, $search) {
                                             <div class="cours-bx">
                                                 <div class="action-box">
                                                     <img src="<?= $course['banner'] ?>" alt="">
-                                                    <a href="course_details.php?crs='<?= $course['title'] ?><?= $course['id'] ?>" class="btn">Read More</a>
+                                                    <a href="course_details.php?crs='<?= $course['title'] ?>?crs_id=<?= $course['id'] ?>" class="btn">Read More</a>
                                                 </div>
                                                 <div class="info-bx text-center">
                                                     <h6><a href="?"><?= $course['title'] ?></a></h6>
