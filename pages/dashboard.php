@@ -124,7 +124,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $tags->deleteTag($id);
             break;
-            echo '123434';
     }
 }
 ?>

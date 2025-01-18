@@ -71,12 +71,11 @@ class Tag
         return $stmt->rowCount();
     }
 
-    public function deleteTag($id)
-    {
+    public function deleteTag($id) {
         $sql = "DELETE FROM tags WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute(['id' => $id]);
-        return $stmt->rowCount();
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
     }
 
     public function getAllTags()

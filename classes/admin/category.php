@@ -26,12 +26,11 @@ class Category
         return $stmt->rowCount();
     }
 
-    public function deleteCategory($id)
-    {
+    public function deleteCategory($id) {
         $sql = "DELETE FROM categories WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute(['id' => $id]);
-        return $stmt->rowCount();
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
     }
 
     public function getAllCategories()
