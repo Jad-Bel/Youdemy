@@ -8,12 +8,12 @@ class Student extends User {
         parent::__construct($username, $email, $password, 'student', $status);
     }
 
-    public function enroll($student_id, $course_id) {
-        $sql = "INSERT INTO enrollments (student_id, course_id, enrolled_at)
-                VALUES (:student_id, :course_id, NOW())";
+    public function enroll($id, $course_id) {
+        $sql = "INSERT INTO enrollments (id, course_id, enrolled_at)
+                VALUES (:id, :course_id, NOW())";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
-            'student_id' => $student_id,
+            'id' => $id,
             'course_id' => $course_id
         ]);
     

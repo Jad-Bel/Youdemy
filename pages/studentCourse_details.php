@@ -5,8 +5,8 @@ require_once '../classes/admin/courseService.php';
 require_once '../classes/admin/course.php';
 require_once '../classes/admin/auth.php';
 
-if (isset($_GET['id'])) {
-	$courseId = intval($_GET['id']);
+if (isset($_GET['course_id'])) {
+	$courseId = intval($_GET['course_id']);
 } else {
 	die("Course ID is missing.");
 }
@@ -15,7 +15,7 @@ $courseService = new CourseService(NULL, NULL);
 $course = $courseService->getCourseById($courseId);
 
 if (isset($_POST['id'])) {
-    $course_id = $_POST['id'];
+    $course_id = $_POST['course_id'];
     $student_id = $_SESSION['id'];
 
     $student = new Student(null, null, null, null, null);
