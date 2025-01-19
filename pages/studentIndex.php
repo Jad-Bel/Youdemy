@@ -586,7 +586,7 @@ $courseService = new CourseService($courseModal, null);
 											<i class="fa fa-book text-primary"></i>
 										</div>
 										<h4><a href="#">Learn Courses Online</a></h4>
-										<a href="courses.php" class="btn radius-xl">View More</a>
+										<a href="studentCourses.php" class="btn radius-xl">View More</a>
 									</div>
 								</div>
 							</div>
