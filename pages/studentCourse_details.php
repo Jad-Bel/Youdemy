@@ -22,14 +22,6 @@ $student = new Student();
 
 $is_enrolled = $student->isEnrolled($student_id, $course_id);
 
-if ($is_enrolled) {
-	$button_text = "Start Course";
-	$disabled = "disabled";
-} else {
-	$button_text = "Enroll To This Course";
-	$disabled = "";
-}
-
 if (isset($_POST['course_id'])) {
 	$course_id = $_POST['course_id'];
 	$student_id = $_SESSION['user_id'];
@@ -42,7 +34,7 @@ if (isset($_POST['course_id'])) {
 		$_SESSION['enrollment_error'] = "Enrollment failed. Please try again.";
 	}
 
-	header("Location: course-details.php?course_id=" . $course_id);
+	header("Location: courseContent.php?course_id=" . $course_id);
 	exit();
 }
 
@@ -364,12 +356,18 @@ if (!$course) {
 										<h4 class="price">FREE</h4>
 									</div>
 									<div class="course-buy-now text-center">
-										<form action="" method="POST">
-											<input type="hidden" name="course_id" value="<?php echo $course_id; ?>">
-											<button type="submit" name="enroll" class="btn radius-xl text-uppercase" <?php echo $disabled; ?>>
-												<?php echo $button_text; ?>
-											</button>
-										</form>
+										<?php if ($is_enrolled): ?>
+											<a href="courseContent.php?course_id=<?= $course_id; ?>" class="btn radius-xl text-uppercase">
+												Start Course
+											</a>
+										<?php else: ?>
+											<form action="" method="POST">
+												<input type="hidden" name="course_id" value="<?= $course_id; ?>">
+												<button type="submit" name="enroll" class="btn radius-xl text-uppercase">
+													Enroll To This Course
+												</button>
+											</form>
+										<?php endif; ?>
 									</div>
 									<div class="teacher-bx">
 										<div class="teacher-info">
