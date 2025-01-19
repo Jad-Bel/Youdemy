@@ -20,7 +20,7 @@ if ($courseContent && isset($courseContent['video_link'])) {
 }
 
 echo '<pre>';
-var_dump($courseContent);
+print_r($courseContent);
 echo '</pre>';
 
 
@@ -343,6 +343,25 @@ echo '</pre>';
                     <button class="tab-button">Announcements</button>
                     <button class="tab-button">Reviews</button>
                     <button class="tab-button">Learning tools</button>
+                </div>
+
+                <div class="courese-overview" id="overview">
+                    <h4>Overview</h4>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-4">
+                            <ul class="course-features">
+                                <li><i class="ti-time"></i> <span class="label">Duration</span> <span class="value"><?= $courseContent['duration'] ?? 'N/A' ?> hours</span></li>
+                                <li><i class="ti-stats-up"></i> <span class="label">Skill level</span> <span class="value"><?= $courseContent['level'] ?? 'N/A' ?></span></li>
+                                <li><i class="ti-smallcap"></i> <span class="label">Language</span> <span class="value"><?= $courseContent['language'] ?? 'N/A' ?></span></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-12 col-lg-8">
+                            <h5 class="m-b5">Course Description</h5>
+                            <p><?= $courseContent['description'] ?? 'No description available.' ?></p>
+                            <h5 class="m-b5">Certification</h5>
+                            <p><?= $courseContent['certification'] ?? 'No certification details available.' ?></p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
