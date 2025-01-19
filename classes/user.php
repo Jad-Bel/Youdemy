@@ -14,17 +14,17 @@ class User
     protected $conn;
 
     public function __construct($username, $email, $password, $role, $status = 'pending')
-    {
-        $db = new Database();
-        $this->conn = $db->getConnection();
-        $this->username = $username;
-        $this->email = $email;
-        $this->password = $this->hashPassword($password);
-        $this->role = $role;
-        $this->status = $status;
-        $this->created_at = date('Y-m-d H:i:s');
-        $this->updated_at = date('Y-m-d H:i:s');
-    }
+{
+    $db = new Database();
+    $this->conn = $db->getConnection();
+    $this->username = $username;
+    $this->email = $email;
+    $this->password = $password ? $this->hashPassword($password) : null;
+    $this->role = $role;
+    $this->status = $status;
+    $this->created_at = date('Y-m-d H:i:s');
+    $this->updated_at = date('Y-m-d H:i:s');
+}
 
     public function getId()
     {
