@@ -13,12 +13,11 @@ abstract class Course
     protected $status; 
     protected $conn;
 
-    public function __construct($id, $title, $description, $content, $teacher_id, $category_id)
+    public function __construct($title, $description, $content, $teacher_id, $category_id)
     {
         $db = new Database();
         $this->conn = $db->getConnection();
         
-        $this->id = $id;
         $this->title = $title;
         $this->description = $description;
         $this->content = $content;
@@ -80,12 +79,12 @@ abstract class Course
 
     abstract public function save();
 
-    abstract public function displayContent();
+    abstract public function displayContent($id);
 }
 
 class ConcreteCourse extends Course {
         public function save () {}
-        public function displayContent() {}
+        public function displayContent($id) {}
         
         public function countCourses($search = '', $categoryId = null) {
             $query = "SELECT COUNT(*) as total FROM courses WHERE status = 'approved'";

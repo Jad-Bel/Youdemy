@@ -1,3 +1,19 @@
+<?php
+require_once '../config/database.php';
+require_once '../classes/admin/videoCourse.php';
+
+$course_id = isset($_GET['course_id']) ? intval(explode('?', $_GET['course_id'])[0]) : null;
+$videoCourse = new VideoCourse(null, null, null, null, null, null);
+
+$courseContent = $videoCourse->displayContent($course_id);
+
+if ($courseContent) {
+    $videoLink = $courseContent['video_link'];
+} else {
+    die("Course not found.");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -285,7 +301,18 @@
             <div class="col-md-8 p-0">
                 <!-- Video Player -->
                 <div class="video-container">
-                    <img src="api/placeholder/100/100" alt="Play Button" style="width: 80px; height: 80px;">
+                    <?php if ($videoLink): ?>
+                        <iframe
+                            width="100%"
+                            height="400"
+                            src="<?php echo htmlspecialchars($videoLink); ?>"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    <?php else: ?>
+                        <p>No video available for this course.</p>
+                    <?php endif; ?>
                 </div>
 
                 <!-- Course Navigation -->
