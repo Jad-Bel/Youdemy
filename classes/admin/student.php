@@ -40,6 +40,16 @@ class Student extends User {
     
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function isEnrolled($student_id, $course_id) {
+        $sql = "SELECT * FROM enrollments WHERE student_id = :student_id AND course_id = :course_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'student_id' => $student_id,
+            'course_id' => $course_id
+        ]);
+        return $stmt->rowCount() > 0;
+    }
 }
 
 // $student = new Student('jane_doe', 'jane@example.com', 'password123', 'student', 1);

@@ -1,25 +1,31 @@
 <?php
 require_once '../includes/session_check.php';
 require_once '../config/database.php';
+require_once '../classes/user.php';
+require_once '../classes/admin/student.php';
 require_once '../classes/admin/courseService.php';
 require_once '../classes/admin/course.php';
 require_once '../classes/admin/auth.php';
 
-if (isset($_GET['course_id'])) {
-	$courseId = intval($_GET['course_id']);
-} else {
-	die("Course ID is missing.");
-}
-$courseModal = new ConcreteCourse($courseId, NULL, NULL, NULL, NULL, NULL);
-$courseService = new CourseService(NULL, NULL);
-$course = $courseService->getCourseById($courseId);
+print_r($_GET);
+print_r($_SESSION);
+print_r($_POST);
 
-if (isset($_POST['id'])) {
+$is_enrolled = $student->isEnrolled($student_id, $course_id);
+
+if ($is_enrolled) {
+    $button_text = "Start Course";
+    $disabled = "disabled";
+} else {
+    $button_text = "Enroll To This Course";
+    $disabled = "";
+}
+
+if (isset($_POST['course_id'])) {
     $course_id = $_POST['course_id'];
-    $student_id = $_SESSION['id'];
+    $student_id = $_SESSION['user_id'];
 
     $student = new Student(null, null, null, null, null);
-
     $enrolled = $student->enroll($student_id, $course_id);
 
     if ($enrolled) {
@@ -30,11 +36,7 @@ if (isset($_POST['id'])) {
 
     header("Location: course-details.php?course_id=" . $course_id);
     exit();
-} else {
-    $_SESSION['enrollment_error'] = "Course is missing.";
-    // header("Location: studentourse.php");
-    // exit();
-}    
+}
 
 if (isset($_SESSION['enrollment_success']) && $_SESSION['enrollment_success']) {
     echo '
@@ -50,6 +52,7 @@ if (isset($_SESSION['enrollment_success']) && $_SESSION['enrollment_success']) {
     });
     </script>
     ';
+    // Clear the session variable
     unset($_SESSION['enrollment_success']);
 }
 
@@ -67,9 +70,9 @@ if (isset($_SESSION['enrollment_error'])) {
     });
     </script>
     ';
+    // Clear the session variable
     unset($_SESSION['enrollment_error']);
 }
-
 // if (!$course) {
 // 	die("Course not found.");
 // }
