@@ -41,9 +41,9 @@ class Auth {
                 if ($_SESSION['role'] == 'admin') {
                     header('location: ../pages/dashboard.php');
                 } elseif ($_SESSION['role'] == 'student') {
-                    header('location: ../pages/index.php');
+                    header('location: ../pages/studentIndex.php');
                 } elseif ($_SESSION['role'] == 'teacher') {
-                    header('location: ../pages/courses.php');
+                    header('location: ../pages/teacherDash.php');
                 }
                 return true;
             }
