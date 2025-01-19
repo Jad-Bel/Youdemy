@@ -1,4 +1,5 @@
 <?php
+require_once '../includes/session_check.php';
 require_once '../config/database.php';
 require_once '../classes/admin/courseService.php';
 require_once '../classes/admin/course.php';
@@ -81,8 +82,7 @@ $courseService = new CourseService($courseModal, null);
 						</div>
 						<div class="topbar-right">
 							<ul>
-								<li><a href="login.php">Login</a></li>
-								<li><a href="register.php">Register</a></li>
+								<li><a href="logout.php">Log-out</a></li>
 							</ul>
 						</div>
 					</div>
