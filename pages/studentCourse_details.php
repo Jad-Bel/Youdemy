@@ -14,6 +14,62 @@ $courseModal = new ConcreteCourse($courseId, NULL, NULL, NULL, NULL, NULL);
 $courseService = new CourseService(NULL, NULL);
 $course = $courseService->getCourseById($courseId);
 
+if (isset($_POST['id'])) {
+    $course_id = $_POST['id'];
+    $student_id = $_SESSION['id'];
+
+    $student = new Student(null, null, null, null, null);
+
+    $enrolled = $student->enroll($student_id, $course_id);
+
+    if ($enrolled) {
+        $_SESSION['enrollment_success'] = true;
+    } else {
+        $_SESSION['enrollment_error'] = "Enrollment failed. Please try again.";
+    }
+
+    header("Location: course-details.php?course_id=" . $course_id);
+    exit();
+} else {
+    $_SESSION['enrollment_error'] = "Course is missing.";
+    // header("Location: studentourse.php");
+    // exit();
+}    
+
+if (isset($_SESSION['enrollment_success']) && $_SESSION['enrollment_success']) {
+    echo '
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        Swal.fire({
+            title: "Success!",
+            text: "You have been enrolled successfully.",
+            icon: "success",
+            confirmButtonText: "OK"
+        });
+    });
+    </script>
+    ';
+    unset($_SESSION['enrollment_success']);
+}
+
+if (isset($_SESSION['enrollment_error'])) {
+    echo '
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        Swal.fire({
+            title: "Error!",
+            text: "' . $_SESSION['enrollment_error'] . '",
+            icon: "error",
+            confirmButtonText: "OK"
+        });
+    });
+    </script>
+    ';
+    unset($_SESSION['enrollment_error']);
+}
+
 // if (!$course) {
 // 	die("Course not found.");
 // }
@@ -279,7 +335,10 @@ $course = $courseService->getCourseById($courseId);
 										<h4 class="price">FREE</h4>
 									</div>
 									<div class="course-buy-now text-center">
-										<a href="login.php" class="btn radius-xl text-uppercase">Enroll To This Course</a>
+										<form action="" method="POST">
+											<input type="hidden" name="course_id" value="<?php echo $course_id; ?>">
+											<button type="submit" name="enroll" class="btn radius-xl text-uppercase">Enroll To This Course</button>
+										</form>
 									</div>
 									<div class="teacher-bx">
 										<div class="teacher-info">
