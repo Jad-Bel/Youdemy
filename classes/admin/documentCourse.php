@@ -68,7 +68,7 @@ class DocumentCourse extends Course {
         return $stmt->rowCount() > 0; 
     }
 
-    public function displayContent() {
+    public function displayContent($id) {
         $sql = "SELECT * FROM courses WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id' => $this->id]);

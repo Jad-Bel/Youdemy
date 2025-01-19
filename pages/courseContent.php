@@ -3,25 +3,33 @@ require_once '../includes/session_check.php';
 require_once '../config/database.php';
 require_once '../classes/admin/course.php';
 require_once '../classes/admin/videoCourse.php';
+require_once '../classes/admin/documentCourse.php';
 
 
-print_r($_SESSION);
-print_r($_GET);
+// print_r($_SESSION);
+// print_r($_GET);
 
 $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : null;
 $videoCourse = new VideoCourse(null, null, null, null, null, null);
+$documentCourse = new DocumentCourse(null, null, null, null, null, null, null);
 
 $courseContent = $videoCourse->displayContent($course_id);
 
-if ($courseContent && isset($courseContent['video_link'])) {
-    $videoLink = $courseContent['video_link'];
-} else {
-    $videoLink = null; // Set to null if no video link is found
+if (!$courseContent) {
+    $courseContent = $documentCourse->displayContent($course_id);
 }
 
-echo '<pre>';
-print_r($courseContent);
-echo '</pre>';
+if ($courseContent) {
+    $videoLink = $courseContent['video_link'] ?? null;
+    $documentLink = $courseContent['document_link'] ?? null;
+} else {
+    $videoLink = null;
+    $documentLink = null;
+}
+
+// echo '<pre>';
+// print_r($courseContent);
+// echo '</pre>';
 
 
 // $course_id = isset($_GET['course_id']) ? intval(explode('?', $_GET['course_id'])[0]) : null;
@@ -170,8 +178,7 @@ echo '</pre>';
                     </div>
                     <div class="topbar-right">
                         <ul>
-                            <li><a href="login.php">Login</a></li>
-                            <li><a href="register.php">Register</a></li>
+                            <li><a href="logout.php">Log-out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -320,7 +327,6 @@ echo '</pre>';
         <div class="row">
             <!-- Main Content -->
             <div class="col-md-8 p-0">
-                <!-- Video Player -->
                 <div class="video-container">
                     <?php if ($videoLink): ?>
                         <iframe
@@ -331,8 +337,15 @@ echo '</pre>';
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
                         </iframe>
+                    <?php elseif ($documentLink): ?>
+                        <iframe
+                            width="100%"
+                            height="400"
+                            src="<?php echo htmlspecialchars($documentLink); ?>"
+                            frameborder="0">
+                        </iframe>
                     <?php else: ?>
-                        <p>No video available for this course.</p>
+                        <p>No content available for this course.</p>
                     <?php endif; ?>
                 </div>
 
