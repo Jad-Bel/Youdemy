@@ -7,47 +7,54 @@ require_once '../classes/admin/courseService.php';
 require_once '../classes/admin/course.php';
 require_once '../classes/admin/auth.php';
 
+// Debugging: Print GET, SESSION, and POST data
 print_r($_GET);
 print_r($_SESSION);
 print_r($_POST);
 
-$course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : null;
+// Initialize variables
+$course_id = isset($_GET['course_id']) ? intval(explode('?', $_GET['course_id'])[0]) : null;
 $student_id = $_SESSION['user_id'] ?? null;
 
 if (!$course_id) {
-	die("Course ID is missing.");
+    die("Course ID is missing.");
 }
 
-$student = new Student(null, null, null, null, null);
+// Initialize the Student object
+$student = new Student();
 
+// Check if the student is enrolled in the course
 $is_enrolled = $student->isEnrolled($student_id, $course_id);
 
 if ($is_enrolled) {
-	$button_text = "Start Course";
-	$disabled = "disabled";
+    $button_text = "Start Course";
+    $disabled = "disabled";
 } else {
-	$button_text = "Enroll To This Course";
-	$disabled = "";
+    $button_text = "Enroll To This Course";
+    $disabled = "";
 }
 
+// Handle form submission
 if (isset($_POST['course_id'])) {
-	$course_id = $_POST['course_id'];
-	$student_id = $_SESSION['user_id'];
+    $course_id = $_POST['course_id'];
+    $student_id = $_SESSION['user_id'];
 
-	$enrolled = $student->enroll($student_id, $course_id);
+    $enrolled = $student->enroll($student_id, $course_id);
 
-	if ($enrolled) {
-		$_SESSION['enrollment_success'] = true;
-	} else {
-		$_SESSION['enrollment_error'] = "Enrollment failed. Please try again.";
-	}
+    if ($enrolled) {
+        $_SESSION['enrollment_success'] = true;
+    } else {
+        $_SESSION['enrollment_error'] = "Enrollment failed. Please try again.";
+    }
 
-	header("Location: course-details.php?course_id=" . $course_id);
-	exit();
+    // Redirect to prevent form resubmission
+    header("Location: course-details.php?course_id=" . $course_id);
+    exit();
 }
 
+// Display SweetAlert for success or error
 if (isset($_SESSION['enrollment_success']) && $_SESSION['enrollment_success']) {
-	echo '
+    echo '
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -60,11 +67,11 @@ if (isset($_SESSION['enrollment_success']) && $_SESSION['enrollment_success']) {
     });
     </script>
     ';
-	unset($_SESSION['enrollment_success']);
+    unset($_SESSION['enrollment_success']);
 }
 
 if (isset($_SESSION['enrollment_error'])) {
-	echo '
+    echo '
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -77,16 +84,16 @@ if (isset($_SESSION['enrollment_error'])) {
     });
     </script>
     ';
-	unset($_SESSION['enrollment_error']);
+    unset($_SESSION['enrollment_error']);
 }
-?>
+
 // if (!$course) {
 // die("Course not found.");
 // }
 // function dd(...$var) {
 // foreach ($var as $elem) {
 // echo '
-<pre class="codespan">';
+// <pre class="codespan">';
 //         echo '<code>';
 //         !$elem || $elem == '' ? var_dump($elem) : print_r($elem);
 //         echo '</code>';
@@ -96,6 +103,7 @@ if (isset($_SESSION['enrollment_error'])) {
 // die();
 // }
 // dd($course);
+
 ?>
 
 <!DOCTYPE html>

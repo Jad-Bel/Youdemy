@@ -1,7 +1,4 @@
 <?php
-// require_once '../classes/user.php';
-// require_once '../../config/database.php';
-// require_once '../user.php';
 
 class Student extends User {
     public function __construct() {
@@ -16,7 +13,16 @@ class Student extends User {
             'id' => $id,
             'course_id' => $course_id
         ]);
-    
+        return $stmt->rowCount() > 0;
+    }
+
+    public function isEnrolled($student_id, $course_id) {
+        $sql = "SELECT * FROM enrollments WHERE id = :student_id AND course_id = :course_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'student_id' => $student_id,
+            'course_id' => $course_id
+        ]);
         return $stmt->rowCount() > 0;
     }
 
@@ -39,16 +45,6 @@ class Student extends User {
         $stmt->execute(['keyword' => "%$keyword%"]);
     
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function isEnrolled($student_id, $course_id) {
-        $sql = "SELECT * FROM enrollments WHERE id = :student_id AND course_id = :course_id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([
-            'student_id' => $student_id,
-            'course_id' => $course_id
-        ]);
-        return $stmt->rowCount() > 0;
     }
 }
 ?>
