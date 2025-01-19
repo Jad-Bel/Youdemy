@@ -1,4 +1,3 @@
-Copy
 <?php
 require_once '../includes/session_check.php';
 require_once '../config/database.php';
@@ -16,7 +15,7 @@ $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : null;
 $student_id = $_SESSION['user_id'] ?? null;
 
 if (!$course_id) {
-    die("Course ID is missing.");
+	die("Course ID is missing.");
 }
 
 $student = new Student(null, null, null, null, null);
@@ -24,31 +23,31 @@ $student = new Student(null, null, null, null, null);
 $is_enrolled = $student->isEnrolled($student_id, $course_id);
 
 if ($is_enrolled) {
-    $button_text = "Start Course";
-    $disabled = "disabled";
+	$button_text = "Start Course";
+	$disabled = "disabled";
 } else {
-    $button_text = "Enroll To This Course";
-    $disabled = "";
+	$button_text = "Enroll To This Course";
+	$disabled = "";
 }
 
 if (isset($_POST['course_id'])) {
-    $course_id = $_POST['course_id'];
-    $student_id = $_SESSION['user_id'];
+	$course_id = $_POST['course_id'];
+	$student_id = $_SESSION['user_id'];
 
-    $enrolled = $student->enroll($student_id, $course_id);
+	$enrolled = $student->enroll($student_id, $course_id);
 
-    if ($enrolled) {
-        $_SESSION['enrollment_success'] = true;
-    } else {
-        $_SESSION['enrollment_error'] = "Enrollment failed. Please try again.";
-    }
+	if ($enrolled) {
+		$_SESSION['enrollment_success'] = true;
+	} else {
+		$_SESSION['enrollment_error'] = "Enrollment failed. Please try again.";
+	}
 
-    header("Location: course-details.php?course_id=" . $course_id);
-    exit();
+	header("Location: course-details.php?course_id=" . $course_id);
+	exit();
 }
 
 if (isset($_SESSION['enrollment_success']) && $_SESSION['enrollment_success']) {
-    echo '
+	echo '
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -61,11 +60,11 @@ if (isset($_SESSION['enrollment_success']) && $_SESSION['enrollment_success']) {
     });
     </script>
     ';
-    unset($_SESSION['enrollment_success']);
+	unset($_SESSION['enrollment_success']);
 }
 
 if (isset($_SESSION['enrollment_error'])) {
-    echo '
+	echo '
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -78,22 +77,23 @@ if (isset($_SESSION['enrollment_error'])) {
     });
     </script>
     ';
-    unset($_SESSION['enrollment_error']);
+	unset($_SESSION['enrollment_error']);
 }
 ?>
 // if (!$course) {
-// 	die("Course not found.");
+// die("Course not found.");
 // }
 // function dd(...$var) {
-//     foreach ($var as $elem) {
-//         echo '<pre class="codespan">';
+// foreach ($var as $elem) {
+// echo '
+<pre class="codespan">';
 //         echo '<code>';
 //         !$elem || $elem == '' ? var_dump($elem) : print_r($elem);
 //         echo '</code>';
 //         echo '</pre>';
-//     }
+// }
 
-//     die();
+// die();
 // }
 // dd($course);
 ?>
@@ -348,7 +348,9 @@ if (isset($_SESSION['enrollment_error'])) {
 									<div class="course-buy-now text-center">
 										<form action="" method="POST">
 											<input type="hidden" name="course_id" value="<?php echo $course_id; ?>">
-											<button type="submit" name="enroll" class="btn radius-xl text-uppercase">Enroll To This Course</button>
+											<button type="submit" name="enroll" class="btn radius-xl text-uppercase" <?php echo $disabled; ?>>
+												<?php echo $button_text; ?>
+											</button>
 										</form>
 									</div>
 									<div class="teacher-bx">

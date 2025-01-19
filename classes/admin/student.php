@@ -4,8 +4,8 @@
 // require_once '../user.php';
 
 class Student extends User {
-    public function __construct($username, $email, $password, $role, $status) {
-        parent::__construct($username, $email, $password, 'student', $status);
+    public function __construct() {
+        parent::__construct(null, null, null, 'student', null);
     }
 
     public function enroll($id, $course_id) {
@@ -42,7 +42,7 @@ class Student extends User {
     }
 
     public function isEnrolled($student_id, $course_id) {
-        $sql = "SELECT * FROM enrollments WHERE student_id = :student_id AND course_id = :course_id";
+        $sql = "SELECT * FROM enrollments WHERE id = :student_id AND course_id = :course_id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             'student_id' => $student_id,
