@@ -619,35 +619,39 @@ $courseService = new CourseService($courseModal, null);
 							</div>
 						</div>
 						<div class="row">
-						<div class="courses-carousel owl-carousel owl-btn-1 col-12 p-lr0">
+							<div class="courses-carousel owl-carousel owl-btn-1 col-12 p-lr0">
 								<?php
-								$paginationData = $courseService->getPaginatedCourses($page, $perPage, $search, $categoryId);
-								$courses = $paginationData['courses'];
-								foreach ($courses as $course):
+									$courses = $courseService->getAllApprovedCourses();
+									foreach ($courses as $course):
 								?>
-									<div class="col-md-6 col-lg-4 col-sm-6 m-b30">
-										<div class="cours-bx">
-											<div class="action-box">
-												<img src="<?= $course['banner'] ?>" alt="">
-												<a href="course_details.php?id=<?= $course['id'] ?>?crs='<?= $course['title'] ?>" class="btn">Read More</a>
+								<div class="item">
+									<div class="cours-bx">
+										<div class="action-box">
+											<img src="assets/images/courses/pic1.jpg" alt="">
+											<a href="#" class="btn">Read More</a>
+										</div>
+										<div class="info-bx text-center">
+											<h5><a href="#"><?= $courses['title'] ?></a></h5>
+											<span><?= $courses['ctg_name'] ?></span>
+										</div>
+										<div class="cours-more-info">
+											<div class="review">
+												<span>3 Review</span>
+												<ul class="cours-star">
+													<li class="active"><i class="fa fa-star"></i></li>
+													<li class="active"><i class="fa fa-star"></i></li>
+													<li class="active"><i class="fa fa-star"></i></li>
+													<li><i class="fa fa-star"></i></li>
+													<li><i class="fa fa-star"></i></li>
+												</ul>
 											</div>
-											<div class="info-bx text-center">
-												<h6><a href="?"><?= $course['title'] ?></a></h6>
-												<span style="width: full; display: flex;"><?= $course['ctg_name'] ?></span>
-											</div>
-											<div class="cours-more-info">
-												<div class="review d-flex flex-column align-items-start">
-													<h6>Created by:</h6>
-													<span style="font-size: 0.8rem"><?= $course['teacher_username'] ?></span>
-
-												</div>
-												<div class="review d-flex flex-column align-items-start">
-													<h6>Created at:</h6>
-													<span style="font-size: 12px"><?= $course['crs_created_at'] ?></span>
-												</div>
+											<div class="price">
+												<del>$190</del>
+												<h5>$120</h5>
 											</div>
 										</div>
 									</div>
+								</div>
 								<?php endforeach; ?>
 							</div>
 						</div>
