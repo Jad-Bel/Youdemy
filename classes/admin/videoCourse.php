@@ -79,8 +79,9 @@ class VideoCourse extends Course
     {
         $sql = "SELECT * FROM courses WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute(['id' => $this->id]);
+        $stmt->execute(['id' => $id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
     }
 }

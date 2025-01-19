@@ -1,17 +1,38 @@
 <?php
+require_once '../includes/session_check.php';
 require_once '../config/database.php';
+require_once '../classes/admin/course.php';
 require_once '../classes/admin/videoCourse.php';
 
-$course_id = isset($_GET['course_id']) ? intval(explode('?', $_GET['course_id'])[0]) : null;
+
+print_r($_SESSION);
+print_r($_GET);
+
+$course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : null;
 $videoCourse = new VideoCourse(null, null, null, null, null, null);
 
 $courseContent = $videoCourse->displayContent($course_id);
 
-if ($courseContent) {
+if ($courseContent && isset($courseContent['video_link'])) {
     $videoLink = $courseContent['video_link'];
 } else {
-    die("Course not found.");
+    $videoLink = null; // Set to null if no video link is found
 }
+
+echo '<pre>';
+var_dump($courseContent);
+echo '</pre>';
+
+
+// $course_id = isset($_GET['course_id']) ? intval(explode('?', $_GET['course_id'])[0]) : null;
+// $videoCourse = new VideoCourse(null, null, null, null, null, null);
+
+// $courseContent = $videoCourse->displayContent($course_id);
+// if ($courseContent) {
+//     $videoLink = $courseContent['video_link'];
+// } else {
+//     die("Course not found.");
+// }
 ?>
 
 <!DOCTYPE html>
