@@ -51,29 +51,4 @@ class Student extends User {
         return $stmt->rowCount() > 0;
     }
 }
-
-// $student = new Student('jane_doe', 'jane@example.com', 'password123', 'student', 1);
-// $register = new user('jane_doe', 'jane@example.com', 'password123', 'student');
-// $register->register();
-// if ($student->enroll(1,1)) {
-//     echo "Enrollment successful!<br>";
-// } else {
-//     echo "Failed to enroll in the course.<br>";
-// }
-
-// $courses = $student->viewCourses();
-// if (!empty($courses)) {
-//     echo "Enrolled courses fetched successfully!<br>";
-//     print_r($courses);
-// } else {
-//     echo "No courses found.<br>";
-// }
-
-// $searchResults = $student->searchCourses('PHP');
-// if (!empty($searchResults)) {
-//     echo "Search results fetched successfully!<br>";
-//     print_r($searchResults);
-// } else {
-//     echo "No courses found.<br>";
-// }
 ?>

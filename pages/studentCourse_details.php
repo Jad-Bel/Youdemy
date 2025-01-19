@@ -1,3 +1,4 @@
+Copy
 <?php
 require_once '../includes/session_check.php';
 require_once '../config/database.php';
@@ -10,6 +11,15 @@ require_once '../classes/admin/auth.php';
 print_r($_GET);
 print_r($_SESSION);
 print_r($_POST);
+
+$course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : null;
+$student_id = $_SESSION['user_id'] ?? null;
+
+if (!$course_id) {
+    die("Course ID is missing.");
+}
+
+$student = new Student(null, null, null, null, null);
 
 $is_enrolled = $student->isEnrolled($student_id, $course_id);
 
@@ -25,7 +35,6 @@ if (isset($_POST['course_id'])) {
     $course_id = $_POST['course_id'];
     $student_id = $_SESSION['user_id'];
 
-    $student = new Student(null, null, null, null, null);
     $enrolled = $student->enroll($student_id, $course_id);
 
     if ($enrolled) {
@@ -52,7 +61,6 @@ if (isset($_SESSION['enrollment_success']) && $_SESSION['enrollment_success']) {
     });
     </script>
     ';
-    // Clear the session variable
     unset($_SESSION['enrollment_success']);
 }
 
@@ -70,9 +78,9 @@ if (isset($_SESSION['enrollment_error'])) {
     });
     </script>
     ';
-    // Clear the session variable
     unset($_SESSION['enrollment_error']);
 }
+?>
 // if (!$course) {
 // 	die("Course not found.");
 // }
