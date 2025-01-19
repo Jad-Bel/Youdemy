@@ -5,13 +5,12 @@ require_once '../classes/admin/course.php';
 require_once '../classes/admin/auth.php';
 
 if (isset($_GET['id'])) {
-	$courseId = intval($_GET['id']); // Ensure the ID is an integer
+	$courseId = intval($_GET['id']);
 } else {
-	// Handle the case where no ID is provided
 	die("Course ID is missing.");
 }
 $courseModal = new ConcreteCourse($courseId, NULL, NULL, NULL, NULL, NULL);
-$courseService = new CourseService(NULL, NULL); // Assuming you have these models initialized
+$courseService = new CourseService(NULL, NULL);
 $course = $courseService->getCourseById($courseId);
 
 // if (!$course) {

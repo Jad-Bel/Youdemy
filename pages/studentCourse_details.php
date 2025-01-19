@@ -17,7 +17,7 @@ $course_id = isset($_GET['course_id']) ? intval(explode('?', $_GET['course_id'])
 $student_id = $_SESSION['user_id'] ?? null;
 
 if (!$course_id) {
-    die("Course ID is missing.");
+	die("Course ID is missing.");
 }
 
 // Initialize the Student object
@@ -27,34 +27,34 @@ $student = new Student();
 $is_enrolled = $student->isEnrolled($student_id, $course_id);
 
 if ($is_enrolled) {
-    $button_text = "Start Course";
-    $disabled = "disabled";
+	$button_text = "Start Course";
+	$disabled = "disabled";
 } else {
-    $button_text = "Enroll To This Course";
-    $disabled = "";
+	$button_text = "Enroll To This Course";
+	$disabled = "";
 }
 
 // Handle form submission
 if (isset($_POST['course_id'])) {
-    $course_id = $_POST['course_id'];
-    $student_id = $_SESSION['user_id'];
+	$course_id = $_POST['course_id'];
+	$student_id = $_SESSION['user_id'];
 
-    $enrolled = $student->enroll($student_id, $course_id);
+	$enrolled = $student->enroll($student_id, $course_id);
 
-    if ($enrolled) {
-        $_SESSION['enrollment_success'] = true;
-    } else {
-        $_SESSION['enrollment_error'] = "Enrollment failed. Please try again.";
-    }
+	if ($enrolled) {
+		$_SESSION['enrollment_success'] = true;
+	} else {
+		$_SESSION['enrollment_error'] = "Enrollment failed. Please try again.";
+	}
 
-    // Redirect to prevent form resubmission
-    header("Location: course-details.php?course_id=" . $course_id);
-    exit();
+	// Redirect to prevent form resubmission
+	header("Location: course-details.php?course_id=" . $course_id);
+	exit();
 }
 
 // Display SweetAlert for success or error
 if (isset($_SESSION['enrollment_success']) && $_SESSION['enrollment_success']) {
-    echo '
+	echo '
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -67,11 +67,11 @@ if (isset($_SESSION['enrollment_success']) && $_SESSION['enrollment_success']) {
     });
     </script>
     ';
-    unset($_SESSION['enrollment_success']);
+	unset($_SESSION['enrollment_success']);
 }
 
 if (isset($_SESSION['enrollment_error'])) {
-    echo '
+	echo '
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -84,8 +84,27 @@ if (isset($_SESSION['enrollment_error'])) {
     });
     </script>
     ';
-    unset($_SESSION['enrollment_error']);
+	unset($_SESSION['enrollment_error']);
 }
+
+// Fetch course details
+$courseModal = new ConcreteCourse($course_id, null, null, null, null, null);
+$courseService = new CourseService($courseModal, null);
+$course = $courseService->getCourseById($course_id);
+
+// Check if course data is valid
+if (!$course) {
+	die("Course not found.");
+}
+
+echo "Course ID: $course_id<br>";
+echo "Student ID: $student_id<br>";
+echo "Is Enrolled: " . ($is_enrolled ? "Yes" : "No") . "<br>";
+
+// echo "<pre>";
+// print_r($course);
+// echo "</pre>";
+// die;
 
 // if (!$course) {
 // die("Course not found.");
@@ -367,7 +386,7 @@ if (isset($_SESSION['enrollment_error'])) {
 												<img src="assets/images/testimonials/pic1.jpg" alt="" />
 											</div>
 											<div class="teacher-name">
-												<h5><?= $course['teacher_username'] ?></h5>
+												<h5><?= isset($course['teacher_username']) ? $course['teacher_username'] : 'Unknown Teacher' ?></h5>
 												<span>Science Teacher</span>
 											</div>
 										</div>
@@ -375,15 +394,16 @@ if (isset($_SESSION['enrollment_error'])) {
 									<div class="cours-more-info">
 										<div class="review">
 											<span style="font-size: 17px">Created at:</span>
-											<span style="font-weight: bold;"><?= $course['crs_created_at'] ?></span>
+											<span style="font-weight: bold;"><?= isset($course['crs_created_at']) ? $course['crs_created_at'] : 'N/A' ?></span>
 										</div>
 										<div class="price categories">
 											<span style="font-size: 17px">Category:</span>
-											<h5 class="text-primary"><?= $course['ctg_name'] ?></h5>
+											<h5 class="text-primary"><?= isset($course['ctg_name']) ? $course['ctg_name'] : 'N/A' ?></h5>
 										</div>
 									</div>
 								</div>
 							</div>
+
 
 							<div class="col-lg-9 col-md-8 col-sm-12">
 								<div class="courses-post">
