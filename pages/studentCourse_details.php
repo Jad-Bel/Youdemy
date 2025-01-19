@@ -7,12 +7,10 @@ require_once '../classes/admin/courseService.php';
 require_once '../classes/admin/course.php';
 require_once '../classes/admin/auth.php';
 
-// Debugging: Print GET, SESSION, and POST data
-print_r($_GET);
-print_r($_SESSION);
-print_r($_POST);
+// print_r($_GET);
+// print_r($_SESSION);
+// print_r($_POST);
 
-// Initialize variables
 $course_id = isset($_GET['course_id']) ? intval(explode('?', $_GET['course_id'])[0]) : null;
 $student_id = $_SESSION['user_id'] ?? null;
 
@@ -20,10 +18,8 @@ if (!$course_id) {
 	die("Course ID is missing.");
 }
 
-// Initialize the Student object
 $student = new Student();
 
-// Check if the student is enrolled in the course
 $is_enrolled = $student->isEnrolled($student_id, $course_id);
 
 if ($is_enrolled) {
@@ -34,7 +30,6 @@ if ($is_enrolled) {
 	$disabled = "";
 }
 
-// Handle form submission
 if (isset($_POST['course_id'])) {
 	$course_id = $_POST['course_id'];
 	$student_id = $_SESSION['user_id'];
@@ -47,12 +42,10 @@ if (isset($_POST['course_id'])) {
 		$_SESSION['enrollment_error'] = "Enrollment failed. Please try again.";
 	}
 
-	// Redirect to prevent form resubmission
 	header("Location: course-details.php?course_id=" . $course_id);
 	exit();
 }
 
-// Display SweetAlert for success or error
 if (isset($_SESSION['enrollment_success']) && $_SESSION['enrollment_success']) {
 	echo '
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -87,19 +80,17 @@ if (isset($_SESSION['enrollment_error'])) {
 	unset($_SESSION['enrollment_error']);
 }
 
-// Fetch course details
 $courseModal = new ConcreteCourse($course_id, null, null, null, null, null);
 $courseService = new CourseService($courseModal, null);
 $course = $courseService->getCourseById($course_id);
 
-// Check if course data is valid
 if (!$course) {
 	die("Course not found.");
 }
 
-echo "Course ID: $course_id<br>";
-echo "Student ID: $student_id<br>";
-echo "Is Enrolled: " . ($is_enrolled ? "Yes" : "No") . "<br>";
+// echo "Course ID: $course_id<br>";
+// echo "Student ID: $student_id<br>";
+// echo "Is Enrolled: " . ($is_enrolled ? "Yes" : "No") . "<br>";
 
 // echo "<pre>";
 // print_r($course);
