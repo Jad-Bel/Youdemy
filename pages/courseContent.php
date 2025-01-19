@@ -338,12 +338,9 @@ if ($courseContent) {
                             allowfullscreen>
                         </iframe>
                     <?php elseif ($documentLink): ?>
-                        <iframe
-                            width="100%"
-                            height="400"
-                            src="<?php echo htmlspecialchars($documentLink); ?>"
-                            frameborder="0">
-                        </iframe>
+                        <a href="<?php echo htmlspecialchars($documentLink); ?>" download class="btn btn-primary">
+                            Download Document
+                        </a>
                     <?php else: ?>
                         <p>No content available for this course.</p>
                     <?php endif; ?>
