@@ -586,7 +586,7 @@ $courseService = new CourseService($courseModal, null);
 											<i class="fa fa-book text-primary"></i>
 										</div>
 										<h4><a href="#">Learn Courses Online</a></h4>
-										<a href="#" class="btn radius-xl">View More</a>
+										<a href="courses.php" class="btn radius-xl">View More</a>
 									</div>
 								</div>
 							</div>
@@ -627,27 +627,21 @@ $courseService = new CourseService($courseModal, null);
 								<div class="item">
 									<div class="cours-bx">
 										<div class="action-box">
-											<img src="assets/images/courses/pic1.jpg" alt="">
+											<img src="<?= $course['banner'] ?>" alt="">
 											<a href="#" class="btn">Read More</a>
 										</div>
 										<div class="info-bx text-center">
-											<h5><a href="#"><?= $courses['title'] ?></a></h5>
-											<span><?= $courses['ctg_name'] ?></span>
+											<h5><a href="#"><?= $course['title'] ?></a></h5>
+											<span><?= $course['ctg_name'] ?></span>
 										</div>
 										<div class="cours-more-info">
 											<div class="review">
-												<span>3 Review</span>
-												<ul class="cours-star">
-													<li class="active"><i class="fa fa-star"></i></li>
-													<li class="active"><i class="fa fa-star"></i></li>
-													<li class="active"><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-													<li><i class="fa fa-star"></i></li>
-												</ul>
+												<span style="font-size: 15px; font-weight: bold;">Created at</span>
+												<span><?= $course['crs_created_at'] ?></span>
 											</div>
-											<div class="price">
-												<del>$190</del>
-												<h5>$120</h5>
+											<div class="review d-flex flex-column ">
+												<span style="font-size: 15px; font-weight: bold">Created by</span>
+												<span style="font-size: 16px;"><?= $course['teacher_username'] ?></span>
 											</div>
 										</div>
 									</div>
