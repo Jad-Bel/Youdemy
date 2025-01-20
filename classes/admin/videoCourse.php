@@ -20,59 +20,59 @@ class VideoCourse extends Course
         $this->video_link = $video_link;
     }
 
-    public function save()
-{
-    $sql = "INSERT INTO courses (
-                title, 
-                description, 
-                content, 
-                video_link, 
-                teacher_id, 
-                category_id, 
-                duration, 
-                language, 
-                skill_level, 
-                course_bnr, 
-                status, 
-                certification, 
-                created_at, 
-                updated_at
-            ) VALUES (
-                :title, 
-                :description, 
-                :content, 
-                :video_link, 
-                :teacher_id, 
-                :category_id, 
-                :duration, 
-                :language, 
-                :skill_level, 
-                :course_bnr, 
-                :status, 
-                :certification, 
-                NOW(), 
-                NOW()
-            )";
+    public function save() {
+        $sql = "INSERT INTO courses (
+                    title, 
+                    description, 
+                    content, 
+                    video_link, 
+                    teacher_id, 
+                    category_id, 
+                    duration, 
+                    language, 
+                    skill_level, 
+                    course_bnr, 
+                    status, 
+                    certification, 
+                    created_at, 
+                    updated_at
+                ) VALUES (
+                    :title, 
+                    :description, 
+                    :content, 
+                    :video_link, 
+                    :teacher_id, 
+                    :category_id, 
+                    :duration, 
+                    :language, 
+                    :skill_level, 
+                    :course_bnr, 
+                    :status, 
+                    :certification, 
+                    NOW(), 
+                    NOW()
+                )";
+        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'title' => $this->title,
+            'description' => $this->description,
+            'content' => $this->content,
+            'video_link' => $this->video_link,
+            'teacher_id' => $this->teacher_id,
+            'category_id' => $this->category_id,
+            'duration' => $this->duration,
+            'language' => $this->language,
+            'skill_level' => $this->skill_level,
+            'course_bnr' => $this->course_bnr,
+            'status' => $this->status,
+            'certification' => $this->certification
+        ]);
     
-    $stmt = $this->conn->prepare($sql);
-    $stmt->execute([
-        'title' => $this->title,
-        'description' => $this->description,
-        'content' => $this->content,
-        'video_link' => $this->video_link,
-        'teacher_id' => $this->teacher_id,
-        'category_id' => $this->category_id,
-        'duration' => $this->duration,
-        'language' => $this->language,
-        'skill_level' => $this->skill_level,
-        'course_bnr' => $this->course_bnr,
-        'status' => $this->status,
-        'certification' => $this->certification
-    ]);
+        $this->id = $this->conn->lastInsertId();
+        return $this->id;
+    }
 
-    $this->id = $this->conn->lastInsertId();
-    return $this->id;
-}
 
 public function modify($course_id, $title, $description, $content, $video_link, $category_id, $duration, $language, $skill_level, $course_bnr, $status, $certification)
 {

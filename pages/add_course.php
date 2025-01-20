@@ -18,7 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$skill_level = $_POST['skill_level'];
 	$course_bnr = $_POST['course_bnr'];
 	$certification = $_POST['certification'];
-
+	echo "<pre>";
+    print_r($_POST);
+    echo "</pre>";
+    exit();
 	if ($type === 'Video') {
 		$video_link = $_POST['video_link'];
 		$course = new VideoCourse(
@@ -52,14 +55,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$certification
 		);
 	}
-
 	$courseId = $course->save();
 
-	if ($courseId) {
+	if (!empty($courseId)) {
 		$_SESSION['course_success'] = true;
 	} else {
 		$_SESSION['course_error'] = "Course Insertion failed. Please try again.";
 	}
+
+	header("Location: add_course.php");
+	exit();
 
 	if (isset($_SESSION['course_success']) && $_SESSION['course_success']) {
 		echo '
@@ -396,6 +401,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<script src="../assets/assets/vendors/chart/chart.min.js"></script>
 	<script src="../assets/assets/js/admin.js"></script>
 	<script src='../assets/assets/vendors/switcher/switcher.js'></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			const form = document.querySelector("form.edit-profile");
+			form.addEventListener("submit", function(event) {
+				const title = form.querySelector("input[name='title']").value.trim();
+				const description = form.querySelector("textarea[name='description']").value.trim();
+				const content = form.querySelector("textarea[name='content']").value.trim();
+				const categoryId = form.querySelector("select[name='category_id']").value;
+				const type = form.querySelector("select[name='type']").value;
+				const duration = form.querySelector("input[name='duration']").value.trim();
+				const language = form.querySelector("input[name='language']").value.trim();
+				const skillLevel = form.querySelector("select[name='skill_level']").value;
+				const courseBnr = form.querySelector("input[name='course_bnr']").value.trim();
+
+				if (!title || !description || !content || !categoryId || !type || !duration || !language || !skillLevel || !courseBnr) {
+					event.preventDefault();
+					Swal.fire({
+						title: "Error!",
+						text: "Please fill out all required fields.",
+						icon: "Error",
+						confirmButtonText: "OK"
+					});
+				}
+			});
+		});
+	</script>
 </body>
 
 <!-- Mirrored from educhamp.themetrades.com/demo/admin/add-listing.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:09:05 GMT -->
