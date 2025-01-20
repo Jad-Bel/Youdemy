@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
 } else {
 	die("Course ID is missing.");
 }
-$courseModal = new ConcreteCourse($courseId, NULL, NULL, NULL, NULL, NULL);
+$courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 $courseService = new CourseService(NULL, NULL);
 $course = $courseService->getCourseById($courseId);
 

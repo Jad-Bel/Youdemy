@@ -72,7 +72,7 @@ if (isset($_SESSION['enrollment_error'])) {
 	unset($_SESSION['enrollment_error']);
 }
 
-$courseModal = new ConcreteCourse($course_id, null, null, null, null, null);
+$courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 $courseService = new CourseService($courseModal, null);
 $course = $courseService->getCourseById($course_id);
 

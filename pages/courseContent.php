@@ -10,7 +10,7 @@ require_once '../classes/admin/documentCourse.php';
 // print_r($_GET);
 
 $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : null;
-$videoCourse = new VideoCourse(null, null, null, null, null, null);
+$videoCourse = new VideoCourse(null, null, null, null, null, null, NULL, NULL, NULL, NULL, NULL);
 $documentCourse = new DocumentCourse(null, null, null, null, null, null, null);
 
 $courseContent = $videoCourse->displayContent($course_id);

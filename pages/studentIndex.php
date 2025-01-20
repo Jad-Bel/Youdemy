@@ -4,7 +4,7 @@ require_once '../config/database.php';
 require_once '../classes/admin/courseService.php';
 require_once '../classes/admin/course.php';
 
-$courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL);
+$courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 $courseService = new CourseService($courseModal, null);
 
 
