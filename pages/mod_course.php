@@ -7,6 +7,8 @@ require_once '../classes/admin/documentCourse.php';
 require_once '../classes/admin/videoCourse.php';
 require_once '../classes/admin/category.php';
 
+    $courseModal = new ConcreteCourse(null, null, null, null, null, null, null, null, null, null, null);
+
     $course_id = isset($_GET['course_id']) ? $_GET['course_id'] : null;
     if ($course_id) {
         $course = new CourseService($classModal, null);
@@ -353,13 +355,13 @@ if (isset($_SESSION['course_error'])) {
                                     <div class="form-group col-12">
                                         <label class="col-form-label">Course Description</label>
                                         <div>
-                                            <textarea class="form-control" name="description"><?= isset($courseData['description']) ? $courseData['description'] : '' ?></textarea>
+                                            <textarea class="form-control" name="description"><?= isset($courseData['dsc']) ? $courseData['dsc'] : '' ?></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group col-12">
                                         <label class="col-form-label">Content</label>
                                         <div>
-                                            <textarea class="form-control" name="content"><?= isset($courseData['content']) ? $courseData['content'] : '' ?></textarea>
+                                            <textarea class="form-control" name="content"><?= isset($courseData['cnt']) ? $courseData['cnt'] : '' ?></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group col-12">

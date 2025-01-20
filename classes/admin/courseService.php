@@ -26,6 +26,7 @@ class CourseService
                 c.document_link,
                 c.video_link,
                 c.status,
+                c.type as `type`,
                 c.created_at AS crs_created_at,
                 c.updated_at AS course_updated_at,
                 c.course_bnr AS banner,
