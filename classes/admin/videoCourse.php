@@ -5,9 +5,33 @@ class VideoCourse extends Course
 {
     private $video_link;
 
-    public function __construct($title, $description, $content, $video_link, $teacher_id, $category_id, $duration, $language, $skill_level, $course_bnr, $status = 'pending', $certification = null)
-    {
-        parent::__construct($title, $description, $content, $video_link, $teacher_id, $category_id, $duration, $language, $skill_level, $course_bnr, $certification = null);
+    public function __construct(
+        $title,
+        $description,
+        $content,
+        $video_link,
+        $teacher_id,
+        $category_id,
+        $duration,
+        $language,
+        $skill_level,
+        $course_bnr,
+        $status,
+        $certification
+    ) {
+        parent::__construct(
+            $title,
+            $description,
+            $content,
+            $teacher_id,
+            $category_id,
+            $duration,
+            $language,
+            $skill_level,
+            $course_bnr,
+            $status,
+            $certification
+        );
         $this->video_link = $video_link;
     }
     public function getVideoLink()
@@ -20,7 +44,8 @@ class VideoCourse extends Course
         $this->video_link = $video_link;
     }
 
-    public function save() {
+    public function save()
+    {
         $sql = "INSERT INTO courses (
                     title, 
                     description, 
@@ -52,7 +77,7 @@ class VideoCourse extends Course
                     NOW(), 
                     NOW()
                 )";
-        
+
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             'title' => $this->title,
@@ -68,15 +93,15 @@ class VideoCourse extends Course
             'status' => $this->status,
             'certification' => $this->certification
         ]);
-    
+
         $this->id = $this->conn->lastInsertId();
         return $this->id;
     }
 
 
-public function modify($course_id, $title, $description, $content, $video_link, $category_id, $duration, $language, $skill_level, $course_bnr, $status, $certification)
-{
-    $sql = "UPDATE courses
+    public function modify($course_id, $title, $description, $content, $video_link, $category_id, $duration, $language, $skill_level, $course_bnr, $status, $certification)
+    {
+        $sql = "UPDATE courses
             SET title = :title,
                 description = :description,
                 content = :content,
@@ -90,26 +115,26 @@ public function modify($course_id, $title, $description, $content, $video_link, 
                 certification = :certification,
                 updated_at = NOW()
             WHERE id = :course_id AND teacher_id = :teacher_id";
-    
-    $stmt = $this->conn->prepare($sql);
-    $stmt->execute([
-        'title' => $title,
-        'description' => $description,
-        'content' => $content,
-        'video_link' => $video_link,
-        'category_id' => $category_id,
-        'duration' => $duration,
-        'language' => $language,
-        'skill_level' => $skill_level,
-        'course_bnr' => $course_bnr,
-        'status' => $status,
-        'certification' => $certification,
-        'course_id' => $course_id,
-        'teacher_id' => $this->teacher_id
-    ]);
 
-    return $stmt->rowCount() > 0;
-}
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'title' => $title,
+            'description' => $description,
+            'content' => $content,
+            'video_link' => $video_link,
+            'category_id' => $category_id,
+            'duration' => $duration,
+            'language' => $language,
+            'skill_level' => $skill_level,
+            'course_bnr' => $course_bnr,
+            'status' => $status,
+            'certification' => $certification,
+            'course_id' => $course_id,
+            'teacher_id' => $this->teacher_id
+        ]);
+
+        return $stmt->rowCount() > 0;
+    }
 
     public function delete($course_id)
     {
