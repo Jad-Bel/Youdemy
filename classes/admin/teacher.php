@@ -28,11 +28,11 @@ class Teacher extends User
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    public function getActiveCoursesCount($teacher_id)
+    public function getApprovedCoursesCount($teacher_id)
     {
-        $sql = "SELECT COUNT(*) AS active_courses_count 
+        $sql = "SELECT COUNT(*) AS approved_courses_count 
             FROM courses 
-            WHERE teacher_id = :teacher_id AND status = 'active'";
+            WHERE teacher_id = :teacher_id AND status = 'approved'";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':teacher_id', $teacher_id);
         $stmt->execute();
@@ -57,13 +57,13 @@ class Teacher extends User
     {
         $enrolledStudentsCount = $this->getEnrolledStudentsCount();
         $coursesCount = $this->getCoursesCount($teacher_id);
-        $activeCoursesCount = $this->getActiveCoursesCount($teacher_id);
+        $approvedCoursesCount = $this->getApprovedCoursesCount($teacher_id);
         $averageStudentPerCourse = $this->getAverageStudentsPerCourse($teacher_id);
     
         return [
             (object) ['statistic' => 'Enrolled Students', 'count' => $enrolledStudentsCount->enrolled_students_count],
             (object) ['statistic' => 'Total Courses', 'count' => $coursesCount->courses_count],
-            (object) ['statistic' => 'Active Courses', 'count' => $activeCoursesCount->active_courses_count],
+            (object) ['statistic' => 'Approved Courses', 'count' => $approvedCoursesCount->approved_courses_count],
             (object) ['statistic' => 'Average Students per Course', 'count' => $averageStudentPerCourse->average_students_per_course]
         ];
     }

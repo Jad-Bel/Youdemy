@@ -29,12 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 $teacher = new Teacher(null, null, null, null, null);
 $statistics = $teacher->getStatistics($teacher_id);
-print_r($statistics);
-die;
-
+// print_r($statistics);
+// die;
 $enrolledStudentsCount = $statistics[0]->count;
 $coursesCount = $statistics[1]->count;
-$activeCoursesCount = $statistics[2]->count;
+$approvedCoursesCount = $statistics[2]->count;
 $averageStudentPerCourse = $statistics[3]->count;
 ?>
 
@@ -242,13 +241,13 @@ $averageStudentPerCourse = $statistics[3]->count;
                     <div class="widget-card widget-bg3">
                         <div class="wc-item">
                             <h4 class="wc-title">
-                                Active Courses
+                                Approved Courses
                             </h4>
                             <span class="wc-des">
                                 Courses You Are Teaching
                             </span>
                             <span class="wc-stats counter">
-                                <?= $activeCoursesCount ?>
+                                <?= $approvedCoursesCount ?>
                             </span>
                             <div class="progress wc-progress">
                                 <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
