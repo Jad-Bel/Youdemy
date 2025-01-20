@@ -1,32 +1,33 @@
-<?php 
-	require_once '../config/database.php';
-	require_once '../classes/admin/course.php';
-	require_once '../classes/admin/documentCourse.php';
-	require_once '../classes/admin/videoCourse.php';
+<?php
+require_once '../config/database.php';
+require_once '../classes/admin/course.php';
+require_once '../classes/admin/documentCourse.php';
+require_once '../classes/admin/videoCourse.php';
+require_once '../classes/admin/category.php';
 
-	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-		$title = $_POST['title'];
-		$description = $_POST['description'];
-		$content = $_POST['content'];
-		$teacher_id = $_POST['teacher_id'];
-		$category_id = $_POST['category_id'];
-		$type = $_POST['type'];
-	
-		if ($type === 'Video') {
-			$video_link = $_POST['video_link'];
-			$course = new VideoCourse($title, $description, $content, $video_link, $teacher_id, $category_id);
-		} else {
-			$document_link = $_POST['document_link'];
-			$course = new DocumentCourse($title, $description, $content, $document_link, $teacher_id, $category_id);
-		}
-	
-		$courseId = $course->save();
-		if ($courseId) {
-			echo "Course saved successfully with ID: $courseId";
-		} else {
-			echo "Failed to save course.";
-		}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	$title = $_POST['title'];
+	$description = $_POST['description'];
+	$content = $_POST['content'];
+	$teacher_id = $_SESSION['user_id'];
+	$category_id = $_POST['category_id'];
+	$type = $_POST['type'];
+
+	if ($type === 'Video') {
+		$video_link = $_POST['video_link'];
+		$course = new VideoCourse($title, $description, $content, $video_link, $teacher_id, $category_id);
+	} else {
+		$document_link = $_POST['document_link'];
+		$course = new DocumentCourse($title, $description, $content, $document_link, $teacher_id, $category_id);
 	}
+
+	$courseId = $course->save();
+	if ($courseId) {
+		echo "Course saved successfully with ID: $courseId";
+	} else {
+		echo "Failed to save course.";
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -199,7 +200,7 @@
 								<div class="row">
 									<div class="col-12">
 										<div class="ml-auto">
-											<h3>1. Basic Info</h3>
+											<h3>Basic Info</h3>
 										</div>
 									</div>
 									<div class="form-group col-6">
@@ -215,18 +216,6 @@
 										</div>
 									</div>
 									<div class="form-group col-6">
-										<label class="col-form-label">Teacher ID</label>
-										<div>
-											<input class="form-control" type="text" name="teacher_id" value="">
-										</div>
-									</div>
-									<div class="form-group col-6">
-										<label class="col-form-label">Category ID</label>
-										<div>
-											<input class="form-control" type="text" name="category_id" value="">
-										</div>
-									</div>
-									<div class="form-group col-6">
 										<label class="col-form-label">Skill Level</label>
 										<div>
 											<select class="form-control" name="skill_level">
@@ -234,6 +223,19 @@
 												<option value="intermediate">Intermediate</option>
 												<option value="advanced">Advanced</option>
 											</select>
+										</div>
+									</div>
+									<div class="form-group col-6">
+										<label class="col-form-label">Category</label>
+										<div>
+											<select class="form-control" name="category_id">
+												<?php
+												$categories = new Category();
+												foreach ($categories as $ctg):
+												?>
+												<option value="<?= $ctg['id'] ?>"><?= $ctg['name'] ?></option>
+											</select>
+										<?php endforeach; ?>
 										</div>
 									</div>
 									<div class="form-group col-6">
@@ -267,7 +269,7 @@
 
 									<div class="col-12 m-t20">
 										<div class="ml-auto m-b5">
-											<h3>2. Description</h3>
+											<h3>Description</h3>
 										</div>
 									</div>
 									<div class="form-group col-12">
@@ -292,11 +294,6 @@
 										<label class="col-form-label">Video Link</label>
 										<div>
 											<input class="form-control" type="text" name="video_link" value="">
-										</div>
-									</div>
-									<div class="col-12 m-t20">
-										<div class="ml-auto">
-											<h3 class="m-form__section">3. Additional Info</h3>
 										</div>
 									</div>
 									<div class="col-12">
