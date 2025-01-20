@@ -332,13 +332,13 @@ if ($courseContent) {
                         <iframe
                             width="100%"
                             height="400"
-                            src="<?php echo htmlspecialchars($videoLink); ?>"
+                            src="<?php echo $videoLink; ?>"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
                         </iframe>
                     <?php elseif ($documentLink): ?>
-                        <a href="<?php echo htmlspecialchars($documentLink); ?>" download class="btn btn-primary">
+                        <a href="<?php echo $documentLink; ?>" download class="btn btn-primary">
                             Download Document
                         </a>
                     <?php else: ?>
