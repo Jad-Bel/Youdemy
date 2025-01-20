@@ -7,92 +7,92 @@ require_once '../classes/admin/videoCourse.php';
 require_once '../classes/admin/category.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title = $_POST['title'];
-    $description = $_POST['description'];
-    $content = $_POST['content'];
-    $teacher_id = $_SESSION['user_id'];
-    $category_id = $_POST['category_id'];
-    $type = $_POST['type'];
-    $duration = $_POST['duration'];
-    $language = $_POST['language'];
-    $skill_level = $_POST['skill_level'];
-    $course_bnr = $_POST['course_bnr'];
-    $certification = $_POST['certification'];
+	$title = $_POST['title'];
+	$description = $_POST['description'];
+	$content = $_POST['content'];
+	$teacher_id = $_SESSION['user_id'];
+	$category_id = $_POST['category_id'];
+	$type = $_POST['type'];
+	$duration = $_POST['duration'];
+	$language = $_POST['language'];
+	$skill_level = $_POST['skill_level'];
+	$course_bnr = $_POST['course_bnr'];
+	$certification = $_POST['certification'];
 
-    if ($type === 'Video') {
-        $video_link = $_POST['video_link'];
-        $course = new VideoCourse(
-            $title,
-            $description,
-            $content,
-            $teacher_id,
-            $category_id,
-            $duration,
-            $language,
-            $skill_level,
-            $course_bnr,
-            $video_link,
-            'pending',
-            $certification
-        );
-    } else {
-        $document_link = $_POST['document_link'];
-        $course = new DocumentCourse(
-            $title,
-            $description,
-            $content,
-            $teacher_id,
-            $category_id,
-            $duration,
-            $language,
-            $skill_level,
-            $course_bnr,
-            $document_link,
-            'pending',
-            $certification
-        );
-    }
-
-    $courseId = $course->save();
-    
-	if ($courseId) {
-		$_SESSION['enrollment_success'] = true;
+	if ($type === 'Video') {
+		$video_link = $_POST['video_link'];
+		$course = new VideoCourse(
+			$title,
+			$description,
+			$content,
+			$teacher_id,
+			$category_id,
+			$duration,
+			$language,
+			$skill_level,
+			$course_bnr,
+			$video_link,
+			'pending',
+			$certification
+		);
 	} else {
-		$_SESSION['enrollment_error'] = "Enrollment failed. Please try again.";
+		$document_link = $_POST['document_link'];
+		$course = new DocumentCourse(
+			$title,
+			$description,
+			$content,
+			$teacher_id,
+			$category_id,
+			$duration,
+			$language,
+			$skill_level,
+			$course_bnr,
+			$document_link,
+			'pending',
+			$certification
+		);
 	}
 
-	if (isset($_SESSION['enrollment_success']) && $_SESSION['enrollment_success']) {
+	$courseId = $course->save();
+
+	if ($courseId) {
+		$_SESSION['course_success'] = true;
+	} else {
+		$_SESSION['course_error'] = "Course Insertion failed. Please try again.";
+	}
+
+	if (isset($_SESSION['course_success']) && $_SESSION['course_success']) {
 		echo '
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		<script>
 		document.addEventListener("DOMContentLoaded", function() {
 			Swal.fire({
 				title: "Success!",
-				text: "You have been enrolled successfully.",
+				text: "Course has been added successfully.",
 				icon: "success",
 				confirmButtonText: "OK"
 			});
 		});
 		</script>
 		';
-		unset($_SESSION['enrollment_success']);
+		unset($_SESSION['course_success']);
 	}
-	
-	if (isset($_SESSION['enrollment_error'])) {
+
+	if (isset($_SESSION['course_error'])) {
 		echo '
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		<script>
 		document.addEventListener("DOMContentLoaded", function() {
 			Swal.fire({
 				title: "Error!",
-				text: "' . $_SESSION['enrollment_error'] . '",
+				text: "' . $_SESSION['course_error'] . '",
 				icon: "error",
 				confirmButtonText: "OK"
 			});
 		});
 		</script>
 		';
-		unset($_SESSION['enrollment_error']);
+		unset($_SESSION['course_error']);
 	}
 }
 ?>
