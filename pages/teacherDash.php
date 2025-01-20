@@ -34,7 +34,7 @@ $statistics = $teacher->getStatistics($teacher_id);
 $enrolledStudentsCount = $statistics[0]->count;
 $coursesCount = $statistics[1]->count;
 $activeCoursesCount = $statistics[2]->count;
-// $studentsEnrolledCount = $statistics[3]->count;
+$averageStudentPerCourse = $statistics[3]->count;
 ?>
 
 <!DOCTYPE html>
@@ -255,32 +255,24 @@ $activeCoursesCount = $statistics[2]->count;
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+                <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
                     <div class="widget-card widget-bg4">
                         <div class="wc-item">
                             <h4 class="wc-title">
-                                
+                                Avg Students/Course
                             </h4>
                             <span class="wc-des">
-                                Joined New User
+                                Across Your Courses
                             </span>
                             <span class="wc-stats counter">
-                                350
+                                <?= $averageStudentPerCourse ?>
                             </span>
                             <div class="progress wc-progress">
-                                <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <span class="wc-progress-bx">
-                                <span class="wc-change">
-                                    Change
-                                </span>
-                                <span class="wc-number ml-auto">
-                                    90%
-                                </span>
-                            </span>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
             <!-- Card END -->
             <div class="row">
