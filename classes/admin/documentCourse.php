@@ -18,8 +18,38 @@ class DocumentCourse extends Course {
     }
 
     public function save() {
-        $sql = "INSERT INTO courses (title, description, content, document_link, teacher_id, category_id, created_at, updated_at)
-                VALUES (:title, :description, :content, :document_link, :teacher_id, :category_id, NOW(), NOW())";
+        $sql = "INSERT INTO courses (
+                    title, 
+                    description, 
+                    content, 
+                    document_link, 
+                    teacher_id, 
+                    category_id, 
+                    duration, 
+                    language, 
+                    skill_level, 
+                    course_bnr, 
+                    status, 
+                    certification, 
+                    created_at, 
+                    updated_at
+                ) VALUES (
+                    :title, 
+                    :description, 
+                    :content, 
+                    :document_link, 
+                    :teacher_id, 
+                    :category_id, 
+                    :duration, 
+                    :language, 
+                    :skill_level, 
+                    :course_bnr, 
+                    :status, 
+                    :certification, 
+                    NOW(), 
+                    NOW()
+                )";
+        
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             'title' => $this->title,
@@ -27,9 +57,15 @@ class DocumentCourse extends Course {
             'content' => $this->content,
             'document_link' => $this->document_link,
             'teacher_id' => $this->teacher_id,
-            'category_id' => $this->category_id
+            'category_id' => $this->category_id,
+            'duration' => $this->duration,
+            'language' => $this->language,
+            'skill_level' => $this->skill_level,
+            'course_bnr' => $this->course_bnr,
+            'status' => $this->status,
+            'certification' => $this->certification
         ]);
-
+    
         $this->id = $this->conn->lastInsertId();
         return $this->id;
     }
