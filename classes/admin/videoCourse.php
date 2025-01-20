@@ -74,29 +74,42 @@ class VideoCourse extends Course
     return $this->id;
 }
 
-    public function modify($course_id, $title, $description, $content, $video_link, $category_id)
-    {
-        $sql = "UPDATE courses
-                SET title = :title,
-                    description = :description,
-                    content = :content,
-                    video_link = :video_link,
-                    category_id = :category_id,
-                    updated_at = NOW()
-                WHERE id = :course_id AND teacher_id = :teacher_id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([
-            'title' => $title,
-            'description' => $description,
-            'content' => $content,
-            'video_link' => $video_link,
-            'category_id' => $category_id,
-            'course_id' => $course_id,
-            'teacher_id' => $this->teacher_id
-        ]);
+public function modify($course_id, $title, $description, $content, $video_link, $category_id, $duration, $language, $skill_level, $course_bnr, $status, $certification)
+{
+    $sql = "UPDATE courses
+            SET title = :title,
+                description = :description,
+                content = :content,
+                video_link = :video_link,
+                category_id = :category_id,
+                duration = :duration,
+                language = :language,
+                skill_level = :skill_level,
+                course_bnr = :course_bnr,
+                status = :status,
+                certification = :certification,
+                updated_at = NOW()
+            WHERE id = :course_id AND teacher_id = :teacher_id";
+    
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute([
+        'title' => $title,
+        'description' => $description,
+        'content' => $content,
+        'video_link' => $video_link,
+        'category_id' => $category_id,
+        'duration' => $duration,
+        'language' => $language,
+        'skill_level' => $skill_level,
+        'course_bnr' => $course_bnr,
+        'status' => $status,
+        'certification' => $certification,
+        'course_id' => $course_id,
+        'teacher_id' => $this->teacher_id
+    ]);
 
-        return $stmt->rowCount() > 0;
-    }
+    return $stmt->rowCount() > 0;
+}
 
     public function delete($course_id)
     {
