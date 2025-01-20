@@ -87,6 +87,14 @@ abstract class Course
         $this->status = $status;
     }
 
+    public function setDuration($duration) {
+        $this->duration = $duration;
+    }
+    
+    public function setLanguage($language) {
+        $this->language = $language;
+    }
+
     abstract public function save();
 
     abstract public function displayContent($id);
