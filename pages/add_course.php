@@ -230,7 +230,7 @@ if (isset($_SESSION['course_error'])) {
 					<li>
 						<a href="teacherDash.php" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-home"></i></span>
-							<span class="ttr-label">Dashborad</span>
+							<span class="ttr-label">Dashboard</span>
 						</a>
 					</li>
 					<li>
@@ -254,7 +254,7 @@ if (isset($_SESSION['course_error'])) {
 			<div class="db-breadcrumb">
 				<h4 class="breadcrumb-title">Add listing</h4>
 				<ul class="db-breadcrumb-list">
-					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+					<li><a href="teacherDash.php"><i class="fa fa-home"></i>Home</a></li>
 					<li>Add listing</li>
 				</ul>
 			</div>
