@@ -7,11 +7,9 @@ require_once '../classes/user.php';
 require_once '../classes/admin/student.php';
 require_once '../classes/admin/category.php';
 
-// Initialize models
 $courseModel = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 $categoryModel = new Category();
 
-// Initialize service
 $courseService = new CourseService($courseModel, $categoryModel);
 
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -19,16 +17,13 @@ $perPage = 5;
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 $categoryId = isset($_GET['id']) ? $_GET['id'] : null;
 
-// Fetch paginated data
 $paginationData = $courseService->getPaginatedCourses($page, $perPage, $search, $categoryId);
 $courses = $paginationData['courses'];
 $totalPages = $paginationData['totalPages'];
 $currentPage = $paginationData['currentPage'];
 
-// Fetch popular categories
 $categories = Category::getPopularCategories();
 
-// Helper function for pagination links
 function pagination_link($categoryId, $page, $perPage, $search) {
     return "?category_id=$categoryId&page=$page&perPage=$perPage&search=" . urlencode($search);
 }

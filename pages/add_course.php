@@ -54,11 +54,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $courseId = $course->save();
-    if ($courseId) {
-        echo "Course saved successfully with ID: $courseId";
-    } else {
-        echo "Failed to save course.";
-    }
+    
+	if ($courseId) {
+		$_SESSION['enrollment_success'] = true;
+	} else {
+		$_SESSION['enrollment_error'] = "Enrollment failed. Please try again.";
+	}
+
+	if (isset($_SESSION['enrollment_success']) && $_SESSION['enrollment_success']) {
+		echo '
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			Swal.fire({
+				title: "Success!",
+				text: "You have been enrolled successfully.",
+				icon: "success",
+				confirmButtonText: "OK"
+			});
+		});
+		</script>
+		';
+		unset($_SESSION['enrollment_success']);
+	}
+	
+	if (isset($_SESSION['enrollment_error'])) {
+		echo '
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			Swal.fire({
+				title: "Error!",
+				text: "' . $_SESSION['enrollment_error'] . '",
+				icon: "error",
+				confirmButtonText: "OK"
+			});
+		});
+		</script>
+		';
+		unset($_SESSION['enrollment_error']);
+	}
 }
 ?>
 
