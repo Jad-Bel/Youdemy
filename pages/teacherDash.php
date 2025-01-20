@@ -33,6 +33,8 @@ $statistics = $teacher->getStatistics($teacher_id);
 
 $enrolledStudentsCount = $statistics[0]->count;
 $coursesCount = $statistics[1]->count;
+$activeCoursesCount = $statistics[2]->count;
+// $studentsEnrolledCount = $statistics[3]->count;
 ?>
 
 <!DOCTYPE html>
@@ -239,33 +241,25 @@ $coursesCount = $statistics[1]->count;
                     <div class="widget-card widget-bg3">
                         <div class="wc-item">
                             <h4 class="wc-title">
-                                New Orders
+                                Active Courses
                             </h4>
                             <span class="wc-des">
-                                Fresh Order Amount
+                                Courses You Are Teaching
                             </span>
                             <span class="wc-stats counter">
-                                772
+                                <?= $activeCoursesCount ?>
                             </span>
                             <div class="progress wc-progress">
-                                <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <span class="wc-progress-bx">
-                                <span class="wc-change">
-                                    Change
-                                </span>
-                                <span class="wc-number ml-auto">
-                                    65%
-                                </span>
-                            </span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+                <!-- <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
                     <div class="widget-card widget-bg4">
                         <div class="wc-item">
                             <h4 class="wc-title">
-                                New Users
+                                
                             </h4>
                             <span class="wc-des">
                                 Joined New User
@@ -286,7 +280,7 @@ $coursesCount = $statistics[1]->count;
                             </span>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <!-- Card END -->
             <div class="row">

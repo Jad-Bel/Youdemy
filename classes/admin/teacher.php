@@ -40,12 +40,12 @@ class Teacher extends User
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    public function getStudentsEnrolledInTeacherCourses($teacher_id)
+    public function getAverageStudentsPerCourse($teacher_id)
     {
-        $sql = "SELECT COUNT(DISTINCT e.id) AS students_enrolled_count
-            FROM enrollments e
-            JOIN courses c ON e.course_id = c.id
-            WHERE c.teacher_id = :teacher_id";
+        $sql = "SELECT COUNT(e.student_id) / COUNT(DISTINCT c.id) AS average_students_per_course
+                FROM courses c
+                JOIN enrollments e ON c.id = e.course_id
+                WHERE c.teacher_id = :teacher_id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':teacher_id', $teacher_id);
         $stmt->execute();
@@ -58,15 +58,14 @@ class Teacher extends User
         $enrolledStudentsCount = $this->getEnrolledStudentsCount();
         $coursesCount = $this->getCoursesCount($teacher_id);
         $activeCoursesCount = $this->getActiveCoursesCount($teacher_id);
-        $studentsEnrolledCount = $this->getStudentsEnrolledInTeacherCourses($teacher_id);
+        $averageStudentPerCourse = $this->getAverageStudentsPerCourse($teacher_id);
 
 
         return [
             (object) [$enrolledStudentsCount->enrolled_students_count],
             (object) [$coursesCount->courses_count],
             (object) [$activeCoursesCount->active_courses_count],
-            (object) [$studentsEnrolledCount->students_enrolled_count]
-
+            (object) [$averageStudentPerCourse->average_students_per_course]
         ];
     }
 
