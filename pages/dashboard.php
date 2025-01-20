@@ -7,6 +7,7 @@ require_once '../classes/admin/admin.php';
 require_once '../classes/admin/category.php';
 require_once '../classes/admin/tag.php';
 require_once '../classes/admin/course.php';
+require_once '../classes/admin/courseService.php';
 
 
 
@@ -379,8 +380,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </thead>
                     <tbody>
                         <?php
-                        $courses = Course::getAllCourses();
-                        foreach ($courses as $course):
+                        $courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+                        $courses = new CourseService($courseModal, NULL);
+                        $allCourses = $courses->getAllCourses();
+                        foreach ($allCourses as $course):
                         ?>
                             <tr>
                                 <td><?= $course['id'] ?></td>

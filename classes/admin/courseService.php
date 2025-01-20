@@ -49,7 +49,7 @@ class CourseService {
         return $stmt->fetch(PDO::FETCH_ASSOC);   
     }
 
-    public static function getAllCourses () 
+    public function getAllCourses () 
     {
         $db = new Database();
         $conn = $db->getConnection();
@@ -79,7 +79,7 @@ class CourseService {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);   
     }
 
-    public static function getAllApprovedCourses()
+    public function getAllApprovedCourses()
     {
         $db = new Database();
         $conn = $db->getConnection();
