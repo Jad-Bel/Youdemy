@@ -10,20 +10,30 @@ abstract class Course
     protected $category_id;
     protected $created_at;
     protected $updated_at;
-    protected $status; 
+    protected $status;
+    protected $duration;
+    protected $language;
+    protected $skill_level;
+    protected $course_bnr;
+    protected $certification;
     protected $conn;
 
-    public function __construct($title, $description, $content, $teacher_id, $category_id)
+    public function __construct($title, $description, $content, $video_link, $teacher_id, $category_id, $duration, $language, $skill_level, $course_bnr, $certification = null)
     {
         $db = new Database();
         $this->conn = $db->getConnection();
-        
+
         $this->title = $title;
         $this->description = $description;
         $this->content = $content;
         $this->teacher_id = $teacher_id;
         $this->category_id = $category_id;
-        $this->status = 'pending'; 
+        $this->status = 'pending';
+        $this->duration = $duration;
+        $this->language = $language;
+        $this->skill_level = $skill_level;
+        $this->course_bnr = $course_bnr;
+        $this->certification = $certification;
     }
 
     // getters
@@ -82,34 +92,37 @@ abstract class Course
     abstract public function displayContent($id);
 }
 
-class ConcreteCourse extends Course {
-        public function save () {}
-        public function displayContent($id) {}
-        
-        public function countCourses($search = '', $categoryId = null) {
-            $query = "SELECT COUNT(*) as total FROM courses WHERE status = 'approved'";
-            if ($search) {
-                $query .= " AND (title LIKE :search OR description LIKE :search)";
-            }
-            if ($categoryId) {
-                $query .= " AND category_id = :category_id";
-            }
-    
-            $stmt = $this->conn->prepare($query);
-            if ($search) {
-                $stmt->bindValue(':search', "%$search%");
-            }
-            if ($categoryId) {
-                $stmt->bindValue(':category_id', $categoryId, PDO::PARAM_INT);
-            }
-            $stmt->execute();
-    
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            return (int)$result['total'];
+class ConcreteCourse extends Course
+{
+    public function save() {}
+    public function displayContent($id) {}
+
+    public function countCourses($search = '', $categoryId = null)
+    {
+        $query = "SELECT COUNT(*) as total FROM courses WHERE status = 'approved'";
+        if ($search) {
+            $query .= " AND (title LIKE :search OR description LIKE :search)";
+        }
+        if ($categoryId) {
+            $query .= " AND category_id = :category_id";
         }
 
-        public function getCoursesByPage($perPage, $offset, $search = '', $categoryId = null) {
-            $query = "SELECT 
+        $stmt = $this->conn->prepare($query);
+        if ($search) {
+            $stmt->bindValue(':search', "%$search%");
+        }
+        if ($categoryId) {
+            $stmt->bindValue(':category_id', $categoryId, PDO::PARAM_INT);
+        }
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return (int)$result['total'];
+    }
+
+    public function getCoursesByPage($perPage, $offset, $search = '', $categoryId = null)
+    {
+        $query = "SELECT 
                         c.id AS id,
                         c.title AS title,
                         c.description AS dsc,
@@ -131,29 +144,29 @@ class ConcreteCourse extends Course {
                     JOIN 
                         categories ctg ON c.category_id = ctg.id
                     WHERE c.status = 'approved'";
-    
-            if ($search) {
-                $query .= " AND (c.title LIKE :search OR c.description LIKE :search)";
-            }
-            if ($categoryId) {
-                $query .= " AND c.category_id = :category_id";
-            }
-    
-            $query .= " LIMIT :limit OFFSET :offset";
-    
-            $stmt = $this->conn->prepare($query);
-            if ($search) {
-                $stmt->bindValue(':search', "%$search%");
-            }
-            if ($categoryId) {
-                $stmt->bindValue(':category_id', $categoryId, PDO::PARAM_INT);
-            }
-            $stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
-            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-            $stmt->execute();
-    
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($search) {
+            $query .= " AND (c.title LIKE :search OR c.description LIKE :search)";
         }
+        if ($categoryId) {
+            $query .= " AND c.category_id = :category_id";
+        }
+
+        $query .= " LIMIT :limit OFFSET :offset";
+
+        $stmt = $this->conn->prepare($query);
+        if ($search) {
+            $stmt->bindValue(':search', "%$search%");
+        }
+        if ($categoryId) {
+            $stmt->bindValue(':category_id', $categoryId, PDO::PARAM_INT);
+        }
+        $stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 // class Course1 extends course {

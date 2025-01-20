@@ -5,12 +5,11 @@ class VideoCourse extends Course
 {
     private $video_link;
 
-    public function __construct($title, $description, $content, $video_link, $teacher_id, $category_id)
-    {
-        parent::__construct($title, $description, $content, $teacher_id, $category_id);
-        $this->video_link = $video_link;
-    }
-
+    public function __construct($title, $description, $content, $video_link, $teacher_id, $category_id, $duration, $language, $skill_level, $course_bnr, $status = 'pending', $certification = null)
+{
+    parent::__construct($title, $description, $content, $video_link, $teacher_id, $category_id, $duration, $language, $skill_level, $course_bnr, $certification = null);
+    $this->video_link = $video_link;
+}
     public function getVideoLink()
     {
         return $this->video_link;
