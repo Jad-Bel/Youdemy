@@ -309,7 +309,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
                                                 <span class="new-users-info"><?= $course['ctg_name'] ?></span>
                                             </span>
                                             <span class="new-users-btn">
-                                                <a href="add_course.php?course_id=<?= $course['id'] ?>" class="btn button-sm green">Modify</a>
+                                                <a href="mod_course.php?course_id=<?= $course['id'] ?>" class="btn button-sm green">Modify</a>
                                             </span>
                                             <span class="user-btn p-2">
                                                 <a href="#" class="btn button-sm red">Delete</a>
