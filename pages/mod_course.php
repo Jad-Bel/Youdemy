@@ -7,13 +7,13 @@ require_once '../classes/admin/documentCourse.php';
 require_once '../classes/admin/videoCourse.php';
 require_once '../classes/admin/category.php';
 
-    $courseModal = new ConcreteCourse(null, null, null, null, null, null, null, null, null, null, null);
+$courseModal = new ConcreteCourse(null, null, null, null, null, null, null, null, null, null, null);
 
-    $course_id = isset($_GET['course_id']) ? $_GET['course_id'] : null;
-    if ($course_id) {
-        $course = new CourseService($classModal, null);
-        $courseData = $course->getCourseById($course_id);
-    }
+$course_id = isset($_GET['course_id']) ? $_GET['course_id'] : null;
+if ($course_id) {
+    $course = new CourseService($courseModal, null);
+    $courseData = $course->getCourseById($course_id);
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
@@ -44,6 +44,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'pending',
             $certification
         );
+        $courseId = $course->modify(
+            $course_id,
+            $title,
+            $description,
+            $content,
+            $video_link,
+            $teacher_id,
+            $category_id,
+            $duration,
+            $language,
+            $skill_level,
+            $course_bnr,
+            'pending',
+            $certification
+        );
+
+        if (!empty($courseId)) {
+            $_SESSION['course_success'] = true;
+        } else {
+            $_SESSION['course_error'] = "Course Insertion failed. Please try again.";
+        }
+
+        header("Location: add_course.php");
+        exit();
     } else {
         $document_link = $_POST['document_link'];
         $course = new DocumentCourse(
@@ -60,18 +84,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'pending',
             $certification
         );
+        $courseId = $course->modify(
+            $course_id,
+            $title,
+            $description,
+            $content,
+            $document_link,
+            $teacher_id,
+            $category_id,
+            $duration,
+            $language,
+            $skill_level,
+            $course_bnr,
+            'pending',
+            $certification
+        );
+
+        if (!empty($courseId)) {
+            $_SESSION['course_success'] = true;
+        } else {
+            $_SESSION['course_error'] = "Course Insertion failed. Please try again.";
+        }
+
+        header("Location: add_course.php");
+        exit();
     }
-
-    $courseId = $course->save();
-
-    if (!empty($courseId)) {
-        $_SESSION['course_success'] = true;
-    } else {
-        $_SESSION['course_error'] = "Course Insertion failed. Please try again.";
-    }
-
-    header("Location: add_course.php");
-    exit();
 }
 
 if (isset($_SESSION['course_success']) && $_SESSION['course_success']) {
@@ -298,9 +335,9 @@ if (isset($_SESSION['course_error'])) {
                                         <label class="col-form-label">Skill Level</label>
                                         <div>
                                             <select class="form-control" name="skill_level">
-                                                <option value="beginner" <?= isset($courseData['skill_level']) && $courseData['skill_level'] == 'beginner' ? 'selected' : '' ?>>Beginner</option>
-                                                <option value="intermediate" <?= isset($courseData['skill_level']) && $courseData['skill_level'] == 'intermediate' ? 'selected' : '' ?>>Intermediate</option>
-                                                <option value="advanced" <?= isset($courseData['skill_level']) && $courseData['skill_level'] == 'advanced' ? 'selected' : '' ?>>Advanced</option>
+                                                <option value="<?= $courseData['level']?>" <?= isset($courseData['level']) && $courseData['level'] == 'beginner' ? 'selected' : '' ?>>Beginner</option>
+                                                <option value="<?= $courseData['level']?>" <?= isset($courseData['level']) && $courseData['level'] == 'intermediate' ? 'selected' : '' ?>>Intermediate</option>
+                                                <option value="<?= $courseData['level']?>" <?= isset($courseData['level']) && $courseData['level'] == 'advanced' ? 'selected' : '' ?>>Advanced</option>
                                             </select>
                                         </div>
                                     </div>
