@@ -42,7 +42,7 @@ class Teacher extends User
 
     public function getAverageStudentsPerCourse($teacher_id)
     {
-        $sql = "SELECT COUNT(e.student_id) / COUNT(DISTINCT c.id) AS average_students_per_course
+        $sql = "SELECT COUNT(e.id) / COUNT(DISTINCT c.id) AS average_students_per_course
                 FROM courses c
                 JOIN enrollments e ON c.id = e.course_id
                 WHERE c.teacher_id = :teacher_id";
