@@ -234,9 +234,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 												$selectedCtgs = $categories->getAllCategories();
 												foreach ($selectedCtgs as $ctg):
 												?>
-												<option value="<?= $ctg['id'] ?>"><?= $ctg['name'] ?></option>
+													<option value="<?= $ctg['id'] ?>"><?= $ctg['name'] ?></option>
+												<?php endforeach; ?>
 											</select>
-										<?php endforeach; ?>
 										</div>
 									</div>
 									<div class="form-group col-6">
