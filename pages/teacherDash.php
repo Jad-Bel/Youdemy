@@ -291,7 +291,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
                 <div class="col-lg-6 m-b30">
                     <div class="widget-box">
                         <div class="wc-title">
-                            <h4>New Users</h4>
+                            <h4>Your Courses</h4>
                         </div>
                         <div class="widget-inner">
                             <div class="new-user-list">
@@ -306,7 +306,9 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
                                             </span>
                                             <span class="new-users-text">
                                                 <a href="#" class="new-users-name"><?= $course['title']?></a>
-                                                <span class="new-users-info"><?= $course['ctg_name'] ?></span>
+                                                <span class="new-users-info">categorie: <?= $course['ctg_name'] ?></span>
+                                                <br>
+                                                <a href="#" class="new-users-info">status: <?= $course['status']?></a>
                                             </span>
                                             <span class="new-users-btn">
                                                 <a href="mod_course.php?course_id=<?= $course['id'] ?>" class="btn button-sm green">Modify</a>
@@ -324,7 +326,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
                 <div class="col-lg-6 m-b30">
                     <div class="widget-box">
                         <div class="wc-title">
-                            <h4>Orders</h4>
+                            <h4>Users enrolled</h4>
                         </div>
                         <div class="widget-inner">
                             <div class="orders-list">

@@ -126,6 +126,7 @@ class CourseService
                 c.language AS language,
                 ctg.name AS ctg_name,
                 c.teacher_id,
+                c.status,
                 u.username AS teacher_username,
                 u.email AS teacher_email
             FROM 
