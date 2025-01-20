@@ -4,11 +4,11 @@ require_once 'course.php';
 class DocumentCourse extends Course {
     private $document_link;
 
-    public function __construct($title, $description, $content, $document_link, $teacher_id, $category_id) {
-        parent::__construct($title, $description, $content, $teacher_id, $category_id);
+    public function __construct($title, $description, $content, $document_link, $teacher_id, $category_id, $duration, $language, $skill_level, $course_bnr, $status = 'pending', $certification = null)
+    {
+        parent::__construct($title, $description, $content, $document_link, $teacher_id, $category_id, $duration, $language, $skill_level, $course_bnr, $certification = null);
         $this->document_link = $document_link;
     }
-
     public function getDocumentLink() {
         return $this->document_link;
     }
