@@ -1,3 +1,34 @@
+<?php 
+	require_once '../config/database.php';
+	require_once '../classes/admin/course.php';
+	require_once '../classes/admin/documentCourse.php';
+	require_once '../classes/admin/videoCourse.php';
+
+	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+		$title = $_POST['title'];
+		$description = $_POST['description'];
+		$content = $_POST['content'];
+		$teacher_id = $_POST['teacher_id'];
+		$category_id = $_POST['category_id'];
+		$type = $_POST['type'];
+	
+		if ($type === 'Video') {
+			$video_link = $_POST['video_link'];
+			$course = new VideoCourse($title, $description, $content, $video_link, $teacher_id, $category_id);
+		} else {
+			$document_link = $_POST['document_link'];
+			$course = new DocumentCourse($title, $description, $content, $document_link, $teacher_id, $category_id);
+		}
+	
+		$courseId = $course->save();
+		if ($courseId) {
+			echo "Course saved successfully with ID: $courseId";
+		} else {
+			echo "Failed to save course.";
+		}
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -164,7 +195,7 @@
 							<h4>Add Listing</h4>
 						</div>
 						<div class="widget-inner">
-							<form class="edit-profile m-b30">
+							<form class="edit-profile m-b30" method="POST">
 								<div class="row">
 									<div class="col-12">
 										<div class="ml-auto">
@@ -268,20 +299,8 @@
 											<h3 class="m-form__section">3. Additional Info</h3>
 										</div>
 									</div>
-									<div class="form-group col-6">
-										<label class="col-form-label">Created At</label>
-										<div>
-											<input class="form-control" type="timestamp" name="created_at" value="">
-										</div>
-									</div>
-									<div class="form-group col-6">
-										<label class="col-form-label">Updated At</label>
-										<div>
-											<input class="form-control" type="timestamp" name="updated_at" value="">
-										</div>
-									</div>
 									<div class="col-12">
-										<button type="reset" class="btn">Save changes</button>
+										<button type="submit" class="btn">Add Course</button>
 									</div>
 								</div>
 							</form>
@@ -312,24 +331,6 @@
 	<script src="../assets/assets/vendors/chart/chart.min.js"></script>
 	<script src="../assets/assets/js/admin.js"></script>
 	<script src='../assets/assets/vendors/switcher/switcher.js'></script>
-	<script>
-		// Pricing add
-		function newMenuItem() {
-			var newElem = $('tr.list-item').first().clone();
-			newElem.find('input').val('');
-			newElem.appendTo('table#item-add');
-		}
-		if ($("table#item-add").is('*')) {
-			$('.add-item').on('click', function(e) {
-				e.preventDefault();
-				newMenuItem();
-			});
-			$(document).on("click", "#item-add .delete", function(e) {
-				e.preventDefault();
-				$(this).parent().parent().parent().parent().remove();
-			});
-		}
-	</script>
 </body>
 
 <!-- Mirrored from educhamp.themetrades.com/demo/admin/add-listing.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:09:05 GMT -->
