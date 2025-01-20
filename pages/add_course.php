@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$course = new VideoCourse($title, $description, $content, $video_link, $teacher_id, $category_id, $duration, $language, $skill_level, $course_bnr, $certification = null);
 	} else {
 		$document_link = $_POST['document_link'];
-		$course = new DocumentCourse($title, $description, $content, $document_link, $teacher_id, $category_id);
+		$course = new DocumentCourse($title, $description, $content, $document_link, $teacher_id, $category_id, $duration, $language, $skill_level, $course_bnr, $certification = null);
 	}
 
 	$courseId = $course->save();
