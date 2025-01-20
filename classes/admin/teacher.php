@@ -28,6 +28,18 @@ class Teacher extends User
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
+    public function getActiveCoursesCount($teacher_id)
+    {
+        $sql = "SELECT COUNT(*) AS active_courses_count 
+            FROM courses 
+            WHERE teacher_id = :teacher_id AND status = 'active'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':teacher_id', $teacher_id);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
     public function getStatistics($teacher_id)
     {
         $enrolledStudentsCount = $this->getEnrolledStudentsCount();
