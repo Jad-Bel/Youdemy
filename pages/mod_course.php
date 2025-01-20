@@ -2,18 +2,17 @@
 require_once '../config/database.php';
 require_once '../includes/session_check.php';
 require_once '../classes/admin/course.php';
+require_once '../classes/admin/courseService.php';
 require_once '../classes/admin/documentCourse.php';
 require_once '../classes/admin/videoCourse.php';
 require_once '../classes/admin/category.php';
 
-die;
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $course_id = isset($_GET['course_id']) ? $_GET['course_id'] : null;
     if ($course_id) {
         $course = new CourseService($classModal, null);
         $courseData = $course->getCourseById($course_id);
     }
-}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
     $description = $_POST['description'];
