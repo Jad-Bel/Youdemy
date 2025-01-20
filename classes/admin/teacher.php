@@ -8,12 +8,13 @@ class Teacher extends User
         parent::__construct($username, $email, $password, $role, $status);
     }
 
-    public function getCoursesCount ($teacher_id) {
-        $sql = "SELECT COUNT(*) FROM courses AS courses_count WHERE teacher_id = :teacher_id";
+    public function getCoursesCount($teacher_id)
+    {
+        $sql = "SELECT COUNT(*) AS courses_count FROM courses WHERE teacher_id = :teacher_id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':teacher_id', $teacher_id);
         $stmt->execute();
-        
+
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
@@ -37,7 +38,7 @@ class Teacher extends User
             (object) ['statistic' => 'Nombre de cours', 'count' => $coursesCount->courses_count]
         ];
     }
-    
+
     private function addTagsToCourse($course_id, $tags)
     {
         foreach ($tags as $tag_id) {
