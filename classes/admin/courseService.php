@@ -111,6 +111,19 @@ class CourseService {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAllCoursesForTeacher ($user_id)
+    {
+        $db = new Database();
+        $conn = $db->getConnection();
+
+        $query = "SELECT * FROM courses WHERE teacher_id = :user_id";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(":user_id", $user_id);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getPaginatedCourses($page, $perPage, $search = '', $categoryId = null)
     {
         $totalCourses = $this->courseModel->countCourses($search, $categoryId);
