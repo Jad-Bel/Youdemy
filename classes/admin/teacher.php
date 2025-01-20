@@ -42,7 +42,7 @@ class Teacher extends User
 
     public function getStudentsEnrolledInTeacherCourses($teacher_id)
     {
-        $sql = "SELECT COUNT(DISTINCT e.student_id) AS students_enrolled_count
+        $sql = "SELECT COUNT(DISTINCT e.id) AS students_enrolled_count
             FROM enrollments e
             JOIN courses c ON e.course_id = c.id
             WHERE c.teacher_id = :teacher_id";
@@ -57,10 +57,16 @@ class Teacher extends User
     {
         $enrolledStudentsCount = $this->getEnrolledStudentsCount();
         $coursesCount = $this->getCoursesCount($teacher_id);
+        $activeCoursesCount = $this->getActiveCoursesCount($teacher_id);
+        $studentsEnrolledCount = $this->getStudentsEnrolledInTeacherCourses($teacher_id);
+
 
         return [
-            (object) ['statistic' => 'Nombre d’étudiants inscrits', 'count' => $enrolledStudentsCount->enrolled_students_count],
-            (object) ['statistic' => 'Nombre de cours', 'count' => $coursesCount->courses_count]
+            (object) [$enrolledStudentsCount->enrolled_students_count],
+            (object) [$coursesCount->courses_count],
+            (object) [$activeCoursesCount->active_courses_count],
+            (object) [$studentsEnrolledCount->students_enrolled_count]
+
         ];
     }
 
