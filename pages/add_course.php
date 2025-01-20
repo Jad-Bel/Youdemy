@@ -18,10 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$skill_level = $_POST['skill_level'];
 	$course_bnr = $_POST['course_bnr'];
 	$certification = $_POST['certification'];
-	echo "<pre>";
-    print_r($_POST);
-    echo "</pre>";
-    exit();
+
 	if ($type === 'Video') {
 		$video_link = $_POST['video_link'];
 		$course = new VideoCourse(
@@ -44,17 +41,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$title,
 			$description,
 			$content,
-			$teacher_id,
-			$category_id,
+			$document_link, 
+			$teacher_id,   
+			$category_id, 
 			$duration,
 			$language,
 			$skill_level,
 			$course_bnr,
-			$document_link,
 			'pending',
 			$certification
 		);
 	}
+
 	$courseId = $course->save();
 
 	if (!empty($courseId)) {
@@ -65,40 +63,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	header("Location: add_course.php");
 	exit();
+}
 
-	if (isset($_SESSION['course_success']) && $_SESSION['course_success']) {
-		echo '
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-		<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			Swal.fire({
-				title: "Success!",
-				text: "Course has been added successfully.",
-				icon: "success",
-				confirmButtonText: "OK"
-			});
+if (isset($_SESSION['course_success']) && $_SESSION['course_success']) {
+	echo '
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		Swal.fire({
+			title: "Success!",
+			text: "Course has been added successfully.",
+			icon: "success",
+			confirmButtonText: "OK"
 		});
-		</script>
-		';
-		unset($_SESSION['course_success']);
-	}
+	});
+	</script>
+	';
+	unset($_SESSION['course_success']);
+}
 
-	if (isset($_SESSION['course_error'])) {
-		echo '
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-		<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			Swal.fire({
-				title: "Error!",
-				text: "' . $_SESSION['course_error'] . '",
-				icon: "error",
-				confirmButtonText: "OK"
-			});
+if (isset($_SESSION['course_error'])) {
+	echo '
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		Swal.fire({
+			title: "Error!",
+			text: "' . $_SESSION['course_error'] . '",
+			icon: "error",
+			confirmButtonText: "OK"
 		});
-		</script>
-		';
-		unset($_SESSION['course_error']);
-	}
+	});
+	</script>
+	';
+	unset($_SESSION['course_error']);
 }
 ?>
 

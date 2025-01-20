@@ -1,23 +1,51 @@
 <?php
 require_once 'course.php';
 
-class DocumentCourse extends Course {
+class DocumentCourse extends Course
+{
     private $document_link;
 
-    public function __construct($title, $description, $content, $document_link, $teacher_id, $category_id, $duration, $language, $skill_level, $course_bnr, $status = 'pending', $certification = null)
-    {
-        parent::__construct($title, $description, $content, $document_link, $teacher_id, $category_id, $duration, $language, $skill_level, $course_bnr, $certification = null);
+    public function __construct(
+        $title,
+        $description,
+        $content,
+        $document_link,
+        $teacher_id,
+        $category_id,
+        $duration,
+        $language,
+        $skill_level,
+        $course_bnr,
+        $status,
+        $certification
+    ) {
+        parent::__construct(
+            $title,
+            $description,
+            $content,
+            $teacher_id,
+            $category_id,
+            $duration,
+            $language,
+            $skill_level,
+            $course_bnr,
+            $status,
+            $certification
+        );
         $this->document_link = $document_link;
     }
-    public function getDocumentLink() {
+    public function getDocumentLink()
+    {
         return $this->document_link;
     }
 
-    public function setDocumentLink($document_link) {
+    public function setDocumentLink($document_link)
+    {
         $this->document_link = $document_link;
     }
 
-    public function save() {
+    public function save()
+    {
         $sql = "INSERT INTO courses (
                     title, 
                     description, 
@@ -49,7 +77,7 @@ class DocumentCourse extends Course {
                     NOW(), 
                     NOW()
                 )";
-        
+
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             'title' => $this->title,
@@ -65,12 +93,13 @@ class DocumentCourse extends Course {
             'status' => $this->status,
             'certification' => $this->certification
         ]);
-    
+
         $this->id = $this->conn->lastInsertId();
         return $this->id;
     }
 
-    public function modify($course_id, $title, $description, $content, $document_link, $category_id, $duration, $language, $skill_level, $course_bnr, $status, $certification) {
+    public function modify($course_id, $title, $description, $content, $document_link, $category_id, $duration, $language, $skill_level, $course_bnr, $status, $certification)
+    {
         $sql = "UPDATE courses
                 SET title = :title,
                     description = :description,
@@ -85,7 +114,7 @@ class DocumentCourse extends Course {
                     certification = :certification,
                     updated_at = NOW()
                 WHERE id = :course_id AND teacher_id = :teacher_id";
-        
+
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             'title' => $title,
@@ -102,11 +131,12 @@ class DocumentCourse extends Course {
             'course_id' => $course_id,
             'teacher_id' => $this->teacher_id
         ]);
-    
-        return $stmt->rowCount() > 0; 
+
+        return $stmt->rowCount() > 0;
     }
 
-    public function delete($course_id) {
+    public function delete($course_id)
+    {
         $sql = "DELETE FROM courses WHERE id = :course_id AND teacher_id = :teacher_id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
@@ -114,10 +144,11 @@ class DocumentCourse extends Course {
             'teacher_id' => $this->teacher_id
         ]);
 
-        return $stmt->rowCount() > 0; 
+        return $stmt->rowCount() > 0;
     }
 
-    public function displayContent($id) {
+    public function displayContent($id)
+    {
         $sql = "SELECT * FROM courses WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id' => $this->id]);
@@ -125,4 +156,3 @@ class DocumentCourse extends Course {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
-?>
