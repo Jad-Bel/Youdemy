@@ -339,6 +339,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <div class="widget-inner">
                             <div class="orders-list">
                                 <ul>
+                                    <?php 
+                                        
+                                    ?>
                                     <li>
                                         <span class="orders-title">
                                             <a href="#" class="orders-title-name">Anna Strong </a>
