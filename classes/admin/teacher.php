@@ -40,6 +40,19 @@ class Teacher extends User
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
+    public function getStudentsEnrolledInTeacherCourses($teacher_id)
+    {
+        $sql = "SELECT COUNT(DISTINCT e.student_id) AS students_enrolled_count
+            FROM enrollments e
+            JOIN courses c ON e.course_id = c.id
+            WHERE c.teacher_id = :teacher_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':teacher_id', $teacher_id);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
     public function getStatistics($teacher_id)
     {
         $enrolledStudentsCount = $this->getEnrolledStudentsCount();
