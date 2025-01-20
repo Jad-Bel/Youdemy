@@ -12,10 +12,11 @@ class User
     protected $updated_at;
     protected $conn;
 
-    public function __construct($username, $email, $password, $role, $status = 'pending')
+    public function __construct($user_id, $username, $email, $password, $role, $status = 'pending')
 {
     $db = new Database();
     $this->conn = $db->getConnection();
+    $this->id = $user_id;
     $this->username = $username;
     $this->email = $email;
     $this->password = $password ? $this->hashPassword($password) : null;

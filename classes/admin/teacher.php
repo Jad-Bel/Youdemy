@@ -3,9 +3,9 @@
 
 class Teacher extends User
 {
-    public function __construct($username, $email, $password, $status)
+    public function __construct($username, $email, $password, $role, $status)
     {
-        parent::__construct($username, $email, $password, 'teacher', $status);
+        parent::__construct($username, $email, $password, $role, $status);
     }
 
     public function viewStatistics()

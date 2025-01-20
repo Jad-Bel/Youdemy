@@ -1,18 +1,20 @@
 <?php
 require_once '../config/database.php';
 require_once '../includes/session_check.php';
+require_once '../classes/user.php';
+require_once '../classes/admin/teacher.php';
 require_once '../classes/admin/course.php';
 require_once '../classes/admin/courseService.php';
 
 $courseModal = new ConcreteCourse(null, null, null, null, null, null, null, null, null, null, null);
 $courses = new CourseService($courseModal, null);
 
-$user_id = $_SESSION['user_id'];
+$teacher_id = $_SESSION['user_id'];
 
-if (!empty($user_id)) {
-    $coursesForTeacher = $courses->getAllCoursesForTeacher($user_id);
+if (!empty($teacher_id)) {
+    $coursesForTeacher = $courses->getAllCoursesForTeacher($teacher_id);
 } else {
-    print_r($user_id);
+    print_r($teacher_id);
     echo 1;
     die;
 }
@@ -24,6 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $courseModal->delete($course_id);
     }
 }
+$teacherModal = new Teacher(null, null, null, null, null);
+$enrolledUsers = $teacherModal->displayEnrolledUsers($teacher_id);
+print_r($enrolledUsers);
+die;
 ?>
 
 <!DOCTYPE html>
@@ -303,7 +309,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             <div class="new-user-list">
                                 <ul>
                                     <?php
-                                    $coursesForTeacher = $courses->getAllCoursesForTeacher($user_id);
+                                    $coursesForTeacher = $courses->getAllCoursesForTeacher($teacher_id);
                                     foreach ($coursesForTeacher as $course):
                                     ?>
                                         <li>
@@ -339,18 +345,27 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         <div class="widget-inner">
                             <div class="orders-list">
                                 <ul>
-                                    <?php 
-                                        
+                                    <?php
+                                    // $enrolledUsers = $teacherModal->displayEnrolledUsers($teacher_id);
+                                    if (!empty($enrolledUsers)) {
+                                        foreach ($enrolledUsers as $user):
                                     ?>
-                                    <li>
-                                        <span class="orders-title">
-                                            <a href="#" class="orders-title-name">Anna Strong </a>
-                                            <span class="orders-info">Order #02357 | Date 12/08/2019</span>
-                                        </span>
-                                        <span class="orders-btn">
-                                            <a href="#" class="btn button-sm red">Unpaid</a>
-                                        </span>
-                                    </li>
+                                            <li>
+                                                <span class="new-users-pic">
+                                                    <img src="" alt="" />
+                                                </span>
+                                                <span class="new-users-text">
+                                                    <a href="#" class="new-users-name">User Name: <?= htmlspecialchars($user->getUsername()) ?></a>
+                                                    <br>
+                                                    <a href="#" class="new-users-info">Email: <?= htmlspecialchars($user->getEmail()) ?></a>
+                                                </span>
+                                            </li>
+                                    <?php
+                                        endforeach;
+                                    } else {
+                                        echo '<li>No users enrolled in your courses.</li>';
+                                    }
+                                    ?>
                                 </ul>
                             </div>
                         </div>
