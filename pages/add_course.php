@@ -158,13 +158,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<nav class="ttr-sidebar-navi">
 				<ul>
 					<li>
-						<a href="index.html" class="ttr-material-button">
+						<a href="teacherDash.php" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-home"></i></span>
 							<span class="ttr-label">Dashborad</span>
 						</a>
 					</li>
 					<li>
-						<a href="add-listing.html" class="ttr-material-button">
+						<a href="add_course.php" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-layout-accordion-list"></i></span>
 							<span class="ttr-label">Add listing</span>
 						</a>
@@ -231,7 +231,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 											<select class="form-control" name="category_id">
 												<?php
 												$categories = new Category();
-												foreach ($categories as $ctg):
+												$selectedCtgs = $categories->getAllCategories();
+												foreach ($selectedCtgs as $ctg):
 												?>
 												<option value="<?= $ctg['id'] ?>"><?= $ctg['name'] ?></option>
 											</select>
