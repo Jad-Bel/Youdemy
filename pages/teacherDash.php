@@ -26,10 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $courseModal->delete($course_id);
     }
 }
-$teacherModal = new Teacher(null, null, null, null, null);
-$enrolledUsers = $teacherModal->displayEnrolledUsers($teacher_id);
-print_r($enrolledUsers);
-die;
 ?>
 
 <!DOCTYPE html>
@@ -344,26 +340,27 @@ die;
                         </div>
                         <div class="widget-inner">
                             <div class="orders-list">
-                                <ul>
+                                <ul class="list-unstyled">
                                     <?php
-                                    // $enrolledUsers = $teacherModal->displayEnrolledUsers($teacher_id);
+                                    $teacherModal = new Teacher(null, null, null, null, null);
+                                    $enrolledUsers = $teacherModal->displayEnrolledUsers($teacher_id);
                                     if (!empty($enrolledUsers)) {
                                         foreach ($enrolledUsers as $user):
                                     ?>
-                                            <li>
-                                                <span class="new-users-pic">
-                                                    <img src="" alt="" />
-                                                </span>
-                                                <span class="new-users-text">
-                                                    <a href="#" class="new-users-name">User Name: <?= htmlspecialchars($user->getUsername()) ?></a>
-                                                    <br>
-                                                    <a href="#" class="new-users-info">Email: <?= htmlspecialchars($user->getEmail()) ?></a>
-                                                </span>
+                                            <li class="border-bottom py-3">
+                                                <div class="d-flex align-items-start">
+                                                    <div class="flex-grow-1">
+                                                        <h5 class="mb-1">User Name: <?= htmlspecialchars($user->getUsername()) ?></h5>
+                                                        <div class="text-muted small">
+                                                            <span class="me-3">Email: <?= htmlspecialchars($user->getEmail()) ?></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </li>
                                     <?php
                                         endforeach;
                                     } else {
-                                        echo '<li>No users enrolled in your courses.</li>';
+                                        echo '<li class="py-3">No users enrolled in your courses.</li>';
                                     }
                                     ?>
                                 </ul>
