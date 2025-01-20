@@ -28,7 +28,7 @@ class Teacher extends User
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    public function getStatistics()
+    public function getStatistics($teacher_id)
     {
         $enrolledStudentsCount = $this->getEnrolledStudentsCount();
         $coursesCount = $this->getCoursesCount($teacher_id);
