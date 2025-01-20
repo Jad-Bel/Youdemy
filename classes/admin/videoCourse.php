@@ -101,20 +101,25 @@ class VideoCourse extends Course
 
     public function modify($course_id, $title, $description, $content, $video_link, $category_id, $duration, $language, $skill_level, $course_bnr, $status, $certification)
     {
+        $allowedStatuses = ['pending', 'approved', 'rejected'];
+        if (!in_array($status, $allowedStatuses)) {
+            throw new Exception("Invalid status: $status");
+        }
+
         $sql = "UPDATE courses
-            SET title = :title,
-                description = :description,
-                content = :content,
-                video_link = :video_link,
-                category_id = :category_id,
-                duration = :duration,
-                language = :language,
-                skill_level = :skill_level,
-                course_bnr = :course_bnr,
-                status = :status,
-                certification = :certification,
-                updated_at = NOW()
-            WHERE id = :course_id AND teacher_id = :teacher_id";
+                SET title = :title,
+                    description = :description,
+                    content = :content,
+                    'video_link' => $video_link,
+                    category_id = :category_id,
+                    duration = :duration,
+                    language = :language,
+                    skill_level = :skill_level,
+                    course_bnr = :course_bnr,
+                    status = :status,
+                    certification = :certification,
+                    updated_at = NOW()
+                WHERE id = :course_id AND teacher_id = :teacher_id";
 
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([

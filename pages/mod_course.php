@@ -8,12 +8,18 @@ require_once '../classes/admin/videoCourse.php';
 require_once '../classes/admin/category.php';
 
 $courseModal = new ConcreteCourse(null, null, null, null, null, null, null, null, null, null, null);
-
-$course_id = isset($_GET['course_id']) ? $_GET['course_id'] : null;
-if ($course_id) {
-    $course = new CourseService($courseModal, null);
-    $courseData = $course->getCourseById($course_id);
+if ($_SERVER['REQUEST_METHOD'] == "GET") {
+    $course_id = isset($_GET['course_id']) ? $_GET['course_id'] : null;
+    if ($course_id) {
+        $course = new CourseService($courseModal, null);
+        $courseData = $course->getCourseById($course_id);
+    }
 }
+
+echo "<pre>";
+print_r($courseData);
+echo "</pre>";
+die;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
@@ -41,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $language,
             $skill_level,
             $course_bnr,
-            'pending',
+            $status,
             $certification
         );
         $courseId = $course->modify(
@@ -56,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $language,
             $skill_level,
             $course_bnr,
-            'pending',
+            $status,
             $certification
         );
 
@@ -80,8 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $duration,
             $language,
             $skill_level,
+            $status,
             $course_bnr,
-            'pending',
             $certification
         );
         $courseId = $course->modify(
@@ -95,8 +101,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $duration,
             $language,
             $skill_level,
+            $status,
             $course_bnr,
-            'pending',
             $certification
         );
 
@@ -342,6 +348,7 @@ if (isset($_SESSION['course_error'])) {
                                         </div>
                                     </div>
                                     <div class="form-group col-6">
+                                        <input type="hidden" name="status" value="<?= $courseData['status'] ?>">
                                         <label class="col-form-label">Category</label>
                                         <div>
                                             <select class="form-control" name="category_id">
