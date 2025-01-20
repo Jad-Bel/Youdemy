@@ -26,6 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $courseModal->delete($course_id);
     }
 }
+
+$teacher = new Teacher(null, null, null, null, null);
+$statistics = $teacher->getStatistics();
+
+$enrolledStudentsCount = $statistics[0]->count;
+$coursesCount = $statistics[1]->count;
 ?>
 
 <!DOCTYPE html>
@@ -193,24 +199,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <div class="widget-card widget-bg1">
                         <div class="wc-item">
                             <h4 class="wc-title">
-                                Total Frofit
+                                Enrolled Student
                             </h4>
                             <span class="wc-des">
-                                All Customs Value
+                                Total Number of Students
                             </span>
                             <span class="wc-stats">
-                                $<span class="counter">18</span>M
+                                <span class="counter"><?= $enrolledStudentsCount ?></span>
                             </span>
                             <div class="progress wc-progress">
-                                <div class="progress-bar" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <span class="wc-progress-bx">
-                                <span class="wc-change">
-                                    Change
-                                </span>
-                                <span class="wc-number ml-auto">
-                                    78%
-                                </span>
                             </span>
                         </div>
                     </div>
@@ -219,25 +218,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <div class="widget-card widget-bg2">
                         <div class="wc-item">
                             <h4 class="wc-title">
-                                New Feedbacks
+                                Total Courses
                             </h4>
                             <span class="wc-des">
-                                Customer Review
+                                Number of available Courses
                             </span>
-                            <span class="wc-stats counter">
-                                120
+                            <span class="wc-stats">
+                                <span class="counter"><?= $coursesCount ?></span>
                             </span>
+                            <!-- <span class="wc-stats counter">
+                            </span> -->
                             <div class="progress wc-progress">
-                                <div class="progress-bar" role="progressbar" style="width: 88%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <span class="wc-progress-bx">
-                                <span class="wc-change">
-                                    Change
-                                </span>
-                                <span class="wc-number ml-auto">
-                                    88%
-                                </span>
-                            </span>
                         </div>
                     </div>
                 </div>

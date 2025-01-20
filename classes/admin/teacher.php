@@ -8,9 +8,10 @@ class Teacher extends User
         parent::__construct($username, $email, $password, $role, $status);
     }
 
-    public function getCoursesCount () {
-        $sql = "SELECT COUNT(*) FROM courses";
+    public function getCoursesCount ($teacher_id) {
+        $sql = "SELECT COUNT(*) FROM courses AS courses_count WHERE teacher_id = :teacher_id";
         $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':teacher_id', $teacher_id);
         $stmt->execute();
         
         return $stmt->fetch(PDO::FETCH_OBJ);
@@ -18,7 +19,7 @@ class Teacher extends User
 
     public function getEnrolledStudentsCount()
     {
-        $sql = "SELECT COUNT(DISTINCT e.student_id) AS enrolled_students_count
+        $sql = "SELECT COUNT(DISTINCT e.id) AS enrolled_students_count
                 FROM enrollments e";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
@@ -29,14 +30,14 @@ class Teacher extends User
     public function getStatistics()
     {
         $enrolledStudentsCount = $this->getEnrolledStudentsCount();
-        $coursesCount = $this->getCoursesCount();
+        $coursesCount = $this->getCoursesCount($teacher_id);
 
-        // Combine the results into an indexed array of objects
         return [
             (object) ['statistic' => 'Nombre d’étudiants inscrits', 'count' => $enrolledStudentsCount->enrolled_students_count],
             (object) ['statistic' => 'Nombre de cours', 'count' => $coursesCount->courses_count]
         ];
     }
+    
     private function addTagsToCourse($course_id, $tags)
     {
         foreach ($tags as $tag_id) {
