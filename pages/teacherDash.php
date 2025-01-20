@@ -322,7 +322,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                             <form action="" method="POST">
                                                 <input type="hidden" name="action" value="delete_course">
                                                 <input type="hidden" name="id" value="<?= $course['id'] ?>">
-                                                <button type="submit" class="btn button-sm red">Delete</button>
+                                                <button type="submit" class="btn button-sm red m-1">Delete</button>
                                             </form>
                                         </li>
                                     <?php endforeach; ?>
