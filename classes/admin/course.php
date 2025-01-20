@@ -207,6 +207,17 @@ class ConcreteCourse extends Course
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function delete($course_id)
+    {
+        $sql = "DELETE FROM courses WHERE id = :course_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'course_id' => $course_id,
+        ]);
+
+        return $stmt->rowCount() > 0;
+    }
 }
 
 // class Course1 extends course {

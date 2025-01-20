@@ -7,15 +7,21 @@ require_once '../classes/admin/courseService.php';
 $courseModal = new ConcreteCourse(null, null, null, null, null, null, null, null, null, null, null);
 $courses = new CourseService($courseModal, null);
 
-if ($_SERVER['REQUEST_METHOD'] === "GET") {
-    $user_id = $_SESSION['user_id'];
-    
-    if (!empty($user_id)) {
-        $coursesForTeacher = $courses->getAllCoursesForTeacher($user_id);
-    } else {
-        print_r($user_id);
-        echo 1;
-        die;
+$user_id = $_SESSION['user_id'];
+
+if (!empty($user_id)) {
+    $coursesForTeacher = $courses->getAllCoursesForTeacher($user_id);
+} else {
+    print_r($user_id);
+    echo 1;
+    die;
+}
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $course_id = $_POST['id'];
+
+    if (isset($_POST['action']) && $_POST['action'] == 'delete_course') {
+        $courseModal->delete($course_id);
     }
 }
 ?>
@@ -305,17 +311,19 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
                                                 <img src="" alt="" />
                                             </span>
                                             <span class="new-users-text">
-                                                <a href="#" class="new-users-name"><?= $course['title']?></a>
+                                                <a href="#" class="new-users-name"><?= $course['title'] ?></a>
                                                 <span class="new-users-info">categorie: <?= $course['ctg_name'] ?></span>
                                                 <br>
-                                                <a href="#" class="new-users-info">status: <?= $course['status']?></a>
+                                                <a href="#" class="new-users-info">status: <?= $course['status'] ?></a>
                                             </span>
                                             <span class="new-users-btn">
                                                 <a href="mod_course.php?course_id=<?= $course['id'] ?>" class="btn button-sm green">Modify</a>
                                             </span>
-                                            <span class="user-btn p-2">
-                                                <a href="#" class="btn button-sm red">Delete</a>
-                                            </span>
+                                            <form action="" method="POST">
+                                                <input type="hidden" name="action" value="delete_course">
+                                                <input type="hidden" name="id" value="<?= $course['id'] ?>">
+                                                <button type="submit" class="btn button-sm red">Delete</button>
+                                            </form>
                                         </li>
                                     <?php endforeach; ?>
                                 </ul>

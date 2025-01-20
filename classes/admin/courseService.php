@@ -165,4 +165,5 @@ class CourseService
     {
         return $this->categoryModel->getAllCategories();
     }
+
 }

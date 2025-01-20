@@ -141,18 +141,6 @@ class VideoCourse extends Course
         return $stmt->rowCount() > 0;
     }
 
-    public function delete($course_id)
-    {
-        $sql = "DELETE FROM courses WHERE id = :course_id AND teacher_id = :teacher_id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([
-            'course_id' => $course_id,
-            'teacher_id' => $this->teacher_id
-        ]);
-
-        return $stmt->rowCount() > 0;
-    }
-
     public function displayContent($id)
     {
         $sql = "SELECT * FROM courses WHERE id = :id";
