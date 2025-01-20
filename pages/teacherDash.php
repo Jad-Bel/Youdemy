@@ -305,11 +305,14 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
                                                 <img src="" alt="" />
                                             </span>
                                             <span class="new-users-text">
-                                                <a href="#" class="new-users-name"><?= $course['title'] ?></a>
-                                                <span class="new-users-info"><?= $course['category'] ?></span>
+                                                <a href="#" class="new-users-name"><?= $course['title']?></a>
+                                                <span class="new-users-info"><?= $course['ctg_name'] ?></span>
                                             </span>
                                             <span class="new-users-btn">
-                                                <a href="#" class="btn button-sm outline">Follow</a>
+                                                <a href="add_course.php?course_id=<?= $course['id'] ?>" class="btn button-sm green">Modify</a>
+                                            </span>
+                                            <span class="user-btn p-2">
+                                                <a href="#" class="btn button-sm red">Delete</a>
                                             </span>
                                         </li>
                                     <?php endforeach; ?>

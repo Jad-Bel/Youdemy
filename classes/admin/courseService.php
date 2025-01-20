@@ -1,9 +1,11 @@
 <?php
-class CourseService {
+class CourseService
+{
     private $courseModel;
     private $categoryModel;
 
-    public function __construct($courseModel, $categoryModel) {
+    public function __construct($courseModel, $categoryModel)
+    {
         $this->courseModel = $courseModel;
         $this->categoryModel = $categoryModel;
     }
@@ -11,7 +13,7 @@ class CourseService {
     public function save() {}
     public function displayContent() {}
 
-    public function getCourseById ($id) 
+    public function getCourseById($id)
     {
         $db = new Database();
         $conn = $db->getConnection();
@@ -42,14 +44,14 @@ class CourseService {
             JOIN 
                 categories ctg ON c.category_id = ctg.id
             WHERE
-                c.id = :id";            
+                c.id = :id";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);   
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getAllCourses () 
+    public function getAllCourses()
     {
         $db = new Database();
         $conn = $db->getConnection();
@@ -74,9 +76,9 @@ class CourseService {
             JOIN 
                 users u ON c.teacher_id = u.id
             JOIN 
-                categories ctg ON c.category_id = ctg.id";            
+                categories ctg ON c.category_id = ctg.id";
         $stmt = $conn->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);   
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getAllApprovedCourses()
@@ -106,17 +108,32 @@ class CourseService {
             JOIN 
                 categories ctg ON c.category_id = ctg.id
             WHERE c.status = 'approved'";
-            
+
         $stmt = $conn->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAllCoursesForTeacher ($user_id)
+    public function getAllCoursesForTeacher($user_id)
     {
         $db = new Database();
         $conn = $db->getConnection();
 
-        $query = "SELECT * FROM courses WHERE teacher_id = :user_id";
+        $query = "SELECT 
+                c.id AS id,
+                c.title AS title,
+                c.language AS language,
+                ctg.name AS ctg_name,
+                c.teacher_id,
+                u.username AS teacher_username,
+                u.email AS teacher_email
+            FROM 
+                courses c
+            JOIN 
+                users u ON c.teacher_id = u.id
+            JOIN 
+                categories ctg ON c.category_id = ctg.id
+            WHERE
+                teacher_id = :user_id";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(":user_id", $user_id);
         $stmt->execute();
@@ -141,9 +158,8 @@ class CourseService {
         ];
     }
 
-    public function getAllCategories() 
+    public function getAllCategories()
     {
         return $this->categoryModel->getAllCategories();
     }
 }
-?>
