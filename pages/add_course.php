@@ -1,32 +1,64 @@
 <?php
 require_once '../config/database.php';
+require_once '../includes/session_check.php';
 require_once '../classes/admin/course.php';
 require_once '../classes/admin/documentCourse.php';
 require_once '../classes/admin/videoCourse.php';
 require_once '../classes/admin/category.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	$title = $_POST['title'];
-	$description = $_POST['description'];
-	$content = $_POST['content'];
-	$teacher_id = $_SESSION['user_id'];
-	$category_id = $_POST['category_id'];
-	$type = $_POST['type'];
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $content = $_POST['content'];
+    $teacher_id = $_SESSION['user_id'];
+    $category_id = $_POST['category_id'];
+    $type = $_POST['type'];
+    $duration = $_POST['duration'];
+    $language = $_POST['language'];
+    $skill_level = $_POST['skill_level'];
+    $course_bnr = $_POST['course_bnr'];
+    $certification = $_POST['certification'];
 
-	if ($type === 'Video') {
-		$video_link = $_POST['video_link'];
-		$course = new VideoCourse($title, $description, $content, $video_link, $teacher_id, $category_id, $duration, $language, $skill_level, $course_bnr, $certification = null);
-	} else {
-		$document_link = $_POST['document_link'];
-		$course = new DocumentCourse($title, $description, $content, $document_link, $teacher_id, $category_id, $duration, $language, $skill_level, $course_bnr, $certification = null);
-	}
+    if ($type === 'Video') {
+        $video_link = $_POST['video_link'];
+        $course = new VideoCourse(
+            $title,
+            $description,
+            $content,
+            $teacher_id,
+            $category_id,
+            $duration,
+            $language,
+            $skill_level,
+            $course_bnr,
+            $video_link,
+            'pending',
+            $certification
+        );
+    } else {
+        $document_link = $_POST['document_link'];
+        $course = new DocumentCourse(
+            $title,
+            $description,
+            $content,
+            $teacher_id,
+            $category_id,
+            $duration,
+            $language,
+            $skill_level,
+            $course_bnr,
+            $document_link,
+            'pending',
+            $certification
+        );
+    }
 
-	$courseId = $course->save();
-	if ($courseId) {
-		echo "Course saved successfully with ID: $courseId";
-	} else {
-		echo "Failed to save course.";
-	}
+    $courseId = $course->save();
+    if ($courseId) {
+        echo "Course saved successfully with ID: $courseId";
+    } else {
+        echo "Failed to save course.";
+    }
 }
 ?>
 
