@@ -59,16 +59,14 @@ class Teacher extends User
         $coursesCount = $this->getCoursesCount($teacher_id);
         $activeCoursesCount = $this->getActiveCoursesCount($teacher_id);
         $averageStudentPerCourse = $this->getAverageStudentsPerCourse($teacher_id);
-
-
+    
         return [
-            (object) [$enrolledStudentsCount->enrolled_students_count],
-            (object) [$coursesCount->courses_count],
-            (object) [$activeCoursesCount->active_courses_count],
-            (object) [$averageStudentPerCourse->average_students_per_course]
+            (object) ['statistic' => 'Enrolled Students', 'count' => $enrolledStudentsCount->enrolled_students_count],
+            (object) ['statistic' => 'Total Courses', 'count' => $coursesCount->courses_count],
+            (object) ['statistic' => 'Active Courses', 'count' => $activeCoursesCount->active_courses_count],
+            (object) ['statistic' => 'Average Students per Course', 'count' => $averageStudentPerCourse->average_students_per_course]
         ];
     }
-
     private function addTagsToCourse($course_id, $tags)
     {
         foreach ($tags as $tag_id) {

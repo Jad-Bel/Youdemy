@@ -29,7 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 $teacher = new Teacher(null, null, null, null, null);
 $statistics = $teacher->getStatistics($teacher_id);
-
+print_r($statistics);
+die;
 
 $enrolledStudentsCount = $statistics[0]->count;
 $coursesCount = $statistics[1]->count;
