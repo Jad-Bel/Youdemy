@@ -8,18 +8,17 @@ require_once '../classes/admin/videoCourse.php';
 require_once '../classes/admin/category.php';
 
 $courseModal = new ConcreteCourse(null, null, null, null, null, null, null, null, null, null, null);
-if ($_SERVER['REQUEST_METHOD'] == "GET") {
-    $course_id = isset($_GET['course_id']) ? $_GET['course_id'] : null;
+    $course_id = ($_GET['course_id']) ? $_GET['course_id'] : null;
     if ($course_id) {
         $course = new CourseService($courseModal, null);
         $courseData = $course->getCourseById($course_id);
     }
-}
 
-echo "<pre>";
-print_r($courseData);
-echo "</pre>";
-die;
+
+// echo "<pre>";
+// print_r($courseData);
+// echo "</pre>";
+// die;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
@@ -33,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $skill_level = $_POST['skill_level'];
     $course_bnr = $_POST['course_bnr'];
     $certification = $_POST['certification'];
+    $stauts = $_POST['status'];
 
     if ($type === 'Video') {
         $video_link = $_POST['video_link'];
@@ -115,6 +115,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: add_course.php");
         exit();
     }
+
+    echo "<pre>";
+    print_r($_POST);
+    echo "</pre>";
+    die;
 }
 
 if (isset($_SESSION['course_success']) && $_SESSION['course_success']) {
@@ -319,6 +324,7 @@ if (isset($_SESSION['course_error'])) {
                         </div>
                         <div class="widget-inner">
                             <form class="edit-profile m-b30" method="POST">
+                            <input type="hidden" name="status" value="<?= $courseData['status'] ?>">
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="ml-auto">
@@ -328,27 +334,26 @@ if (isset($_SESSION['course_error'])) {
                                     <div class="form-group col-6">
                                         <label class="col-form-label">Course Title</label>
                                         <div>
-                                            <input class="form-control" type="text" name="title" value="<?= isset($courseData['title']) ? $courseData['title'] : '' ?>">
+                                            <input class="form-control" type="text" name="title" value="<?= $courseData['title'] ? $courseData['title'] : '' ?>">
                                         </div>
                                     </div>
                                     <div class="form-group col-6">
                                         <label class="col-form-label">Course Banner</label>
                                         <div>
-                                            <input class="form-control" type="text" name="course_bnr" value="<?= isset($courseData['course_bnr']) ? $courseData['course_bnr'] : '' ?>">
+                                            <input class="form-control" type="text" name="course_bnr" value="<?= $courseData['banner'] ? $courseData['banner'] : '' ?>">
                                         </div>
                                     </div>
                                     <div class="form-group col-6">
                                         <label class="col-form-label">Skill Level</label>
                                         <div>
                                             <select class="form-control" name="skill_level">
-                                                <option value="<?= $courseData['level']?>" <?= isset($courseData['level']) && $courseData['level'] == 'beginner' ? 'selected' : '' ?>>Beginner</option>
-                                                <option value="<?= $courseData['level']?>" <?= isset($courseData['level']) && $courseData['level'] == 'intermediate' ? 'selected' : '' ?>>Intermediate</option>
-                                                <option value="<?= $courseData['level']?>" <?= isset($courseData['level']) && $courseData['level'] == 'advanced' ? 'selected' : '' ?>>Advanced</option>
+                                                <option value="<?= $courseData['lvl']?>" <?= $courseData['lvl'] && $courseData['lvl'] == 'beginner' ? 'selected' : '' ?>>Beginner</option>
+                                                <option value="<?= $courseData['lvl']?>" <?= $courseData['lvl'] && $courseData['lvl'] == 'intermediate' ? 'selected' : '' ?>>Intermediate</option>
+                                                <option value="<?= $courseData['lvl']?>" <?= $courseData['lvl'] && $courseData['lvl'] == 'advanced' ? 'selected' : '' ?>>Advanced</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group col-6">
-                                        <input type="hidden" name="status" value="<?= $courseData['status'] ?>">
                                         <label class="col-form-label">Category</label>
                                         <div>
                                             <select class="form-control" name="category_id">
@@ -357,7 +362,7 @@ if (isset($_SESSION['course_error'])) {
                                                 $selectedCtgs = $categories->getAllCategories();
                                                 foreach ($selectedCtgs as $ctg):
                                                 ?>
-                                                    <option value="<?= $ctg['id'] ?>" <?= isset($courseData['category_id']) && $courseData['category_id'] == $ctg['id'] ? 'selected' : '' ?>><?= $ctg['name'] ?></option>
+                                                    <option value="<?= $ctg['id'] ?>" <?= $courseData['ctg_id'] && $courseData['ctg_id'] == $ctg['id'] ? 'selected' : '' ?>><?= $ctg['name'] ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -365,28 +370,28 @@ if (isset($_SESSION['course_error'])) {
                                     <div class="form-group col-6">
                                         <label class="col-form-label">Language</label>
                                         <div>
-                                            <input class="form-control" type="text" name="language" value="<?= isset($courseData['language']) ? $courseData['language'] : '' ?>">
+                                            <input class="form-control" type="text" name="language" value="<?= $courseData['lng'] ? $courseData['lng'] : '' ?>">
                                         </div>
                                     </div>
                                     <div class="form-group col-6">
                                         <label class="col-form-label">Duration</label>
                                         <div>
-                                            <input class="form-control" type="time" name="duration" value="<?= isset($courseData['duration']) ? $courseData['duration'] : '' ?>">
+                                            <input class="form-control" type="time" name="duration" value="<?= $courseData['duration'] ? $courseData['duration'] : '' ?>">
                                         </div>
                                     </div>
                                     <div class="form-group col-6">
                                         <label class="col-form-label">Type</label>
                                         <div>
                                             <select class="form-control" name="type">
-                                                <option value="Video" <?= isset($courseData['type']) && $courseData['type'] == 'Video' ? 'selected' : '' ?>>Video</option>
-                                                <option value="document" <?= isset($courseData['type']) && $courseData['type'] == 'document' ? 'selected' : '' ?>>Document</option>
+                                                <option value="Video" <?= $courseData['type'] && $courseData['type'] == 'Video' ? 'selected' : '' ?>>Video</option>
+                                                <option value="document" <?= $courseData['type'] && $courseData['type'] == 'document' ? 'selected' : '' ?>>Document</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group col-6">
                                         <label class="col-form-label">Certification</label>
                                         <div>
-                                            <input class="form-control" type="text" name="certification" value="<?= isset($courseData['certification']) ? $courseData['certification'] : '' ?>">
+                                            <input class="form-control" type="text" name="certification" value="<?= $courseData['crtf'] ? $courseData['crtf'] : '' ?>">
                                         </div>
                                     </div>
                                     <div class="seperator"></div>
@@ -399,25 +404,25 @@ if (isset($_SESSION['course_error'])) {
                                     <div class="form-group col-12">
                                         <label class="col-form-label">Course Description</label>
                                         <div>
-                                            <textarea class="form-control" name="description"><?= isset($courseData['dsc']) ? $courseData['dsc'] : '' ?></textarea>
+                                            <textarea class="form-control" name="description"><?= $courseData['dsc'] ? $courseData['dsc'] : '' ?></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group col-12">
                                         <label class="col-form-label">Content</label>
                                         <div>
-                                            <textarea class="form-control" name="content"><?= isset($courseData['cnt']) ? $courseData['cnt'] : '' ?></textarea>
+                                            <textarea class="form-control" name="content"><?= $courseData['cntt'] ? $courseData['cntt'] : '' ?></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group col-12">
                                         <label class="col-form-label">Document Link</label>
                                         <div>
-                                            <input class="form-control" type="text" name="document_link" value="<?= isset($courseData['document_link']) ? $courseData['document_link'] : '' ?>">
+                                            <input class="form-control" type="text" name="document_link" value="<?= $courseData['document_link'] ? $courseData['document_link'] : '' ?>">
                                         </div>
                                     </div>
                                     <div class="form-group col-12">
                                         <label class="col-form-label">Video Link</label>
                                         <div>
-                                            <input class="form-control" type="text" name="video_link" value="<?= isset($courseData['video_link']) ? $courseData['video_link'] : '' ?>">
+                                            <input class="form-control" type="text" name="video_link" value="<?= $courseData['video_link'] ? $courseData['video_link'] : '' ?>">
                                         </div>
                                     </div>
                                     <div class="col-12">
