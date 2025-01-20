@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from educhamp.themetrades.com/demo/admin/add-listing.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:09:05 GMT -->
+<!-- Mirrored from educhamp.themetrades.com/demo/admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:08:15 GMT -->
 <head>
 
 	<!-- META ============================================= -->
@@ -22,7 +22,7 @@
 	
 	<!-- FAVICONS ICON ============================================= -->
 	<link rel="icon" href="../error-404.html" type="image/x-icon" />
-	<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.png" />
+	<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
 	
 	<!-- PAGE TITLE HERE ============================================= -->
 	<title>EduChamp : Education HTML Template </title>
@@ -66,12 +66,31 @@
 			<div class="ttr-logo-box">
 				<div>
 					<a href="index.html" class="ttr-logo">
-						<img alt="" class="ttr-logo-mobile" src="../assets/assets/images/logo-mobile.png" width="30" height="30">
-						<img alt="" class="ttr-logo-desktop" src="../assets/assets/images/logo-white.png" width="160" height="27">
+						<img class="ttr-logo-mobile" alt="" src="../assets/assets/images/logo-mobile.png" width="30" height="30">
+						<img class="ttr-logo-desktop" alt="" src="../assets/assets/images/logo-white.png" width="160" height="27">
 					</a>
 				</div>
 			</div>
 			<!--logo end -->
+			<div class="ttr-header-menu">
+				<!-- header left menu start -->
+				<ul class="ttr-header-navigation">
+					<li>
+						<a href="../index.html" class="ttr-material-button ttr-submenu-toggle">HOME</a>
+					</li>
+					<li>
+						<a href="#" class="ttr-material-button ttr-submenu-toggle">QUICK MENU <i class="fa fa-angle-down"></i></a>
+						<div class="ttr-header-submenu">
+							<ul>
+								<li><a href="../courses.html">Our Courses</a></li>
+								<li><a href="../event.html">New Event</a></li>
+								<li><a href="../membership.html">Membership</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+				<!-- header left menu end -->
+			</div>
 			<div class="ttr-header-right ttr-with-seperator">
 				<!-- header right menu start -->
 				<ul class="ttr-header-navigation">
@@ -79,11 +98,116 @@
 						<a href="#" class="ttr-material-button ttr-search-toggle"><i class="fa fa-search"></i></a>
 					</li>
 					<li>
-						<a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="../assets/assets/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
+						<a href="#" class="ttr-material-button ttr-submenu-toggle"><i class="fa fa-bell"></i></a>
+						<div class="ttr-header-submenu noti-menu">
+							<div class="ttr-notify-header">
+								<span class="ttr-notify-text-top">9 New</span>
+								<span class="ttr-notify-text">User Notifications</span>
+							</div>
+							<div class="noti-box-list">
+								<ul>
+									<li>
+										<span class="notification-icon dashbg-gray">
+											<i class="fa fa-check"></i>
+										</span>
+										<span class="notification-text">
+											<span>Sneha Jogi</span> sent you a message.
+										</span>
+										<span class="notification-time">
+											<a href="#" class="fa fa-close"></a>
+											<span> 02:14</span>
+										</span>
+									</li>
+									<li>
+										<span class="notification-icon dashbg-yellow">
+											<i class="fa fa-shopping-cart"></i>
+										</span>
+										<span class="notification-text">
+											<a href="#">Your order is placed</a> sent you a message.
+										</span>
+										<span class="notification-time">
+											<a href="#" class="fa fa-close"></a>
+											<span> 7 Min</span>
+										</span>
+									</li>
+									<li>
+										<span class="notification-icon dashbg-red">
+											<i class="fa fa-bullhorn"></i>
+										</span>
+										<span class="notification-text">
+											<span>Your item is shipped</span> sent you a message.
+										</span>
+										<span class="notification-time">
+											<a href="#" class="fa fa-close"></a>
+											<span> 2 May</span>
+										</span>
+									</li>
+									<li>
+										<span class="notification-icon dashbg-green">
+											<i class="fa fa-comments-o"></i>
+										</span>
+										<span class="notification-text">
+											<a href="#">Sneha Jogi</a> sent you a message.
+										</span>
+										<span class="notification-time">
+											<a href="#" class="fa fa-close"></a>
+											<span> 14 July</span>
+										</span>
+									</li>
+									<li>
+										<span class="notification-icon dashbg-primary">
+											<i class="fa fa-file-word-o"></i>
+										</span>
+										<span class="notification-text">
+											<span>Sneha Jogi</span> sent you a message.
+										</span>
+										<span class="notification-time">
+											<a href="#" class="fa fa-close"></a>
+											<span> 15 Min</span>
+										</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</li>
+					<li>
+						<a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="assets/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
 						<div class="ttr-header-submenu">
 							<ul>
-								<li><a href="logout.php">Logout</a></li>
+								<li><a href="user-profile.html">My profile</a></li>
+								<li><a href="list-view-calendar.html">Activity</a></li>
+								<li><a href="mailbox.html">Messages</a></li>
+								<li><a href="../login.html">Logout</a></li>
 							</ul>
+						</div>
+					</li>
+					<li class="ttr-hide-on-mobile">
+						<a href="#" class="ttr-material-button"><i class="ti-layout-grid3-alt"></i></a>
+						<div class="ttr-header-submenu ttr-extra-menu">
+							<a href="#">
+								<i class="fa fa-music"></i>
+								<span>Musics</span>
+							</a>
+							<a href="#">
+								<i class="fa fa-youtube-play"></i>
+								<span>Videos</span>
+							</a>
+							<a href="#">
+								<i class="fa fa-envelope"></i>
+								<span>Emails</span>
+							</a>
+							<a href="#">
+								<i class="fa fa-book"></i>
+								<span>Reports</span>
+							</a>
+							<a href="#">
+								<i class="fa fa-smile-o"></i>
+								<span>Persons</span>
+							</a>
+							<a href="#">
+								<i class="fa fa-picture-o"></i>
+								<span>Pictures</span>
+							</a>
 						</div>
 					</li>
 				</ul>
@@ -130,10 +254,76 @@
 		                </a>
 		            </li>
 					<li>
+						<a href="courses.html" class="ttr-material-button">
+							<span class="ttr-icon"><i class="ti-book"></i></span>
+		                	<span class="ttr-label">Courses</span>
+		                </a>
+		            </li>
+					<li>
+						<a href="#" class="ttr-material-button">
+							<span class="ttr-icon"><i class="ti-email"></i></span>
+		                	<span class="ttr-label">Mailbox</span>
+		                	<span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+		                </a>
+		                <ul>
+		                	<li>
+		                		<a href="mailbox.html" class="ttr-material-button"><span class="ttr-label">Mail Box</span></a>
+		                	</li>
+		                	<li>
+		                		<a href="mailbox-compose.html" class="ttr-material-button"><span class="ttr-label">Compose</span></a>
+		                	</li>
+							<li>
+		                		<a href="mailbox-read.html" class="ttr-material-button"><span class="ttr-label">Mail Read</span></a>
+		                	</li>
+		                </ul>
+		            </li>
+					<li>
+						<a href="#" class="ttr-material-button">
+							<span class="ttr-icon"><i class="ti-calendar"></i></span>
+		                	<span class="ttr-label">Calendar</span>
+		                	<span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+		                </a>
+		                <ul>
+		                	<li>
+		                		<a href="basic-calendar.html" class="ttr-material-button"><span class="ttr-label">Basic Calendar</span></a>
+		                	</li>
+		                	<li>
+		                		<a href="list-view-calendar.html" class="ttr-material-button"><span class="ttr-label">List View</span></a>
+		                	</li>
+		                </ul>
+		            </li>
+					<li>
+						<a href="bookmark.html" class="ttr-material-button">
+							<span class="ttr-icon"><i class="ti-bookmark-alt"></i></span>
+		                	<span class="ttr-label">Bookmarks</span>
+		                </a>
+		            </li>
+					<li>
+						<a href="review.html" class="ttr-material-button">
+							<span class="ttr-icon"><i class="ti-comments"></i></span>
+		                	<span class="ttr-label">Review</span>
+		                </a>
+		            </li>
+					<li>
 						<a href="add-listing.html" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-layout-accordion-list"></i></span>
 		                	<span class="ttr-label">Add listing</span>
 		                </a>
+		            </li>
+					<li>
+						<a href="#" class="ttr-material-button">
+							<span class="ttr-icon"><i class="ti-user"></i></span>
+		                	<span class="ttr-label">My Profile</span>
+		                	<span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+		                </a>
+		                <ul>
+		                	<li>
+		                		<a href="user-profile.html" class="ttr-material-button"><span class="ttr-label">User Profile</span></a>
+		                	</li>
+		                	<li>
+		                		<a href="teacher-profile.html" class="ttr-material-button"><span class="ttr-label">Teacher Profile</span></a>
+		                	</li>
+		                </ul>
 		            </li>
 		            <li class="ttr-seperate"></li>
 				</ul>
@@ -148,119 +338,347 @@
 	<main class="ttr-wrapper">
 		<div class="container-fluid">
 			<div class="db-breadcrumb">
-				<h4 class="breadcrumb-title">Add listing</h4>
+				<h4 class="breadcrumb-title">Dashboard</h4>
 				<ul class="db-breadcrumb-list">
 					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
-					<li>Add listing</li>
+					<li>Dashboard</li>
 				</ul>
 			</div>	
+			<!-- Card -->
+			<div class="row">
+				<div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+					<div class="widget-card widget-bg1">					 
+						<div class="wc-item">
+							<h4 class="wc-title">
+								Total Frofit
+							</h4>
+							<span class="wc-des">
+								All Customs Value
+							</span>
+							<span class="wc-stats">
+								$<span class="counter">18</span>M 
+							</span>		
+							<div class="progress wc-progress">
+								<div class="progress-bar" role="progressbar" style="width: 78%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							<span class="wc-progress-bx">
+								<span class="wc-change">
+									Change
+								</span>
+								<span class="wc-number ml-auto">
+									78%
+								</span>
+							</span>
+						</div>				      
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+					<div class="widget-card widget-bg2">					 
+						<div class="wc-item">
+							<h4 class="wc-title">
+								 New Feedbacks
+							</h4>
+							<span class="wc-des">
+								Customer Review
+							</span>
+							<span class="wc-stats counter">
+								120 
+							</span>		
+							<div class="progress wc-progress">
+								<div class="progress-bar" role="progressbar" style="width: 88%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							<span class="wc-progress-bx">
+								<span class="wc-change">
+									Change
+								</span>
+								<span class="wc-number ml-auto">
+									88%
+								</span>
+							</span>
+						</div>				      
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+					<div class="widget-card widget-bg3">					 
+						<div class="wc-item">
+							<h4 class="wc-title">
+								New Orders 
+							</h4>
+							<span class="wc-des">
+								Fresh Order Amount 
+							</span>
+							<span class="wc-stats counter">
+								772 
+							</span>		
+							<div class="progress wc-progress">
+								<div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							<span class="wc-progress-bx">
+								<span class="wc-change">
+									Change
+								</span>
+								<span class="wc-number ml-auto">
+									65%
+								</span>
+							</span>
+						</div>				      
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+					<div class="widget-card widget-bg4">					 
+						<div class="wc-item">
+							<h4 class="wc-title">
+								New Users 
+							</h4>
+							<span class="wc-des">
+								Joined New User
+							</span>
+							<span class="wc-stats counter">
+								350 
+							</span>		
+							<div class="progress wc-progress">
+								<div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							<span class="wc-progress-bx">
+								<span class="wc-change">
+									Change
+								</span>
+								<span class="wc-number ml-auto">
+									90%
+								</span>
+							</span>
+						</div>				      
+					</div>
+				</div>
+			</div>
+			<!-- Card END -->
 			<div class="row">
 				<!-- Your Profile Views Chart -->
-				<div class="col-lg-12 m-b30">
+				<div class="col-lg-8 m-b30">
 					<div class="widget-box">
 						<div class="wc-title">
-							<h4>Add listing</h4>
+							<h4>Your Profile Views</h4>
 						</div>
 						<div class="widget-inner">
-							<form class="edit-profile m-b30">
-								<div class="row">
-									<div class="col-12">
-										<div class="ml-auto">
-											<h3>1. Basic info</h3>
-										</div>
-									</div>
-									<div class="form-group col-6">
-										<label class="col-form-label">Course title</label>
-										<div>
-											<input class="form-control" type="text" value="">
-										</div>
-									</div>
-									<div class="form-group col-6">
-										<label class="col-form-label">Course title</label>
-										<div>
-											<input class="form-control" type="text" value="">
-										</div>
-									</div>
-									<div class="form-group col-6">
-										<label class="col-form-label">Course start</label>
-										<div>
-											<input class="form-control" type="text" value="">
-										</div>
-									</div>
-									<div class="form-group col-6">
-										<label class="col-form-label">Course expire</label>
-										<div>
-											<input class="form-control" type="text" value="">
-										</div>
-									</div>
-									<div class="form-group col-6">
-										<label class="col-form-label">Teacher name</label>
-										<div>
-											<input class="form-control" type="text" value="">
-										</div>
-									</div>
-									<div class="seperator"></div>
-									
-									<div class="col-12 m-t20">
-										<div class="ml-auto m-b5">
-											<h3>2. Description</h3>
-										</div>
-									</div>
-									<div class="form-group col-12">
-										<label class="col-form-label">Course description</label>
-										<div>
-											<textarea class="form-control"> </textarea>
-										</div>
-									</div>
-									<div class="col-12 m-t20">
-										<div class="ml-auto">
-											<h3 class="m-form__section">3. Add Item</h3>
-										</div>
-									</div>
-									<div class="col-12">
-										<table id="item-add" style="width:100%;">
-											<tr class="list-item">
-												<td>
-													<div class="row">
-														<div class="col-md-4">
-															<label class="col-form-label">Course Name</label>
-															<div>
-																<input class="form-control" type="text" value="">
-															</div>
-														</div>
-														<div class="col-md-3">
-															<label class="col-form-label">Course Category</label>
-															<div>
-																<input class="form-control" type="text" value="">
-															</div>
-														</div>
-														<div class="col-md-3">
-															<label class="col-form-label">Course Category</label>
-															<div>
-																<input class="form-control" type="text" value="">
-															</div>
-														</div>
-														<div class="col-md-2">
-															<label class="col-form-label">Close</label>
-															<div class="form-group">
-																<a class="delete" href="#"><i class="fa fa-close"></i></a>
-															</div>
-														</div>
-													</div>
-												</td>
-											</tr>
-										</table>
-									</div>
-									<div class="col-12">
-										<button type="button" class="btn-secondry add-item m-r5"><i class="fa fa-fw fa-plus-circle"></i>Add Item</button>
-										<button type="reset" class="btn">Save changes</button>
-									</div>
-								</div>
-							</form>
+							<canvas id="chart" width="100" height="45"></canvas>
 						</div>
 					</div>
 				</div>
 				<!-- Your Profile Views Chart END-->
+				<div class="col-lg-4 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>Notifications</h4>
+						</div>
+						<div class="widget-inner">
+							<div class="noti-box-list">
+								<ul>
+									<li>
+										<span class="notification-icon dashbg-gray">
+											<i class="fa fa-check"></i>
+										</span>
+										<span class="notification-text">
+											<span>Sneha Jogi</span> sent you a message.
+										</span>
+										<span class="notification-time">
+											<a href="#" class="fa fa-close"></a>
+											<span> 02:14</span>
+										</span>
+									</li>
+									<li>
+										<span class="notification-icon dashbg-yellow">
+											<i class="fa fa-shopping-cart"></i>
+										</span>
+										<span class="notification-text">
+											<a href="#">Your order is placed</a> sent you a message.
+										</span>
+										<span class="notification-time">
+											<a href="#" class="fa fa-close"></a>
+											<span> 7 Min</span>
+										</span>
+									</li>
+									<li>
+										<span class="notification-icon dashbg-red">
+											<i class="fa fa-bullhorn"></i>
+										</span>
+										<span class="notification-text">
+											<span>Your item is shipped</span> sent you a message.
+										</span>
+										<span class="notification-time">
+											<a href="#" class="fa fa-close"></a>
+											<span> 2 May</span>
+										</span>
+									</li>
+									<li>
+										<span class="notification-icon dashbg-green">
+											<i class="fa fa-comments-o"></i>
+										</span>
+										<span class="notification-text">
+											<a href="#">Sneha Jogi</a> sent you a message.
+										</span>
+										<span class="notification-time">
+											<a href="#" class="fa fa-close"></a>
+											<span> 14 July</span>
+										</span>
+									</li>
+									<li>
+										<span class="notification-icon dashbg-primary">
+											<i class="fa fa-file-word-o"></i>
+										</span>
+										<span class="notification-text">
+											<span>Sneha Jogi</span> sent you a message.
+										</span>
+										<span class="notification-time">
+											<a href="#" class="fa fa-close"></a>
+											<span> 15 Min</span>
+										</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>New Users</h4>
+						</div>
+						<div class="widget-inner">
+							<div class="new-user-list">
+								<ul>
+									<li>
+										<span class="new-users-pic">
+											<img src="../assets/assets/images/testimonials/pic1.jpg" alt=""/>
+										</span>
+										<span class="new-users-text">
+											<a href="#" class="new-users-name">Anna Strong </a>
+											<span class="new-users-info">Visual Designer,Google Inc </span>
+										</span>
+										<span class="new-users-btn">
+											<a href="#" class="btn button-sm outline">Follow</a>
+										</span>
+									</li>
+									<li>
+										<span class="new-users-pic">
+											<img src="../assets/assets/images/testimonials/pic2.jpg" alt=""/>
+										</span>
+										<span class="new-users-text">
+											<a href="#" class="new-users-name"> Milano Esco </a>
+											<span class="new-users-info">Product Designer, Apple Inc </span>
+										</span>
+										<span class="new-users-btn">
+											<a href="#" class="btn button-sm outline">Follow</a>
+										</span>
+									</li>
+									<li>
+										<span class="new-users-pic">
+											<img src="../assets/assets/images/testimonials/pic1.jpg" alt=""/>
+										</span>
+										<span class="new-users-text">
+											<a href="#" class="new-users-name">Nick Bold  </a>
+											<span class="new-users-info">Web Developer, Facebook Inc </span>
+										</span>
+										<span class="new-users-btn">
+											<a href="#" class="btn button-sm outline">Follow</a>
+										</span>
+									</li>
+									<li>
+										<span class="new-users-pic">
+											<img src="../assets/assets/images/testimonials/pic2.jpg" alt=""/>
+										</span>
+										<span class="new-users-text">
+											<a href="#" class="new-users-name">Wiltor Delton </a>
+											<span class="new-users-info">Project Manager, Amazon Inc </span>
+										</span>
+										<span class="new-users-btn">
+											<a href="#" class="btn button-sm outline">Follow</a>
+										</span>
+									</li>
+									<li>
+										<span class="new-users-pic">
+											<img src="../assets/assets/images/testimonials/pic3.jpg" alt=""/>
+										</span>
+										<span class="new-users-text">
+											<a href="#" class="new-users-name">Nick Stone </a>
+											<span class="new-users-info">Project Manager, Amazon Inc  </span>
+										</span>
+										<span class="new-users-btn">
+											<a href="#" class="btn button-sm outline">Follow</a>
+										</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>Orders</h4>
+						</div>
+						<div class="widget-inner">
+							<div class="orders-list">
+								<ul>
+									<li>
+										<span class="orders-title">
+											<a href="#" class="orders-title-name">Anna Strong </a>
+											<span class="orders-info">Order #02357 | Date 12/08/2019</span>
+										</span>
+										<span class="orders-btn">
+											<a href="#" class="btn button-sm red">Unpaid</a>
+										</span>
+									</li>
+									<li>
+										<span class="orders-title">
+											<a href="#" class="orders-title-name">Revenue</a>
+											<span class="orders-info">Order #02357 | Date 12/08/2019</span>
+										</span>
+										<span class="orders-btn">
+											<a href="#" class="btn button-sm red">Unpaid</a>
+										</span>
+									</li>
+									<li>
+										<span class="orders-title">
+											<a href="#" class="orders-title-name">Anna Strong </a>
+											<span class="orders-info">Order #02357 | Date 12/08/2019</span>
+										</span>
+										<span class="orders-btn">
+											<a href="#" class="btn button-sm green">Paid</a>
+										</span>
+									</li>
+									<li>
+										<span class="orders-title">
+											<a href="#" class="orders-title-name">Revenue</a>
+											<span class="orders-info">Order #02357 | Date 12/08/2019</span>
+										</span>
+										<span class="orders-btn">
+											<a href="#" class="btn button-sm green">Paid</a>
+										</span>
+									</li>
+									<li>
+										<span class="orders-title">
+											<a href="#" class="orders-title-name">Anna Strong </a>
+											<span class="orders-info">Order #02357 | Date 12/08/2019</span>
+										</span>
+										<span class="orders-btn">
+											<a href="#" class="btn button-sm green">Paid</a>
+										</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>Basic Calendar</h4>
+						</div>
+						<div class="widget-inner">
+							<div id="calendar"></div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</main>
@@ -283,26 +701,89 @@
 <script src="../assets/assets/js/functions.js"></script>
 <script src="../assets/assets/vendors/chart/chart.min.js"></script>
 <script src="../assets/assets/js/admin.js"></script>
+<script src='../assets/assets/vendors/calendar/moment.min.js'></script>
+<script src='../assets/assets/vendors/calendar/fullcalendar.js'></script>
 <script src='../assets/assets/vendors/switcher/switcher.js'></script>
 <script>
-// Pricing add
-	function newMenuItem() {
-		var newElem = $('tr.list-item').first().clone();
-		newElem.find('input').val('');
-		newElem.appendTo('table#item-add');
-	}
-	if ($("table#item-add").is('*')) {
-		$('.add-item').on('click', function (e) {
-			e.preventDefault();
-			newMenuItem();
-		});
-		$(document).on("click", "#item-add .delete", function (e) {
-			e.preventDefault();
-			$(this).parent().parent().parent().parent().remove();
-		});
-	}
+  $(document).ready(function() {
+
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay,listWeek'
+      },
+      defaultDate: '2019-03-12',
+      navLinks: true, // can click day/week names to navigate views
+
+      weekNumbers: true,
+      weekNumbersWithinDays: true,
+      weekNumberCalculation: 'ISO',
+
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+        {
+          title: 'All Day Event',
+          start: '2019-03-01'
+        },
+        {
+          title: 'Long Event',
+          start: '2019-03-07',
+          end: '2019-03-10'
+        },
+        {
+          id: 999,
+          title: 'Repeating Event',
+          start: '2019-03-09T16:00:00'
+        },
+        {
+          id: 999,
+          title: 'Repeating Event',
+          start: '2019-03-16T16:00:00'
+        },
+        {
+          title: 'Conference',
+          start: '2019-03-11',
+          end: '2019-03-13'
+        },
+        {
+          title: 'Meeting',
+          start: '2019-03-12T10:30:00',
+          end: '2019-03-12T12:30:00'
+        },
+        {
+          title: 'Lunch',
+          start: '2019-03-12T12:00:00'
+        },
+        {
+          title: 'Meeting',
+          start: '2019-03-12T14:30:00'
+        },
+        {
+          title: 'Happy Hour',
+          start: '2019-03-12T17:30:00'
+        },
+        {
+          title: 'Dinner',
+          start: '2019-03-12T20:00:00'
+        },
+        {
+          title: 'Birthday Party',
+          start: '2019-03-13T07:00:00'
+        },
+        {
+          title: 'Click for Google',
+          url: 'http://google.com/',
+          start: '2019-03-28'
+        }
+      ]
+    });
+
+  });
+
 </script>
 </body>
 
-<!-- Mirrored from educhamp.themetrades.com/demo/admin/add-listing.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:09:05 GMT -->
+<!-- Mirrored from educhamp.themetrades.com/demo/admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:09:05 GMT -->
 </html>
