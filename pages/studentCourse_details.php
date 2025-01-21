@@ -18,7 +18,7 @@ if (!$course_id) {
 	die("Course ID is missing.");
 }
 
-$student = new Student();
+$student = new Student(null, null, null, null, null);
 
 $is_enrolled = $student->isEnrolled($student_id, $course_id);
 

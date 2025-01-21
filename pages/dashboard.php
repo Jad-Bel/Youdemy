@@ -286,9 +286,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </thead>
                     <tbody>
                         <?php
-                        $currentUser = new Admin('test', 'test@test.com', 'test', 'admin');
+                        $currentUser = new Admin(3, 'admin', 'admin@example.com', 'admin123', 'admin', '');
                         $allTeacher = User::getAllTeachers($currentUser);
-
+print_r($_SESSION);
+// echo "<br>";
+// print_r($currentUser);
+// die;
+// echo "<br>";
+                        echo $currentUser->getRole();
                         if (!empty($allTeacher)) {
                             foreach ($allTeacher as $teacher):
                         ?>
@@ -345,12 +350,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                             foreach ($allUsers as $user):
                             ?>
-                                <td><?= $user['id'] ?></td>
-                                <td><?= $user['username'] ?></td>
-                                <td><?= $user['email'] ?></td>
-                                <td><?= $user['role'] ?></td>
-                                <td><?= $user['created_at'] ?></td>
-                                <td><?= $user['status'] ?></td>
+                                <td><?= $user->id ?></td>
+                                <td><?= $user->username ?></td>
+                                <td><?= $user->email ?></td>
+                                <td><?= $user->role ?></td>
+                                <td><?= $user->created_at ?></td>
+                                <td><?= $user->status ?></td>
                                 <td>
                                     <form method="POST" action="" style="display:inline;">
                                         <input type="hidden" name="action" value="ban_user">

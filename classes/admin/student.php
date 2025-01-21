@@ -1,8 +1,9 @@
 <?php
 
 class Student extends User {
-    public function __construct() {
-        parent::__construct(null, null, null, 'student', null);
+    public function __construct($username, $email, $password, $role, $status)
+    {
+        parent::__construct(null, $username, $email, $password, $role, $status);
     }
 
     public function enroll($id, $course_id) {

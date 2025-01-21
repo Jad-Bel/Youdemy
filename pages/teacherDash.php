@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 }
 
-$teacher = new Teacher(null, null, null, null, null);
+$teacher = new Teacher(null, null, null, null, null, null);
 $statistics = $teacher->getStatistics($teacher_id);
 
 $enrolledStudentsCount = $statistics[0]->count;
@@ -315,7 +315,7 @@ $averageStudentPerCourse = $statistics[3]->count;
                             <div class="orders-list">
                                 <ul class="list-unstyled">
                                     <?php
-                                    $teacherModal = new Teacher(null, null, null, null, null);
+                                    $teacherModal = new Teacher(null, null, null, null, null, null);
                                     $enrolledUsers = $teacherModal->displayEnrolledUsers($teacher_id);
                                     if (!empty($enrolledUsers)) {
                                         foreach ($enrolledUsers as $user):

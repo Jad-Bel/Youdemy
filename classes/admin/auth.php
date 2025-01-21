@@ -9,15 +9,16 @@ class Auth {
         $this->conn = $db->getConnection();
     }
 
-    public function register($username, $email, $password, $role) {
+    public function register($username, $email, $password, $role)
+    {
         if ($role === 'teacher') {
-            $user = new Teacher($username, $email, $password, $role, 'pending');
+            $user = new Teacher(null, $username, $email, $password, $role, 'pending');
         } elseif ($role === 'student') {
             $user = new Student($username, $email, $password, $role, 'pending');
         } else {
             throw new Exception("Invalid role.");
         }
-    
+
         if ($user->save()) {
             return true;
         }

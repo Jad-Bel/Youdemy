@@ -12,19 +12,19 @@ class User
     protected $updated_at;
     protected $conn;
 
-    public function __construct($user_id, $username, $email, $password, $role, $status = 'pending')
-{
-    $db = new Database();
-    $this->conn = $db->getConnection();
-    $this->id = $user_id;
-    $this->username = $username;
-    $this->email = $email;
-    $this->password = $password ? $this->hashPassword($password) : null;
-    $this->role = $role;
-    $this->status = $status;
-    $this->created_at = date('Y-m-d H:i:s');
-    $this->updated_at = date('Y-m-d H:i:s');
-}
+    public function __construct($id = null, $username, $email, $password, $role, $status = 'pending')
+    {
+        $db = new Database();
+        $this->conn = $db->getConnection();
+        $this->id = $id;
+        $this->username = $username;
+        $this->email = $email;
+        $this->password = $this->hashPassword($password);
+        $this->role = $role;
+        $this->status = $status;
+        $this->created_at = date('Y-m-d H:i:s');
+        $this->updated_at = date('Y-m-d H:i:s');
+    }
 
     public function getId()
     {
@@ -148,7 +148,7 @@ class User
             $db = new Database();
             $conn = $db->getConnection();
             $stmt = $conn->query("SELECT * FROM users");
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
     }
 
@@ -160,8 +160,10 @@ class User
             $stmt = $conn->query("SELECT * FROM users WHERE role = 'teacher'");
             $result = $stmt->fetchAll(PDO::FETCH_OBJ);
     
+            // echo $currentUser->getRole();
             return $result;
         }
+                // echo "xx";
     
         return [];
     }
