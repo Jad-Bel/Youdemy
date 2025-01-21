@@ -15,7 +15,6 @@ $statistics = $admin->getStatistics();
 
 $coursesCount = $statistics[0]->count;
 $popularCourse = $statistics[1]->count;
-$topTeachers = $statistics[2]->count;
 
 // print_r($popularCourse);
 // die;
@@ -255,7 +254,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="card statistics-card">
                         <div class="card-body">
                             <h5 class="card-title">Top Teachers</h5>
-                            <p class="card-text display-4"><?= $topTeachers ?></p>
+                            <p class="card-text display-4"><?php ?></p>
                         </div>
                     </div>
                 </div>
@@ -263,7 +262,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="card statistics-card">
                         <div class="card-body">
                             <h5 class="card-title">Étudiants Actifs</h5>
-                            <p class="card-text display-4">120</p>
+                            <p class="card-text display-4"></p>
                         </div>
                     </div>
                 </div>
