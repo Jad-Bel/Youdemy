@@ -3,26 +3,31 @@
 // require_once '../user.php';
 
 class Admin extends User {
-    public function __construct($username, $email, $password, $role)
+    public function __construct($username, $email, $password, $role, $status)
     {
-        parent::__construct($username, $email, $password, 'admin');
+        parent::__construct($username, $email, $password, 'admin', $status);
     }
 
-    private function updateUserStatus($id, $status) {
+    private function updateUserStatus($id, $status)
+    {
         $sql = "UPDATE users SET status = :status WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['status' => $status, 'id' => $id]);
+    
     }
 
-    public function banUser ($id) {
+    public function banUser ($id) 
+    {
         $this->updateUserStatus($id, 'suspended');
     }
 
-    public function unbanUser($id) {
+    public function unbanUser($id) 
+    {
         $this->updateUserStatus($id, 'active');
     }
 
-    public function deleteUser($email) {
+    public function deleteUser($email) 
+    {
         if ($this->email == $email) {
             throw new Exception('Admin cannot delete themselves');
         }
@@ -31,11 +36,13 @@ class Admin extends User {
         $stmt->execute(['email' => $email]);
     }
 
-    public function acceptTeacher($id) {
+    public function acceptTeacher($id) 
+    {
         $this->updateUserStatus($id, 'active');
     }
 
-    public function declineTeacher($id) {
+    public function declineTeacher($id) 
+    {
         $this->updateUserStatus($id, 'suspended');
     }
 
@@ -68,5 +75,22 @@ class Admin extends User {
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             return $stmt->execute();
         }
+    }
+
+    public function CoursesCount () {
+        $sql = "SELECT COUNT(*) AS courses_count FROM courses";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function getStatistics()
+    {
+        $coursesCount = $this->CoursesCount();
+    
+        return [
+            (object) ['statistic' => 'Total Courses', 'count' => $coursesCount->courses_count],
+        ];
     }
 }

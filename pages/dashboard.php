@@ -9,11 +9,19 @@ require_once '../classes/admin/tag.php';
 require_once '../classes/admin/course.php';
 require_once '../classes/admin/courseService.php';
 
+$admin = new Admin('test', 'test@test.com', 'test', 'admin', null);
+$statistics = $admin->getStatistics();
+
+$coursesCount = $statistics[0]->count;
+
+// print_r($statistics);
+// die;
+
+
 
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $admin = new Admin('test', 'test@test.com', 'test', 'admin');
 
     switch ($_POST['action']) {
         case 'accept_teacher':
@@ -236,7 +244,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="card statistics-card">
                         <div class="card-body">
                             <h5 class="card-title">Total Cours</h5>
-                            <p class="card-text display-4">45</p>
+                            <p class="card-text display-4"><?= $coursesCount ?></p>
                         </div>
                     </div>
                 </div>

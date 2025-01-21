@@ -180,9 +180,6 @@ if (isset($_SESSION['course_error'])) {
 				<!-- header right menu start -->
 				<ul class="ttr-header-navigation">
 					<li>
-						<a href="#" class="ttr-material-button ttr-search-toggle"><i class="fa fa-search"></i></a>
-					</li>
-					<li>
 						<a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="../assets/assets/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
 						<div class="ttr-header-submenu">
 							<ul>

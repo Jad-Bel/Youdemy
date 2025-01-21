@@ -29,8 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 $teacher = new Teacher(null, null, null, null, null);
 $statistics = $teacher->getStatistics($teacher_id);
-// print_r($statistics);
-// die;
+
 $enrolledStudentsCount = $statistics[0]->count;
 $coursesCount = $statistics[1]->count;
 $approvedCoursesCount = $statistics[2]->count;
@@ -116,10 +115,6 @@ $averageStudentPerCourse = $statistics[3]->count;
             <div class="ttr-header-right ttr-with-seperator">
                 <!-- header right menu start -->
                 <ul class="ttr-header-navigation">
-                    <li>
-                        <a href="#" class="ttr-material-button ttr-search-toggle"><i class="fa fa-search"></i></a>
-                        <a href="#" class="ttr-material-button ttr-search-toggle"><i class="fa fa-search"></i></a>
-                    </li>
                     <li>
                         <a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="../assets/assets/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
                         <div class="ttr-header-submenu">
@@ -229,8 +224,6 @@ $averageStudentPerCourse = $statistics[3]->count;
                             <span class="wc-stats">
                                 <span class="counter"><?= $coursesCount ?></span>
                             </span>
-                            <!-- <span class="wc-stats counter">
-                            </span> -->
                             <div class="progress wc-progress">
                                 <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
