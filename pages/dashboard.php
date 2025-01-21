@@ -294,7 +294,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         // print_r($currentUser);
                         // die;
                         // echo "<br>";
-                        echo $currentUser->getRole();
+                        // echo $currentUser->getRole();
                         if (!empty($allTeacher)) {
                             foreach ($allTeacher as $teacher):
                         ?>
@@ -346,36 +346,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <tbody>
                         <tr>
                             <?php
-                            $currentUser = new Admin('test', 'test@test.com', 'test', 'admin');
+                            $currentUser = new Admin(3, 'admin', 'admin@example.com', 'admin123', 'admin', 'admin');
                             $allUsers = User::getAllUsers($currentUser);
-
-                            foreach ($allUsers as $user):
+                            if (!empty($allUsers)) {
+                                foreach ($allUsers as $user):
                             ?>
-                                <td><?= $user->id ?></td>
-                                <td><?= $user->username ?></td>
-                                <td><?= $user->email ?></td>
-                                <td><?= $user->role ?></td>
-                                <td><?= $user->created_at ?></td>
-                                <td><?= $user->status ?></td>
-                                <td>
-                                    <form method="POST" action="" style="display:inline;">
-                                        <input type="hidden" name="action" value="ban_user">
-                                        <input type="hidden" name="email" value="<?= $user['email'] ?>">
-                                        <button type="submit" class="btn btn-warning btn-sm">Bannir</button>
-                                    </form>
-                                    <form method="POST" action="" style="display:inline;">
-                                        <input type="hidden" name="action" value="unban_user">
-                                        <input type="hidden" name="email" value="<?= $user['email'] ?>">
-                                        <button type="submit" class="btn btn-success btn-sm">Débannir</button>
-                                    </form>
-                                    <form method="POST" action="" style="display:inline;">
-                                        <input type="hidden" name="action" value="delete_user">
-                                        <input type="hidden" name="email" value="<?= $user['email'] ?>">
-                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-                                    </form>
-                                </td>
+                                    <td><?= $user->id ?></td>
+                                    <td><?= $user->username ?></td>
+                                    <td><?= $user->email ?></td>
+                                    <td><?= $user->role ?></td>
+                                    <td><?= $user->created_at ?></td>
+                                    <td><?= $user->status ?></td>
+                                    <td>
+                                        <form method="POST" action="" style="display:inline;">
+                                            <input type="hidden" name="action" value="ban_user">
+                                            <input type="hidden" name="email" value="<?= $user->email ?>">
+                                            <button type="submit" class="btn btn-warning btn-sm">Bannir</button>
+                                        </form>
+                                        <form method="POST" action="" style="display:inline;">
+                                            <input type="hidden" name="action" value="unban_user">
+                                            <input type="hidden" name="email" value="<?= $user->email ?>">
+                                            <button type="submit" class="btn btn-success btn-sm">Débannir</button>
+                                        </form>
+                                        <form method="POST" action="" style="display:inline;">
+                                            <input type="hidden" name="action" value="delete_user">
+                                            <input type="hidden" name="email" value="<?= $user->email ?>">
+                                            <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                        </form>
+                                    </td>
                         </tr>
-                    <?php endforeach; ?>
+                <?php endforeach;
+                            } else {
+                                echo "<tr><td colspan='6'>Aucun enseignant trouvé.</td></tr>";
+                            }
+                ?>
                     </tbody>
                 </table>
             </div>

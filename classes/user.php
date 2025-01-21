@@ -148,8 +148,10 @@ class User
             $db = new Database();
             $conn = $db->getConnection();
             $stmt = $conn->query("SELECT * FROM users");
-            return $stmt->fetchAll(PDO::FETCH_OBJ);
+            $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $result;
         }
+        return [];
     }
 
     public static function getAllTeachers($currentUser)
@@ -160,11 +162,8 @@ class User
             $stmt = $conn->query("SELECT * FROM users WHERE role = 'teacher'");
             $result = $stmt->fetchAll(PDO::FETCH_OBJ);
     
-            // echo $currentUser->getRole();
             return $result;
         }
-                // echo "xx";
-    
         return [];
     }
 }
