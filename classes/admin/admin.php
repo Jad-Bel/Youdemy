@@ -109,42 +109,13 @@ class Admin extends User
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    public function getTopTeachers($limit = 3)
-{
-    $sql = "
-        SELECT 
-            u.id AS teacher_id,
-            u.username AS teacher_name,
-            (SELECT COUNT(e.id) 
-             FROM enrollments e 
-             JOIN courses c ON e.course_id = c.id 
-             WHERE c.teacher_id = u.id) AS enrolled_students_count
-        FROM 
-            users u
-        WHERE 
-            u.role = 'Teacher'
-        ORDER BY 
-            enrolled_students_count DESC
-        LIMIT :limit
-    ";
-
-    $stmt = $this->conn->prepare($sql);
-    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-    $stmt->execute();
-
-    return $stmt->fetchAll(PDO::FETCH_OBJ);
-}
-
     public function getStatistics()
     {
         $coursesCount = $this->CoursesCount();
         $popularCourse = $this->getMostEnrolledCourse();
-        $topTeachers = $this->getTopTeachers();
-
         return [
             (object) ['statistic' => 'Total Courses', 'count' => $coursesCount->courses_count],
             (object) ['statistic' => 'Most Enrolled Course', 'count' => $popularCourse->enrolled_students_count],
-            (object) ['statistic' => 'Top 3 Teachers', 'count' => $topTeachers],
         ];
     }
 }
