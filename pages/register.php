@@ -19,6 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Error: " . $e->getMessage();
     }
 }
+// print_r($_POST);
+// die;
 ?>
 
 <!DOCTYPE html>

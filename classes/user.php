@@ -108,7 +108,7 @@ class User
         }
 
         $sql = "INSERT INTO users (username, email, password, role, status, created_at, updated_at)
-                VALUES (:username, :email, :password, :role, :status, :created_at, :updated_at)";
+                VALUES (:username, :email, :password, :role, :status, NOW(), NOW())";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             'username' => $this->username,
@@ -116,8 +116,6 @@ class User
             'password' => $this->password,
             'role' => $this->role,
             'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
         ]);
         $this->id = $this->conn->lastInsertId();
         return true;
@@ -159,8 +157,12 @@ class User
         if ($currentUser->getRole() == 'admin') {
             $db = new Database();
             $conn = $db->getConnection();
-            $stmt = $conn->query("SELECT * FROM users WHERE role = 'Teacher'");
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = $conn->query("SELECT * FROM users WHERE role = 'teacher'");
+            $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+    
+            return $result;
         }
+    
+        return [];
     }
 }

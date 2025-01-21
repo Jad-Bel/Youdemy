@@ -1,4 +1,5 @@
 <?php
+require_once '../includes/session_check.php';
 require_once '../config/database.php';
 require_once '../classes/user.php';
 require_once '../classes/admin/student.php';
@@ -101,11 +102,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $categories->updateCategory($id, $name);
             break;
-            case 'delete_category':
-                $id = $_POST['category_id'];
-                $categories = new Category();
-                $categories->deleteCategory($id);
-                break;
+        case 'delete_category':
+            $id = $_POST['category_id'];
+            $categories = new Category();
+            $categories->deleteCategory($id);
+            break;
         case 'add_tags':
             $tags = new Tag();
             if (isset($_POST['tag_name']) && is_array($_POST['tag_name'])) {
@@ -125,11 +126,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $tags->updateTag($id, $name);
             break;
-            case 'delete_tag':
-                $id = $_POST['tag_id'];
-                $tags = new Tag();
-                $tags->deleteTag($id);
-                break;
+        case 'delete_tag':
+            $id = $_POST['tag_id'];
+            $tags = new Tag();
+            $tags->deleteTag($id);
+            break;
     }
 }
 ?>
@@ -288,28 +289,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $currentUser = new Admin('test', 'test@test.com', 'test', 'admin');
                         $allTeacher = User::getAllTeachers($currentUser);
 
-                        foreach ($allTeacher as $teacher):
+                        if (!empty($allTeacher)) {
+                            foreach ($allTeacher as $teacher):
                         ?>
-                            <tr>
-                                <td><?= $teacher['id'] ?></td>
-                                <td><?= $teacher['username'] ?></td>
-                                <td><?= $teacher['email'] ?></td>
-                                <td><?= $teacher['created_at'] ?></td>
-                                <td><?= $teacher['status'] ?></td>
-                                <td>
-                                    <form method="POST" action="" style="display:inline;">
-                                        <input type="hidden" name="action" value="accept_teacher">
-                                        <input type="hidden" name="email" value="<?= $teacher['email'] ?>">
-                                        <button type="submit" class="btn btn-success btn-sm">Accepter</button>
-                                    </form>
-                                    <form method="POST" action="" style="display:inline;">
-                                        <input type="hidden" name="action" value="refuse_teacher">
-                                        <input type="hidden" name="email" value="<?= $teacher['email'] ?>">
-                                        <button type="submit" class="btn btn-danger btn-sm">Refuser</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+                                <tr>
+                                    <td><?= $teacher->id ?></td>
+                                    <td><?= $teacher->username ?></td>
+                                    <td><?= $teacher->email ?></td>
+                                    <td><?= $teacher->created_at ?></td>
+                                    <td><?= $teacher->status ?></td>
+                                    <td>
+                                        <form method="POST" action="" style="display:inline;">
+                                            <input type="hidden" name="action" value="accept_teacher">
+                                            <input type="hidden" name="email" value="<?= $teacher->email ?>">
+                                            <button type="submit" class="btn btn-success btn-sm">Accepter</button>
+                                        </form>
+                                        <form method="POST" action="" style="display:inline;">
+                                            <input type="hidden" name="action" value="refuse_teacher">
+                                            <input type="hidden" name="email" value="<?= $teacher->email ?>">
+                                            <button type="submit" class="btn btn-danger btn-sm">Refuser</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                        <?php endforeach;
+                        } else {
+                            echo "<tr><td colspan='6'>Aucun enseignant trouvé.</td></tr>";
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>

@@ -3,9 +3,9 @@
 // require_once '../user.php';
 
 class Admin extends User {
-    public function __construct($username, $email, $password, $role, $status)
+    public function __construct($username, $email, $password, $role = 'admin') 
     {
-        parent::__construct($username, $email, $password, 'admin', $status);
+        parent::__construct($username, $email, $password, 'admin', null);
     }
 
     private function updateUserStatus($id, $status)
