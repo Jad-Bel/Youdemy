@@ -286,13 +286,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </thead>
                     <tbody>
                         <?php
-                        $currentUser = new Admin(3, 'admin', 'admin@example.com', 'admin123', 'admin', '');
+                        $currentUser = new Admin(3, 'admin', 'admin@example.com', 'admin123', 'admin', 'admin');
                         $allTeacher = User::getAllTeachers($currentUser);
-print_r($_SESSION);
-// echo "<br>";
-// print_r($currentUser);
-// die;
-// echo "<br>";
+                        // print_r($_SESSION);
+                        // echo "<br>";
+                        // print_r($allTeacher);
+                        // print_r($currentUser);
+                        // die;
+                        // echo "<br>";
                         echo $currentUser->getRole();
                         if (!empty($allTeacher)) {
                             foreach ($allTeacher as $teacher):

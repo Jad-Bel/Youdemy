@@ -33,7 +33,7 @@ class Auth {
                 exit();
             }
     
-            $user = new User($userData['username'], $userData['email'], '', $userData['role'], $userData['status']);
+            $user = new User($userData['id'], $userData['username'], $userData['email'], '', $userData['role'], $userData['status']);
     
             if ($user->verifyPassword($password, $userData['password'])) {
                 session_start();

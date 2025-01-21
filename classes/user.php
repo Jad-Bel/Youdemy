@@ -12,7 +12,7 @@ class User
     protected $updated_at;
     protected $conn;
 
-    public function __construct($id = null, $username, $email, $password, $role, $status = 'pending')
+    public function __construct($username, $email, $password, $role, $status, $id = null)
     {
         $db = new Database();
         $this->conn = $db->getConnection();

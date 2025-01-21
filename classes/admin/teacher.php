@@ -1,6 +1,4 @@
 <?php
-// require_once '../classes/user.php';
-
 class Teacher extends User
 {
     public function __construct($username, $email, $password, $role, $status, $id = null)
