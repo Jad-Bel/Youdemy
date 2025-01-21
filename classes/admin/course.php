@@ -219,17 +219,3 @@ class ConcreteCourse extends Course
         return $stmt->rowCount() > 0;
     }
 }
-
-// class Course1 extends course {
-//     protected $conn;
-//     protected $document_path;
-
-//     public function __construct($title, $description, $teacher_id, $category_id)
-//     {
-//         parent::__construct($title, $description, $teacher_id, $category_id);
-//     }
-
-//     public function displayContent() {
-//         return "<a href='{$this->document_path}' download>Download Document</a>";
-//     }
-// }

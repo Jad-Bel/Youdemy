@@ -14,8 +14,9 @@ $admin = new Admin('test', 'test@test.com', 'test', 'admin', null);
 $statistics = $admin->getStatistics();
 
 $coursesCount = $statistics[0]->count;
+$popularCourse = $statistics[1]->count;
 
-// print_r($statistics);
+// print_r($popularCourse);
 // die;
 
 
@@ -236,8 +237,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-md-3">
                     <div class="card statistics-card">
                         <div class="card-body">
-                            <h5 class="card-title">Total Utilisateurs</h5>
-                            <p class="card-text display-4">150</p>
+                            <h5 class="card-title">Most Popular Course</h5>
+                            <p class="card-text display-4"><?= $popularCourse ?></p>
                         </div>
                     </div>
                 </div>
