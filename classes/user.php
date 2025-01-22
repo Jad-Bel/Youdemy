@@ -12,14 +12,14 @@ class User
     protected $updated_at;
     protected $conn;
 
-    public function __construct($username, $email, $password, $role, $status, $id = null)
+    public function __construct($id, $username, $email, $password = null, $role = null, $status = null)
     {
         $db = new Database();
         $this->conn = $db->getConnection();
         $this->id = $id;
         $this->username = $username;
         $this->email = $email;
-        $this->password = $this->hashPassword($password);
+        $this->password = $password ? $this->hashPassword($password) : null;
         $this->role = $role;
         $this->status = $status;
         $this->created_at = date('Y-m-d H:i:s');
@@ -161,7 +161,7 @@ class User
             $conn = $db->getConnection();
             $stmt = $conn->query("SELECT * FROM users WHERE role = 'teacher'");
             $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-    
+
             return $result;
         }
         return [];

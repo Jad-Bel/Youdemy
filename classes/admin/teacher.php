@@ -1,9 +1,9 @@
 <?php
 class Teacher extends User
 {
-    public function __construct($username, $email, $password, $role, $status, $id = null)
+    public function __construct($id, $username, $email, $password, $role, $status)
     {
-        parent::__construct($username, $email, $password, $role, $status, $id);
+        parent::__construct($id, $username, $email, $password, $role, $status);
     }
 
 
@@ -58,7 +58,7 @@ class Teacher extends User
         $coursesCount = $this->getCoursesCount($teacher_id);
         $approvedCoursesCount = $this->getApprovedCoursesCount($teacher_id);
         $averageStudentPerCourse = $this->getAverageStudentsPerCourse($teacher_id);
-    
+
         return [
             (object) ['statistic' => 'Enrolled Students', 'count' => $enrolledStudentsCount->enrolled_students_count],
             (object) ['statistic' => 'Total Courses', 'count' => $coursesCount->courses_count],
@@ -90,21 +90,24 @@ class Teacher extends User
     public function displayEnrolledUsers($teacher_id)
     {
         $sql = "
-                SELECT 
-                    u.id AS user_id,
-                    u.username,
-                    u.email,
-                    c.id AS course_id,
-                    c.title AS course_title
-                FROM 
-                    users u
-                JOIN 
-                    enrollments e ON u.id = e.id
-                JOIN 
-                    courses c ON e.course_id = c.id
-                WHERE 
-                    c.teacher_id = :teacher_id
-                    ";
+            SELECT 
+                u.id AS user_id,
+                u.username,
+                u.email,
+                u.password,       
+                u.role,           
+                u.status,         
+                c.id AS course_id,
+                c.title AS course_title
+            FROM 
+                users u
+            JOIN 
+                enrollments e ON u.id = e.id  
+            JOIN 
+                courses c ON e.course_id = c.id
+            WHERE 
+                c.teacher_id = :teacher_id
+        ";
 
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':teacher_id', $teacher_id, PDO::PARAM_INT);
@@ -115,11 +118,9 @@ class Teacher extends User
         $enrolledUsers = [];
         foreach ($results as $row) {
             $enrolledUsers[] = new User(
-                $row['user_id'],
-                $row['username'],
-                $row['email'],
-                $row['course_id'],
-                $row['course_title']
+                $row['user_id'],       
+                $row['username'],      
+                $row['email']          
             );
         }
 
