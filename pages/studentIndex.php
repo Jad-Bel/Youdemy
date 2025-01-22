@@ -10,7 +10,7 @@ $courseService = new CourseService($courseModal, null);
 $keywords = $_GET['keywords'] ?? '';
 
 if (!empty($keywords)) {
-    header("Location: courses.php?search=" . urlencode($keywords));
+    header("Location: studentCourses.php?search=" . urlencode($keywords));
     exit();
 } else {
     echo "<p>Veuillez entrer des mots-clés pour effectuer une recherche.</p>";

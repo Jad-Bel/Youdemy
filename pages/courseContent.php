@@ -5,10 +5,6 @@ require_once '../classes/admin/course.php';
 require_once '../classes/admin/videoCourse.php';
 require_once '../classes/admin/documentCourse.php';
 
-
-// print_r($_SESSION);
-// print_r($_GET);
-
 $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : null;
 $videoCourse = new VideoCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,  NULL, NULL,  NULL);
 $documentCourse = new DocumentCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,);
@@ -26,21 +22,6 @@ if ($courseContent) {
     $videoLink = null;
     $documentLink = null;
 }
-
-// echo '<pre>';
-// print_r($courseContent);
-// echo '</pre>';
-
-
-// $course_id = isset($_GET['course_id']) ? intval(explode('?', $_GET['course_id'])[0]) : null;
-// $videoCourse = new VideoCourse(null, null, null, null, null, null);
-
-// $courseContent = $videoCourse->displayContent($course_id);
-// if ($courseContent) {
-//     $videoLink = $courseContent['video_link'];
-// } else {
-//     die("Course not found.");
-// }
 ?>
 
 <!DOCTYPE html>
