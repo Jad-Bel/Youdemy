@@ -37,15 +37,5 @@ class Student extends User {
     
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    public function searchCourses($keyword) {
-        $sql = "SELECT c.id, c.title, c.description, c.content, c.video_link, c.teacher_id, c.category_id
-                FROM courses c
-                WHERE c.title LIKE :keyword OR c.description LIKE :keyword";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute(['keyword' => "%$keyword%"]);
-    
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 }
 ?>
