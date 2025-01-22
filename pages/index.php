@@ -115,8 +115,8 @@ $courseService = new CourseService($courseModal, null);
 						</div>
 						<!-- Search Box ==== -->
 						<div class="nav-search-bar">
-							<form action="#">
-								<input name="search" value="" type="text" class="form-control" placeholder="Type to search">
+							<form action="search.php" method="GET">
+								<input name="keywords" value="" type="text" class="form-control" placeholder="Type to search">
 								<span><i class="ti-search"></i></span>
 							</form>
 							<span id="search-remove"><i class="ti-close"></i></span>
@@ -621,31 +621,31 @@ $courseService = new CourseService($courseModal, null);
 						<div class="row">
 							<div class="courses-carousel owl-carousel owl-btn-1 col-12 p-lr0">
 								<?php
-									$courses = $courseService->getAllApprovedCourses();
-									foreach ($courses as $course):
+								$courses = $courseService->getAllApprovedCourses();
+								foreach ($courses as $course):
 								?>
-								<div class="item">
-									<div class="cours-bx">
-										<div class="action-box">
-											<img src="<?= $course['banner'] ?>" alt="">
-											<a href="#" class="btn">Read More</a>
-										</div>
-										<div class="info-bx text-center">
-											<h5><a href="#"><?= $course['title'] ?></a></h5>
-											<span><?= $course['ctg_name'] ?></span>
-										</div>
-										<div class="cours-more-info">
-											<div class="review">
-												<span style="font-size: 15px; font-weight: bold;">Created at</span>
-												<span><?= $course['crs_created_at'] ?></span>
+									<div class="item">
+										<div class="cours-bx">
+											<div class="action-box">
+												<img src="<?= $course['banner'] ?>" alt="">
+												<a href="#" class="btn">Read More</a>
 											</div>
-											<div class="review d-flex flex-column ">
-												<span style="font-size: 15px; font-weight: bold">Created by</span>
-												<span style="font-size: 16px;"><?= $course['teacher_username'] ?></span>
+											<div class="info-bx text-center">
+												<h5><a href="#"><?= $course['title'] ?></a></h5>
+												<span><?= $course['ctg_name'] ?></span>
+											</div>
+											<div class="cours-more-info">
+												<div class="review">
+													<span style="font-size: 15px; font-weight: bold;">Created at</span>
+													<span><?= $course['crs_created_at'] ?></span>
+												</div>
+												<div class="review d-flex flex-column ">
+													<span style="font-size: 15px; font-weight: bold">Created by</span>
+													<span style="font-size: 16px;"><?= $course['teacher_username'] ?></span>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
 								<?php endforeach; ?>
 							</div>
 						</div>

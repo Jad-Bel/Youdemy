@@ -218,4 +218,27 @@ class ConcreteCourse extends Course
 
         return $stmt->rowCount() > 0;
     }
+
+    public function searchCoursesByKeywords($keywords)
+    {
+        $keywordsArray = explode(' ', $keywords);
+
+        $sql = "SELECT * FROM courses WHERE ";
+        $conditions = [];
+
+        foreach ($keywordsArray as $keyword) {
+            $conditions[] = "(title LIKE :keyword OR description LIKE :keyword)";
+        }
+
+        $sql .= implode(' OR ', $conditions);
+
+        $stmt = $this->conn->prepare($sql);
+
+        foreach ($keywordsArray as $index => $keyword) {
+            $stmt->bindValue(':keyword', '%' . $keyword . '%', PDO::PARAM_STR);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 }
