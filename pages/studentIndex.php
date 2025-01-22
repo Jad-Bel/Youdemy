@@ -592,9 +592,9 @@ if (!empty($keywords)) {
                             <div class="col-md-12 text-center text-white">
                                 <h2>Online Courses To Learn</h2>
                                 <h5>Own Your Feature Learning New Skills Online</h5>
-                                <form class="cours-search">
+                                <form class="cours-search" action="" method="GET">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="What do you want to learn today?	">
+                                        <input type="text" name="keywords" class="form-control" placeholder="What do you want to learn today?">
                                         <div class="input-group-append">
                                             <button class="btn" type="submit">Search</button>
                                         </div>

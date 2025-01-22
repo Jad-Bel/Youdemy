@@ -10,10 +10,6 @@ require_once '../classes/admin/auth.php';
 $course_id = isset($_GET['course_id']) ? intval(explode('?', $_GET['course_id'])[0]) : null;
 $student_id = $_SESSION['user_id'] ?? null;
 
-if (!$course_id) {
-	die("Course ID is missing.");
-}
-
 $student = new Student(null, null, null, null, null);
 
 $is_enrolled = $student->isEnrolled($student_id, $course_id);
@@ -72,8 +68,11 @@ $courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL
 $courseService = new CourseService($courseModal, null);
 $course = $courseService->getCourseById($course_id);
 
-if (!$course) {
-	die("Course not found.");
+$keywords = $_GET['keywords'] ?? '';
+
+if (!empty($keywords)) {
+    header("Location: studentCourses.php?search=" . urlencode($keywords));
+    exit();
 }
 ?>
 
@@ -230,7 +229,7 @@ if (!$course) {
 			<div class="breadcrumb-row">
 				<div class="container">
 					<ul class="list-inline">
-						<li><a href="#">Home</a></li>
+						<li><a href="studentIndex.php">Home</a></li>
 						<li>Courses Details</li>
 					</ul>
 				</div>
@@ -290,14 +289,14 @@ if (!$course) {
 							<div class="col-lg-9 col-md-8 col-sm-12">
 								<div class="courses-post">
 									<div class="ttr-post-media media-effect">
-										<a href="#"><img src="assets/images/blog/default/thum1.jpg" alt=""></a>
+										<a href="#"><img src="../assets/images/blog/default/thum1.jpg" alt=""></a>
 									</div>
 									<div class="ttr-post-info">
 										<div class="ttr-post-title ">
 											<h2 class="post-title"><?= $course['title'] ?></h2>
 										</div>
 										<div class="ttr-post-text">
-											<p><?= $course['cnt'] ?></p>
+											<p><?= $course['cntt'] ?></p>
 										</div>
 									</div>
 								</div>
@@ -309,10 +308,10 @@ if (!$course) {
 												<li><i class="ti-time"></i> <span class="label">Duration</span> <span
 														class="value"><?= $course['duration'] ?> hours</span></li>
 												<li><i class="ti-stats-up"></i> <span class="label">Skill level</span>
-													<span class="value"><?= $course['level'] ?></span>
+													<span class="value"><?= $course['lvl'] ?></span>
 												</li>
 												<li><i class="ti-smallcap"></i> <span class="label">Language</span>
-													<span class="value"><?= $course['language'] ?></span>
+													<span class="value"><?= $course['lng'] ?></span>
 												</li>
 											</ul>
 										</div>
@@ -320,7 +319,7 @@ if (!$course) {
 											<h5 class="m-b5">Course Description</h5>
 											<p><?= $course['dsc'] ?>.</p>
 											<h5 class="m-b5">Certification</h5>
-											<p><?= $course['certification'] ?>.</p>
+											<p><?= $course['crtf'] ?>.</p>
 										</div>
 									</div>
 								</div>

@@ -126,18 +126,6 @@ $averageStudentPerCourse = $statistics[3]->count;
                 </ul>
                 <!-- header right menu end -->
             </div>
-            <!--header search panel start -->
-            <div class="ttr-search-bar">
-                <form class="ttr-search-form">
-                    <div class="ttr-search-input-wrapper">
-                        <input type="text" name="qq" placeholder="search something..." class="ttr-search-input">
-                        <button type="submit" name="search" class="ttr-search-submit"><i class="ti-arrow-right"></i></button>
-                    </div>
-                    <span class="ttr-search-close ttr-search-toggle">
-                        <i class="ti-close"></i>
-                    </span>
-                </form>
-            </div>
             <!--header search panel end -->
         </div>
     </header>

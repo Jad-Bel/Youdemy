@@ -40,6 +40,13 @@ function pagination_link($categoryId, $page, $perPage, $search) {
 //     die();
 // }
 // dd($paginationData);
+
+$keywords = $_GET['keywords'] ?? '';
+
+if (!empty($keywords)) {
+    header("Location: studentCourses.php?search=" . urlencode($keywords));
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -197,7 +204,7 @@ function pagination_link($categoryId, $page, $perPage, $search) {
             <div class="breadcrumb-row">
                 <div class="container">
                     <ul class="list-inline">
-                        <li><a href="#">Home</a></li>
+                        <li><a href="studentIndex.php">Home</a></li>
                         <li>Our Courses</li>
                     </ul>
                 </div>
