@@ -6,7 +6,14 @@ require_once '../classes/admin/course.php';
 $courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 $courseService = new CourseService($courseModal, null);
 
+$keywords = $_GET['keywords'] ?? '';
 
+if (!empty($keywords)) {
+    header("Location: courses.php?search=" . urlencode($keywords));
+    exit();
+} else {
+    echo "<p>Veuillez entrer des mots-clés pour effectuer une recherche.</p>";
+}
 ?>
 
 <!DOCTYPE html>
@@ -115,7 +122,7 @@ $courseService = new CourseService($courseModal, null);
 						</div>
 						<!-- Search Box ==== -->
 						<div class="nav-search-bar">
-							<form action="search.php" method="GET">
+							<form action="" method="GET">
 								<input name="keywords" value="" type="text" class="form-control" placeholder="Type to search">
 								<span><i class="ti-search"></i></span>
 							</form>

@@ -323,9 +323,9 @@ $averageStudentPerCourse = $statistics[3]->count;
                                             <li class="border-bottom py-3">
                                                 <div class="d-flex align-items-start">
                                                     <div class="flex-grow-1">
-                                                        <h5 class="mb-1">User Name: <?= htmlspecialchars($user->getUsername()) ?></h5>
+                                                        <h5 class="mb-1">User Name: <?= $user->getUsername() ?></h5>
                                                         <div class="text-muted small">
-                                                            <span class="me-3">Email: <?= htmlspecialchars($user->getEmail()) ?></span>
+                                                            <span class="me-3">Email: <?= $user->getEmail() ?></span>
                                                         </div>
                                                     </div>
                                                 </div>
