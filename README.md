@@ -61,15 +61,9 @@ Before you begin, ensure you have met the following requirements:
    cd Youdemy
    ```
 
-3. Install the dependencies:
-   ```bash
-   npm install
-   composer install
-   ```
-
 ## Configuration
 
-Edit the `Config.php` file located inside `App/Config/`:
+Edit the `database.php` file located inside `Config/`:
 
 ```env
 DB_HOST=localhost
