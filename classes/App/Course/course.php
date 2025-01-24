@@ -2,7 +2,7 @@
 
 namespace App\Course;
 
-use App/Database;
+use App\Database\Database;
 
 abstract class Course
 {

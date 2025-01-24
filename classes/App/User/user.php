@@ -2,6 +2,8 @@
 
 namespace App\User;
 
+use App\Database\Database;
+
 class User
 {
     protected $id;

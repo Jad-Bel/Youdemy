@@ -1,6 +1,7 @@
 <?php
 require_once 'course.php';
 
+use App\Course\Course;
 
 class DocumentCourse extends Course
 {

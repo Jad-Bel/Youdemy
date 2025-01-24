@@ -4,6 +4,8 @@
 
 namespace App\Admin;
 
+use App\User\User;
+
 class Admin extends User
 {
     public function __construct($username, $email, $password, $role = 'admin', $id = null)
