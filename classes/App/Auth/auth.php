@@ -3,6 +3,9 @@
 
 namespace App\Auth; 
 
+use App\Database\Database;
+use App\User\User;
+
 class Auth {
     private $conn;
 

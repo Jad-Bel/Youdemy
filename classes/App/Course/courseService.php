@@ -2,6 +2,8 @@
 
 namespace App\CourseService;
 
+use App\Database\Database;
+
 class CourseService
 {
     private $courseModel;
@@ -53,7 +55,7 @@ class CourseService
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function getAllCourses()
@@ -83,7 +85,7 @@ class CourseService
             JOIN 
                 categories ctg ON c.category_id = ctg.id";
         $stmt = $conn->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function getAllApprovedCourses()
@@ -115,7 +117,7 @@ class CourseService
             WHERE c.status = 'approved'";
 
         $stmt = $conn->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function getAllCoursesForTeacher($user_id)
@@ -144,7 +146,7 @@ class CourseService
         $stmt->bindParam(":user_id", $user_id);
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function getPaginatedCourses($page, $perPage, $search = '', $categoryId = null)

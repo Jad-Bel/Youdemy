@@ -156,11 +156,11 @@ class ConcreteCourse extends Course
             $stmt->bindValue(':search', "%$search%");
         }
         if ($categoryId) {
-            $stmt->bindValue(':category_id', $categoryId, PDO::PARAM_INT);
+            $stmt->bindValue(':category_id', $categoryId, \PDO::PARAM_INT);
         }
         $stmt->execute();
 
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
         return (int)$result['total'];
     }
 
@@ -203,13 +203,13 @@ class ConcreteCourse extends Course
             $stmt->bindValue(':search', "%$search%");
         }
         if ($categoryId) {
-            $stmt->bindValue(':category_id', $categoryId, PDO::PARAM_INT);
+            $stmt->bindValue(':category_id', $categoryId, \PDO::PARAM_INT);
         }
-        $stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
-        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $stmt->bindValue(':limit', $perPage, \PDO::PARAM_INT);
+        $stmt->bindValue(':offset', $offset, \PDO::PARAM_INT);
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function delete($course_id)
@@ -239,11 +239,11 @@ class ConcreteCourse extends Course
         $stmt = $this->conn->prepare($sql);
 
         foreach ($keywordsArray as $index => $keyword) {
-            $stmt->bindValue(':keyword', '%' . $keyword . '%', PDO::PARAM_STR);
+            $stmt->bindValue(':keyword', '%' . $keyword . '%', \PDO::PARAM_STR);
         }
 
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $stmt->fetchAll(\PDO::FETCH_OBJ);
     }
 }
 

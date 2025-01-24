@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Teacher;
+
 use App\User\User;
 
 class Teacher extends User
@@ -17,7 +19,7 @@ class Teacher extends User
         $stmt->bindParam(':teacher_id', $teacher_id);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetch(\PDO::FETCH_OBJ);
     }
 
     public function getEnrolledStudentsCount()
@@ -27,7 +29,7 @@ class Teacher extends User
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetch(\PDO::FETCH_OBJ);
     }
 
     public function getApprovedCoursesCount($teacher_id)
@@ -39,7 +41,7 @@ class Teacher extends User
         $stmt->bindParam(':teacher_id', $teacher_id);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetch(\PDO::FETCH_OBJ);
     }
 
     public function getAverageStudentsPerCourse($teacher_id)
@@ -52,7 +54,7 @@ class Teacher extends User
         $stmt->bindParam(':teacher_id', $teacher_id);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetch(\PDO::FETCH_OBJ);
     }
 
     public function getStatistics($teacher_id)
@@ -113,10 +115,10 @@ class Teacher extends User
         ";
 
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':teacher_id', $teacher_id, PDO::PARAM_INT);
+        $stmt->bindParam(':teacher_id', $teacher_id, \PDO::PARAM_INT);
         $stmt->execute();
 
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         $enrolledUsers = [];
         foreach ($results as $row) {

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Student;
+
 use App\user\user;
 
 class Student extends User {
@@ -37,7 +39,7 @@ class Student extends User {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['student_id' => $this->getId()]);
     
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
 ?>
