@@ -5,6 +5,8 @@ namespace App\Auth;
 
 use App\Database\Database;
 use App\User\User;
+use App\Teacher\Teacher;
+use App\Student\Student;
 
 class Auth {
     private $conn;
@@ -21,13 +23,13 @@ class Auth {
         } elseif ($role === 'student') {
             $user = new Student($username, $email, $password, $role, 'pending');
         } else {
-            throw new Exception("Invalid role.");
+            throw new \Exception("Invalid role.");
         }
 
         if ($user->save()) {
             return true;
         }
-        throw new Exception("Registration failed.");
+        throw new \Exception("Registration failed.");
     }
 
     public function login($email, $password) {
@@ -54,7 +56,7 @@ class Auth {
                 return true;
             }
         }
-        throw new Exception("Invalid email or password.");
+        throw new \Exception("Invalid email or password.");
     }
 
     public function logout() {
