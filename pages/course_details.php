@@ -19,22 +19,6 @@ if (isset($_GET['id'])) {
 $courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 $courseService = new CourseService(NULL, NULL);
 $course = $courseService->getCourseById($courseId);
-
-// if (!$course) {
-// 	die("Course not found.");
-// }
-// function dd(...$var) {
-//     foreach ($var as $elem) {
-//         echo '<pre class="codespan">';
-//         echo '<code>';
-//         !$elem || $elem == '' ? var_dump($elem) : print_r($elem);
-//         echo '</code>';
-//         echo '</pre>';
-//     }
-
-//     die();
-// }
-// dd($course);
 ?>
 
 <!DOCTYPE html>
