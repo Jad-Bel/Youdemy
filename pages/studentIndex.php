@@ -1,8 +1,11 @@
 <?php
 require_once '../includes/session_check.php';
-require_once '../config/database.php';
-require_once '../classes/admin/courseService.php';
-require_once '../classes/admin/course.php';
+require_once '../classes/database.php';
+require_once '../classes/App/Course/courseService.php';
+require_once '../classes/App/Course/course.php';
+
+use App\Course\ConcreteCourse;
+use App\CourseService\CourseService;
 
 $courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 $courseService = new CourseService($courseModal, null);
