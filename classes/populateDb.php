@@ -1,6 +1,8 @@
 <?php
 require_once '../config/database.php';
 
+use App\Database\Database;
+
 // Create a database connection
 $database = new Database();
 $conn = $database->getConnection();
