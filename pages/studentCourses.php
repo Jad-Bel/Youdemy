@@ -1,11 +1,16 @@
 <?php
 require_once '../includes/session_check.php';
-require_once '../config/database.php';
-require_once '../classes/admin/course.php';
-require_once '../classes/admin/courseService.php';
-require_once '../classes/user.php';
-require_once '../classes/admin/student.php';
-require_once '../classes/admin/category.php';
+require_once '../classes/database.php';
+require_once '../classes/App/Course/course.php';
+require_once '../classes/App/Course/courseService.php';
+require_once '../classes/App/User/user.php';
+require_once '../classes/App/User/student.php';
+require_once '../classes/App/category.php';
+
+use App\Course\ConcreteCourse;
+use App\CourseService\CourseService;
+use App\Categories\Category;
+
 
 $courseModel = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 $categoryModel = new Category();
@@ -27,20 +32,6 @@ $categories = Category::getPopularCategories();
 function pagination_link($categoryId, $page, $perPage, $search) {
     return "?category_id=$categoryId&page=$page&perPage=$perPage&search=" . urlencode($search);
 }
-// function dd(...$var)
-// {
-//     foreach ($var as $elem) {
-//         echo '<pre class="codespan">';
-//         echo '<code>';
-//         !$elem || $elem == '' ? var_dump($elem) : print_r($elem);
-//         echo '</code>';
-//         echo '</pre>';
-//     }
-
-//     die();
-// }
-// dd($paginationData);
-
 $keywords = $_GET['keywords'] ?? '';
 
 if (!empty($keywords)) {
