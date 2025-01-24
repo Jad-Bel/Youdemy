@@ -1,18 +1,21 @@
 project/
 ├── assets/
 ├── classes/
-│   ├── admin/
-│   ├── auth.php
-│   ├── category.php
-│   ├── course.php
-│   ├── documentCourse.php
-│   ├── student.php
-│   ├── tag.php
-│   ├── teacher.php
-│   ├── videoCourse.php
-│   ├── populateDb.php
-│   └── user.php
-├── config/
+├── App/
+│   ├── Auth/
+│   │   └── Auth.php
+│   ├── Course/
+│   │   ├── Course.php
+│   │   ├── DocumentCourse.php
+│   │   └── VideoCourse.php
+│   ├── User/
+│   │   ├── User.php
+│   │   ├── Student.php
+│   │   └── Teacher.php
+│   └── Admin/
+│       └── Admin.php
+├── Database.php
+└── populateDb.php
 ├── includes/
 ├── pages/
 │   ├── add_course.php

@@ -2,6 +2,8 @@
 
 namespace App\Course;
 
+use App/Database;
+
 abstract class Course
 {
     protected $id;

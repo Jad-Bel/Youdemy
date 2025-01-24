@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Categorie;
+use App\Database\Database;
 
 class Category
 {

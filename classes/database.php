@@ -1,4 +1,7 @@
 <?php
+
+namespace App\Database;
+
 class Database {
     private $host = "localhost";
     private $db_name = "youdemy";
