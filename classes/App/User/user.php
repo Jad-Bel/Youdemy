@@ -80,7 +80,7 @@ class User
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->email = $email;
         } else {
-            throw new Exception("Invalid email format.");
+            throw new \Exception("Invalid email format.");
         }
     }
 
@@ -105,7 +105,7 @@ class User
         $checkEmailSql = "SELECT id FROM users WHERE email = :email";
         $checkEmailStmt = $this->conn->prepare($checkEmailSql);
         $checkEmailStmt->execute(['email' => $this->email]);
-        $existingUser = $checkEmailStmt->fetch(PDO::FETCH_ASSOC);
+        $existingUser = $checkEmailStmt->fetch(\PDO::FETCH_ASSOC);
 
         if ($existingUser) {
             header('location: register.php');
@@ -132,7 +132,7 @@ class User
         $sql = "SELECT * FROM users WHERE email = :email";
         $stmt = $conn->prepare($sql);
         $stmt->execute(['email' => $email]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
 
@@ -152,7 +152,7 @@ class User
             $db = new Database();
             $conn = $db->getConnection();
             $stmt = $conn->query("SELECT * FROM users");
-            $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
             return $result;
         }
         return [];
@@ -164,7 +164,7 @@ class User
             $db = new Database();
             $conn = $db->getConnection();
             $stmt = $conn->query("SELECT * FROM users WHERE role = 'teacher'");
-            $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
 
             return $result;
         }

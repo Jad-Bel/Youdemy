@@ -1,5 +1,7 @@
 <?php
 
+use App\user\user;
+
 class Student extends User {
     public function __construct($username, $email, $password, $role, $status)
     {

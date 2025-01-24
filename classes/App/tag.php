@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Tag;
+
+use App\Database\Database;
+
 class Tag
 {
     private $id;
@@ -74,7 +78,7 @@ class Tag
     public function deleteTag($id) {
         $sql = "DELETE FROM tags WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
         return $stmt->execute();
     }
 
@@ -82,7 +86,7 @@ class Tag
     {
         $sql = "SELECT * FROM tags";
         $stmt = $this->conn->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function getTagById($id)
@@ -90,7 +94,7 @@ class Tag
         $sql = "SELECT * FROM tags WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id' => $id]);
-        $tag = $stmt->fetch(PDO::FETCH_ASSOC);
+        $tag = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         if ($tag) {
             $this->id = $tag['id'];

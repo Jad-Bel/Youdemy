@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Categories;
+
 use App\Database\Database;
 
 class Category
@@ -31,7 +33,7 @@ class Category
     public function deleteCategory($id) {
         $sql = "DELETE FROM categories WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
         return $stmt->execute();
     }
 
@@ -39,7 +41,7 @@ class Category
     {
         $sql = "SELECT * FROM categories";
         $stmt = $this->conn->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function getCategoryById($id)
@@ -47,7 +49,7 @@ class Category
         $sql = "SELECT * FROM categories WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     public static function getPopularCategories() {
@@ -56,7 +58,7 @@ class Category
         $query = "SELECT * FROM categories LIMIT 5";
         $stmt = $conn->prepare($query);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
 ?>
