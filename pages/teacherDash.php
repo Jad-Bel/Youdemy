@@ -1,10 +1,15 @@
 <?php
-require_once '../config/database.php';
+require_once '../classes/database.php';
 require_once '../includes/session_check.php';
-require_once '../classes/user.php';
-require_once '../classes/admin/teacher.php';
-require_once '../classes/admin/course.php';
-require_once '../classes/admin/courseService.php';
+require_once '../classes/App/User/user.php';
+require_once '../classes/App/User/teacher.php';
+require_once '../classes/App/Course/course.php';
+require_once '../classes/App/Course/courseService.php';
+
+use App\Course\ConcreteCourse;
+use App\User\User;
+use App\Teacher\Teacher;
+use App\CourseService\CourseService;
 
 $courseModal = new ConcreteCourse(null, null, null, null, null, null, null, null, null, null, null);
 $courses = new CourseService($courseModal, null);
