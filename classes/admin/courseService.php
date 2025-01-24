@@ -1,4 +1,7 @@
 <?php
+
+namespace App\CourseService;
+
 class CourseService
 {
     private $courseModel;

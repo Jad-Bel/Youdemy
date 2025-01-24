@@ -1,50 +1,35 @@
-youdemy/
-│
-├── assets/                  # Static files (CSS, JS, images, etc.)
-│   ├── css/
-│   ├── js/
-│   └── images/
-│
-├── config/                  # Configuration files (database, constants, etc.)
-│   └── database.php         # Database connection settings
-│
-├── classes/                 # PHP classes (OOP)
-│   ├── User.php             # User class (parent class for Student, Teacher, Admin)
-│   ├── Student.php          # Student class
-│   ├── Teacher.php          # Teacher class
-│   ├── Admin.php            # Admin class
-│   ├── Course.php           # Course class
-│   ├── Category.php         # Category class
-│   ├── Tag.php              # Tag class
-│   └── Auth.php             # Authentication class
-│
-├── includes/                # Reusable PHP components (header, footer, etc.)
-│   ├── header.php           # Common header
-│   ├── footer.php           # Common footer
-│   └── functions.php        # Helper functions
-│
-├── uploads/                 # Uploaded files (documents, videos, etc.)
-│   ├── documents/           # Course documents
-│   └── videos/              # Course videos (if stored locally)
-│
-├── pages/                   # Individual pages of the application
-│   ├── index.php            # Homepage
-│   ├── courses.php          # Course catalog
-│   ├── course_details.php   # Course details page
-│   ├── login.php            # Login page
-│   ├── register.php         # Registration page
-│   ├── dashboard.php        # User dashboard (student/teacher/admin)
-│   ├── add_course.php       # Page for teachers to add a course
-│   ├── my_courses.php       # Page for students to view their enrolled courses
-│   └── admin/               # Admin-specific pages
-│       ├── users.php        # Manage users
-│       ├── courses.php      # Manage courses
-│       └── statistics.php   # View platform statistics
-│
-├── scripts/                 # Server-side scripts (e.g., form handlers)
-│   ├── login_handler.php    # Handle login form submission
-│   ├── register_handler.php # Handle registration form submission
-│   ├── add_course_handler.php # Handle course creation
-│   └── enroll_handler.php   # Handle course enrollment
-│
-└── index.php                # Entry point (redirects to homepage or dashboard based on user role)
+project/
+├── assets/
+├── classes/
+│   ├── admin/
+│   ├── auth.php
+│   ├── category.php
+│   ├── course.php
+│   ├── documentCourse.php
+│   ├── student.php
+│   ├── tag.php
+│   ├── teacher.php
+│   ├── videoCourse.php
+│   ├── populateDb.php
+│   └── user.php
+├── config/
+├── includes/
+├── pages/
+│   ├── add_course.php
+│   ├── course_details.php
+│   ├── courseContent.php
+│   ├── courses.php
+│   ├── dashboard.php
+│   ├── index.php
+│   ├── login.php
+│   ├── logout.php
+│   ├── mod_course.php
+│   ├── register.php
+│   ├── studentCourse.php
+│   ├── studentCourses.php
+│   ├── studentIndex.php
+│   └── teacherDash.php
+├── scripts/
+├── uploads/
+├── folder structure/
+├── README.md

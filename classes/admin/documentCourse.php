@@ -1,6 +1,7 @@
 <?php
 require_once 'course.php';
 
+
 class DocumentCourse extends Course
 {
     private $document_link;

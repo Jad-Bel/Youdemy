@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Categorie;
+
 class Category
 {
     private $conn;

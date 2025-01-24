@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Course;
+
 abstract class Course
 {
     protected $id;
@@ -242,3 +244,21 @@ class ConcreteCourse extends Course
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 }
+
+
+// abstract class Exemple 
+// {
+//     abstract public function test();
+// }
+
+// class Example2 extends Exemple 
+// {
+//     public function test() 
+//     {
+//         echo 1;
+//     }
+// }
+
+// $e = new Example2();
+
+// $instance = $e->test();

@@ -1,6 +1,8 @@
 <?php
 // require_once '../user.php';
 
+namespace App\Auth; 
+
 class Auth {
     private $conn;
 
