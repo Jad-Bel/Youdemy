@@ -1,12 +1,8 @@
 <?php
 require_once '../includes/session_check.php';
 require_once '../classes/database.php';
-require_once '../classes/App/Course/course.php';
 require_once '../classes/App/Course/videoCourse.php';
 require_once '../classes/App/Course/documentCourse.php';
-
-use App\Course\Course;
-
 
 $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : null;
 $videoCourse = new VideoCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,  NULL, NULL,  NULL);

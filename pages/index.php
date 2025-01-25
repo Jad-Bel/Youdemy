@@ -1,10 +1,12 @@
 <?php
-require_once '../classes/database.php';
-require_once '../classes/App/Course/courseService.php';
-require_once '../classes/App/Course/course.php';
+// require_once '../classes/database.php';
+// require_once '../classes/App/Course/courseService.php';
+// require_once '../classes/App/Course/course.php';
 
-use App\Course\ConcreteCourse;
+require_once '../autoload.php';
+
 use App\CourseService\CourseService;
+use App\Course\ConcreteCourse;
 
 $courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 $courseService = new CourseService($courseModal, null);
