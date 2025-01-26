@@ -1,19 +1,9 @@
 <?php
-//require_once '../classes/App/database/database.php';
-//require_once '../classes/App/courseService/courseService.php';
-//require_once '../classes/App/Course/course.php';
-// require_once '../classes/App/database/database.php';
-// require_once '../classes/App/courseService/courseService.php';
-// require_once '../classes/App/Course/course.php';
-// require_once '../classes/App/course/concreteCourse.php';
+require __DIR__ . '/../vendor/autoload.php';
 
-require_once '../classes/App/autoload.php';
 
-// use App\course\concreteCourse;
-// use App\courseService\courseService;
-
-use App\course\concreteCourse;
-use App\courseService\courseService;
+use Youco\Youdemy\App\Course\ConcreteCourse;
+use Youco\Youdemy\App\CourseService\CourseService;
 
 $courseModal = new concreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 $courseService = new courseService($courseModal, null);

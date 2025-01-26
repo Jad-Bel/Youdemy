@@ -1,9 +1,9 @@
 <?php
-// require_once 'course.php';
 
-namespace App\course;
 
-class videoCourse extends course
+namespace Youco\Youdemy\App\Course;
+
+class VideoCourse extends course
 {
     private $video_link;
 

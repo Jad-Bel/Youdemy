@@ -1,13 +1,4 @@
 <?php
-// require_once '';
-require_once '../classes/database.php';
-require_once '../classes/App/Auth/auth.php';
-require_once '../classes/App/User/user.php';
-
-use App\Auth\Auth;
-
-
-
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Database;
+namespace Youco\Youdemy\App\Database;
 
-class database
+class Database
 {
     private $host = "localhost";
     private $db_name = "youdemy";

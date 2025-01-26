@@ -1,10 +1,9 @@
 <?php
 
-namespace App\category;
+namespace Youco\Youdemy\App\Category;
+use Youco\Youdemy\App\Database\Database;
 
-use App\Database\database;
-
-class category
+class Category
 {
     private $conn;
 
@@ -61,4 +60,3 @@ class category
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
-?>

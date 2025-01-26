@@ -1,16 +1,5 @@
 <?php
 
-use App\Course\documentCourse;
-use App\Course\videoCourse;
-
-require_once '../config/database.php';
-require_once '../includes/session_check.php';
-require_once '../classes/admin/course.php';
-require_once '../classes/admin/courseService.php';
-require_once '../classes/admin/documentCourse.php';
-require_once '../classes/admin/videoCourse.php';
-require_once '../classes/admin/category.php';
-
 $courseModal = new ConcreteCourse(null, null, null, null, null, null, null, null, null, null, null);
     $course_id = ($_GET['course_id']) ? $_GET['course_id'] : null;
     if ($course_id) {

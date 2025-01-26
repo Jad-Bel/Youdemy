@@ -1,9 +1,8 @@
 <?php
 
-namespace App\course;
-// require_once 'course.php';
+namespace Youco\Youdemy\App\Course;
 
-class documentCourse extends course
+class DocumentCourse extends course
 {
     private $document_link;
 

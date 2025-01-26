@@ -1,13 +1,6 @@
 <?php
-// require_once '../user.php';
 
-namespace App\Auth; 
-
-use App\Database\database;
-use App\User\User;
-use App\Teacher\Teacher;
-use App\Student\Student;
-
+namespace Youco\Youdemy\App\Auth;
 class Auth {
     private $conn;
 
@@ -66,4 +59,3 @@ class Auth {
         exit();
     }
 }
-?>

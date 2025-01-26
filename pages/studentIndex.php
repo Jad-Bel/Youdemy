@@ -1,11 +1,4 @@
 <?php
-require_once '../includes/session_check.php';
-require_once '../classes/database.php';
-require_once '../classes/App/Course/courseService.php';
-require_once '../classes/App/Course/course.php';
-
-use App\Course\concreteCourse;
-use App\CourseService\courseService;
 
 $courseModal = new concreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 $courseService = new courseService($courseModal, null);

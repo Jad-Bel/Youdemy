@@ -1,10 +1,8 @@
-<?php
+<?php 
 
-namespace App\course;
+namespace Youco\Youdemy\App\Course;
 
-// use App\course\course;
-
-class concreteCourse extends course
+class ConcreteCourse extends Course
 {
     public function save() {}
     public function displayContent($id) {}

@@ -1,14 +1,4 @@
 <?php
-require_once '../includes/session_check.php';
-require_once '../config/database.php';
-require_once '../classes/user.php';
-require_once '../classes/admin/student.php';
-require_once '../classes/admin/teacher.php';
-require_once '../classes/admin/admin.php';
-require_once '../classes/admin/category.php';
-require_once '../classes/admin/tag.php';
-require_once '../classes/admin/course.php';
-require_once '../classes/admin/courseService.php';
 
 $admin = new Admin('test', 'test@test.com', 'test', 'admin', null);
 $statistics = $admin->getStatistics();

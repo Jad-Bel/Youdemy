@@ -1,0 +1,15 @@
+{
+    "name": "youco/youdemyclasses",
+    "autoload": {
+        "psr-4": {
+            "Youco\\Youdemy\\App\\": "Classes/App/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jad-Bel",
+            "email": "jadthegamer06@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -1,15 +1,4 @@
 <?php
-require_once '../classes/database.php';
-require_once '../classes/App/Auth/auth.php';
-require_once '../classes/App/User/user.php';
-require_once '../classes/App/User/Teacher.php';
-require_once '../classes/App/User/Student.php';
-
-
-use App\Auth\Auth;
-use App\Student\Student;
-use App\Teacher\Teacher;
-
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];

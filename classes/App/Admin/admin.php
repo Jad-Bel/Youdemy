@@ -1,10 +1,7 @@
 <?php
 
-// require_once '../user.php';
-
-namespace App\Admin;
-
-use App\User\User;
+namespace Youco\Youdemy\App\Admin;
+use Youco\Youdemy\App\User\User;
 
 class Admin extends User
 {

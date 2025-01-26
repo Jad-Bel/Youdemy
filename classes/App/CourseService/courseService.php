@@ -1,10 +1,9 @@
 <?php
 
-namespace App\courseService;
+namespace Youco\Youdemy\App\CourseService;
+use Youco\Youdemy\App\Database\Database;
 
-use App\Database\database;
-
-class courseService
+class CourseService
 {
     private $courseModel;
     private $categoryModel;
