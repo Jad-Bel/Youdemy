@@ -1,12 +1,19 @@
 <?php
-// require_once '../classes/database.php';
-// require_once '../classes/App/Course/courseService.php';
+//require_once '../classes/App/database/database.php';
+//require_once '../classes/App/courseService/courseService.php';
+//require_once '../classes/App/Course/course.php';
+// require_once '../classes/App/database/database.php';
+// require_once '../classes/App/courseService/courseService.php';
 // require_once '../classes/App/Course/course.php';
+// require_once '../classes/App/course/concreteCourse.php';
 
-require_once '../autoload.php';
+require_once '../classes/App/autoload.php';
 
-use App\CourseService\courseService;
-use App\Course\concreteCourse;
+// use App\course\concreteCourse;
+// use App\courseService\courseService;
+
+use App\course\concreteCourse;
+use App\courseService\courseService;
 
 $courseModal = new concreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 $courseService = new courseService($courseModal, null);

@@ -1,6 +1,6 @@
 <?php
 
-require_once '../autoload.php';
+require_once '../classes/App/autoload.php';
 
 //require_once '../classes/database.php';
 //require_once '../classes/App/Course/course.php';
@@ -11,7 +11,7 @@ require_once '../autoload.php';
 
 use App\Course\concreteCourse;
 use App\CourseService\courseService;
-use App\Categories\category;
+use App\category\category;
 
 
 $courseModel = new concreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);

@@ -13,7 +13,7 @@ require_once '../includes/session_check.php';
 
 use App\Course\concreteCourse;
 use App\CourseService\courseService;
-use App\Categories\Category;
+use App\category\category;
 
 
 $courseModel = new concreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -31,7 +31,7 @@ $courses = $paginationData['courses'];
 $totalPages = $paginationData['totalPages'];
 $currentPage = $paginationData['currentPage'];
 
-$categories = Category::getPopularCategories();
+$categories = category::getPopularCategories();
 
 function pagination_link($categoryId, $page, $perPage, $search) {
     return "?category_id=$categoryId&page=$page&perPage=$perPage&search=" . urlencode($search);
@@ -227,7 +227,7 @@ if (!empty($keywords)) {
                                             <a href="?">All Categories</a>
                                         </li>
                                         <?php
-                                        $categories = Category::getPopularCategories();
+                                        $categories = category::getPopularCategories();
                                         foreach ($categories as $category):
                                         ?>
                                             <li>

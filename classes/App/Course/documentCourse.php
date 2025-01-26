@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Course;
-require_once 'course.php';
+namespace App\course;
+// require_once 'course.php';
 
 class documentCourse extends course
 {

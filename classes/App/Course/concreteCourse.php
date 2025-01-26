@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Course;
+namespace App\course;
 
-use App\Course\course;
+// use App\course\course;
 
 class concreteCourse extends course
 {

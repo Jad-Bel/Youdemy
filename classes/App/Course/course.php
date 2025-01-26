@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Course;
+namespace App\course;
 
 use App\Database\database;
 

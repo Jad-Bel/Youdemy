@@ -3,11 +3,19 @@
 spl_autoload_register(function ($class) {
     
     $directories = [
-        __DIR__ . '\classes'
+        __DIR__ . '\Admin',
+        __DIR__ . '\Auth',
+        __DIR__ . '\category',
+        __DIR__ . '\course',
+        __DIR__ . '\courseService',
+        __DIR__ . '\Database',
+        __DIR__ . '\User'
     ];
     
-    $classPath = str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
 
+    $classPath = str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+    print_r($classPath);
+    echo '<br>';
     foreach ($directories as $directory) {
         $file = $directory . DIRECTORY_SEPARATOR . $classPath;
 //        echo "Checking: $file<br>";

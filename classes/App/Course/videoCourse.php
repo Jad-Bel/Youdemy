@@ -1,7 +1,7 @@
 <?php
-require_once 'course.php';
+// require_once 'course.php';
 
-namespace App\Course;
+namespace App\course;
 
 class videoCourse extends course
 {
