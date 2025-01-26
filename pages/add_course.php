@@ -1,5 +1,13 @@
 <?php
 
+
+require_once '../vendor/autoload.php';
+
+use Youco\Youdemy\App\Course\VideoCourse;
+use Youco\Youdemy\App\Course\DocumentCourse;
+use Youco\Youdemy\App\Category\Category;
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$title = $_POST['title'];
 	$description = $_POST['description'];

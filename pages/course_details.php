@@ -1,4 +1,8 @@
 <?php
+require_once '../vendor/autoload.php';
+
+use Youco\Youdemy\App\Course\ConcreteCourse;
+use Youco\Youdemy\App\CourseService\CourseService;
 
 if (isset($_GET['id'])) {
 	$courseId = intval($_GET['id']);
