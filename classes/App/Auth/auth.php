@@ -1,6 +1,13 @@
 <?php
 
 namespace Youco\Youdemy\App\Auth;
+
+use Youco\Youdemy\App\Database\Database;
+use Youco\Youdemy\App\User\User;
+use Youco\Youdemy\App\Teacher\Teacher;
+use Youco\Youdemy\App\Student\Student;
+
+
 class Auth {
     private $conn;
 

@@ -1,8 +1,8 @@
 <?php
 
 namespace Youco\Youdemy\App\Teacher;
-
 use Youco\Youdemy\App\User\User;
+
 class Teacher extends User
 {
     public function __construct($id, $username, $email, $password, $role, $status)
