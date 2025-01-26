@@ -2,15 +2,15 @@
 
 namespace App\Categories;
 
-use App\Database\Database;
+use App\Database\database;
 
-class Category
+class category
 {
     private $conn;
 
     public function __construct()
     {
-        $db = new Database();
+        $db = new database();
         $this->conn = $db->getConnection();
     }
 
@@ -53,7 +53,7 @@ class Category
     }
 
     public static function getPopularCategories() {
-        $db = new Database();
+        $db = new database();
         $conn = $db->getConnection();
         $query = "SELECT * FROM categories LIMIT 5";
         $stmt = $conn->prepare($query);

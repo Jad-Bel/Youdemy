@@ -7,8 +7,8 @@ require_once '../classes/App/User/user.php';
 require_once '../classes/App/User/student.php';
 require_once '../classes/App/category.php';
 
-use App\Course\ConcreteCourse;
-use App\CourseService\CourseService;
+use App\Course\concreteCourse;
+use App\CourseService\courseService;
 use App\Student\Student;
 
 $course_id = isset($_GET['course_id']) ? intval(explode('?', $_GET['course_id'])[0]) : null;
@@ -68,8 +68,8 @@ if (isset($_SESSION['enrollment_error'])) {
 	unset($_SESSION['enrollment_error']);
 }
 
-$courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-$courseService = new CourseService($courseModal, null);
+$courseModal = new concreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+$courseService = new courseService($courseModal, null);
 $course = $courseService->getCourseById($course_id);
 
 $keywords = $_GET['keywords'] ?? '';

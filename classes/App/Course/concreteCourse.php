@@ -2,9 +2,9 @@
 
 namespace App\Course;
 
-use App\Course\Course;
+use App\Course\course;
 
-class ConcreteCourse extends Course
+class concreteCourse extends course
 {
     public function save() {}
     public function displayContent($id) {}

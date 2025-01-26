@@ -3,7 +3,7 @@
 
 namespace App\Auth; 
 
-use App\Database\Database;
+use App\Database\database;
 use App\User\User;
 use App\Teacher\Teacher;
 use App\Student\Student;
@@ -12,7 +12,7 @@ class Auth {
     private $conn;
 
     public function __construct() {
-        $db = new Database();
+        $db = new database();
         $this->conn = $db->getConnection();
     }
 

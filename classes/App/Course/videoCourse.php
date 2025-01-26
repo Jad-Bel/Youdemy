@@ -1,9 +1,9 @@
 <?php
 require_once 'course.php';
 
-use App\Course\Course;
+namespace App\Course;
 
-class VideoCourse extends Course
+class videoCourse extends course
 {
     private $video_link;
 
@@ -20,7 +20,8 @@ class VideoCourse extends Course
         $course_bnr,
         $status,
         $certification
-    ) {
+    )
+    {
         parent::__construct(
             $title,
             $description,
@@ -36,6 +37,7 @@ class VideoCourse extends Course
         );
         $this->video_link = $video_link;
     }
+
     public function getVideoLink()
     {
         return $this->video_link;
@@ -105,7 +107,7 @@ class VideoCourse extends Course
     {
         $allowedStatuses = ['pending', 'approved', 'rejected'];
         if (!in_array($status, $allowedStatuses)) {
-            throw new Exception("Invalid status: $status");
+            throw new \Exception("Invalid status: $status");
         }
 
         $sql = "UPDATE courses
@@ -148,7 +150,7 @@ class VideoCourse extends Course
         $sql = "SELECT * FROM courses WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id' => $id]);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         return $result;
     }

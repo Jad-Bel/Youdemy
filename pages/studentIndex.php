@@ -4,11 +4,11 @@ require_once '../classes/database.php';
 require_once '../classes/App/Course/courseService.php';
 require_once '../classes/App/Course/course.php';
 
-use App\Course\ConcreteCourse;
-use App\CourseService\CourseService;
+use App\Course\concreteCourse;
+use App\CourseService\courseService;
 
-$courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-$courseService = new CourseService($courseModal, null);
+$courseModal = new concreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+$courseService = new courseService($courseModal, null);
 
 $keywords = $_GET['keywords'] ?? '';
 

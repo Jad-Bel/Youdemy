@@ -1,4 +1,8 @@
 <?php
+
+use App\Course\documentCourse;
+use App\Course\videoCourse;
+
 require_once '../config/database.php';
 require_once '../includes/session_check.php';
 require_once '../classes/admin/course.php';

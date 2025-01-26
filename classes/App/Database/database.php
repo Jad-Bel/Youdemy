@@ -2,7 +2,7 @@
 
 namespace App\Database;
 
-class Database
+class database
 {
     private $host = "localhost";
     private $db_name = "youdemy";

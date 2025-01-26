@@ -5,11 +5,11 @@
 
 require_once '../autoload.php';
 
-use App\CourseService\CourseService;
-use App\Course\ConcreteCourse;
+use App\CourseService\courseService;
+use App\Course\concreteCourse;
 
-$courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-$courseService = new CourseService($courseModal, null);
+$courseModal = new concreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+$courseService = new courseService($courseModal, null);
 
 $keywords = $_GET['keywords'] ?? '';
 

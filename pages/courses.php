@@ -1,20 +1,23 @@
 <?php
-require_once '../classes/database.php';
-require_once '../classes/App/Course/course.php';
-require_once '../classes/App/Course/courseService.php';
-require_once '../classes/App/User/user.php';
-require_once '../classes/App/User/student.php';
-require_once '../classes/App/category.php';
 
-use App\Course\ConcreteCourse;
-use App\CourseService\CourseService;
-use App\Categories\Category;
+require_once '../autoload.php';
+
+//require_once '../classes/database.php';
+//require_once '../classes/App/Course/course.php';
+//require_once '../classes/App/Course/courseService.php';
+//require_once '../classes/App/User/user.php';
+//require_once '../classes/App/User/student.php';
+//require_once '../classes/App/category.php';
+
+use App\Course\concreteCourse;
+use App\CourseService\courseService;
+use App\Categories\category;
 
 
-$courseModel = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-$categoryModel = new Category();
+$courseModel = new concreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+$categoryModel = new category();
 
-$courseService = new CourseService($courseModel, $categoryModel);
+$courseService = new courseService($courseModel, $categoryModel);
 
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $perPage = 5;

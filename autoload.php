@@ -10,9 +10,9 @@ spl_autoload_register(function ($class) {
 
     foreach ($directories as $directory) {
         $file = $directory . DIRECTORY_SEPARATOR . $classPath;
-        echo "Checking: $file<br>";
+//        echo "Checking: $file<br>";
         if (file_exists($file)) {
-            echo "Loading: $file<br>";
+//            echo "Loading: $file<br>";
             require_once $file;
             return;
         }

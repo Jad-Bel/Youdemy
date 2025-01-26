@@ -2,7 +2,7 @@
 
 namespace App\User;
 
-use App\Database\Database;
+use App\Database\database;
 
 class User
 {
@@ -18,7 +18,7 @@ class User
 
     public function __construct($id, $username, $email, $password = null, $role = null, $status = null)
     {
-        $db = new Database();
+        $db = new database();
         $this->conn = $db->getConnection();
         $this->id = $id;
         $this->username = $username;
@@ -127,7 +127,7 @@ class User
 
     public static function findByEmail($email)
     {
-        $db = new Database();
+        $db = new database();
         $conn = $db->getConnection();
         $sql = "SELECT * FROM users WHERE email = :email";
         $stmt = $conn->prepare($sql);
@@ -149,7 +149,7 @@ class User
     public static function getAllUsers($currentUser)
     {
         if ($currentUser->getRole() == 'admin') {
-            $db = new Database();
+            $db = new database();
             $conn = $db->getConnection();
             $stmt = $conn->query("SELECT * FROM users");
             $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
@@ -161,7 +161,7 @@ class User
     public static function getAllTeachers($currentUser)
     {
         if ($currentUser->getRole() == 'admin') {
-            $db = new Database();
+            $db = new database();
             $conn = $db->getConnection();
             $stmt = $conn->query("SELECT * FROM users WHERE role = 'teacher'");
             $result = $stmt->fetchAll(\PDO::FETCH_OBJ);

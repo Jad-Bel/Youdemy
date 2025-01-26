@@ -7,8 +7,8 @@ require_once '../classes/App/User/user.php';
 require_once '../classes/App/User/student.php';
 require_once '../classes/App/category.php';
 
-use App\Course\ConcreteCourse;
-use App\CourseService\CourseService;
+use App\Course\concreteCourse;
+use App\CourseService\courseService;
 
 
 if (isset($_GET['id'])) {
@@ -16,8 +16,8 @@ if (isset($_GET['id'])) {
 } else {
 	die("Course ID is missing.");
 }
-$courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-$courseService = new CourseService(NULL, NULL);
+$courseModal = new concreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+$courseService = new courseService(NULL, NULL);
 $course = $courseService->getCourseById($courseId);
 ?>
 

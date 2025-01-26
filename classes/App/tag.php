@@ -2,7 +2,7 @@
 
 namespace App\Tag;
 
-use App\Database\Database;
+use App\Database\database;
 
 class Tag
 {
@@ -14,7 +14,7 @@ class Tag
 
     public function __construct()
     {
-        $db = new Database();
+        $db = new database();
         $this->conn = $db->getConnection();
     }
 

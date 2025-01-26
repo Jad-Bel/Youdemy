@@ -2,9 +2,9 @@
 
 namespace App\CourseService;
 
-use App\Database\Database;
+use App\Database\database;
 
-class CourseService
+class courseService
 {
     private $courseModel;
     private $categoryModel;
@@ -20,7 +20,7 @@ class CourseService
 
     public function getCourseById($id)
     {
-        $db = new Database();
+        $db = new database();
         $conn = $db->getConnection();
 
         $sql = "SELECT 
@@ -60,7 +60,7 @@ class CourseService
 
     public function getAllCourses()
     {
-        $db = new Database();
+        $db = new database();
         $conn = $db->getConnection();
 
         $sql = "SELECT 
@@ -90,7 +90,7 @@ class CourseService
 
     public function getAllApprovedCourses()
     {
-        $db = new Database();
+        $db = new database();
         $conn = $db->getConnection();
 
         $sql = "SELECT 
@@ -122,7 +122,7 @@ class CourseService
 
     public function getAllCoursesForTeacher($user_id)
     {
-        $db = new Database();
+        $db = new database();
         $conn = $db->getConnection();
 
         $query = "SELECT 
