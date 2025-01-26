@@ -1,5 +1,14 @@
 <?php
 
+
+require_once '../vendor/autoload.php';
+
+use Youco\Youdemy\App\Admin\Admin;
+use Youco\Youdemy\App\User\User;
+use Youco\Youdemy\App\Category\Category;
+use Youco\Youdemy\App\Tag\Tag;
+
+
 $admin = new Admin('test', 'test@test.com', 'test', 'admin', null);
 $statistics = $admin->getStatistics();
 
