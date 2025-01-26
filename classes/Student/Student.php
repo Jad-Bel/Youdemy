@@ -4,7 +4,7 @@ namespace Youco\Youdemy\App\Student;
 use Youco\Youdemy\App\User\User;
 
 
-class Student extends User
+class   Student extends User
 {
     public function __construct($username, $email, $password, $role, $status)
     {

@@ -1,5 +1,10 @@
 <?php
 
+require_once '../vendor/autoload.php';
+
+use Youco\Youdemy\App\Auth\Auth;
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
