@@ -1,5 +1,12 @@
 <?php
 
+require_once '../vendor/autoload.php';
+require_once '../includes/session_check.php';
+use Youco\Youdemy\App\Course\ConcreteCourse;
+use Youco\Youdemy\App\CourseService\CourseService;
+use Youco\Youdemy\App\Category\Category;
+
+
 $courseModel = new concreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 $categoryModel = new Category();
 

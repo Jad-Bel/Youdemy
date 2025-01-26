@@ -1,6 +1,13 @@
 <?php
 
-use Youco\Youdemyclasses\App\Student\Student;
+require_once '../vendor/autoload.php';
+require_once '../includes/session_check.php';
+
+use Youco\Youdemy\App\Course\ConcreteCourse;
+use Youco\Youdemy\App\CourseService\CourseService;
+
+
+use Youco\Youdemy\App\Student\Student;
 
 $course_id = isset($_GET['course_id']) ? intval(explode('?', $_GET['course_id'])[0]) : null;
 $student_id = $_SESSION['user_id'] ?? null;

@@ -1,5 +1,13 @@
 <?php
 
+require_once '../vendor/autoload.php';
+require_once '../includes/session_check.php';
+
+use Youco\Youdemy\App\Course\ConcreteCourse;
+use Youco\Youdemy\App\CourseService\CourseService;
+use Youco\Youdemy\App\Teacher\Teacher;
+
+
 $courseModal = new concreteCourse(null, null, null, null, null, null, null, null, null, null, null);
 $courses = new courseService($courseModal, null);
 
