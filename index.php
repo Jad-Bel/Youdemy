@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
 
 use Youco\Youdemy\App\Course\ConcreteCourse;
@@ -53,22 +53,22 @@ if (!empty($keywords)) {
 	<![endif]-->
 
 	<!-- All PLUGINS CSS ============================================= -->
-	<link rel="stylesheet" type="text/css" href="../assets/css/assets.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/assets.css">
 
 	<!-- TYPOGRAPHY ============================================= -->
-	<link rel="stylesheet" type="text/css" href="../assets/css/typography.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/typography.css">
 
 	<!-- SHORTCODES ============================================= -->
-	<link rel="stylesheet" type="text/css" href="../assets/css/shortcodes/shortcodes.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/shortcodes/shortcodes.css">
 
 	<!-- STYLESHEETS ============================================= -->
-	<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link class="skin" rel="stylesheet" type="text/css" href="../assets/css/color/color-1.css">
 
 	<!-- REVOLUTION SLIDER CSS ============================================= -->
-	<link rel="stylesheet" type="text/css" href="../assets/vendors/revolution/css/layers.css">
-	<link rel="stylesheet" type="text/css" href="../assets/vendors/revolution/css/settings.css">
-	<link rel="stylesheet" type="text/css" href="../assets/vendors/revolution/css/navigation.css">
+	<link rel="stylesheet" type="text/css" href="assets/vendors/revolution/css/layers.css">
+	<link rel="stylesheet" type="text/css" href="assets/vendors/revolution/css/settings.css">
+	<link rel="stylesheet" type="text/css" href="assets/vendors/revolution/css/navigation.css">
 	<!-- REVOLUTION SLIDER END -->
 </head>
 
@@ -145,7 +145,7 @@ if (!empty($keywords)) {
 											</ul>
 										</li>
 										<li class="add-menu-right">
-											<img src="../assets/images/adv/adv.jpg" alt="" />
+											<img src="assets/images/adv/adv.jpg" alt="" />
 										</li>
 									</ul>
 								</li>
@@ -187,7 +187,7 @@ if (!empty($keywords)) {
 								data-param9="" data-param10=""
 								data-description="Science says that Women are generally happier">
 								<!-- MAIN IMAGE -->
-								<img src="../assets/images/slider/slide1.jpg" alt=""
+								<img src="assets/images/slider/slide1.jpg" alt=""
 									data-bgposition="center center"
 									data-bgfit="cover"
 									data-bgrepeat="no-repeat"
@@ -494,7 +494,7 @@ if (!empty($keywords)) {
 							<div class="col-lg-4 col-md-4 col-sm-6">
 								<div class="service-bx">
 									<div class="action-box">
-										<img src="../assets/images/our-services/pic1.jpg" alt="">
+										<img src="assets/images/our-services/pic1.jpg" alt="">
 									</div>
 									<div class="info-bx text-center">
 										<div class="feature-box-sm radius bg-white">
@@ -508,7 +508,7 @@ if (!empty($keywords)) {
 							<div class="col-lg-4 col-md-4 col-sm-6">
 								<div class="service-bx">
 									<div class="action-box">
-										<img src="../assets/images/our-services/pic2.jpg" alt="">
+										<img src="assets/images/our-services/pic2.jpg" alt="">
 									</div>
 									<div class="info-bx text-center">
 										<div class="feature-box-sm radius bg-white">
@@ -522,7 +522,7 @@ if (!empty($keywords)) {
 							<div class="col-lg-4 col-md-4 col-sm-12">
 								<div class="service-bx m-b0">
 									<div class="action-box">
-										<img src="../assets/images/our-services/pic3.jpg" alt="">
+										<img src="assets/images/our-services/pic3.jpg" alt="">
 									</div>
 									<div class="info-bx text-center">
 										<div class="feature-box-sm radius bg-white">
@@ -643,7 +643,7 @@ if (!empty($keywords)) {
 								<div class="item">
 									<div class="event-bx">
 										<div class="action-box">
-											<img src="../assets/images/event/pic4.jpg" alt="">
+											<img src="assets/images/event/pic4.jpg" alt="">
 										</div>
 										<div class="info-bx d-flex">
 											<div>
@@ -666,7 +666,7 @@ if (!empty($keywords)) {
 								<div class="item">
 									<div class="event-bx">
 										<div class="action-box">
-											<img src="../assets/images/event/pic3.jpg" alt="">
+											<img src="assets/images/event/pic3.jpg" alt="">
 										</div>
 										<div class="info-bx d-flex">
 											<div>
@@ -689,7 +689,7 @@ if (!empty($keywords)) {
 								<div class="item">
 									<div class="event-bx">
 										<div class="action-box">
-											<img src="../assets/images/event/pic2.jpg" alt="">
+											<img src="assets/images/event/pic2.jpg" alt="">
 										</div>
 										<div class="info-bx d-flex">
 											<div>
@@ -744,7 +744,7 @@ if (!empty($keywords)) {
 							<div class="item">
 								<div class="testimonial-bx">
 									<div class="testimonial-thumb">
-										<img src="../assets/images/testimonials/pic2.jpg" alt="">
+										<img src="assets/images/testimonials/pic2.jpg" alt="">
 									</div>
 									<div class="testimonial-info">
 										<h5 class="name">Peter Packer</h5>
@@ -773,7 +773,7 @@ if (!empty($keywords)) {
 							<div class="item">
 								<div class="recent-news">
 									<div class="action-box">
-										<img src="../assets/images/blog/latest-blog/pic1.jpg" alt="">
+										<img src="assets/images/blog/latest-blog/pic1.jpg" alt="">
 									</div>
 									<div class="info-bx">
 										<ul class="media-post">
@@ -811,7 +811,7 @@ if (!empty($keywords)) {
 							<div class="item">
 								<div class="recent-news">
 									<div class="action-box">
-										<img src="../assets/images/blog/latest-blog/pic3.jpg" alt="">
+										<img src="assets/images/blog/latest-blog/pic3.jpg" alt="">
 									</div>
 									<div class="info-bx">
 										<ul class="media-post">
@@ -911,14 +911,14 @@ if (!empty($keywords)) {
 							<div class="widget widget_gallery gallery-grid-4">
 								<h5 class="footer-title">Our Gallery</h5>
 								<ul class="magnific-image">
-									<li><a href="../assets/images/gallery/pic1.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic1.jpg" alt=""></a></li>
-									<li><a href="../assets/images/gallery/pic2.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic2.jpg" alt=""></a></li>
-									<li><a href="../assets/images/gallery/pic3.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic3.jpg" alt=""></a></li>
-									<li><a href="../assets/images/gallery/pic4.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic4.jpg" alt=""></a></li>
-									<li><a href="../assets/images/gallery/pic5.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic5.jpg" alt=""></a></li>
-									<li><a href="../assets/images/gallery/pic6.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic6.jpg" alt=""></a></li>
-									<li><a href="../assets/images/gallery/pic7.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic7.jpg" alt=""></a></li>
-									<li><a href="../assets/images/gallery/pic8.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic8.jpg" alt=""></a></li>
+									<li><a href="assets/images/gallery/pic1.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic1.jpg" alt=""></a></li>
+									<li><a href="assets/images/gallery/pic2.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic2.jpg" alt=""></a></li>
+									<li><a href="assets/images/gallery/pic3.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic3.jpg" alt=""></a></li>
+									<li><a href="assets/images/gallery/pic4.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic4.jpg" alt=""></a></li>
+									<li><a href="assets/images/gallery/pic5.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic5.jpg" alt=""></a></li>
+									<li><a href="assets/images/gallery/pic6.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic6.jpg" alt=""></a></li>
+									<li><a href="assets/images/gallery/pic7.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic7.jpg" alt=""></a></li>
+									<li><a href="assets/images/gallery/pic8.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic8.jpg" alt=""></a></li>
 								</ul>
 							</div>
 						</div>
@@ -938,34 +938,34 @@ if (!empty($keywords)) {
 	</div>
 
 	<!-- External JavaScripts -->
-	<script src="../assets/js/jquery.min.js"></script>
-	<script src="../assets/vendors/bootstrap/js/popper.min.js"></script>
-	<script src="../assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-	<script src="../assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
-	<script src="../assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
-	<script src="../assets/vendors/magnific-popup/magnific-popup.js"></script>
-	<script src="../assets/vendors/counter/waypoints-min.js"></script>
-	<script src="../assets/vendors/counter/counterup.min.js"></script>
-	<script src="../assets/vendors/imagesloaded/imagesloaded.js"></script>
-	<script src="../assets/vendors/masonry/masonry.js"></script>
-	<script src="../assets/vendors/masonry/filter.js"></script>
-	<script src="../assets/vendors/owl-carousel/owl.carousel.js"></script>
-	<script src="../assets/js/functions.js"></script>
-	<script src="../assets/js/contact.js"></script>
-	<script src='../assets/vendors/switcher/switcher.js'></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/vendors/bootstrap/js/popper.min.js"></script>
+	<script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+	<script src="assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+	<script src="assets/vendors/magnific-popup/magnific-popup.js"></script>
+	<script src="assets/vendors/counter/waypoints-min.js"></script>
+	<script src="assets/vendors/counter/counterup.min.js"></script>
+	<script src="assets/vendors/imagesloaded/imagesloaded.js"></script>
+	<script src="assets/vendors/masonry/masonry.js"></script>
+	<script src="assets/vendors/masonry/filter.js"></script>
+	<script src="assets/vendors/owl-carousel/owl.carousel.js"></script>
+	<script src="assets/js/functions.js"></script>
+	<script src="assets/js/contact.js"></script>
+	<script src='assets/vendors/switcher/switcher.js'></script>
 	<!-- Revolution JavaScripts Files -->
-	<script src="../assets/vendors/revolution/js/jquery.themepunch.tools.min.js"></script>
-	<script src="../assets/vendors/revolution/js/jquery.themepunch.revolution.min.js"></script>
+	<script src="assets/vendors/revolution/js/jquery.themepunch.tools.min.js"></script>
+	<script src="assets/vendors/revolution/js/jquery.themepunch.revolution.min.js"></script>
 	<!-- Slider revolution 5.0 Extensions  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
-	<script src="../assets/vendors/revolution/js/extensions/revolution.extension.actions.min.js"></script>
-	<script src="../assets/vendors/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
-	<script src="../assets/vendors/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
-	<script src="../assets/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-	<script src="../assets/vendors/revolution/js/extensions/revolution.extension.migration.min.js"></script>
-	<script src="../assets/vendors/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-	<script src="../assets/vendors/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
-	<script src="../assets/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-	<script src="../assets/vendors/revolution/js/extensions/revolution.extension.video.min.js"></script>
+	<script src="assets/vendors/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+	<script src="assets/vendors/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+	<script src="assets/vendors/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+	<script src="assets/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+	<script src="assets/vendors/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+	<script src="assets/vendors/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+	<script src="assets/vendors/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+	<script src="assets/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+	<script src="assets/vendors/revolution/js/extensions/revolution.extension.video.min.js"></script>
 	<script>
 		jQuery(document).ready(function() {
 			var ttrevapi;
