@@ -14,5 +14,4 @@ if (!empty($keywords)) {
 	header("Location: courses.php?search=" . urlencode($keywords));
 	exit();
 }
-?>
 
