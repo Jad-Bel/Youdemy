@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS youdemy;
-USE youdemy;
+CREATE DATABASE youdemy;
+
 CREATE TABLE `categories` (
     `id` int NOT NULL,
     `name` varchar(100) NOT NULL,
