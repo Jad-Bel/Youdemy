@@ -1,43 +1,30 @@
-youdemy/
-├── assets/                     # Static files (CSS, JS, images, etc.)
-├── classes/                    # PHP classes
-│   ├── App/                    # App namespace
-│   │   ├── Admin/              # Admin-related classes
-│   │   │   └── admin.php       # Admin class
-│   │   ├── Auth/               # Authentication-related classes
-│   │   │   └── auth.php        # Auth class
-│   │   ├── Course/             # Course-related classes
-│   │   │   ├── course.php      # Base Course class
-│   │   │   ├── courseSe.php    # Course service/helper class
-│   │   │   ├── documentCo.php  # DocumentCourse class
-│   │   │   └── videoCourse.php # VideoCourse class
-│   │   ├── User/               # User-related classes
-│   │   │   ├── admin.php       # Admin user class
-│   │   │   ├── teacher.php     # Teacher user class
-│   │   │   ├── user.php        # Base User class
-│   │   │   └── student.php     # Student user class
-│   │   ├── category.php        # Category class
-│   │   ├── tag.php             # Tag class
-│   │   ├── database.php        # Database connection class
-│   │   └── populateDb.php      # Script to populate the database
-├── includes/                   # Include files (e.g., header, footer)
-├── pages/                      # PHP pages for the application
-│   ├── add_course.php          # Page to add a new course
-│   ├── course_details.php      # Page to display course details
-│   ├── courseContent.php       # Page to display course content
-│   ├── courses.php             # Page to list all courses
-│   ├── dashboard.php           # Admin/teacher dashboard
-│   ├── index.php               # Home page
-│   ├── login.php               # Login page
-│   ├── logout.php              # Logout page
-│   ├── mod_course.php          # Page to modify a course
-│   ├── register.php            # User registration page
-│   ├── studentCourse.php       # Page for a student's course
-│   ├── studentCourses.php      # Page to list student's courses
-│   ├── studentIndex.php        # Student dashboard/index page
-│   └── teacherDash.php         # Teacher dashboard
-├── scripts/                    # JavaScript files
-├── uploads/                    # Uploaded files (e.g., course documents, images)
-├── folder structure/           # Documentation for folder structure
-├── README.md                   # Project documentation
-└── OUTLINE                     # Project outline or planning document
+App/
+│── Controller/
+│   ├── Category/
+│   ├── Course/
+│   ├── User/
+│   │   ├── UserController.php
+│
+│── Core/
+│   ├── Database.php
+│   ├── Helpers.php
+│
+│── Model/
+│   ├── Admin/
+│   ├── User/
+│   ├── Course/
+│
+│── Views/
+│   ├── layouts/
+│   ├── user/
+│   ├── course/
+│
+│── Routes/
+│   ├── web.php
+│
+assets/
+includes/ (Optional)
+vendor/
+index.php
+composer.json
+README.md
