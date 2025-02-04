@@ -1,6 +1,6 @@
 <?php
 
-namespace Youco\Youdemy\App\Course;
+namespace Youco\Youdemy\App\Modal\Course;
 
 class DocumentCourse extends course
 {

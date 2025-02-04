@@ -1,6 +1,6 @@
 <?php
 
-namespace Youco\Youdemy\App\Admin;
+namespace Youco\Youdemy\App\Modal\Admin;
 use Youco\Youdemy\App\User\User;
 
 class Admin extends User

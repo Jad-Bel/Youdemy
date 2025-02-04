@@ -1,8 +1,8 @@
 <?php
 
-namespace Youco\Youdemy\App\Course;
+namespace Youco\Youdemy\App\Modal\Course;
 
-use Youco\Youdemy\App\Database\Database;
+use Youco\Youdemy\App\Core\Database\Database;
 
 abstract class Course
 {

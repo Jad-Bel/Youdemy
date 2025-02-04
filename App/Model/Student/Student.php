@@ -1,7 +1,7 @@
 <?php
 
-namespace Youco\Youdemy\App\Student;
-use Youco\Youdemy\App\User\User;
+namespace Youco\Youdemy\App\Modal\Student;
+use Youco\Youdemy\App\Modal\User\User;
 
 
 class   Student extends User

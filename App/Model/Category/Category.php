@@ -1,7 +1,7 @@
 <?php
 
-namespace Youco\Youdemy\App\Category;
-use Youco\Youdemy\App\Database\Database;
+namespace Youco\Youdemy\App\Modal\Category;
+use Youco\Youdemy\App\Core\Database\Database;
 
 class Category
 {
