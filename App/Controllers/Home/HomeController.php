@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Home;
 
-use App\Modal\CourseService\CourseService;
-use App\Modal\Course\ConcreteCourse;
-use App\Modal\Category\Category;
+use App\Model\CourseService\CourseService;
+use App\Model\Category\Category;
+use App\Model\Course\ConcreteCourse;
+
 
 class HomeController
 {
@@ -13,6 +14,12 @@ class HomeController
 
     public function __construct()
     {
+        // echo "<br> Checking if CourseService class exists...";
+        // if (!class_exists('App\Modal\CourseService\CourseService')) {
+        //     throw new \Exception("<br> CourseService class not found.");
+        // }
+    
+        // echo "<br> Instantiating CourseService...<br>";
         $this->courseService = new CourseService(new ConcreteCourse(), new Category());
         $this->categoryModel = new Category();
     }
@@ -22,6 +29,8 @@ class HomeController
         $courses = $this->courseService->getAllApprovedCourses();
         $categories = $this->categoryModel->getPopularCategories();
 
-        require_once __DIR__ . '/../../views/home.php';
+        require_once __DIR__ . '/../../Views/home.php';
     }
 }
+
+echo 1;

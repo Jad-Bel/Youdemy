@@ -22,7 +22,7 @@ class Router {
                 // Handle controller@method syntax
                 if (is_string($route['handler']) && strpos($route['handler'], '@') !== false) {
                     list($controller, $method) = explode('@', $route['handler']);
-
+                    print_r($controller);
                     // Check if the controller class exists
                     if (!class_exists($controller)) {
                         throw new \Exception("Controller class $controller not found. <br>");

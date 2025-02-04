@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modal\CourseService;
+namespace App\Model\CourseService;
 use App\Core\Database\Database;
 
 class CourseService

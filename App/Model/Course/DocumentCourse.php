@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modal\Course;
+namespace App\Model\Course;
 
 class DocumentCourse extends course
 {
