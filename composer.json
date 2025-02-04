@@ -2,7 +2,7 @@
     "name": "youco/youdemyclasses",
     "autoload": {
         "psr-4": {
-            "Youco\\Youdemy\\App\\": "Classes/App/"
+            "Youco\\Youdemy\\": "App/"
         }
     },
     "authors": [
