@@ -2,35 +2,26 @@
 
 namespace App\Core\Router;
 
-class Router 
-{
-    private static $routes = [];
+class Router {
+    private $routes = [];
 
-    public static function add($route, $controller, $method)
-    {
-        self::$routes[$route] = ['controller' => $controller, 'method' => $method];
+    public function add($path, $handler) {
+        $this->routes[] = [
+            'path' => $path,
+            'handler' => $handler
+        ];
     }
 
-    public static function dispatch($url) 
-    {
-        $url = trim($url, '/');
+    public function dispatch($path) {
 
-        if (isset(self::$routes[$url])) {
-            $controllerClass = 'Controllers\\' . self::$routes[$url]['controller'];
-            $method = self::$routes[$url]['method'];
-
-            if (class_exists($controllerClass)) {
-                $controller = new $controllerClass;
-                if (method_exists($controller, $method)) {
-                    $controller->$method();
-                } else {
-                    echo "Method '$method' not found in '$controllerClass'.";
-                } 
-            } else {
-                echo "COntroller '$controllerClass' not found.";
-            } 
-        } else {
-            echo "404 - Page Not Found!";
+        foreach ($this->routes as $route) {
+            $pattern = preg_replace('/\{(\w+)\}/', '([^/]+)', $route['path']);
+            if (preg_match("#^$pattern$#", $path, $matches)) {
+                array_shift($matches);
+                return call_user_func_array($route['handler'], $matches);
+            }
         }
+
+        echo "404 Not Found";
     }
 }

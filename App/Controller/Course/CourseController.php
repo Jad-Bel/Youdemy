@@ -39,16 +39,16 @@ class CourseController
 
         if (!$course) {
             header("HTTP/1.0 404 Not Found");
-            echo "Course not found";
+            echo "not found";
             return;
         }
 
-        require_once '../views/courses/show.php';
+        require_once '';
     }
 
     public function create()
     {
-        require_once '../views/courses/create.php';
+        require_once '';
     }
 
     public function store()
@@ -69,20 +69,20 @@ class CourseController
             return;
         }
 
-        require_once '../views/courses/edit.php';
+        require_once '';
     }
 
     public function update($id)
     {
         $data = $_POST;
-        $this->courseService->update($id, $data);
+        $this->courseService->modify($id, $data);
 
         header("Location: /courses");
     }
 
     public function delete($id)
     {
-        $this->courseService->deleteCourse($id);
+        $this->courseService->delete($id);
 
         header("Location: /courses");
     }

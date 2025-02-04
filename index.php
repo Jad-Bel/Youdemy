@@ -1,24 +1,23 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-// require_once __DIR__ . '/App/Core/Router/Router.php';
-
 use App\Core\Router\Router;
-use App\Controller\Course\CourseController;
-use App\Modal\CourseService\CourseService;
-use App\Modal\Category\Category;
-echo "Router class exists: " . (class_exists(Router::class) ? 'Yes' : 'No');
 
-$routes = [
-	'courses' => ['controller' => 'Controllers\\Course\\CourseController', 'method' => 'index']
-];
+$router = new Router();
 
-Router::add('courses', 'CourseController', 'index');
+$requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-$url = $_GET['url'] ?? 'home';
+$basePath = '/youdemy';
+if (strpos($requestUri, $basePath) === 0) {
+    $requestUri = substr($requestUri, strlen($basePath));
+}
 
-Router::dispatch($url);
+$router->dispatch($requestUri);
 
+
+// use App\Controller\Course\CourseController;
+// use App\Modal\CourseService\CourseService;
+// use App\Modal\Category\Category;
 // use Youco\Youdemy\App\Course\ConcreteCourse;
 // use Youco\Youdemy\App\CourseService\CourseService;
 
