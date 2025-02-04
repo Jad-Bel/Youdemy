@@ -25,7 +25,6 @@ $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $basePath = '/youdemy';
 if (strpos($requestUri, $basePath) === 0) {
     $requestUri = substr($requestUri, strlen($basePath));
-    var_dump($requestUri);
 }
 
 $router->add('/', 'App\Controllers\HomeController@index');
@@ -35,7 +34,6 @@ $router->add('/about', 'App\Controllers\PageController@about');
 
 $router->dispatch($requestUri);
 
-// use App\Controller\Course\CourseController;
 // use App\Modal\CourseService\CourseService;
 // use App\Modal\Category\Category;
 // use Youco\Youdemy\App\Course\ConcreteCourse;
