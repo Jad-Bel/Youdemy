@@ -1,6 +1,6 @@
 <?php
 
-namespace Youco\Youdemy\App\Controllers;
+namespace Youco\Youdemy\App\Controllers\Course;
 
 use Youco\Youdemy\App\Modal\CourseService\CourseService;
 use Youco\Youdemy\App\Modal\Category\Category;
@@ -10,7 +10,7 @@ class CourseController
     protected $courseService;
     protected $categoryModel;
 
-    public function __construct($courseService, $categoryModel)
+    public function __construct(CourseService $courseService,Category $categoryModel)
     {
         $this->courseService = $courseService;
         $this->categoryModel = $categoryModel;
