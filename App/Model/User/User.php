@@ -1,7 +1,7 @@
 <?php
 
-namespace Youco\Youdemy\App\Modal\User;
-use Youco\Youdemy\App\Core\Database\Database;
+namespace App\Modal\User;
+use App\Core\Database\Database;
 
 
 class User

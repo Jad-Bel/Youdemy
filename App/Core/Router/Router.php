@@ -1,6 +1,6 @@
 <?php
 
-namespace Youco\Youdemy\App\Core\Router;
+namespace App\Core\Router;
 
 class Router 
 {
@@ -15,7 +15,7 @@ class Router
     {
         $url = trim($url, '/');
 
-        if (isset(self::$route[$url])) {
+        if (isset(self::$routes[$url])) {
             $controllerClass = 'Controllers\\' . self::$routes[$url]['controller'];
             $method = self::$routes[$url]['method'];
 

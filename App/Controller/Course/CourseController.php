@@ -1,9 +1,9 @@
 <?php
 
-namespace Youco\Youdemy\App\Controllers\Course;
+namespace App\Controllers\Course;
 
-use Youco\Youdemy\App\Modal\CourseService\CourseService;
-use Youco\Youdemy\App\Modal\Category\Category;
+use App\Modal\CourseService\CourseService;
+use App\Modal\Category\Category;
 
 class CourseController
 {
@@ -30,7 +30,7 @@ class CourseController
 
         $categories = $this->categoryModel->getPopularCategories();
 
-        require_once '../views/courses/index.php';
+        require_once __DIR__ . '/App/Views/Course.php';
     }
 
     public function show($id)
@@ -54,7 +54,7 @@ class CourseController
     public function store()
     {
         $data = $_POST;
-        $this->courseService->createCourse($data);
+        $this->courseService->save($data);
 
         header("Location: /courses");
     }
@@ -75,7 +75,7 @@ class CourseController
     public function update($id)
     {
         $data = $_POST;
-        $this->courseService->updateCourse($id, $data);
+        $this->courseService->update($id, $data);
 
         header("Location: /courses");
     }

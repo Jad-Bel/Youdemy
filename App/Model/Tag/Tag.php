@@ -1,8 +1,8 @@
 <?php
 
-namespace Youco\Youdemy\App\Modal\Tag;
+namespace App\Modal\Tag;
 
-use Youco\Youdemy\App\Core\Database\Database;
+use App\Core\Database\Database;
 
 class Tag
 {

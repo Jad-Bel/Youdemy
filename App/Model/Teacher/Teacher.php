@@ -1,7 +1,7 @@
 <?php
 
-namespace Youco\Youdemy\App\Modal\Teacher;
-use Youco\Youdemy\App\Modal\User\User;
+namespace App\Modal\Teacher;
+use App\Modal\User\User;
 
 class Teacher extends User
 {

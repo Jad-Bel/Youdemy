@@ -1,31 +1,5 @@
 <?php
 require_once '../vendor/autoload.php';
-
-use Youco\Youdemy\App\Course\ConcreteCourse;
-use Youco\Youdemy\App\CourseService\CourseService;
-use Youco\Youdemy\App\Category\Category;
-
-
-$courseModel = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-$categoryModel = new category();
-
-$courseService = new courseService($courseModel, $categoryModel);
-
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$perPage = 5;
-$search = isset($_GET['search']) ? $_GET['search'] : '';
-$categoryId = isset($_GET['id']) ? $_GET['id'] : null;
-
-$paginationData = $courseService->getPaginatedCourses($page, $perPage, $search, $categoryId);
-$courses = $paginationData['courses'];
-$totalPages = $paginationData['totalPages'];
-$currentPage = $paginationData['currentPage'];
-
-$categories = Category::getPopularCategories();
-
-function pagination_link($categoryId, $page, $perPage, $search) {
-    return "?category_id=$categoryId&page=$page&perPage=$perPage&search=" . urlencode($search);
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">

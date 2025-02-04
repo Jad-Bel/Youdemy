@@ -1,7 +1,7 @@
 <?php
 
-namespace Youco\Youdemy\App\Modal\CourseService;
-use Youco\Youdemy\App\Core\Database\Database;
+namespace App\Modal\CourseService;
+use App\Core\Database\Database;
 
 class CourseService
 {

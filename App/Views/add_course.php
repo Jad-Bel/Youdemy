@@ -3,9 +3,9 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use Youco\Youdemy\App\Course\VideoCourse;
-use Youco\Youdemy\App\Course\DocumentCourse;
-use Youco\Youdemy\App\Category\Category;
+use App\Course\VideoCourse;
+use App\Course\DocumentCourse;
+use App\Category\Category;
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

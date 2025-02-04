@@ -1,11 +1,11 @@
 <?php
 
-namespace Youco\Youdemy\App\Modal\Auth;
+namespace App\Modal\Auth;
 
-use Youco\Youdemy\App\Core\Database\Database;
-use Youco\Youdemy\App\Modal\User\User;
-use Youco\Youdemy\App\Modal\Teacher\Teacher;
-use Youco\Youdemy\App\Modal\Student\Student;
+use App\Core\Database\Database;
+use App\Modal\User\User;
+use App\Modal\Teacher\Teacher;
+use App\Modal\Student\Student;
 
 
 class Auth {

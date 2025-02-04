@@ -1,6 +1,6 @@
 <?php
 
-namespace Youco\Youdemy\App\Core\Database;
+namespace App\Core\Database;
 
 class Database
 {

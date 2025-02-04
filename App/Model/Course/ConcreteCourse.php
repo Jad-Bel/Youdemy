@@ -1,6 +1,6 @@
 <?php 
 
-namespace Youco\Youdemy\App\Modal\Course;
+namespace App\Modal\Course;
 
 class ConcreteCourse extends Course
 {
