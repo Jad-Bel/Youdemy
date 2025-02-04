@@ -3,6 +3,7 @@
 namespace App\Controllers\Course;
 
 use App\Modal\CourseService\CourseService;
+use App\Modal\Course\ConcreteCourse;
 use App\Modal\Category\Category;
 
 class CourseController
@@ -10,10 +11,10 @@ class CourseController
     protected $courseService;
     protected $categoryModel;
 
-    public function __construct(CourseService $courseService,Category $categoryModel)
+    public function __construct()
     {
-        $this->courseService = $courseService;
-        $this->categoryModel = $categoryModel;
+        $this->courseService = new CourseService(new ConcreteCourse(), new Category());
+        $this->categoryModel = new Category();
     }
 
     public function index()
@@ -30,36 +31,10 @@ class CourseController
 
         $categories = $this->categoryModel->getPopularCategories();
 
-        require_once __DIR__ . '/App/Views/Course.php';
+        require_once __DIR__ . '/../../views/courses.php';
     }
 
     public function show($id)
-    {
-        $course = $this->courseService->getCourseById($id);
-
-        if (!$course) {
-            header("HTTP/1.0 404 Not Found");
-            echo "not found";
-            return;
-        }
-
-        require_once '';
-    }
-
-    public function create()
-    {
-        require_once '';
-    }
-
-    public function store()
-    {
-        $data = $_POST;
-        $this->courseService->save($data);
-
-        header("Location: /courses");
-    }
-
-    public function edit($id)
     {
         $course = $this->courseService->getCourseById($id);
 
@@ -69,21 +44,6 @@ class CourseController
             return;
         }
 
-        require_once '';
-    }
-
-    public function update($id)
-    {
-        $data = $_POST;
-        $this->courseService->modify($id, $data);
-
-        header("Location: /courses");
-    }
-
-    public function delete($id)
-    {
-        $this->courseService->delete($id);
-
-        header("Location: /courses");
+        require_once __DIR__ . '/../../views/course-details.php';
     }
 }

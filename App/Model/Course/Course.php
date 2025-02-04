@@ -22,33 +22,9 @@ abstract class Course
     protected $certification;
     protected $conn;
 
-    public function __construct(
-        $title,
-        $description,
-        $content,
-        $teacher_id,
-        $category_id,
-        $duration,
-        $language,
-        $skill_level,
-        $course_bnr,
-        $status,
-        $certification
-    ) {
+    public function __construct() {
         $db = new database();
         $this->conn = $db->getConnection();
-
-        $this->title = $title;
-        $this->description = $description;
-        $this->content = $content;
-        $this->teacher_id = $teacher_id;
-        $this->category_id = $category_id;
-        $this->duration = $duration;
-        $this->language = $language;
-        $this->skill_level = $skill_level;
-        $this->course_bnr = $course_bnr;
-        $this->status = $status;
-        $this->certification = $certification;
     }
 
     public function getId()

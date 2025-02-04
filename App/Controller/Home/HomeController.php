@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Modal\CourseService\CourseService;
+use App\Modal\Course\ConcreteCourse;
 use App\Modal\Category\Category;
 
 class HomeController
@@ -10,10 +11,10 @@ class HomeController
     protected $courseService;
     protected $categoryModel;
 
-    public function __construct(CourseService $courseService, Category $categoryModel)
+    public function __construct()
     {
-        $this->courseService = $courseService;
-        $this->categoryModel = $categoryModel;
+        $this->courseService = new CourseService(new ConcreteCourse(), new Category());
+        $this->categoryModel = new Category();
     }
 
     public function index()
