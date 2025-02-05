@@ -47,11 +47,11 @@ class Auth {
                 $_SESSION['user_id'] = $userData['id'];
                 $_SESSION['role'] = $userData['role'];
                 if ($_SESSION['role'] == 'admin') {
-                    header('location: ../pages/dashboard.php');
+                    header('location: AdminDashboard');
                 } elseif ($_SESSION['role'] == 'student') {
                     header('location: ../pages/studentIndex.php');
                 } elseif ($_SESSION['role'] == 'teacher') {
-                    header('location: ../pages/teacherDash.php');
+                    header('location: Teacher');
                 }
                 return true;
             }

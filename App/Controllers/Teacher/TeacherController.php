@@ -33,22 +33,22 @@ class TeacherController
 
         $coursesForTeacher = $this->courses->getAllCoursesForTeacher($teacher_id);
 
-        $statistics = $this->teacher->getStatistics($teacher_id);
+        // $statistics = $this->teacher->getStatistics($teacher_id);
 
-        $enrolledStudentsCount = $statistics[0]->count;
-        $coursesCount = $statistics[1]->count;
-        $approvedCoursesCount = $statistics[2]->count;
-        $averageStudentPerCourse = $statistics[3]->count;
+        // $enrolledStudentsCount = $statistics[0]->count;
+        // $coursesCount = $statistics[1]->count;
+        // $approvedCoursesCount = $statistics[2]->count;
+        // $averageStudentPerCourse = $statistics[3]->count;
 
         if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['action']) && $_POST['action'] == 'delete_course') {
             $course_id = $_POST['id'];
             $this->courseModal->delete($course_id);
-            header("Location: teacherDash.php");
+            header("Location: Teacher");
             exit();
         }
 
         $enrolledUsers = $this->teacher->displayEnrolledUsers($teacher_id);
 
-        require_once __DIR__ . '/../../Views/Teacher/teacherDash.php';
+        require_once __DIR__ . '/../../Views/teacherDash.php';
     }
 }
