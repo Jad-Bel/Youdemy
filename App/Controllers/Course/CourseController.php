@@ -2,9 +2,9 @@
 
 namespace App\Controllers\Course;
 
-use App\Modal\CourseService\CourseService;
-use App\Modal\Course\ConcreteCourse;
-use App\Modal\Category\Category;
+use App\Model\CourseService\CourseService;
+use App\Model\Course\ConcreteCourse;
+use App\Model\Category\Category;
 
 class CourseController
 {
