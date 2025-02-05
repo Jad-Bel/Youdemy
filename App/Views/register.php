@@ -1,23 +1,3 @@
-<?php
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $role = $_POST['role'];
-
-    $auth = new Auth();
-    try {
-        $auth->register($username, $email, $password, $role);
-        // echo "Registration successful!";
-    } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
-    }
-}
-// print_r($_POST);
-// die;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<div class="account-container">
 				<div class="heading-bx left">
 					<h2 class="title-head">Sign Up <span>Now</span></h2>
-					<p>Login Your Account <a href="login.php">Click here</a></p>
+					<p>Login Your Account <a href="Login">Click here</a></p>
 				</div>	
 				<form class="contact-bx" method="POST">
 					<div class="row placeani">

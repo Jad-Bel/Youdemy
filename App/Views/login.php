@@ -57,7 +57,7 @@
 			<div class="account-container">
 				<div class="heading-bx left">
 					<h2 class="title-head">Login to your <span>Account</span></h2>
-					<p>Don't have an account? <a href="register.php">Create one here</a></p>
+					<p>Don't have an account? <a href="Register">Create one here</a></p>
 				</div>	
 				<form class="contact-bx" method="POST">
 					<div class="row placeani">
