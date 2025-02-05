@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Modal\Student;
-use App\Modal\User\User;
+namespace App\Model\Student;
+use App\Model\User\User;
 
 
 class   Student extends User

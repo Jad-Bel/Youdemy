@@ -27,10 +27,11 @@ if (strpos($requestUri, $basePath) === 0) {
     $requestUri = substr($requestUri, strlen($basePath));
 }
 
+
 $router->add('/', 'App\Controllers\Home\HomeController@index');
 $router->add('/courses', 'App\Controllers\Course\CourseController@index');
 $router->add('/courses/{id}', 'App\Controllers\Course\CourseController@show');
-$router->add('/about', 'App\Controllers\PageController@about');
+$router->add('/Teacher', 'App\Controllers\Teacher\TeacherController@index');
 
 $router->dispatch($requestUri);
 

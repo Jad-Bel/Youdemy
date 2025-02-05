@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modal\User;
+namespace App\Model\User;
 use App\Core\Database\Database;
 
 
