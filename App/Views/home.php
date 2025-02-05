@@ -20,8 +20,8 @@
 	<meta name="format-detection" content="telephone=no">
 
 	<!-- FAVICONS ICON ============================================= -->
-	<link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
-	<link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.png" />
+	<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
 
 	<!-- PAGE TITLE HERE ============================================= -->
 	<title>EduChamp : Education HTML Template </title>
@@ -30,8 +30,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!--[if lt IE 9]>
-	<script src="assets/js/html5shiv.min.js"></script>
-	<script src="assets/js/respond.min.js"></script>
+	<script src="../../assets/js/html5shiv.min.js"></script>
+	<script src="../../assets/js/respond.min.js"></script>
 	<![endif]-->
 
 	<!-- All PLUGINS CSS ============================================= -->
@@ -44,13 +44,13 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/shortcodes/shortcodes.css">
 
 	<!-- STYLESHEETS ============================================= -->
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<link class="skin" rel="stylesheet" type="text/css" href="../assets/css/color/color-1.css">
+	<link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+	<link class="skin" rel="stylesheet" type="text/css" href="assets/css/color/color-1.css">
 
 	<!-- REVOLUTION SLIDER CSS ============================================= -->
-	<link rel="stylesheet" type="text/css" href="assets/vendors/revolution/css/layers.css">
-	<link rel="stylesheet" type="text/css" href="assets/vendors/revolution/css/settings.css">
-	<link rel="stylesheet" type="text/css" href="assets/vendors/revolution/css/navigation.css">
+	<link rel="stylesheet" type="text/css" href="./assets/vendors/revolution/css/layers.css">
+	<link rel="stylesheet" type="text/css" href="./assets/vendors/revolution/css/settings.css">
+	<link rel="stylesheet" type="text/css" href="./assets/vendors/revolution/css/navigation.css">
 	<!-- REVOLUTION SLIDER END -->
 </head>
 
@@ -82,7 +82,7 @@
 					<div class="container clearfix">
 						<!-- Header Logo ==== -->
 						<div class="menu-logo">
-							<a href="index.html"><img src="../assets/images/logo-white.png" alt=""></a>
+							<a href="index.html"><img src="assets/images/logo-white.png" alt=""></a>
 						</div>
 						<!-- Mobile Nav Button ==== -->
 						<button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -110,7 +110,7 @@
 						<!-- Navigation Menu ==== -->
 						<div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
 							<div class="menu-logo">
-								<a href="index.html"><img src="../assets/images/logo.png" alt=""></a>
+								<a href="index.html"><img src="assets/images/logo.png" alt=""></a>
 							</div>
 							<ul class="nav navbar-nav">
 								<li class="active"><a href="javascript:;">Home <i class="fa fa-chevron-down"></i></a>
@@ -311,7 +311,7 @@
 								data-easein="default"
 								data-easeout="default"
 								data-masterspeed="default"
-								data-thumb="../assets/images/slider/slide1.jpg"
+								data-thumb="assets/images/slider/slide1.jpg"
 								data-rotate="0"
 								data-fstransition="fade"
 								data-fsmasterspeed="1500"
@@ -325,7 +325,7 @@
 								data-param9="" data-param10=""
 								data-description="Science says that Women are generally happier">
 								<!-- MAIN IMAGE -->
-								<img src="../assets/images/slider/slide2.jpg" alt=""
+								<img src="assets/images/slider/slide2.jpg" alt=""
 									data-bgposition="center center"
 									data-bgfit="cover"
 									data-bgrepeat="no-repeat"
@@ -538,7 +538,7 @@
 									<div class="item">
 										<div class="cours-bx">
 											<div class="action-box">
-												<img src="<?= $course['banner'] ?>" alt="">
+												<img src="../../<?= $course['banner'] ?>" alt="">
 												<a href="#" class="btn">Read More</a>
 											</div>
 											<div class="info-bx text-center">
@@ -565,20 +565,20 @@
 				<!-- Popular Courses END -->
 
 				<!-- Form -->
-				<div class="section-area section-sp1 ovpr-dark bg-fix online-cours" style="background-image:url(../assets/images/background/bg1.jpg);">
+				<div class="section-area section-sp1 ovpr-dark bg-fix online-cours" style="background-image:url(assets/images/background/bg1.jpg);">
 					<div class="container">
 						<div class="row">
 							<div class="col-md-12 text-center text-white">
 								<h2>Online Courses To Learn</h2>
 								<h5>Own Your Feature Learning New Skills Online</h5>
 								<form class="cours-search" action="" method="GET">
-                                    <div class="input-group">
-                                        <input type="text" name="keywords" class="form-control" placeholder="What do you want to learn today?">
-                                        <div class="input-group-append">
-                                            <button class="btn" type="submit">Search</button>
-                                        </div>
-                                    </div>
-                                </form>
+									<div class="input-group">
+										<input type="text" name="keywords" class="form-control" placeholder="What do you want to learn today?">
+										<div class="input-group-append">
+											<button class="btn" type="submit">Search</button>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 						<div class="mw800 m-auto">
@@ -625,7 +625,7 @@
 								<div class="item">
 									<div class="event-bx">
 										<div class="action-box">
-											<img src="assets/images/event/pic4.jpg" alt="">
+											<img src="../../assets/images/event/pic4.jpg" alt="">
 										</div>
 										<div class="info-bx d-flex">
 											<div>
@@ -648,7 +648,7 @@
 								<div class="item">
 									<div class="event-bx">
 										<div class="action-box">
-											<img src="assets/images/event/pic3.jpg" alt="">
+											<img src="../../assets/images/event/pic3.jpg" alt="">
 										</div>
 										<div class="info-bx d-flex">
 											<div>
@@ -671,7 +671,7 @@
 								<div class="item">
 									<div class="event-bx">
 										<div class="action-box">
-											<img src="assets/images/event/pic2.jpg" alt="">
+											<img src="../../assets/images/event/pic2.jpg" alt="">
 										</div>
 										<div class="info-bx d-flex">
 											<div>
@@ -700,7 +700,7 @@
 				</div>
 
 				<!-- Testimonials -->
-				<div class="section-area section-sp2 bg-fix ovbl-dark" style="background-image:url(../assets/images/background/bg1.jpg);">
+				<div class="section-area section-sp2 bg-fix ovbl-dark" style="background-image:url(assets/images/background/bg1.jpg);">
 					<div class="container">
 						<div class="row">
 							<div class="col-md-12 text-white heading-bx left">
@@ -712,7 +712,7 @@
 							<div class="item">
 								<div class="testimonial-bx">
 									<div class="testimonial-thumb">
-										<img src="../assets/images/testimonials/pic1.jpg" alt="">
+										<img src="../../assets/images/testimonials/pic1.jpg" alt="">
 									</div>
 									<div class="testimonial-info">
 										<h5 class="name">Peter Packer</h5>
@@ -726,7 +726,7 @@
 							<div class="item">
 								<div class="testimonial-bx">
 									<div class="testimonial-thumb">
-										<img src="assets/images/testimonials/pic2.jpg" alt="">
+										<img src="../../assets/images/testimonials/pic2.jpg" alt="">
 									</div>
 									<div class="testimonial-info">
 										<h5 class="name">Peter Packer</h5>
@@ -755,7 +755,7 @@
 							<div class="item">
 								<div class="recent-news">
 									<div class="action-box">
-										<img src="assets/images/blog/latest-blog/pic1.jpg" alt="">
+										<img src="../../assets/images/blog/latest-blog/pic1.jpg" alt="">
 									</div>
 									<div class="info-bx">
 										<ul class="media-post">
@@ -774,7 +774,7 @@
 							<div class="item">
 								<div class="recent-news">
 									<div class="action-box">
-										<img src="../assets/images/blog/latest-blog/pic2.jpg" alt="">
+										<img src="../../assets/images/blog/latest-blog/pic2.jpg" alt="">
 									</div>
 									<div class="info-bx">
 										<ul class="media-post">
@@ -793,7 +793,7 @@
 							<div class="item">
 								<div class="recent-news">
 									<div class="action-box">
-										<img src="assets/images/blog/latest-blog/pic3.jpg" alt="">
+										<img src="../../assets/images/blog/latest-blog/pic3.jpg" alt="">
 									</div>
 									<div class="info-bx">
 										<ul class="media-post">
@@ -825,7 +825,7 @@
 					<div class="container">
 						<div class="d-flex align-items-stretch">
 							<div class="pt-logo mr-auto">
-								<a href="index.php"><img src="../assets/images/logo-white.png" alt="" /></a>
+								<a href="index.php"><img src="../../assets/images/logo-white.png" alt="" /></a>
 							</div>
 							<div class="pt-btn-join">
 								<a href="#" class="btn ">Join Now</a>
@@ -893,14 +893,14 @@
 							<div class="widget widget_gallery gallery-grid-4">
 								<h5 class="footer-title">Our Gallery</h5>
 								<ul class="magnific-image">
-									<li><a href="assets/images/gallery/pic1.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic1.jpg" alt=""></a></li>
-									<li><a href="assets/images/gallery/pic2.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic2.jpg" alt=""></a></li>
-									<li><a href="assets/images/gallery/pic3.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic3.jpg" alt=""></a></li>
-									<li><a href="assets/images/gallery/pic4.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic4.jpg" alt=""></a></li>
-									<li><a href="assets/images/gallery/pic5.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic5.jpg" alt=""></a></li>
-									<li><a href="assets/images/gallery/pic6.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic6.jpg" alt=""></a></li>
-									<li><a href="assets/images/gallery/pic7.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic7.jpg" alt=""></a></li>
-									<li><a href="assets/images/gallery/pic8.jpg" class="magnific-anchor"><img src="../assets/images/gallery/pic8.jpg" alt=""></a></li>
+									<li><a href="assets/images/gallery/pic1.jpg" class="magnific-anchor"><img src="../../assets/images/gallery/pic1.jpg" alt=""></a></li>
+									<li><a href="assets/images/gallery/pic2.jpg" class="magnific-anchor"><img src="../../assets/images/gallery/pic2.jpg" alt=""></a></li>
+									<li><a href="assets/images/gallery/pic3.jpg" class="magnific-anchor"><img src="../../assets/images/gallery/pic3.jpg" alt=""></a></li>
+									<li><a href="assets/images/gallery/pic4.jpg" class="magnific-anchor"><img src="../../assets/images/gallery/pic4.jpg" alt=""></a></li>
+									<li><a href="assets/images/gallery/pic5.jpg" class="magnific-anchor"><img src="../../assets/images/gallery/pic5.jpg" alt=""></a></li>
+									<li><a href="assets/images/gallery/pic6.jpg" class="magnific-anchor"><img src="../../assets/images/gallery/pic6.jpg" alt=""></a></li>
+									<li><a href="assets/images/gallery/pic7.jpg" class="magnific-anchor"><img src="../../assets/images/gallery/pic7.jpg" alt=""></a></li>
+									<li><a href="assets/images/gallery/pic8.jpg" class="magnific-anchor"><img src="../../assets/images/gallery/pic8.jpg" alt=""></a></li>
 								</ul>
 							</div>
 						</div>
@@ -957,7 +957,7 @@
 			} else {
 				ttrevapi = tpj("#rev_slider_486_1").show().revolution({
 					sliderType: "standard",
-					jsFileLocation: "../assets/vendors/revolution/js/",
+					jsFileLocation: "assets/vendors/revolution/js/",
 					sliderLayout: "fullwidth",
 					dottedOverlay: "none",
 					delay: 9000,
