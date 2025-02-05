@@ -1,6 +1,3 @@
-<?php
-require_once '../vendor/autoload.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,17 +36,17 @@ require_once '../vendor/autoload.php';
 	<![endif]-->
 
     <!-- All PLUGINS CSS ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/assets.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/assets.css">
 
     <!-- TYPOGRAPHY ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/typography.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/typography.css">
 
     <!-- SHORTCODES ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/shortcodes/shortcodes.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/shortcodes/shortcodes.css">
 
     <!-- STYLESHEETS ============================================= -->
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-    <link class="skin" rel="stylesheet" type="text/css" href="../assets/css/color/color-1.css">
+    <link class="skin" rel="stylesheet" type="text/css" href="assets/css/color/color-1.css">
 
 </head>
 
@@ -82,7 +79,7 @@ require_once '../vendor/autoload.php';
 					<div class="container clearfix">
 						<!-- Header Logo ==== -->
 						<div class="menu-logo">
-							<a href="index.html"><img src="../assets/images/logo-white.png" alt=""></a>
+							<a href="index.html"><img src="assets/images/logo-white.png" alt=""></a>
 						</div>
 						<!-- Mobile Nav Button ==== -->
 						<button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -110,12 +107,12 @@ require_once '../vendor/autoload.php';
 						<!-- Navigation Menu ==== -->
 						<div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
 							<div class="menu-logo">
-								<a href="index.html"><img src="../assets/images/logo.png" alt=""></a>
+								<a href="index.html"><img src="assets/images/logo.png" alt=""></a>
 							</div>
 							<ul class="nav navbar-nav">
 								<li class="active"><a href="javascript:;">Home <i class="fa fa-chevron-down"></i></a>
 									<ul class="sub-menu">
-										<li><a href="index.php">Home Page</a></li>
+										<li><a href="/youdemy/">Home Page</a></li>
 									</ul>
 								</li>
 								<li class="add-mega-menu"><a href="javascript:;">Our Courses <i class="fa fa-chevron-down"></i></a>
@@ -127,7 +124,7 @@ require_once '../vendor/autoload.php';
 											</ul>
 										</li>
 										<li class="add-menu-right">
-											<img src="../assets/images/adv/adv.jpg" alt="" />
+											<img src="assets/images/adv/adv.jpg" alt="" />
 										</li>
 									</ul>
 								</li>
@@ -193,14 +190,14 @@ require_once '../vendor/autoload.php';
                                     </ul>
                                 </div>
                                 <div class="widget">
-                                    <a href="#"><img src="../assets/images/adv/adv.jpg" alt="" /></a>
+                                    <a href="#"><img src="assets/images/adv/adv.jpg" alt="" /></a>
                                 </div>
                                 <div class="widget recent-posts-entry widget-courses">
                                     <h5 class="widget-title style-1">Recent Courses</h5>
 
                                     <div class="widget-post-bx">
                                         <div class="widget-post clearfix">
-                                            <div class="ttr-post-media"> <img src="../assets/images/blog/recent-blog/pic1.jpg" width="200" height="143" alt=""> </div>
+                                            <div class="ttr-post-media"> <img src="assets/images/blog/recent-blog/pic1.jpg" width="200" height="143" alt=""> </div>
                                             <div class="ttr-post-info">
                                                 <div class="ttr-post-header">
                                                     <h6 class="post-title"><a href="#">Introduction EduChamp</a></h6>
@@ -217,7 +214,7 @@ require_once '../vendor/autoload.php';
                                             </div>
                                         </div>
                                         <div class="widget-post clearfix">
-                                            <div class="ttr-post-media"> <img src="../assets/images/blog/recent-blog/pic3.jpg" width="200" height="160" alt=""> </div>
+                                            <div class="ttr-post-media"> <img src="assets/images/blog/recent-blog/pic3.jpg" width="200" height="160" alt=""> </div>
                                             <div class="ttr-post-info">
                                                 <div class="ttr-post-header">
                                                     <h6 class="post-title"><a href="#">English For Tommorow</a></h6>
@@ -387,14 +384,14 @@ require_once '../vendor/autoload.php';
                             <div class="widget widget_gallery gallery-grid-4">
                                 <h5 class="footer-title">Our Gallery</h5>
                                 <ul class="magnific-image">
-                                    <li><a href="../assets/images/gallery/pic1.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic1.jpg" alt=""></a></li>
-                                    <li><a href="../assets/images/gallery/pic2.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic2.jpg" alt=""></a></li>
-                                    <li><a href="../assets/images/gallery/pic3.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic3.jpg" alt=""></a></li>
-                                    <li><a href="../assets/images/gallery/pic4.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic4.jpg" alt=""></a></li>
-                                    <li><a href="../assets/images/gallery/pic5.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic5.jpg" alt=""></a></li>
-                                    <li><a href="../assets/images/gallery/pic6.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic6.jpg" alt=""></a></li>
-                                    <li><a href="../assets/images/gallery/pic7.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic7.jpg" alt=""></a></li>
-                                    <li><a href="../assets/images/gallery/pic8.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic8.jpg" alt=""></a></li>
+                                    <li><a href="assets/images/gallery/pic1.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic1.jpg" alt=""></a></li>
+                                    <li><a href="assets/images/gallery/pic2.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic2.jpg" alt=""></a></li>
+                                    <li><a href="assets/images/gallery/pic3.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic3.jpg" alt=""></a></li>
+                                    <li><a href="assets/images/gallery/pic4.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic4.jpg" alt=""></a></li>
+                                    <li><a href="assets/images/gallery/pic5.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic5.jpg" alt=""></a></li>
+                                    <li><a href="assets/images/gallery/pic6.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic6.jpg" alt=""></a></li>
+                                    <li><a href="assets/images/gallery/pic7.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic7.jpg" alt=""></a></li>
+                                    <li><a href="assets/images/gallery/pic8.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic8.jpg" alt=""></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -413,21 +410,21 @@ require_once '../vendor/autoload.php';
         <button class="back-to-top fa fa-chevron-up"></button>
     </div>
     <!-- External JavaScripts -->
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/vendors/bootstrap/js/popper.min.js"></script>
-    <script src="../assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
-    <script src="../assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
-    <script src="../assets/vendors/magnific-popup/magnific-popup.js"></script>
-    <script src="../assets/vendors/counter/waypoints-min.js"></script>
-    <script src="../assets/vendors/counter/counterup.min.js"></script>
-    <script src="../assets/vendors/imagesloaded/imagesloaded.js"></script>
-    <script src="../assets/vendors/masonry/masonry.js"></script>
-    <script src="../assets/vendors/masonry/filter.js"></script>
-    <script src="../assets/vendors/owl-carousel/owl.carousel.js"></script>
-    <script src="../assets/js/functions.js"></script>
-    <script src="../assets/js/contact.js"></script>
-    <script src='../assets/vendors/switcher/switcher.js'></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/vendors/bootstrap/js/popper.min.js"></script>
+    <script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+    <script src="assets/vendors/magnific-popup/magnific-popup.js"></script>
+    <script src="assets/vendors/counter/waypoints-min.js"></script>
+    <script src="assets/vendors/counter/counterup.min.js"></script>
+    <script src="assets/vendors/imagesloaded/imagesloaded.js"></script>
+    <script src="assets/vendors/masonry/masonry.js"></script>
+    <script src="assets/vendors/masonry/filter.js"></script>
+    <script src="assets/vendors/owl-carousel/owl.carousel.js"></script>
+    <script src="assets/js/functions.js"></script>
+    <script src="assets/js/contact.js"></script>
+    <script src='assets/vendors/switcher/switcher.js'></script>
 </body>
 
 </html>

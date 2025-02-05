@@ -2,6 +2,7 @@
 
 namespace App\Core\Router;
 
+
 class Router {
     private $routes = [];
 
