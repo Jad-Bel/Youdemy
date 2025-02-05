@@ -14,7 +14,7 @@ class AuthController
         $this->auth = new Auth();
     }
 
-    public function index()
+    public function handleLogin()
     {
         require_once __DIR__ . '/../../Views/login.php';
         

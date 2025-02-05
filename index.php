@@ -31,10 +31,11 @@ use App\Controllers\Auth\AuthController;
 
 
 $router->add('/', 'App\Controllers\Home\HomeController@index');
-$router->add('/courses', 'App\Controllers\Course\CourseController@index');
-$router->add('/courses/{id}', 'App\Controllers\Course\CourseController@show');
+$router->add('/Courses', 'App\Controllers\Course\CourseController@index');
+$router->add('/Courses/{id}', 'App\Controllers\Course\CourseController@show');
 $router->add('/Teacher', 'App\Controllers\Teacher\TeacherController@index');
-$router->add('/Login', 'App\Controllers\Auth\AuthController@index');
+$router->add('/Login', 'App\Controllers\Auth\AuthController@handleLogin');
+$router->add('/Register', 'App\Controllers\Auth\AuthController@handleRegister');
 
 $router->dispatch($requestUri);
 
