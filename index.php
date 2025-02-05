@@ -27,11 +27,14 @@ if (strpos($requestUri, $basePath) === 0) {
     $requestUri = substr($requestUri, strlen($basePath));
 }
 
+use App\Controllers\Auth\AuthController;
+
 
 $router->add('/', 'App\Controllers\Home\HomeController@index');
 $router->add('/courses', 'App\Controllers\Course\CourseController@index');
 $router->add('/courses/{id}', 'App\Controllers\Course\CourseController@show');
 $router->add('/Teacher', 'App\Controllers\Teacher\TeacherController@index');
+$router->add('/Login', 'App\Controllers\Auth\AuthController@index');
 
 $router->dispatch($requestUri);
 

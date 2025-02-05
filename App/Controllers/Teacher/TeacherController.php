@@ -17,7 +17,7 @@ class TeacherController
     {
         require_once __DIR__ . '/../../Core/Includes/session_check.php';
         
-        // Initialize models
+        // initialize models
         $this->courseModal = new ConcreteCourse();
         $this->courses = new CourseService($this->courseModal, null);
         $this->teacher = new Teacher(null, null, null, null, null, null);
@@ -49,6 +49,6 @@ class TeacherController
 
         $enrolledUsers = $this->teacher->displayEnrolledUsers($teacher_id);
 
-        require_once '../Views/Teacher/teacherDash.php';
+        require_once __DIR__ . '/../../Views/Teacher/teacherDash.php';
     }
 }

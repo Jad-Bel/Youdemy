@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modal\Auth;
+namespace App\Model\Auth;
 
 use App\Core\Database\Database;
-use App\Modal\User\User;
-use App\Modal\Teacher\Teacher;
-use App\Modal\Student\Student;
+use App\Model\User\User;
+use App\Model\Teacher\Teacher;
+use App\Model\Student\Student;
 
 
 class Auth {
