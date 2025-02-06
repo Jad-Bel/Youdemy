@@ -2,7 +2,7 @@
 
 require_once '../vendor/autoload.php';
 
-use Youco\Youdemy\App\Auth\Auth;
+use App\Model\Auth\Auth;
 
 $auth = new Auth();
 $auth->logout();

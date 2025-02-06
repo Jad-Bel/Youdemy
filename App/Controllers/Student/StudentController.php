@@ -15,12 +15,15 @@ class StudentController
 
     public function __construct () 
     {
+        require_once __DIR__ . '/../../Core/Includes/session_check.php';
+
         $this->courseService = new CourseService(new ConcreteCourse(), new Category());
         $this->categoryModel = new Category();
     }
 
     public function index()
     {
+        print_r($_SESSION);
         $courses = $this->courseService->getAllApprovedCourses();
         $categories = $this->categoryModel->getPopularCategories();
 

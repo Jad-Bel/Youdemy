@@ -50,4 +50,11 @@ class AuthController
         }
         require_once __DIR__ . '/../../Views/register.php';
     }
+
+    public function handleLogout () 
+    {
+        $this->auth->logout();
+        header('Location: Login');
+        exit();
+    }
 }

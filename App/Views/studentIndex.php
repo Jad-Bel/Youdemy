@@ -35,22 +35,22 @@
 	<![endif]-->
 
     <!-- All PLUGINS CSS ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/assets.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/assets.css">
 
     <!-- TYPOGRAPHY ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/typography.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/typography.css">
 
     <!-- SHORTCODES ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/shortcodes/shortcodes.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/shortcodes/shortcodes.css">
 
     <!-- STYLESHEETS ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href=".assets/css/style.css">
     <link class="skin" rel="stylesheet" type="text/css" href="../assets/css/color/color-1.css">
 
     <!-- REVOLUTION SLIDER CSS ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/vendors/revolution/css/layers.css">
-    <link rel="stylesheet" type="text/css" href="../assets/vendors/revolution/css/settings.css">
-    <link rel="stylesheet" type="text/css" href="../assets/vendors/revolution/css/navigation.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendors/revolution/css/layers.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendors/revolution/css/settings.css">
+    <link rel="stylesheet" type="text/css" href="assets/vendors/revolution/css/navigation.css">
     <!-- REVOLUTION SLIDER END -->
 </head>
 
@@ -70,7 +70,10 @@
                         </div>
                         <div class="topbar-right">
                             <ul>
-                                <li><a href="logout.php">Log-out</a></li>
+                                <!-- <form action="" method="post">
+                                    <button type="submit">Logout</button>
+                                </form> -->
+                                <li><a href="Logout">Log-out</a></li>
                             </ul>
                         </div>
                     </div>
