@@ -5,7 +5,6 @@ namespace App\Controllers\Teacher;
 use App\Model\Course\ConcreteCourse;
 use App\Model\CourseService\CourseService;
 use App\Model\Teacher\Teacher;
-use App\Includes\SessionCheck;
 
 class TeacherController
 {
@@ -17,7 +16,6 @@ class TeacherController
     {
         require_once __DIR__ . '/../../Core/Includes/session_check.php';
         
-        // initialize models
         $this->courseModal = new ConcreteCourse();
         $this->courses = new CourseService($this->courseModal, null);
         $this->teacher = new Teacher(null, null, null, null, null, null);
