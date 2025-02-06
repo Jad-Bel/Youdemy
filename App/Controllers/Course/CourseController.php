@@ -4,17 +4,22 @@ namespace App\Controllers\Course;
 
 use App\Model\CourseService\CourseService;
 use App\Model\Course\ConcreteCourse;
+use App\Model\Course\DocumentCourse;
+use App\Model\Course\VideoCourse;
 use App\Model\Category\Category;
 
 class CourseController
 {
-    protected $courseService;
-    protected $categoryModel;
-
+    private $courseService;
+    private $categoryModel;
+    private $videoCourse;
+    private $documentCourse;
     public function __construct()
     {
         $this->courseService = new CourseService(new ConcreteCourse(), new Category());
         $this->categoryModel = new Category();
+        $this->videoCourse = new VideoCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,  NULL, NULL,  NULL);
+        $this->documentCourse = new DocumentCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,);
     }
 
     public function index()
@@ -36,7 +41,15 @@ class CourseController
 
     public function show($id)
     {
-        $course = $this->courseService->getCourseById($id);
+        if (isset($_GET['id'])) {
+            $courseId = intval($_GET['id']);
+        } else {
+            die("Course ID is missing.");
+        }
+
+        $course = $this->courseService->getCourseById($courseId);
+
+
 
         if (!$course) {
             header("HTTP/1.0 404 Not Found");
@@ -45,5 +58,26 @@ class CourseController
         }
 
         require_once __DIR__ . '/../../views/course-details.php';
+    }
+
+    public function display($id)
+    {
+        $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : null;
+
+        $courseContent = $this->videoCourse->displayContent($course_id);
+
+        if (!$courseContent) {
+            $courseContent = $this->documentCourse->displayContent($course_id);
+        }
+
+        if ($courseContent) {
+            $videoLink = $courseContent['video_link'] ?? null;
+            $documentLink = $courseContent['document_link'] ?? null;
+        } else {
+            $videoLink = null;
+            $documentLink = null;
+        }
+
+        require_once __DIR__ . '/../../Views/course_details.php';
     }
 }

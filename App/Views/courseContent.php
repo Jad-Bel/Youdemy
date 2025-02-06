@@ -2,8 +2,8 @@
 
 require_once '../vendor/autoload.php';
 
-use Youco\Youdemy\App\Course\VideoCourse;
-use Youco\Youdemy\App\Course\DocumentCourse;
+use App\Model\Course\VideoCourse;
+use App\Model\Course\DocumentCourse;
 
 $course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : null;
 $videoCourse = new VideoCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,  NULL, NULL,  NULL);
