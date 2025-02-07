@@ -312,18 +312,18 @@
                         foreach ($categories as $category):
                         ?>
                             <tr>
-                                <td><?= $category['id'] ?></td>
-                                <td><?= $category['name'] ?></td>
-                                <td><?= $category['created_at'] ?></td>
+                                <td><?= $category->getId() ?></td>
+                                <td><?= $category->getName() ?></td>
+                                <td><?= $category->getCreatedAt() ?></td>
                                 <td>
                                     <form action="/youdemy/admin/handle-post" method="POST" action="" class="d-inline">
                                         <input type="hidden" name="action" value="modify_category">
-                                        <input type="hidden" name="category_id" value="<?= $category['id'] ?>">
-                                        <button type="button" class="btn btn-primary btn-sm editCategoryBtn" data-id="<?= $category['id'] ?>" data-name="<?= $category['name'] ?>">Modifier</button>
+                                        <input type="hidden" name="category_id" value="<?= $category->getId() ?>">
+                                        <button type="button" class="btn btn-primary btn-sm editCategoryBtn" data-id="<?= $category->getId() ?>" data-name="<?= $category->getName() ?>">Modifier</button>
                                     </form>
                                     <form action="/youdemy/admin/handle-post" method="POST" action="" style="display:inline;">
                                         <input type="hidden" name="action" value="delete_category">
-                                        <input type="hidden" name="category_id" value="<?= $category['id'] ?>">
+                                        <input type="hidden" name="category_id" value="<?= $category->getId() ?>">
                                         <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                                     </form>
                                 </td>
