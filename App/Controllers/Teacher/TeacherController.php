@@ -19,6 +19,7 @@ class TeacherController
         $this->courseModal = new ConcreteCourse();
         $this->courses = new CourseService($this->courseModal, null);
         $this->teacher = new Teacher(null, null, null, null, null, null);
+        
     }
 
     public function index()

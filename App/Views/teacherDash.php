@@ -81,7 +81,7 @@
                         <a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="../assets/assets/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
                         <div class="ttr-header-submenu">
                             <ul>
-                                <li><a href="logout.php">Logout</a></li>
+                                <li><a href="logout">Logout</a></li>
                             </ul>
                         </div>
                     </li>
@@ -117,7 +117,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="add_course.php" class="ttr-material-button">
+                        <a href="add_course" class="ttr-material-button">
                             <span class="ttr-icon"><i class="ti-layout-accordion-list"></i></span>
                             <span class="ttr-label">Add listing</span>
                         </a>

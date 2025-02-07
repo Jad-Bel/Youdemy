@@ -176,7 +176,6 @@
                                             <a href="?">All Categories</a>
                                         </li>
                                         <?php
-                                        $categories = Category::getPopularCategories();
                                         foreach ($categories as $category):
                                         ?>
                                             <li>
@@ -238,8 +237,7 @@
                                         </div>
                                     <?php endif; ?>
                                     <?php
-                                    $paginationData = $courseService->getPaginatedCourses($page, $perPage, $search, $categoryId);
-                                    $courses = $paginationData['courses'];
+                                       $courses = $paginationData['courses'];
                                     foreach ($courses as $course):
                                     ?>
                                         <div class="col-md-6 col-lg-4 col-sm-6 m-b30">

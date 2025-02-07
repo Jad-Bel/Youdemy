@@ -1,17 +1,17 @@
 <?php
 require_once '../vendor/autoload.php';
 
-use Youco\Youdemy\App\Course\ConcreteCourse;
-use Youco\Youdemy\App\CourseService\CourseService;
+// use Youco\Youdemy\App\Course\ConcreteCourse;
+// use Youco\Youdemy\App\CourseService\CourseService;
 
-if (isset($_GET['id'])) {
-	$courseId = intval($_GET['id']);
-} else {
-	die("Course ID is missing.");
-}
-$courseModal = new concreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-$courseService = new courseService(NULL, NULL);
-$course = $courseService->getCourseById($courseId);
+// if (isset($_GET['id'])) {
+// 	$courseId = intval($_GET['id']);
+// } else {
+// 	die("Course ID is missing.");
+// }
+// $courseModal = new concreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+// $courseService = new courseService(NULL, NULL);
+// $course = $courseService->getCourseById($courseId);
 ?>
 
 <!DOCTYPE html>

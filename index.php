@@ -29,19 +29,20 @@ if (strpos($requestUri, $basePath) === 0) {
 
 $router->add('/', 'App\Controllers\Home\HomeController@index');
 
-$router->add('/Courses', 'App\Controllers\Course\CourseController@index');
-$router->add('/Courses/id={id}', 'App\Controllers\Course\CourseController@drtails');
+$router->add('/courses', 'App\Controllers\Course\CourseController@index');
+$router->add('/courses/id={id}', 'App\Controllers\Course\CourseController@show');
+$router->add('/add_course', 'App\Controllers\Course\CourseController@add');
 
-$router->add('/StudentCourses', 'App\Controllers\Course\CourseController@index');
-$router->add('/StudentCourse/id={id}', 'App\Controllers\Course\CourseController@show');
-$router->add('/StudentCourse_details/id={id}', 'App\Controllers\Course\CourseController@show');
+$router->add('/studentCourses', 'App\Controllers\Course\CourseController@index');
+$router->add('/studentCourse/id={id}', 'App\Controllers\Course\CourseController@show');
+$router->add('/studentCourse_details/id={id}', 'App\Controllers\Course\CourseController@display');
 
-$router->add('/Teacher', 'App\Controllers\Teacher\TeacherController@index');
-$router->add('/Student', 'App\Controllers\Student\StudentController@index');
+$router->add('/teacher', 'App\Controllers\Teacher\TeacherController@index');
+$router->add('/student', 'App\Controllers\Student\StudentController@index');
 
-$router->add('/Login', 'App\Controllers\Auth\AuthController@handleLogin');
-$router->add('/Register', 'App\Controllers\Auth\AuthController@handleRegister');
-$router->add('/Logout', 'App\Controllers\Auth\AuthController@handleLogout');
+$router->add('/login', 'App\Controllers\Auth\AuthController@handleLogin');
+$router->add('/register', 'App\Controllers\Auth\AuthController@handleRegister');
+$router->add('/logout', 'App\Controllers\Auth\AuthController@handleLogout');
 
 
 $router->dispatch($requestUri);
