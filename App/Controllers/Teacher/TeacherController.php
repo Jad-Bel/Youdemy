@@ -4,12 +4,14 @@ namespace App\Controllers\Teacher;
 
 use App\Model\Course\ConcreteCourse;
 use App\Model\CourseService\CourseService;
+use App\Model\Category\Category;
 use App\Model\Teacher\Teacher;
 
 class TeacherController
 {
     private $courseModal;
     private $courses;
+    private $categoryModal;
     private $teacherModal;
 
     public function __construct()
@@ -17,8 +19,10 @@ class TeacherController
         require_once __DIR__ . '/../../Core/Includes/session_check.php';
 
         $this->courseModal = new ConcreteCourse();
-        $this->courses = new CourseService($this->courseModal, null);
-        $this->teacherModal = new Teacher(null, null, null, null, null, null);
+        $this->categoryModal = new Category();
+        $this->courses = new CourseService($this->courseModal, $this->categoryModal);
+        $this->teacherModal = new Teacher($_SESSION['user_id'], $_SESSION['username'], $_SESSION['email'], null, $_SESSION['role'], $_SESSION['status']);
+
     }
 
     public function index()
@@ -52,9 +56,10 @@ class TeacherController
             $password = null;
             $role = $_SESSION['role'] ?? null;
             $status = $_SESSION['status'] ?? null;
+            
+            $enrolledUsers = $this->teacherModal->displayEnrolledUsers($teacher_id);
         }
 
-        $enrolledUsers = $this->teacherModal->displayEnrolledUsers($teacher_id);
 
         require_once __DIR__ . '/../../Views/teacherDash.php';
     }
