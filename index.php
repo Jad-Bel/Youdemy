@@ -17,6 +17,7 @@
 require __DIR__ . '/vendor/autoload.php';
 
 use App\Core\Router\Router;
+// use App\Controllers\Admin\AdminController;
 
 $router = new Router();
 
@@ -39,12 +40,22 @@ $router->add('/studentCourse_details/id={id}', 'App\Controllers\Course\CourseCon
 
 $router->add('/teacher', 'App\Controllers\Teacher\TeacherController@index');
 $router->add('/student', 'App\Controllers\Student\StudentController@index');
+$router->add('/admin', 'App\Controllers\Admin\AdminController@dashboard');
+
+$router->add('/admin/handle-post', 'App\Controllers\Admin\AdminController@handlePostRequest');
 
 $router->add('/login', 'App\Controllers\Auth\AuthController@handleLogin');
 $router->add('/register', 'App\Controllers\Auth\AuthController@handleRegister');
 $router->add('/logout', 'App\Controllers\Auth\AuthController@handleLogout');
 
 
+// $adminController = new AdminController();
+
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//     $adminController->handlePostRequest();
+// } else {
+//     $adminController->dashboard();
+// }
 $router->dispatch($requestUri);
 
 // use App\Modal\CourseService\CourseService;

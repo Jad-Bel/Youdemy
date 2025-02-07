@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controllers\Admin;
 
 use App\Model\Admin\Admin;
 use App\Model\User\User;
@@ -11,22 +11,26 @@ use App\Model\CourseService\CourseService;
 
 class AdminController
 {
-    private $admin;
+    private $currentUser;
+    private $courseModal;
+    private $courses;
 
     public function __construct()
     {
-        $this->admin = new Admin('test', 'test@test.com', 'test', 'admin', null);
+        $this->courseModal = new ConcreteCourse();
+        $this->courses = new CourseService($this->courseModal, null);
+        $this->currentUser = new Admin(null,null,null,null,null);
     }
 
     public function dashboard()
     {
-        $statistics = $this->admin->getStatistics();
+        $statistics = $this->currentUser->getStatistics();
         $coursesCount = $statistics[0]->count;
         $popularCourse = $statistics[1]->count;
 
-        $allTeachers = User::getAllTeachers($this->admin);
+        $teacherData = User::getAllTeachers($this->currentUser);
 
-        $allUsers = User::getAllUsers($this->admin);
+        $userData = User::getAllUsers($this->currentUser);
 
         $courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
         $courses = new CourseService($courseModal, NULL);
@@ -38,7 +42,7 @@ class AdminController
         $tag = new Tag();
         $tags = $tag->getAllTags();
 
-        require_once '../views/admin/dashboard.php';
+        require_once __DIR__ . '/../../Views/dashboard.php';
     }
 
     public function handlePostRequest()
@@ -48,7 +52,7 @@ class AdminController
                 case 'accept_teacher':
                     $teacherData = User::findByEmail($_POST['email']);
                     if ($teacherData) {
-                        $this->admin->acceptTeacher($teacherData['id']);
+                        $this->currentUser->acceptTeacher($teacherData['id']);
                         echo "Teacher accepted successfully!";
                     } else {
                         throw new \Exception("Teacher not found.");
@@ -58,7 +62,7 @@ class AdminController
                 case 'refuse_teacher':
                     $teacherData = User::findByEmail($_POST['email']);
                     if ($teacherData) {
-                        $this->admin->declineTeacher($teacherData['id']);
+                        $this->currentUser->declineTeacher($teacherData['id']);
                         echo "Teacher declined successfully!";
                     } else {
                         throw new \Exception("Teacher not found.");
@@ -68,7 +72,7 @@ class AdminController
                 case 'ban_user':
                     $userData = User::findByEmail($_POST['email']);
                     if ($userData) {
-                        $this->admin->banUser($userData['id']);
+                        $this->currentUser->banUser($userData['id']);
                         echo "User banned successfully!";
                     } else {
                         throw new \Exception("User not found.");
@@ -78,7 +82,7 @@ class AdminController
                 case 'unban_user':
                     $userData = User::findByEmail($_POST['email']);
                     if ($userData) {
-                        $this->admin->unbanUser($userData['id']);
+                        $this->currentUser->unbanUser($userData['id']);
                         echo "User unbanned successfully!";
                     } else {
                         throw new \Exception("User not found.");
@@ -87,13 +91,13 @@ class AdminController
 
                 case 'approve_course':
                     $id = $_POST['id'];
-                    $this->admin->approve($id);
+                    $this->currentUser->approve($id);
                     break;
 
                 case 'delete_user':
                     $userData = User::findByEmail($_POST['email']);
                     if ($userData) {
-                        $this->admin->deleteUser($userData['email']);
+                        $this->currentUser->deleteUser($userData['email']);
                         echo "User deleted successfully!";
                     } else {
                         throw new \Exception("User not found.");
@@ -102,12 +106,12 @@ class AdminController
 
                 case 'decline_course':
                     $id = $_POST['id'];
-                    $this->admin->decline($id);
+                    $this->currentUser->decline($id);
                     break;
 
                 case 'delete_course':
                     $id = $_POST['id'];
-                    $this->admin->deleteCourse($id);
+                    $this->currentUser->deleteCourse($id);
                     break;
 
                 case 'add_category':

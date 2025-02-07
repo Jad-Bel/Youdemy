@@ -1,139 +1,139 @@
-<?php
+ <?php
 
 
-require_once '../vendor/autoload.php';
+// require_once '../vendor/autoload.php';
 
-use Youco\Youdemy\App\Admin\Admin;
-use Youco\Youdemy\App\User\User;
-use Youco\Youdemy\App\Category\Category;
-use Youco\Youdemy\App\Tag\Tag;
-use Youco\Youdemy\App\Course\ConcreteCourse;
-use Youco\Youdemy\App\CourseService\CourseService;
+// use Youco\Youdemy\App\Admin\Admin;
+// use Youco\Youdemy\App\User\User;
+// use Youco\Youdemy\App\Category\Category;
+// use Youco\Youdemy\App\Tag\Tag;
+// use Youco\Youdemy\App\Course\ConcreteCourse;
+// use Youco\Youdemy\App\CourseService\CourseService;
 
-$admin = new Admin('test', 'test@test.com', 'test', 'admin', null);
-$statistics = $admin->getStatistics();
+// $admin = new Admin('test', 'test@test.com', 'test', 'admin', null);
+// $statistics = $admin->getStatistics();
 
-$coursesCount = $statistics[0]->count;
-$popularCourse = $statistics[1]->count;
+// $coursesCount = $statistics[0]->count;
+// $popularCourse = $statistics[1]->count;
 
-// print_r($popularCourse);
-// die;
-
-
+// // print_r($popularCourse);
+// // die;
 
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    switch ($_POST['action']) {
-        case 'accept_teacher':
-            $teacherData = User::findByEmail($_POST['email']);
-            if ($teacherData) {
-                $admin->acceptTeacher($teacherData['id']);
-                echo "Teacher accepted successfully!";
-            } else {
-                throw new Exception("Teacher not found.");
-            }
-            break;
 
-        case 'refuse_teacher':
-            $teacherData = User::findByEmail($_POST['email']);
-            if ($teacherData) {
-                $admin->declineTeacher($teacherData['id']);
-                echo "Teacher declined successfully!";
-            } else {
-                throw new Exception("Teacher not found.");
-            }
-            break;
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        case 'ban_user':
-            $userData = User::findByEmail($_POST['email']);
-            if ($userData) {
-                $admin->banUser($userData['id']);
-                echo "User banned successfully!";
-            } else {
-                throw new Exception("User not found.");
-            }
-            break;
+//     switch ($_POST['action']) {
+//         case 'accept_teacher':
+//             $teacherData = User::findByEmail($_POST['email']);
+//             if ($teacherData) {
+//                 $admin->acceptTeacher($teacherData['id']);
+//                 echo "Teacher accepted successfully!";
+//             } else {
+//                 throw new Exception("Teacher not found.");
+//             }
+//             break;
 
-        case 'unban_user':
-            $userData = User::findByEmail($_POST['email']);
-            if ($userData) {
-                $admin->unbanUser($userData['id']);
-                echo "User unbanned successfully!";
-            } else {
-                throw new Exception("User not found.");
-            }
-            break;
-        case 'approve_course':
-            $id = $_POST['id'];
+//         case 'refuse_teacher':
+//             $teacherData = User::findByEmail($_POST['email']);
+//             if ($teacherData) {
+//                 $admin->declineTeacher($teacherData['id']);
+//                 echo "Teacher declined successfully!";
+//             } else {
+//                 throw new Exception("Teacher not found.");
+//             }
+//             break;
 
-            $course = new admin('test', 'test@test.com', 'test', 'admin');
-            $course->approve($id);
-            break;
-        case 'delete_user':
-            $userData = User::findByEmail($_POST['email']);
-            if ($userData) {
-                $admin->deleteUser($userData['email']);
-                echo "User deleted successfully!";
-            } else {
-                throw new Exception("User not found.");
-            }
-            break;
-        case 'decline_course':
+//         case 'ban_user':
+//             $userData = User::findByEmail($_POST['email']);
+//             if ($userData) {
+//                 $admin->banUser($userData['id']);
+//                 echo "User banned successfully!";
+//             } else {
+//                 throw new Exception("User not found.");
+//             }
+//             break;
 
-            break;
-        case 'delete_course':
-            $id = $_POST['id'];
+//         case 'unban_user':
+//             $userData = User::findByEmail($_POST['email']);
+//             if ($userData) {
+//                 $admin->unbanUser($userData['id']);
+//                 echo "User unbanned successfully!";
+//             } else {
+//                 throw new Exception("User not found.");
+//             }
+//             break;
+//         case 'approve_course':
+//             $id = $_POST['id'];
 
-            $course = new admin('test', 'test@test.com', 'test', 'admin');
-            $course->deleteCourse($id);
-            break;
+//             $course = new admin('test', 'test@test.com', 'test', 'admin');
+//             $course->approve($id);
+//             break;
+//         case 'delete_user':
+//             $userData = User::findByEmail($_POST['email']);
+//             if ($userData) {
+//                 $admin->deleteUser($userData['email']);
+//                 echo "User deleted successfully!";
+//             } else {
+//                 throw new Exception("User not found.");
+//             }
+//             break;
+//         case 'decline_course':
 
-        case 'add_category':
-            $categories = new Category();
-            $name = $_POST['name'];
+//             break;
+//         case 'delete_course':
+//             $id = $_POST['id'];
 
-            $categories->createCategory($name);
-            break;
-        case 'modify_category':
-            $categories = new Category();
-            $id = $_POST['id'];
-            $name = $_POST['name'];
+//             $course = new admin('test', 'test@test.com', 'test', 'admin');
+//             $course->deleteCourse($id);
+//             break;
 
-            $categories->updateCategory($id, $name);
-            break;
-        case 'delete_category':
-            $id = $_POST['category_id'];
-            $categories = new Category();
-            $categories->deleteCategory($id);
-            break;
-        case 'add_tags':
-            $tags = new Tag();
-            if (isset($_POST['tag_name']) && is_array($_POST['tag_name'])) {
-                foreach ($_POST['tag_name'] as $name) {
-                    if (!empty($name)) {
-                        $tagId = $tags->createTag($name);
-                    }
-                }
-            } else {
-                echo "No tags provided.";
-            }
-            break;
-        case 'modify_tag':
-            $tags = new Tag();
-            $id = $_POST['id'];
-            $name = $_POST['name'];
+//         case 'add_category':
+//             $categories = new Category();
+//             $name = $_POST['name'];
 
-            $tags->updateTag($id, $name);
-            break;
-        case 'delete_tag':
-            $id = $_POST['tag_id'];
-            $tags = new Tag();
-            $tags->deleteTag($id);
-            break;
-    }
-}
+//             $categories->createCategory($name);
+//             break;
+//         case 'modify_category':
+//             $categories = new Category();
+//             $id = $_POST['id'];
+//             $name = $_POST['name'];
+
+//             $categories->updateCategory($id, $name);
+//             break;
+//         case 'delete_category':
+//             $id = $_POST['category_id'];
+//             $categories = new Category();
+//             $categories->deleteCategory($id);
+//             break;
+//         case 'add_tags':
+//             $tags = new Tag();
+//             if (isset($_POST['tag_name']) && is_array($_POST['tag_name'])) {
+//                 foreach ($_POST['tag_name'] as $name) {
+//                     if (!empty($name)) {
+//                         $tagId = $tags->createTag($name);
+//                     }
+//                 }
+//             } else {
+//                 echo "No tags provided.";
+//             }
+//             break;
+//         case 'modify_tag':
+//             $tags = new Tag();
+//             $id = $_POST['id'];
+//             $name = $_POST['name'];
+
+//             $tags->updateTag($id, $name);
+//             break;
+//         case 'delete_tag':
+//             $id = $_POST['tag_id'];
+//             $tags = new Tag();
+//             $tags->deleteTag($id);
+//             break;
+//     }
+// }
 ?>
 
 <!DOCTYPE html>
@@ -287,17 +287,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </thead>
                     <tbody>
                         <?php
-                        $currentUser = new Admin(3, 'admin', 'admin@example.com', 'admin123', 'admin', 'admin');
-                        $allTeacher = User::getAllTeachers($currentUser);
-                        // print_r($_SESSION);
-                        // echo "<br>";
-                        // print_r($allTeacher);
-                        // print_r($currentUser);
-                        // die;
-                        // echo "<br>";
-                        // echo $currentUser->getRole();
-                        if (!empty($allTeacher)) {
-                            foreach ($allTeacher as $teacher):
+                        if (!empty($teacherData)) {
+                            foreach ($teacherData as $teacher):
                         ?>
                                 <tr>
                                     <td><?= $teacher->id ?></td>
@@ -347,10 +338,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <tbody>
                         <tr>
                             <?php
-                            $currentUser = new Admin(3, 'admin', 'admin@example.com', 'admin123', 'admin', 'admin');
-                            $allUsers = User::getAllUsers($currentUser);
-                            if (!empty($allUsers)) {
-                                foreach ($allUsers as $user):
+                            
+                            if (!empty($userData)) {
+                                foreach ($userData as $user):
                             ?>
                                     <td><?= $user->id ?></td>
                                     <td><?= $user->username ?></td>
@@ -405,8 +395,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </thead>
                     <tbody>
                         <?php
-                        $courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-                        $courses = new CourseService($courseModal, NULL);
                         $allCourses = $courses->getAllCourses();
                         foreach ($allCourses as $course):
                         ?>
@@ -459,9 +447,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </thead>
                     <tbody>
                         <?php
-                        $category = new Category();
-                        $categories = $category->getAllCategories();
-
                         foreach ($categories as $category):
                         ?>
                             <tr>
@@ -506,8 +491,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </thead>
                     <tbody>
                         <?php
-                        $tag = new Tag();
-                        $tags = $tag->getAllTags();
                         foreach ($tags as $tag):
                         ?>
                             <tr>
