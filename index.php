@@ -40,7 +40,7 @@ $router->add('/studentCourse_details/id={id}', 'App\Controllers\Course\CourseCon
 
 $router->add('/Teacher', 'App\Controllers\Teacher\TeacherController@index');
 $router->add('/Student', 'App\Controllers\Student\StudentController@index');
-$router->add('/Admin', 'App\Controllers\Admin\AdminController@dashboard');
+$router->add('/admin', 'App\Controllers\Admin\AdminController@dashboard');
 
 $router->add('/admin/handle-post', 'App\Controllers\Admin\AdminController@handlePostRequest');
 

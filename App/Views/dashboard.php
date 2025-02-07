@@ -297,12 +297,12 @@
                                     <td><?= $teacher->created_at ?></td>
                                     <td><?= $teacher->status ?></td>
                                     <td>
-                                        <form method="POST" action="" style="display:inline;">
+                                        <form action="/youdemy/admin/handle-post" method="POST" action="" style="display:inline;">
                                             <input type="hidden" name="action" value="accept_teacher">
                                             <input type="hidden" name="email" value="<?= $teacher->email ?>">
                                             <button type="submit" class="btn btn-success btn-sm">Accepter</button>
                                         </form>
-                                        <form method="POST" action="" style="display:inline;">
+                                        <form action="/youdemy/admin/handle-post" method="POST" action="" style="display:inline;">
                                             <input type="hidden" name="action" value="refuse_teacher">
                                             <input type="hidden" name="email" value="<?= $teacher->email ?>">
                                             <button type="submit" class="btn btn-danger btn-sm">Refuser</button>
@@ -349,17 +349,17 @@
                                     <td><?= $user->created_at ?></td>
                                     <td><?= $user->status ?></td>
                                     <td>
-                                        <form method="POST" action="" style="display:inline;">
+                                        <form action="/youdemy/admin/handle-post" method="POST" action="" style="display:inline;">
                                             <input type="hidden" name="action" value="ban_user">
                                             <input type="hidden" name="email" value="<?= $user->email ?>">
                                             <button type="submit" class="btn btn-warning btn-sm">Bannir</button>
                                         </form>
-                                        <form method="POST" action="" style="display:inline;">
+                                        <form action="/youdemy/admin/handle-post" method="POST" action="" style="display:inline;">
                                             <input type="hidden" name="action" value="unban_user">
                                             <input type="hidden" name="email" value="<?= $user->email ?>">
                                             <button type="submit" class="btn btn-success btn-sm">Débannir</button>
                                         </form>
-                                        <form method="POST" action="" style="display:inline;">
+                                        <form action="/youdemy/admin/handle-post" method="POST" action="" style="display:inline;">
                                             <input type="hidden" name="action" value="delete_user">
                                             <input type="hidden" name="email" value="<?= $user->email ?>">
                                             <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
@@ -407,17 +407,17 @@
                                 <td><?= $course['crs_created_at'] ?></td>
                                 <td><?= $course['course_updated_at'] ?></td>
                                 <td>
-                                    <form method="POST" action="" style="display:inline;">
+                                    <form action="/youdemy/admin/handle-post" method="POST" action="" style="display:inline;">
                                         <input type="hidden" name="action" value="approve_course">
                                         <input type="hidden" name="id" value="<?= $course['id'] ?>">
                                         <button type="submit" class="btn btn-primary btn-sm">Approver</button>
                                     </form>
-                                    <form method="POST" action="" style="display:inline;">
+                                    <form action="/youdemy/admin/handle-post" method="POST" action="" style="display:inline;">
                                         <input type="hidden" name="action" value="decline_course">
                                         <input type="hidden" name="id" value="<?= $course['id'] ?>">
                                         <button type="submit" class="btn btn-danger btn-sm">Rejecter</button>
                                     </form>
-                                    <form method="POST" action="" style="display:inline;">
+                                    <form action="/youdemy/admin/handle-post" method="POST" action="" style="display:inline;">
                                         <input type="hidden" name="action" value="delete_course">
                                         <input type="hidden" name="id" value="<?= $course['id'] ?>">
                                         <button type="submit" class="btn btn-secondary btn-sm">Supprimer</button>
@@ -454,12 +454,12 @@
                                 <td><?= $category['name'] ?></td>
                                 <td><?= $category['created_at'] ?></td>
                                 <td>
-                                    <form method="POST" action="" class="d-inline">
+                                    <form action="/youdemy/admin/handle-post" method="POST" action="" class="d-inline">
                                         <input type="hidden" name="action" value="modify_category">
                                         <input type="hidden" name="category_id" value="<?= $category['id'] ?>">
                                         <button type="button" class="btn btn-primary btn-sm editCategoryBtn" data-id="<?= $category['id'] ?>" data-name="<?= $category['name'] ?>">Modifier</button>
                                     </form>
-                                    <form method="POST" action="" style="display:inline;">
+                                    <form action="/youdemy/admin/handle-post" method="POST" action="" style="display:inline;">
                                         <input type="hidden" name="action" value="delete_category">
                                         <input type="hidden" name="category_id" value="<?= $category['id'] ?>">
                                         <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
@@ -498,12 +498,12 @@
                                 <td><?= $tag['name'] ?></td>
                                 <td><?= $tag['created_at'] ?></td>
                                 <td>
-                                    <form method="POST" action="" class="d-inline">
+                                    <form action="/youdemy/admin/handle-post" method="POST" action="" class="d-inline">
                                         <input type="hidden" name="action" value="modify_tag">
                                         <input type="hidden" name="tag_id" value="<?= $tag['id'] ?>">
                                         <button type="button" class="btn btn-primary btn-sm editTagBtn" data-id="<?= $tag['id'] ?>" data-name="<?= $tag['name'] ?>">Modifier</button>
                                     </form>
-                                    <form method="POST" action="" class="d-inline">
+                                    <form action="/youdemy/admin/handle-post" method="POST" action="" class="d-inline">
                                         <input type="hidden" name="action" value="delete_tag">
                                         <input type="hidden" name="tag_id" value="<?= $tag['id'] ?>">
                                         <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
@@ -529,7 +529,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="categoryForm" method="POST">
+                    <form id="categoryForm" action="/youdemy/admin/handle-post" method="POST">
                         <input type="hidden" name="action" value="add_category">
                         <input type="hidden" name="id" id="categoryId" value="">
                         <div class="mb-3">
@@ -557,7 +557,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="categoryForm" method="POST">
+                    <form action="/youdemy/admin/handle-post" id="categoryForm" method="POST">
                         <input type="hidden" name="action" value="modify_category">
                         <input type="hidden" name="category_id" id="categoryId">
                         <div class="mb-3">
@@ -589,7 +589,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="tagsForm" method="POST" action="">
+                    <form action="/youdemy/admin/handle-post" id="tagsForm" method="POST">
                         <input type="hidden" name="action" value="add_tags">
                         <div id="tagInputsContainer">
                             <div class="mb-3 tag-input-group">
@@ -621,7 +621,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="tagForm" method="POST">
+                    <form id="tagForm" action="/youdemy/admin/handle-post" method="POST">
                         <input type="hidden" name="action" value="modify_tag">
                         <input type="hidden" name="tag_id" id="tagId">
                         <div class="mb-3">
