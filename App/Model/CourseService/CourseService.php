@@ -120,33 +120,36 @@ class CourseService
     }
 
     public function getAllCoursesForTeacher($user_id)
-    {
-        $db = new database();
-        $conn = $db->getConnection();
+{
+    $db = new Database();
+    $conn = $db->getConnection();
 
-        $query = "SELECT 
-                c.id AS id,
-                c.title AS title,
-                c.language AS language,
-                ctg.name AS ctg_name,
-                c.teacher_id,
-                c.status,
-                u.username AS teacher_username,
-                u.email AS teacher_email
-            FROM 
-                courses c
-            JOIN 
-                users u ON c.teacher_id = u.id
-            JOIN 
-                categories ctg ON c.category_id = ctg.id
-            WHERE
-                teacher_id = :user_id";
-        $stmt = $conn->prepare($query);
-        $stmt->bindParam(":user_id", $user_id);
-        $stmt->execute();
+    $query = "
+        SELECT 
+            c.id AS id,
+            c.title AS title,
+            c.language AS language,
+            ctg.name AS ctg_name,
+            c.teacher_id,
+            c.status,
+            u.username AS teacher_username,
+            u.email AS teacher_email
+        FROM 
+            courses c
+        JOIN 
+            users u ON c.teacher_id = u.id
+        JOIN 
+            categories ctg ON c.category_id = ctg.id
+        WHERE
+            c.teacher_id = :user_id
+    ";
 
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
-    }
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(":user_id", $user_id, \PDO::PARAM_INT);
+    $stmt->execute();
+
+    return $stmt->fetchAll(\PDO::FETCH_OBJ);
+}
 
     public function getPaginatedCourses($page, $perPage, $search = '', $categoryId = null)
     {

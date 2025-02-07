@@ -236,17 +236,17 @@
                                                 <img src="" alt="" />
                                             </span>
                                             <span class="new-users-text">
-                                                <a href="#" class="new-users-name"><?= $course['title'] ?></a>
-                                                <span class="new-users-info">categorie: <?= $course['ctg_name'] ?></span>
+                                                <a href="#" class="new-users-name"><?= $course->getTitle() ?></a>
+                                                <span class="new-users-info">categorie: <?= $course-> ?></span>
                                                 <br>
-                                                <a href="#" class="new-users-info">status: <?= $course['status'] ?></a>
+                                                <a href="#" class="new-users-info">status: <?= $course->status ?></a>
                                             </span>
                                             <span class="new-users-btn">
-                                                <a href="mod_course/<?= $course['id'] ?>" class="btn button-sm green">Modify</a>
+                                                <a href="mod_course/<?= $course->id ?>" class="btn button-sm green">Modify</a>
                                             </span>
                                             <form action="" method="POST">
                                                 <input type="hidden" name="action" value="delete_course">
-                                                <input type="hidden" name="id" value="<?= $course['id'] ?>">
+                                                <input type="hidden" name="id" value="<?= $course->id ?>">
                                                 <button type="submit" class="btn button-sm red m-1">Delete</button>
                                             </form>
                                         </li>
