@@ -12,16 +12,18 @@ class CourseController
 {
     private $courseService;
     private $categoryModel;
+    private $courseModel;
     private $videoCourse;
     private $documentCourse;
     public function __construct()
     {
-        $this->courseService = new CourseService(new ConcreteCourse(), new Category());
+        $this->courseModel = new ConcreteCourse(null, null, null, null, null, null, null, null, null, null, null);
         $this->categoryModel = new Category();
+        $this->courseService = new CourseService($this->courseModel, new Category());
         $this->videoCourse = new VideoCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,  NULL, NULL,  NULL);
         $this->documentCourse = new DocumentCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,);
     }
-    
+
     public function index()
     {
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -83,7 +85,7 @@ class CourseController
         require_once __DIR__ . '/../../Views/course_details.php';
     }
 
-    public function add() 
+    public function add()
     {
         require_once __DIR__ . '/../../Core/Includes/session_check.php';
 
@@ -99,7 +101,7 @@ class CourseController
             $skill_level = $_POST['skill_level'];
             $course_bnr = $_POST['course_bnr'];
             $certification = $_POST['certification'];
-        
+
             if ($type === 'Video') {
                 $video_link = $_POST['video_link'];
                 $course = new VideoCourse(
@@ -133,19 +135,19 @@ class CourseController
                     $certification
                 );
             }
-        
+
             $courseId = $course->save();
-        
+
             if (!empty($courseId)) {
                 $_SESSION['course_success'] = true;
             } else {
                 $_SESSION['course_error'] = "Course Insertion failed. Please try again.";
             }
-        
+
             header("Location: add_course");
             exit();
         }
-        
+
         if (isset($_SESSION['course_success']) && $_SESSION['course_success']) {
             echo '
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -162,7 +164,7 @@ class CourseController
             ';
             unset($_SESSION['course_success']);
         }
-        
+
         if (isset($_SESSION['course_error'])) {
             echo '
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -182,8 +184,15 @@ class CourseController
         require_once __DIR__ . '/../../Views/add_course.php';
     }
 
-    public function mod()
+    public function mod($id)
     {
+        $id = intval($id);
+        $course_id = $id;
+        if ($course_id) {
+            $course = $this->courseService;
+            $courseData = $course->getCourseById($course_id);
+        }
+
         require_once __DIR__ . '/../../Core/Includes/session_check.php';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -199,7 +208,7 @@ class CourseController
             $course_bnr = $_POST['course_bnr'];
             $certification = $_POST['certification'];
             $stauts = $_POST['status'];
-        
+
             if ($type === 'Video') {
                 $video_link = $_POST['video_link'];
                 $course = new VideoCourse(
@@ -231,13 +240,13 @@ class CourseController
                     $status,
                     $certification
                 );
-        
+
                 if (!empty($courseId)) {
                     $_SESSION['course_success'] = true;
                 } else {
                     $_SESSION['course_error'] = "Course Insertion failed. Please try again.";
                 }
-        
+
                 header("Location: teacher");
                 exit();
             } else {
@@ -271,18 +280,18 @@ class CourseController
                     $course_bnr,
                     $certification
                 );
-        
+
                 if (!empty($courseId)) {
                     $_SESSION['course_success'] = true;
                 } else {
                     $_SESSION['course_error'] = "Course Insertion failed. Please try again.";
                 }
-        
+
                 header("Location: teacher");
                 exit();
             }
         }
-        
+
         if (isset($_SESSION['course_success']) && $_SESSION['course_success']) {
             echo '
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -299,7 +308,7 @@ class CourseController
             ';
             unset($_SESSION['course_success']);
         }
-        
+
         if (isset($_SESSION['course_error'])) {
             echo '
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -1,11 +1,11 @@
 <?php
 
-$courseModal = new ConcreteCourse(null, null, null, null, null, null, null, null, null, null, null);
-    $course_id = ($_GET['course_id']) ? $_GET['course_id'] : null;
-    if ($course_id) {
-        $course = new CourseService($courseModal, null);
-        $courseData = $course->getCourseById($course_id);
-    }
+// $courseModal = new ConcreteCourse(null, null, null, null, null, null, null, null, null, null, null);
+//     $course_id = ($_GET['course_id']) ? $_GET['course_id'] : null;
+//     if ($course_id) {
+//         $course = new CourseService($courseModal, null);
+//         $courseData = $course->getCourseById($course_id);
+//     }
 
 
 // echo "<pre>";
@@ -348,8 +348,7 @@ $courseModal = new ConcreteCourse(null, null, null, null, null, null, null, null
                                         <div>
                                             <select class="form-control" name="category_id">
                                                 <?php
-                                                $categories = new Category();
-                                                $selectedCtgs = $categories->getAllCategories();
+                                                $selectedCtgs = $categoryModel->getAllCategories();
                                                 foreach ($selectedCtgs as $ctg):
                                                 ?>
                                                     <option value="<?= $ctg['id'] ?>" <?= $courseData['ctg_id'] && $courseData['ctg_id'] == $ctg['id'] ? 'selected' : '' ?>><?= $ctg['name'] ?></option>

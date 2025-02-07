@@ -33,6 +33,7 @@ $router->add('/', 'App\Controllers\Home\HomeController@index');
 $router->add('/courses', 'App\Controllers\Course\CourseController@index');
 $router->add('/courses/id={id}', 'App\Controllers\Course\CourseController@show');
 $router->add('/add_course', 'App\Controllers\Course\CourseController@add');
+$router->add('/mod_course/{id}', 'App\Controllers\Course\CourseController@mod');
 
 $router->add('/studentCourses', 'App\Controllers\Course\CourseController@index');
 $router->add('/studentCourse/id={id}', 'App\Controllers\Course\CourseController@show');

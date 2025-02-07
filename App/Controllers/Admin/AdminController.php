@@ -17,13 +17,15 @@ class AdminController
 
     public function __construct()
     {
+        
         $this->courseModal = new ConcreteCourse();
         $this->courses = new CourseService($this->courseModal, null);
         $this->currentUser = new Admin(null,null,null,null,null);
     }
-
+    
     public function dashboard()
     {
+        require_once __DIR__ . '/../../Core/Includes/session_check.php';
         $statistics = $this->currentUser->getStatistics();
         $coursesCount = $statistics[0]->count;
         $popularCourse = $statistics[1]->count;
