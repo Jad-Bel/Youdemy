@@ -163,5 +163,7 @@ class AdminController
                     throw new \Exception("Invalid action.");
             }
         }
+
+        require_once __DIR__ . '/../../Views/dashboard.php';
     }
 }
