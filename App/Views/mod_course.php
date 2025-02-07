@@ -351,7 +351,7 @@
                                                 $selectedCtgs = $categoryModel->getAllCategories();
                                                 foreach ($selectedCtgs as $ctg):
                                                 ?>
-                                                    <option value="<?= $ctg['id'] ?>" <?= $courseData['ctg_id'] && $courseData['ctg_id'] == $ctg['id'] ? 'selected' : '' ?>><?= $ctg['name'] ?></option>
+                                                    <option value="<?= $ctg->getId() ?>" <?= $courseData['ctg_id'] && $courseData['ctg_id'] == $ctg->getId() ? 'selected' : '' ?>><?= $ctg->getName() ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>

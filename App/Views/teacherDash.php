@@ -237,7 +237,7 @@
                                             </span>
                                             <span class="new-users-text">
                                                 <a href="#" class="new-users-name"><?= $course->getTitle() ?></a>
-                                                <span class="new-users-info">categorie: <?= $course-> ?></span>
+                                                <span class="new-users-info">categorie: <?= $course->getName() ?></span>
                                                 <br>
                                                 <a href="#" class="new-users-info">status: <?= $course->status ?></a>
                                             </span>
