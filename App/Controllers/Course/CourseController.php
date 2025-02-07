@@ -42,7 +42,8 @@ class CourseController
     public function show($id)
     {
         $id = intval($id);
-        if (isset($id)) {
+        $course_id = $id;
+        if (isset($id) && isset($course_id) && empty($id) && empty($course_id)) {
             $courseId = $id;
         } else {
             die("Course ID is missing.");

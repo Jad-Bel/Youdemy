@@ -38,9 +38,9 @@ $router->add('/studentCourses', 'App\Controllers\Course\CourseController@index')
 $router->add('/studentCourse/id={id}', 'App\Controllers\Course\CourseController@show');
 $router->add('/studentCourse_details/id={id}', 'App\Controllers\Course\CourseController@display');
 
-$router->add('/teacher', 'App\Controllers\Teacher\TeacherController@index');
-$router->add('/student', 'App\Controllers\Student\StudentController@index');
-$router->add('/admin', 'App\Controllers\Admin\AdminController@dashboard');
+$router->add('/Teacher', 'App\Controllers\Teacher\TeacherController@index');
+$router->add('/Student', 'App\Controllers\Student\StudentController@index');
+$router->add('/Admin', 'App\Controllers\Admin\AdminController@dashboard');
 
 $router->add('/admin/handle-post', 'App\Controllers\Admin\AdminController@handlePostRequest');
 
