@@ -242,7 +242,7 @@
                                                 <a href="#" class="new-users-info">status: <?= $course['status'] ?></a>
                                             </span>
                                             <span class="new-users-btn">
-                                                <a href="mod_course.php?course_id=<?= $course['id'] ?>" class="btn button-sm green">Modify</a>
+                                                <a href="mod_course/<?= $course['id'] ?>" class="btn button-sm green">Modify</a>
                                             </span>
                                             <form action="" method="POST">
                                                 <input type="hidden" name="action" value="delete_course">
