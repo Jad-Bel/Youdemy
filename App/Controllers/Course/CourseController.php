@@ -41,8 +41,9 @@ class CourseController
 
     public function show($id)
     {
-        if (isset($_GET['id'])) {
-            $courseId = intval($_GET['id']);
+        $id = intval($id);
+        if (isset($id)) {
+            $courseId = $id;
         } else {
             die("Course ID is missing.");
         }
@@ -140,8 +141,145 @@ class CourseController
                 $_SESSION['course_error'] = "Course Insertion failed. Please try again.";
             }
         
-            header("Location: add_course.php");
+            header("Location: add_course");
             exit();
+        }
+        
+        if (isset($_SESSION['course_success']) && $_SESSION['course_success']) {
+            echo '
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    title: "Success!",
+                    text: "Course has been added successfully.",
+                    icon: "success",
+                    confirmButtonText: "OK"
+                });
+            });
+            </script>
+            ';
+            unset($_SESSION['course_success']);
+        }
+        
+        if (isset($_SESSION['course_error'])) {
+            echo '
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    title: "Error!",
+                    text: "' . $_SESSION['course_error'] . '",
+                    icon: "error",
+                    confirmButtonText: "OK"
+                });
+            });
+            </script>
+            ';
+            unset($_SESSION['course_error']);
+        }
+        require_once __DIR__ . '/../../Views/add_course.php';
+    }
+
+    public function mod()
+    {
+        require_once __DIR__ . '/../../Core/Includes/session_check.php';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = $_POST['title'];
+            $description = $_POST['description'];
+            $content = $_POST['content'];
+            $teacher_id = $_SESSION['user_id'];
+            $category_id = $_POST['category_id'];
+            $type = $_POST['type'];
+            $duration = $_POST['duration'];
+            $language = $_POST['language'];
+            $skill_level = $_POST['skill_level'];
+            $course_bnr = $_POST['course_bnr'];
+            $certification = $_POST['certification'];
+            $stauts = $_POST['status'];
+        
+            if ($type === 'Video') {
+                $video_link = $_POST['video_link'];
+                $course = new VideoCourse(
+                    $title,
+                    $description,
+                    $content,
+                    $video_link,
+                    $teacher_id,
+                    $category_id,
+                    $duration,
+                    $language,
+                    $skill_level,
+                    $course_bnr,
+                    $status,
+                    $certification
+                );
+                $courseId = $course->modify(
+                    $course_id,
+                    $title,
+                    $description,
+                    $content,
+                    $video_link,
+                    $teacher_id,
+                    $category_id,
+                    $duration,
+                    $language,
+                    $skill_level,
+                    $course_bnr,
+                    $status,
+                    $certification
+                );
+        
+                if (!empty($courseId)) {
+                    $_SESSION['course_success'] = true;
+                } else {
+                    $_SESSION['course_error'] = "Course Insertion failed. Please try again.";
+                }
+        
+                header("Location: teacher");
+                exit();
+            } else {
+                $document_link = $_POST['document_link'];
+                $course = new DocumentCourse(
+                    $title,
+                    $description,
+                    $content,
+                    $document_link,
+                    $teacher_id,
+                    $category_id,
+                    $duration,
+                    $language,
+                    $skill_level,
+                    $status,
+                    $course_bnr,
+                    $certification
+                );
+                $courseId = $course->modify(
+                    $course_id,
+                    $title,
+                    $description,
+                    $content,
+                    $document_link,
+                    $teacher_id,
+                    $category_id,
+                    $duration,
+                    $language,
+                    $skill_level,
+                    $status,
+                    $course_bnr,
+                    $certification
+                );
+        
+                if (!empty($courseId)) {
+                    $_SESSION['course_success'] = true;
+                } else {
+                    $_SESSION['course_error'] = "Course Insertion failed. Please try again.";
+                }
+        
+                header("Location: teacher");
+                exit();
+            }
         }
         
         if (isset($_SESSION['course_success']) && $_SESSION['course_success']) {
