@@ -10,16 +10,15 @@ class TeacherController
 {
     private $courseModal;
     private $courses;
-    private $teacher;
+    private $teacherModal;
 
     public function __construct()
     {
         require_once __DIR__ . '/../../Core/Includes/session_check.php';
-        
+
         $this->courseModal = new ConcreteCourse();
         $this->courses = new CourseService($this->courseModal, null);
-        $this->teacher = new Teacher(null, null, null, null, null, null);
-        
+        $this->teacherModal = new Teacher(null, null, null, null, null, null);
     }
 
     public function index()
@@ -32,7 +31,7 @@ class TeacherController
 
         $coursesForTeacher = $this->courses->getAllCoursesForTeacher($teacher_id);
 
-        // $statistics = $this->teacher->getStatistics($teacher_id);
+        // $statistics = $this->teacherModal->getStatistics($teacher_id);
 
         // $enrolledStudentsCount = $statistics[0]->count;
         // $coursesCount = $statistics[1]->count;
@@ -45,8 +44,17 @@ class TeacherController
             header("Location: Teacher");
             exit();
         }
+        
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            $id = $_SESSION['id'] ?? null;
+            $username = $_SESSION['username'] ?? null;
+            $email = $_SESSION['email'] ?? null;
+            $password = null;
+            $role = $_SESSION['role'] ?? null;
+            $status = $_SESSION['status'] ?? null;
+        }
 
-        $enrolledUsers = $this->teacher->displayEnrolledUsers($teacher_id);
+        $enrolledUsers = $this->teacherModal->displayEnrolledUsers($teacher_id);
 
         require_once __DIR__ . '/../../Views/teacherDash.php';
     }

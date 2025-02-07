@@ -266,15 +266,13 @@
                                 <ul class="list-unstyled">
                                     <?php
 
-                                    $id = $_SESSION['id'] ?? null;
-                                    $username = $_SESSION['username'] ?? null;
-                                    $email = $_SESSION['email'] ?? null;
-                                    $password = null; 
-                                    $role = $_SESSION['role'] ?? null;
-                                    $status = $_SESSION['status'] ?? null;
+                                    // $id = $_SESSION['id'] ?? null;
+                                    // $username = $_SESSION['username'] ?? null;
+                                    // $email = $_SESSION['email'] ?? null;
+                                    // $password = null; 
+                                    // $role = $_SESSION['role'] ?? null;
+                                    // $status = $_SESSION['status'] ?? null;
 
-                                    $teacherModal = new Teacher($id, $username, $email, $password, $role, $status);
-                                    $enrolledUsers = $teacherModal->displayEnrolledUsers($teacher_id);
                                     if (!empty($enrolledUsers)) {
                                         foreach ($enrolledUsers as $user):
                                     ?>
