@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Modal\Admin;
-use App\Modal\User\User;
+namespace App\Model\Admin;
+use App\Model\User\User;
 
 class Admin extends User
 {

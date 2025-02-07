@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modal\Tag;
+namespace App\Model\Tag;
 
 use App\Core\Database\Database;
 
