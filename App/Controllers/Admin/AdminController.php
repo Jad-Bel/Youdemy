@@ -45,6 +45,12 @@ class AdminController
         require_once __DIR__ . '/../../Views/dashboard.php';
     }
 
+    private static function redirect() 
+    {
+        header('location: \youdemy\admin');
+        exit();
+    } 
+
     public function handlePostRequest()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -92,13 +98,16 @@ class AdminController
                 case 'approve_course':
                     $id = $_POST['id'];
                     $this->currentUser->approve($id);
+                    self::redirect();
                     break;
+
 
                 case 'delete_user':
                     $userData = User::findByEmail($_POST['email']);
                     if ($userData) {
                         $this->currentUser->deleteUser($userData['email']);
                         echo "User deleted successfully!";
+                        self::redirect();
                     } else {
                         throw new \Exception("User not found.");
                     }
@@ -107,17 +116,20 @@ class AdminController
                 case 'decline_course':
                     $id = $_POST['id'];
                     $this->currentUser->decline($id);
+                    self::redirect();
                     break;
 
                 case 'delete_course':
                     $id = $_POST['id'];
                     $this->currentUser->deleteCourse($id);
+                    self::redirect();
                     break;
 
                 case 'add_category':
                     $categories = new Category();
                     $name = $_POST['name'];
                     $categories->createCategory($name);
+                    self::redirect();
                     break;
 
                 case 'modify_category':
@@ -125,12 +137,14 @@ class AdminController
                     $id = $_POST['id'];
                     $name = $_POST['name'];
                     $categories->updateCategory($id, $name);
+                    self::redirect();
                     break;
 
                 case 'delete_category':
                     $id = $_POST['category_id'];
                     $categories = new Category();
                     $categories->deleteCategory($id);
+                    self::redirect();
                     break;
 
                 case 'add_tags':
@@ -141,6 +155,7 @@ class AdminController
                                 $tagId = $tags->createTag($name);
                             }
                         }
+                    self::redirect();
                     } else {
                         echo "No tags provided.";
                     }
@@ -151,12 +166,14 @@ class AdminController
                     $id = $_POST['id'];
                     $name = $_POST['name'];
                     $tags->updateTag($id, $name);
+                    self::redirect();
                     break;
 
                 case 'delete_tag':
                     $id = $_POST['tag_id'];
                     $tags = new Tag();
                     $tags->deleteTag($id);
+                    self::redirect();
                     break;
 
                 default:
