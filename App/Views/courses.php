@@ -179,8 +179,8 @@
                                         foreach ($categories as $category):
                                         ?>
                                             <li>
-                                                <a href="?id=<?= $category['id'] ?>">
-                                                    <?= $category['name'] ?>
+                                                <a href="?id=<?= $category->getId() ?>">
+                                                    <?= $category->getName() ?>
                                                 </a>
                                             </li>
                                         <?php endforeach; ?>
