@@ -1,7 +1,3 @@
-<?php 
-print_r($_SESSION);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +22,7 @@ print_r($_SESSION);
     <meta name="format-detection" content="telephone=no">
 
     <!-- FAVICONS ICON ============================================= -->
-    <link rel="icon" href="../error-404.html" type="image/x-icon" />
+    <link rel="icon" href="error-404.html" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
 
     <!-- PAGE TITLE HERE ============================================= -->
@@ -41,19 +37,19 @@ print_r($_SESSION);
 	<![endif]-->
 
     <!-- All PLUGINS CSS ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/assets/css/assets.css">
-    <link rel="stylesheet" type="text/css" href="../assets/assets/vendors/calendar/fullcalendar.css">
+    <link rel="stylesheet" type="text/css" href="assets/assets/css/assets.css">
+    <link rel="stylesheet" type="text/css" href="assets/assets/vendors/calendar/fullcalendar.css">
 
     <!-- TYPOGRAPHY ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/assets/css/typography.css">
+    <link rel="stylesheet" type="text/css" href="assets/assets/css/typography.css">
 
     <!-- SHORTCODES ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/assets/css/shortcodes/shortcodes.css">
+    <link rel="stylesheet" type="text/css" href="assets/assets/css/shortcodes/shortcodes.css">
 
     <!-- STYLESHEETS ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../assets/assets/css/dashboard.css">
-    <link class="skin" rel="stylesheet" type="text/css" href="../assets/assets/css/color/color-1.css">
+    <link rel="stylesheet" type="text/css" href="assets/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/assets/css/dashboard.css">
+    <link class="skin" rel="stylesheet" type="text/css" href="assets/assets/css/color/color-1.css">
 
 </head>
 
@@ -72,8 +68,8 @@ print_r($_SESSION);
             <div class="ttr-logo-box">
                 <div>
                     <a href="index.html" class="ttr-logo">
-                        <img alt="" class="ttr-logo-mobile" src="../assets/assets/images/logo-mobile.png" width="30" height="30">
-                        <img alt="" class="ttr-logo-desktop" src="../assets/assets/images/logo-white.png" width="160" height="27">
+                        <img alt="" class="ttr-logo-mobile" src="assets/assets/images/logo-mobile.png" width="30" height="30">
+                        <img alt="" class="ttr-logo-desktop" src="assets/assets/images/logo-white.png" width="160" height="27">
                     </a>
                 </div>
             </div>
@@ -82,7 +78,7 @@ print_r($_SESSION);
                 <!-- header right menu start -->
                 <ul class="ttr-header-navigation">
                     <li>
-                        <a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="../assets/assets/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
+                        <a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="assets/assets/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
                         <div class="ttr-header-submenu">
                             <ul>
                                 <li><a href="logout">Logout</a></li>
@@ -101,7 +97,7 @@ print_r($_SESSION);
         <div class="ttr-sidebar-wrapper content-scroll">
             <!-- side menu logo start -->
             <div class="ttr-sidebar-logo">
-                <a href="#"><img alt="" src="../assets/assets/images/logo.png" width="122" height="27"></a>
+                <a href="#"><img alt="" src="assets/assets/images/logo.png" width="122" height="27"></a>
                 <!-- <div class="ttr-sidebar-pin-button" title="Pin/Unpin Menu">
 					<i class="material-icons ttr-fixed-icon">gps_fixed</i>
 					<i class="material-icons ttr-not-fixed-icon">gps_not_fixed</i>
@@ -268,14 +264,6 @@ print_r($_SESSION);
                             <div class="orders-list">
                                 <ul class="list-unstyled">
                                     <?php
-
-                                    // $id = $_SESSION['id'] ?? null;
-                                    // $username = $_SESSION['username'] ?? null;
-                                    // $email = $_SESSION['email'] ?? null;
-                                    // $password = null; 
-                                    // $role = $_SESSION['role'] ?? null;
-                                    // $status = $_SESSION['status'] ?? null;
-
                                     if (!empty($enrolledUsers)) {
                                         foreach ($enrolledUsers as $user):
                                     ?>
@@ -306,25 +294,25 @@ print_r($_SESSION);
     <div class="ttr-overlay"></div>
 
     <!-- External JavaScripts -->
-    <script src="../assets/assets/js/jquery.min.js"></script>
-    <script src="../assets/assets/vendors/bootstrap/js/popper.min.js"></script>
-    <script src="../assets/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../assets/assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
-    <script src="../assets/assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
-    <script src="../assets/assets/vendors/magnific-popup/magnific-popup.js"></script>
-    <script src="../assets/assets/vendors/counter/waypoints-min.js"></script>
-    <script src="../assets/assets/vendors/counter/counterup.min.js"></script>
-    <script src="../assets/assets/vendors/imagesloaded/imagesloaded.js"></script>
-    <script src="../assets/assets/vendors/masonry/masonry.js"></script>
-    <script src="../assets/assets/vendors/masonry/filter.js"></script>
-    <script src="../assets/assets/vendors/owl-carousel/owl.carousel.js"></script>
-    <script src='../assets/assets/vendors/scroll/scrollbar.min.js'></script>
-    <script src="../assets/assets/js/functions.js"></script>
-    <script src="../assets/assets/vendors/chart/chart.min.js"></script>
-    <script src="../assets/assets/js/admin.js"></script>
-    <script src='../assets/assets/vendors/calendar/moment.min.js'></script>
-    <script src='../assets/assets/vendors/calendar/fullcalendar.js'></script>
-    <script src='../assets/assets/vendors/switcher/switcher.js'></script>
+    <script src="assets/assets/js/jquery.min.js"></script>
+    <script src="assets/assets/vendors/bootstrap/js/popper.min.js"></script>
+    <script src="assets/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="assets/assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+    <script src="assets/assets/vendors/magnific-popup/magnific-popup.js"></script>
+    <script src="assets/assets/vendors/counter/waypoints-min.js"></script>
+    <script src="assets/assets/vendors/counter/counterup.min.js"></script>
+    <script src="assets/assets/vendors/imagesloaded/imagesloaded.js"></script>
+    <script src="assets/assets/vendors/masonry/masonry.js"></script>
+    <script src="assets/assets/vendors/masonry/filter.js"></script>
+    <script src="assets/assets/vendors/owl-carousel/owl.carousel.js"></script>
+    <script src='assets/assets/vendors/scroll/scrollbar.min.js'></script>
+    <script src="assets/assets/js/functions.js"></script>
+    <script src="assets/assets/vendors/chart/chart.min.js"></script>
+    <script src="assets/assets/js/admin.js"></script>
+    <script src='assets/assets/vendors/calendar/moment.min.js'></script>
+    <script src='assets/assets/vendors/calendar/fullcalendar.js'></script>
+    <script src='assets/assets/vendors/switcher/switcher.js'></script>
     <script>
         $(document).ready(function() {
 
