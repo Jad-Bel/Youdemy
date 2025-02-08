@@ -7,10 +7,10 @@ use App\Model\Course\Course;
 
 class Student extends User
 {
-    public function __construct($username, $email, $password, $role, $status)
-    {
-        parent::__construct(null, $username, $email, $password, $role, $status);
-    }
+    // public function __construct($username, $email, $password, $role, $status)
+    // {
+    //     parent::__construct(null, $username, $email, $password, $role, $status);
+    // }
 
     public function enroll($id, $course_id)
     {
@@ -37,7 +37,7 @@ class Student extends User
 
     public function viewCourses()
     {
-        $sql = "SELECT c.id, c.title, c.description, c.content, c.video_link, c.teacher_id, c.category_id
+        $sql = "SELECT c.id, c.title, c.description, c.content, c.video_link, c.document_link, c.teacher_id, c.category_id
                 FROM courses c
                 JOIN enrollments e ON c.id = e.course_id
                 WHERE e.student_id = :student_id";
@@ -52,6 +52,7 @@ class Student extends User
                 $row['description'],
                 $row['content'],
                 $row['video_link'],
+                $row['document_link'],
                 $row['teacher_id'],
                 $row['category_id']
             );
