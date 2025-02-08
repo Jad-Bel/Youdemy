@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Model\User;
-use App\Core\Database\Database;
 
+use App\Core\Database\Database;
 
 class User
 {
@@ -16,20 +16,13 @@ class User
     protected $updated_at;
     protected $conn;
 
-    public function __construct($id, $username, $email, $password = null, $role = null, $status = null)
+    public function __construct()
     {
-        $db = new database();
+        $db = new Database();
         $this->conn = $db->getConnection();
-        $this->id = $id;
-        $this->username = $username;
-        $this->email = $email;
-        $this->password = $password ? $this->hashPassword($password) : null;
-        $this->role = $role;
-        $this->status = $status;
-        $this->created_at = date('Y-m-d H:i:s');
-        $this->updated_at = date('Y-m-d H:i:s');
     }
 
+    // Getters
     public function getId()
     {
         return $this->id;
@@ -70,6 +63,12 @@ class User
         return $this->updated_at;
     }
 
+    // Setters
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
     public function setUsername($username)
     {
         $this->username = $username;
@@ -99,9 +98,19 @@ class User
         $this->status = $status;
     }
 
+    public function setCreatedAt($created_at)
+    {
+        $this->created_at = $created_at;
+    }
+
+    public function setUpdatedAt($updated_at)
+    {
+        $this->updated_at = $updated_at;
+    }
+
+    // Save method
     public function save()
     {
-
         $checkEmailSql = "SELECT id FROM users WHERE email = :email";
         $checkEmailStmt = $this->conn->prepare($checkEmailSql);
         $checkEmailStmt->execute(['email' => $this->email]);
@@ -109,6 +118,7 @@ class User
 
         if ($existingUser) {
             header('location: register.php');
+            exit();
         }
 
         $sql = "INSERT INTO users (username, email, password, role, status, created_at, updated_at)
@@ -125,9 +135,10 @@ class User
         return true;
     }
 
+    // Static methods
     public static function findByEmail($email)
     {
-        $db = new database();
+        $db = new Database();
         $conn = $db->getConnection();
         $sql = "SELECT * FROM users WHERE email = :email";
         $stmt = $conn->prepare($sql);
@@ -135,21 +146,10 @@ class User
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
-
-    protected function hashPassword($password)
-    {
-        return password_hash($password, PASSWORD_BCRYPT);
-    }
-
-    public function verifyPassword($password, $hashedPassword)
-    {
-        return password_verify($password, $hashedPassword);
-    }
-
     public static function getAllUsers($currentUser)
     {
         if ($currentUser->getRole() == 'admin') {
-            $db = new database();
+            $db = new Database();
             $conn = $db->getConnection();
             $stmt = $conn->query("SELECT * FROM users");
             $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
@@ -161,13 +161,23 @@ class User
     public static function getAllTeachers($currentUser)
     {
         if ($currentUser->getRole() == 'admin') {
-            $db = new database();
+            $db = new Database();
             $conn = $db->getConnection();
             $stmt = $conn->query("SELECT * FROM users WHERE role = 'teacher'");
             $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
-
             return $result;
         }
         return [];
+    }
+
+    // Helper methods
+    protected function hashPassword($password)
+    {
+        return password_hash($password, PASSWORD_BCRYPT);
+    }
+
+    public function verifyPassword($password, $hashedPassword)
+    {
+        return password_verify($password, $hashedPassword);
     }
 }

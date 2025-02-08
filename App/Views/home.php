@@ -44,7 +44,7 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/shortcodes/shortcodes.css">
 
 	<!-- STYLESHEETS ============================================= -->
-	<link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 	<link class="skin" rel="stylesheet" type="text/css" href="assets/css/color/color-1.css">
 
 	<!-- REVOLUTION SLIDER CSS ============================================= -->

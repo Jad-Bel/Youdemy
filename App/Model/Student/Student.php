@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Model\Student;
+
 use App\Model\User\User;
+use App\Model\Course\Course;
 
-
-class   Student extends User
+class Student extends User
 {
     public function __construct($username, $email, $password, $role, $status)
     {
@@ -43,6 +44,19 @@ class   Student extends User
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['student_id' => $this->getId()]);
 
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        $courses = [];
+        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $courses[] = new Course(
+                $row['id'],
+                $row['title'],
+                $row['description'],
+                $row['content'],
+                $row['video_link'],
+                $row['teacher_id'],
+                $row['category_id']
+            );
+        }
+
+        return $courses;
     }
 }
