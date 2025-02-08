@@ -1,3 +1,7 @@
+<?php 
+print_r($_SESSION);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -172,7 +176,7 @@
                                 Number of available Courses
                             </span>
                             <span class="wc-stats">
-                                <span class="counter"><?= $coursesCount ?></span>
+                                <span class="counter"><?= $coursesCount ?? null ?></span>
                             </span>
                             <div class="progress wc-progress">
                                 <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
@@ -228,7 +232,6 @@
                             <div class="new-user-list">
                                 <ul>
                                     <?php
-                                    $coursesForTeacher = $courses->getAllCoursesForTeacher($teacher_id);
                                     foreach ($coursesForTeacher as $course):
                                     ?>
                                         <li>

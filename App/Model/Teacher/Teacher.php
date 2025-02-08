@@ -45,7 +45,7 @@ class Teacher extends User
 
     public function getAverageStudentsPerCourse($teacher_id)
     {
-        $sql = "SELECT COUNT(e.id) / COUNT(DISTINCT c.id) AS average_students_per_course
+        $sql = "SELECT COUNT(e.id) / COALESCE(NULLIF(COUNT(DISTINCT c.id), 0), 1) AS average_students_per_course
                 FROM courses c
                 JOIN enrollments e ON c.id = e.course_id
                 WHERE c.teacher_id = :teacher_id";
@@ -56,20 +56,20 @@ class Teacher extends User
         return $stmt->fetch(\PDO::FETCH_OBJ);
     }
 
-    // public function getStatistics($teacher_id)
-    // {
-    //     $enrolledStudentsCount = $this->getEnrolledStudentsCount();
-    //     $coursesCount = $this->getCoursesCount($teacher_id);
-    //     $approvedCoursesCount = $this->getApprovedCoursesCount($teacher_id);
-    //     $averageStudentPerCourse = $this->getAverageStudentsPerCourse($teacher_id);
+    public function getStatistics($teacher_id)
+    {
+        $enrolledStudentsCount = $this->getEnrolledStudentsCount();
+        $coursesCount = $this->getCoursesCount($teacher_id);
+        $approvedCoursesCount = $this->getApprovedCoursesCount($teacher_id);
+        $averageStudentPerCourse = $this->getAverageStudentsPerCourse($teacher_id);
 
-    //     return [
-    //         (object) ['statistic' => 'Enrolled Students', 'count' => $enrolledStudentsCount->enrolled_students_count],
-    //         (object) ['statistic' => 'Total Courses', 'count' => $coursesCount->courses_count],
-    //         (object) ['statistic' => 'Approved Courses', 'count' => $approvedCoursesCount->approved_courses_count],
-    //         (object) ['statistic' => 'Average Students per Course', 'count' => $averageStudentPerCourse->average_students_per_course]
-    //     ];
-    // }
+        return [
+            (object) ['statistic' => 'Enrolled Students', 'count' => $enrolledStudentsCount->enrolled_students_count],
+            (object) ['statistic' => 'Total Courses', 'count' => $coursesCount->courses_count],
+            (object) ['statistic' => 'Approved Courses', 'count' => $approvedCoursesCount->approved_courses_count],
+            (object) ['statistic' => 'Average Students per Course', 'count' => $averageStudentPerCourse->average_students_per_course]
+        ];
+    }
 
     private function addTagsToCourse($course_id, $tags)
     {

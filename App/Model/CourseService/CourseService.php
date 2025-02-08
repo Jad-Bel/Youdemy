@@ -2,17 +2,20 @@
 
 namespace App\Model\CourseService;
 use App\Core\Database\Database;
+use App\Model\Course\ConcreteCourse;
+use App\Model\Category\Category;
 
 class CourseService
 {
     private $courseModel;
     private $categoryModel;
 
-    public function __construct($courseModel, $categoryModel)
+    public function __construct(ConcreteCourse $courseModel, Category $categoryModel)
     {
         $this->courseModel = $courseModel;
         $this->categoryModel = $categoryModel;
     }
+
 
     public function save() {}
     public function displayContent() {}

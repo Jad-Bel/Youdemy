@@ -1,3 +1,7 @@
+<?php
+// Ensure the $courses variable is defined
+$courses = $courses ?? [];
+?>
 <!DOCTYPE html>
 <html lang="en">
 

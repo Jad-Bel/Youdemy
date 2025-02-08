@@ -21,7 +21,7 @@ class TeacherController
         $this->courseModal = new ConcreteCourse();
         $this->categoryModal = new Category();
         $this->courses = new CourseService($this->courseModal, $this->categoryModal);
-        $this->teacherModal = new Teacher($_SESSION['user_id'], $_SESSION['username'], $_SESSION['email'], null, $_SESSION['role'], $_SESSION['status']);
+        $this->teacherModal = new Teacher($_SESSION['user_id'],null, null, null, $_SESSION['role'],null);
 
     }
 
@@ -33,14 +33,16 @@ class TeacherController
             die("Teacher ID not found in session.");
         }
 
-        $coursesForTeacher = $this->courses->getAllCoursesForTeacher($teacher_id);
+        $courses = $this->courses;
 
-        // $statistics = $this->teacherModal->getStatistics($teacher_id);
+        $coursesForTeacher = $courses->getAllCoursesForTeacher($teacher_id);
 
-        // $enrolledStudentsCount = $statistics[0]->count;
-        // $coursesCount = $statistics[1]->count;
-        // $approvedCoursesCount = $statistics[2]->count;
-        // $averageStudentPerCourse = $statistics[3]->count;
+        $statistics = $this->teacherModal->getStatistics($teacher_id);
+
+        $enrolledStudentsCount = $statistics[0]->count;
+        $coursesCount = $statistics[1]->count;
+        $approvedCoursesCount = $statistics[2]->count;
+        $averageStudentPerCourse = $statistics[3]->count;
 
         if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['action']) && $_POST['action'] == 'delete_course') {
             $course_id = $_POST['id'];

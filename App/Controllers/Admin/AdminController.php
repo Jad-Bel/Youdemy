@@ -13,14 +13,16 @@ class AdminController
 {
     private $currentUser;
     private $courseModal;
+    private $courseService;
     private $courses;
 
     public function __construct()
     {
         
         $this->courseModal = new ConcreteCourse();
-        $this->courses = new CourseService($this->courseModal, null);
         $this->currentUser = new Admin(null,null,null,null,null);
+        $this->courses = new CourseService(new ConcreteCourse(), new Category());
+
     }
     
     public function dashboard()
@@ -35,7 +37,7 @@ class AdminController
         $userData = User::getAllUsers($this->currentUser);
 
         $courseModal = new ConcreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-        $courses = new CourseService($courseModal, NULL);
+        $courses = new CourseService($courseModal, new Category());
         $allCourses = $courses->getAllCourses();
 
         $category = new Category();
