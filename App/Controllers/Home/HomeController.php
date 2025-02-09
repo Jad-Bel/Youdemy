@@ -14,12 +14,6 @@ class HomeController
 
     public function __construct()
     {
-        // echo "<br> Checking if CourseService class exists...";
-        // if (!class_exists('App\Modal\CourseService\CourseService')) {
-        //     throw new \Exception("<br> CourseService class not found.");
-        // }
-    
-        // echo "<br> Instantiating CourseService...<br>";
         $this->courseService = new CourseService(new ConcreteCourse(), new Category());
         $this->categoryModel = new Category();
     }

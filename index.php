@@ -49,14 +49,6 @@ $router->add('/Login', 'App\Controllers\Auth\AuthController@handleLogin');
 $router->add('/Register', 'App\Controllers\Auth\AuthController@handleRegister');
 $router->add('/Logout', 'App\Controllers\Auth\AuthController@handleLogout');
 
-
-// $adminController = new AdminController();
-
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//     $adminController->handlePostRequest();
-// } else {
-//     $adminController->dashboard();
-// }
 $router->dispatch($requestUri);
 
 // use App\Modal\CourseService\CourseService;

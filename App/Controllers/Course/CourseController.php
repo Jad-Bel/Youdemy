@@ -86,10 +86,6 @@ class CourseController
 
         $course = $this->courseService->getCourseById($course_id);
 
-        print_r($course);
-        echo 1;
-
-
         if (!$course) {
             header("HTTP/1.0 404 Not Found");
             echo "Course not found";

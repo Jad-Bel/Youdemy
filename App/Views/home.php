@@ -532,7 +532,6 @@
 						<div class="row">
 							<div class="courses-carousel owl-carousel owl-btn-1 col-12 p-lr0">
 								<?php
-								$courses = $courseService->getAllApprovedCourses();
 								foreach ($courses as $course):
 								?>
 									<div class="item">
