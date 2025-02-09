@@ -32,9 +32,16 @@ class CourseController
         $categoryId = isset($_GET['id']) ? $_GET['id'] : null;
 
         $paginationData = $this->courseService->getPaginatedCourses($page, $perPage, $search, $categoryId);
-        $courses = $paginationData['courses'];
+        $courses = isset($paginationData['courses']) && is_array($paginationData['courses']) ? $paginationData['courses'] : [];
         $totalPages = $paginationData['totalPages'];
         $currentPage = $paginationData['currentPage'];
+        // echo "<pre>";
+        // print_r($paginationData);
+        // echo "</pre>";
+        // print_r($courses);
+        // echo "<pre>";
+        // // print_r($paginationData);
+        // // echo "</pre>";
 
         $categories = Category::getPopularCategories();
 

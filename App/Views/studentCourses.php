@@ -238,15 +238,13 @@
                             </div>
                             <div class="col-lg-9 col-md-8 col-sm-12">
                                 <div class="row">
-                                <?php if (empty($courses)): ?>
+                                    <?php if (empty($courses)): ?>
                                         <div class="col-12">
                                             <div class="alert alert-info">No courses found.</div>
                                         </div>
                                     <?php endif; ?>
-                                    <?php
-                                       $courses = $paginationData['courses'];
-                                    foreach ($courses as $course):
-                                    ?>
+
+                                    <?php foreach ($courses as $course): ?>
                                         <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
                                             <div class="cours-bx">
                                                 <div class="action-box">
@@ -261,7 +259,6 @@
                                                     <div class="review d-flex flex-column align-items-start">
                                                         <h6>Created by:</h6>
                                                         <span style="font-size: 0.8rem"><?= $course['teacher_username'] ?></span>
-
                                                     </div>
                                                     <div class="review d-flex flex-column align-items-start">
                                                         <h6>Created at:</h6>
@@ -271,6 +268,7 @@
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
+
                                     <div class="col-lg-12 m-b20">
                                         <div class="pagination-bx rounded-sm gray clearfix">
                                             <ul class="pagination">
@@ -296,6 +294,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
