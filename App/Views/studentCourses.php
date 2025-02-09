@@ -244,7 +244,7 @@
                                         </div>
                                     <?php endif; ?>
                                     <?php
-                                    $paginationData = $courseService->getPaginatedCourses($page, $perPage, $search, $categoryId);
+                                    // $paginationData = $courseService->getPaginatedCourses($page, $perPage, $search, $categoryId);
                                     $courses = $paginationData['courses'];
                                     foreach ($courses as $course):
                                     ?>

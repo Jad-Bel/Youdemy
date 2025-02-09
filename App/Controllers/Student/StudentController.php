@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Controller\StudentCourse;
+namespace App\Controllers\Student;
 
 use App\Model\CourseService\CourseService;
 use App\Model\Category\Category;
 use App\Model\Course\ConcreteCourse;
 
-class StudentCoursesController
+
+class StudentController
 {
     private $courseService;
 
@@ -19,7 +20,7 @@ class StudentCoursesController
 
     public function index()
     {
-        require_once '../includes/session_check.php';
+        require_once __DIR__ . '/../../Core/Includes/session_check.php';
 
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $perPage = 5;
@@ -35,7 +36,7 @@ class StudentCoursesController
 
         $keywords = $_GET['keywords'] ?? '';
         if (!empty($keywords)) {
-            header("Location: studentCourses.php?search=" . urlencode($keywords));
+            header("Location: Student/search=" . urlencode($keywords));
             exit();
         }
 
@@ -53,6 +54,6 @@ class StudentCoursesController
     {
         extract($data);
 
-        require_once '../path/to/your/view/studentCourses.php';
+        require_once __DIR__ . '/../../Views/studentCourses.php';
     }
 }
