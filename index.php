@@ -45,9 +45,9 @@ $router->add('/admin', 'App\Controllers\Admin\AdminController@dashboard');
 
 $router->add('/admin/handle-post', 'App\Controllers\Admin\AdminController@handlePostRequest');
 
-$router->add('/login', 'App\Controllers\Auth\AuthController@handleLogin');
-$router->add('/register', 'App\Controllers\Auth\AuthController@handleRegister');
-$router->add('/logout', 'App\Controllers\Auth\AuthController@handleLogout');
+$router->add('/Login', 'App\Controllers\Auth\AuthController@handleLogin');
+$router->add('/Register', 'App\Controllers\Auth\AuthController@handleRegister');
+$router->add('/Logout', 'App\Controllers\Auth\AuthController@handleLogout');
 
 
 // $adminController = new AdminController();

@@ -19,13 +19,19 @@ class Auth {
     public function register($username, $email, $password, $role)
     {
         if ($role === 'teacher') {
-            $user = new Teacher(null, $username, $email, $password, $role, 'pending');
+            $user = new Teacher();
         } elseif ($role === 'student') {
-            $user = new Student($username, $email, $password, $role, 'pending');
+            $user = new Student();
         } else {
             throw new \Exception("Invalid role.");
         }
-
+    
+        $user->setUsername($username);
+        $user->setEmail($email);
+        $user->setPassword($password);
+        $user->setRole($role);
+        $user->setStatus('pending');
+    
         if ($user->save()) {
             return true;
         }
@@ -40,16 +46,21 @@ class Auth {
                 exit();
             }
     
-            $user = new User($userData['id'], $userData['username'], $userData['email'], '', $userData['role'], $userData['status']);
+            $user = new User();
+            $user->setId($userData['id']);
+            $user->setUsername($userData['username']);
+            $user->setEmail($userData['email']);
+            $user->setRole($userData['role']);
+            $user->setStatus($userData['status']);
     
             if ($user->verifyPassword($password, $userData['password'])) {
                 session_start();
                 $_SESSION['user_id'] = $userData['id'];
                 $_SESSION['role'] = $userData['role'];
                 if ($_SESSION['role'] == 'admin') {
-                    header('location: AdminDashboard');
+                    header('location: admin');
                 } elseif ($_SESSION['role'] == 'student') {
-                    header('location: ../pages/studentIndex.php');
+                    header('location: Student');
                 } elseif ($_SESSION['role'] == 'teacher') {
                     header('location: teacher');
                 }

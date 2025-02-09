@@ -7,10 +7,10 @@ use App\Model\Course\Course;
 
 class Student extends User
 {
-    // public function __construct($username, $email, $password, $role, $status)
-    // {
-    //     parent::__construct(null, $username, $email, $password, $role, $status);
-    // }
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     public function enroll($id, $course_id)
     {

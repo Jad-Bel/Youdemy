@@ -16,7 +16,6 @@ class AuthController
 
     public function handleLogin()
     {
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['email'];
             $password = $_POST['password'];
@@ -33,7 +32,6 @@ class AuthController
 
     public function handleRegister()
     {
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
             $email = $_POST['email'];
@@ -43,7 +41,6 @@ class AuthController
             $auth = new Auth();
             try {
                 $auth->register($username, $email, $password, $role);
-                // echo "Registration successful!";
             } catch (Exception $e) {
                 echo "Error: " . $e->getMessage();
             }
@@ -51,7 +48,7 @@ class AuthController
         require_once __DIR__ . '/../../Views/register.php';
     }
 
-    public function handleLogout () 
+    public function handleLogout()
     {
         $this->auth->logout();
         header('Location: login');

@@ -5,11 +5,10 @@ use App\Model\User\User;
 
 class Teacher extends User
 {
-    public function __construct($id, $username, $email, $password, $role, $status)
+    public function __construct()
     {
-        parent::__construct($id, $username, $email, $password, $role, $status);
+        parent::__construct();
     }
-
 
     public function getCoursesCount($teacher_id)
     {
