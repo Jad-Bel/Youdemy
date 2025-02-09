@@ -45,7 +45,6 @@ class CourseController
 
         $categories = Category::getPopularCategories();
 
-        print_r($courses);
 
         $keywords = $_GET['keywords'] ?? '';
         if (!empty($keywords)) {

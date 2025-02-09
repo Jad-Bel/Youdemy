@@ -236,15 +236,13 @@
                                             <div class="alert alert-info">No courses found.</div>
                                         </div>
                                     <?php endif; ?>
-                                    <?php
-                                    $courses = $paginationData['courses'];
-                                    foreach ($courses as $course):
-                                    ?>
+
+                                    <?php foreach ($courses as $course): ?>
                                         <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
                                             <div class="cours-bx">
                                                 <div class="action-box">
                                                     <img src="<?= $course['banner'] ?>" alt="">
-                                                    <a href="Courses/{<?= $course['id'] ?>}?crs='<?= $course['title'] ?>" class="btn">Read More</a>
+                                                    <a href="Courses/<?= $course['id'] ?>" class="btn">Read More</a>
                                                 </div>
                                                 <div class="info-bx text-center">
                                                     <h6><a href="?"><?= $course['title'] ?></a></h6>
@@ -254,7 +252,6 @@
                                                     <div class="review d-flex flex-column align-items-start">
                                                         <h6>Created by:</h6>
                                                         <span style="font-size: 0.8rem"><?= $course['teacher_username'] ?></span>
-
                                                     </div>
                                                     <div class="review d-flex flex-column align-items-start">
                                                         <h6>Created at:</h6>
@@ -264,6 +261,7 @@
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
+
                                     <div class="col-lg-12 m-b20">
                                         <div class="pagination-bx rounded-sm gray clearfix">
                                             <ul class="pagination">
@@ -289,6 +287,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
