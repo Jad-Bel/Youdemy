@@ -34,23 +34,22 @@
 	<![endif]-->
 
 	<!-- All PLUGINS CSS ============================================= -->
-	<link rel="stylesheet" type="text/css" href="../assets/css/assets.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/assets.css">
 
 	<!-- TYPOGRAPHY ============================================= -->
-	<link rel="stylesheet" type="text/css" href="../assets/css/typography.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/typography.css">
 
 	<!-- SHORTCODES ============================================= -->
-	<link rel="stylesheet" type="text/css" href="../assets/css/shortcodes/shortcodes.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/shortcodes/shortcodes.css">
 
 	<!-- STYLESHEETS ============================================= -->
-	<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link class="skin" rel="stylesheet" type="text/css" href="assets/css/color/color-1.css">
 
 </head>
 
 <body id="bg">
 	<div class="page-wraper">
-		<div id="loading-icon-bx"></div>
 		<!-- Header Top ==== -->
 		<header class="header rs-nav header-transparent">
 			<div class="top-bar">
@@ -326,22 +325,22 @@
 								<div class="widget widget_gallery gallery-grid-4">
 									<h5 class="footer-title">Our Gallery</h5>
 									<ul class="magnific-image">
-										<li><a href="../assets/images/gallery/pic1.jpg" class="magnific-anchor"><img
-													src="../assets/images/gallery/pic1.jpg" alt=""></a></li>
-										<li><a href="../assets/images/gallery/pic2.jpg" class="magnific-anchor"><img
-													src="../assets/images/gallery/pic2.jpg" alt=""></a></li>
+										<li><a href="assets/images/gallery/pic1.jpg" class="magnific-anchor"><img
+													src="assets/images/gallery/pic1.jpg" alt=""></a></li>
+										<li><a href="assets/images/gallery/pic2.jpg" class="magnific-anchor"><img
+													src="assets/images/gallery/pic2.jpg" alt=""></a></li>
 										<li><a href="assets/images/gallery/pic3.jpg" class="magnific-anchor"><img
-													src="../assets/images/gallery/pic3.jpg" alt=""></a></li>
-										<li><a href="../assets/images/gallery/pic4.jpg" class="magnific-anchor"><img
-													src="../assets/images/gallery/pic4.jpg" alt=""></a></li>
-										<li><a href="../assets/images/gallery/pic5.jpg" class="magnific-anchor"><img
-													src="../assets/images/gallery/pic5.jpg" alt=""></a></li>
-										<li><a href="../assets/images/gallery/pic6.jpg" class="magnific-anchor"><img
-													src="../assets/images/gallery/pic6.jpg" alt=""></a></li>
-										<li><a href="../assets/images/gallery/pic7.jpg" class="magnific-anchor"><img
-													src="../assets/images/gallery/pic7.jpg" alt=""></a></li>
-										<li><a href="../assets/images/gallery/pic8.jpg" class="magnific-anchor"><img
-													src="../assets/images/gallery/pic8.jpg" alt=""></a></li>
+													src="assets/images/gallery/pic3.jpg" alt=""></a></li>
+										<li><a href="assets/images/gallery/pic4.jpg" class="magnific-anchor"><img
+													src="assets/images/gallery/pic4.jpg" alt=""></a></li>
+										<li><a href="assets/images/gallery/pic5.jpg" class="magnific-anchor"><img
+													src="assets/images/gallery/pic5.jpg" alt=""></a></li>
+										<li><a href="assets/images/gallery/pic6.jpg" class="magnific-anchor"><img
+													src="assets/images/gallery/pic6.jpg" alt=""></a></li>
+										<li><a href="assets/images/gallery/pic7.jpg" class="magnific-anchor"><img
+													src="assets/images/gallery/pic7.jpg" alt=""></a></li>
+										<li><a href="assets/images/gallery/pic8.jpg" class="magnific-anchor"><img
+													src="assets/images/gallery/pic8.jpg" alt=""></a></li>
 									</ul>
 								</div>
 							</div>
@@ -361,22 +360,22 @@
 			<button class="back-to-top fa fa-chevron-up"></button>
 		</div>
 		<!-- External JavaScripts -->
-		<script src="../assets/js/jquery.min.js"></script>
-		<script src="../assets/vendors/bootstrap/js/popper.min.js"></script>
-		<script src="../assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-		<script src="../assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
-		<script src="../assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
-		<script src="../assets/vendors/magnific-popup/magnific-popup.js"></script>
-		<script src="../assets/vendors/counter/waypoints-min.js"></script>
-		<script src="../assets/vendors/counter/counterup.min.js"></script>
-		<script src="../assets/vendors/imagesloaded/imagesloaded.js"></script>
-		<script src="../assets/vendors/masonry/masonry.js"></script>
-		<script src="../assets/vendors/masonry/filter.js"></script>
-		<script src="../assets/vendors/owl-carousel/owl.carousel.js"></script>
-		<script src="../assets/js/jquery.scroller.js"></script>
-		<script src="../assets/js/functions.js"></script>
-		<script src="../assets/js/contact.js"></script>
-		<script src="../assets/vendors/switcher/switcher.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/vendors/bootstrap/js/popper.min.js"></script>
+		<script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+		<script src="assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+		<script src="assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js"></script>
+		<script src="assets/vendors/magnific-popup/magnific-popup.js"></script>
+		<script src="assets/vendors/counter/waypoints-min.js"></script>
+		<script src="assets/vendors/counter/counterup.min.js"></script>
+		<script src="assets/vendors/imagesloaded/imagesloaded.js"></script>
+		<script src="assets/vendors/masonry/masonry.js"></script>
+		<script src="assets/vendors/masonry/filter.js"></script>
+		<script src="assets/vendors/owl-carousel/owl.carousel.js"></script>
+		<script src="assets/js/jquery.scroller.js"></script>
+		<script src="assets/js/functions.js"></script>
+		<script src="assets/js/contact.js"></script>
+		<script src="assets/vendors/switcher/switcher.js"></script>
 </body>
 
 </html>

@@ -1,30 +1,4 @@
-<?php
-
-require_once '../vendor/autoload.php';
-
-use App\Model\Course\VideoCourse;
-use App\Model\Course\DocumentCourse;
-
-$course_id = isset($_GET['course_id']) ? intval($_GET['course_id']) : null;
-$videoCourse = new VideoCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,  NULL, NULL,  NULL);
-$documentCourse = new DocumentCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,);
-
-$courseContent = $videoCourse->displayContent($course_id);
-
-if (!$courseContent) {
-    $courseContent = $documentCourse->displayContent($course_id);
-}
-
-if ($courseContent) {
-    $videoLink = $courseContent['video_link'] ?? null;
-    $documentLink = $courseContent['document_link'] ?? null;
-} else {
-    $videoLink = null;
-    $documentLink = null;
-}
-?>
-
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -63,17 +37,17 @@ if ($courseContent) {
 	<![endif]-->
 
     <!-- All PLUGINS CSS ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/assets.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/assets.css">
 
     <!-- TYPOGRAPHY ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/typography.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/typography.css">
 
     <!-- SHORTCODES ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/shortcodes/shortcodes.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/shortcodes/shortcodes.css">
 
     <!-- STYLESHEETS ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-    <link class="skin" rel="stylesheet" type="text/css" href="../assets/css/color/color-1.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link class="skin" rel="stylesheet" type="text/css" href="assets/css/color/color-1.css">
     <style>
         .course-sidebar {
             background: #f8f9fa;
@@ -159,7 +133,7 @@ if ($courseContent) {
                     </div>
                     <div class="topbar-right">
                         <ul>
-                            <li><a href="logout.php">Log-out</a></li>
+                            <li><a href="Logout">Log-out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -485,14 +459,14 @@ if ($courseContent) {
                         <div class="widget widget_gallery gallery-grid-4">
                             <h5 class="footer-title">Our Gallery</h5>
                             <ul class="magnific-image">
-                                <li><a href="../assets/images/gallery/pic1.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic1.jpg" alt=""></a></li>
-                                <li><a href="../assets/images/gallery/pic2.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic2.jpg" alt=""></a></li>
-                                <li><a href="../assets/images/gallery/pic3.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic3.jpg" alt=""></a></li>
-                                <li><a href="../assets/images/gallery/pic4.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic4.jpg" alt=""></a></li>
-                                <li><a href="../assets/images/gallery/pic5.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic5.jpg" alt=""></a></li>
-                                <li><a href="../assets/images/gallery/pic6.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic6.jpg" alt=""></a></li>
-                                <li><a href="../assets/images/gallery/pic7.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic7.jpg" alt=""></a></li>
-                                <li><a href="../assets/images/gallery/pic8.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic8.jpg" alt=""></a></li>
+                                <li><a href="assets/images/gallery/pic1.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic1.jpg" alt=""></a></li>
+                                <li><a href="assets/images/gallery/pic2.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic2.jpg" alt=""></a></li>
+                                <li><a href="assets/images/gallery/pic3.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic3.jpg" alt=""></a></li>
+                                <li><a href="assets/images/gallery/pic4.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic4.jpg" alt=""></a></li>
+                                <li><a href="assets/images/gallery/pic5.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic5.jpg" alt=""></a></li>
+                                <li><a href="assets/images/gallery/pic6.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic6.jpg" alt=""></a></li>
+                                <li><a href="assets/images/gallery/pic7.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic7.jpg" alt=""></a></li>
+                                <li><a href="assets/images/gallery/pic8.jpg" class="magnific-anchor"><img src="assets/images/gallery/pic8.jpg" alt=""></a></li>
                             </ul>
                         </div>
                     </div>

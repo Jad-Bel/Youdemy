@@ -69,18 +69,25 @@ class CourseController
         require_once __DIR__ . '/../../Views/courses.php';
     }
 
+    private function renderContent($data)
+    {
+        extract($data);
+
+        require_once __DIR__ . '/../../Views/courseContent.php';
+    }
+
     public function show($id)
     {
         $id = intval($id);
         $course_id = $id;
-        if (isset($id) && isset($course_id) && empty($id) && empty($course_id)) {
-            $courseId = $id;
-        } else {
+        if (!isset($id) || empty($id)) {
             die("Course ID is missing.");
         }
 
-        $course = $this->courseService->getCourseById($courseId);
+        $course = $this->courseService->getCourseById($course_id);
 
+        print_r($course);
+        echo 1;
 
 
         if (!$course) {
@@ -89,7 +96,7 @@ class CourseController
             return;
         }
 
-        require_once __DIR__ . '/../../views/course-details.php';
+        require_once __DIR__ . '/../../views/course_details.php';
     }
 
     public function display($id)
@@ -357,5 +364,34 @@ class CourseController
             unset($_SESSION['course_error']);
         }
         require_once __DIR__ . '/../../Views/add_course.php';
+    }
+
+    public function content($id)
+    {   
+        $id = intval($id);
+        $course_id = $id;
+        
+        if ($course_id <= 0) {
+            die("ID de cours invalide !");
+        }
+
+        $videoCourse = $this->videoCourse;
+        $documentCourse = $this->documentCourse;
+        
+        $courseContent = $videoCourse->displayContent($course_id);
+
+        if (!$courseContent) {
+            $courseContent = $documentCourse->displayContent($course_id);
+        }
+
+        $videoLink = $courseContent['video_link'] ?? null;
+        $documentLink = $courseContent['document_link'] ?? null;
+
+
+        $this->renderContent([
+            'course_id' => $course_id,
+            'videoLink' => $videoLink,
+            'documentLink' => $documentLink,
+        ]);
     }
 }

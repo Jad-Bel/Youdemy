@@ -31,7 +31,8 @@ if (strpos($requestUri, $basePath) === 0) {
 $router->add('/', 'App\Controllers\Home\HomeController@index');
 
 $router->add('/courses', 'App\Controllers\Course\CourseController@index');
-$router->add('/courses/{id}', 'App\Controllers\Course\CourseController@show');
+$router->add('/Courses/{id}', 'App\Controllers\Course\CourseController@show');
+$router->add('/course_details/{id}', 'App\Controllers\Course\CourseController@content');
 $router->add('/add_course', 'App\Controllers\Course\CourseController@add');
 $router->add('/mod_course/{id}', 'App\Controllers\Course\CourseController@mod');
 
