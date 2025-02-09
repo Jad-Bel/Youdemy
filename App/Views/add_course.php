@@ -37,19 +37,19 @@
 	<![endif]-->
 
 	<!-- All PLUGINS CSS ============================================= -->
-	<link rel="stylesheet" type="text/css" href="../assets/assets/css/assets.css">
-	<link rel="stylesheet" type="text/css" href="../assets/assets/vendors/calendar/fullcalendar.css">
+	<link rel="stylesheet" type="text/css" href="assets/assets/css/assets.css">
+	<link rel="stylesheet" type="text/css" href="assets/assets/vendors/calendar/fullcalendar.css">
 
 	<!-- TYPOGRAPHY ============================================= -->
-	<link rel="stylesheet" type="text/css" href="../assets/assets/css/typography.css">
+	<link rel="stylesheet" type="text/css" href="assets/assets/css/typography.css">
 
 	<!-- SHORTCODES ============================================= -->
-	<link rel="stylesheet" type="text/css" href="../assets/assets/css/shortcodes/shortcodes.css">
+	<link rel="stylesheet" type="text/css" href="assets/assets/css/shortcodes/shortcodes.css">
 
 	<!-- STYLESHEETS ============================================= -->
-	<link rel="stylesheet" type="text/css" href="../assets/assets/css/style.css">
-	<link rel="stylesheet" type="text/css" href="../assets/assets/css/dashboard.css">
-	<link class="skin" rel="stylesheet" type="text/css" href="../assets/assets/css/color/color-1.css">
+	<link rel="stylesheet" type="text/css" href="assets/assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/assets/css/dashboard.css">
+	<link class="skin" rel="stylesheet" type="text/css" href="assets/assets/css/color/color-1.css">
 
 </head>
 
@@ -195,7 +195,7 @@
 										<div>
 											<select class="form-control" name="category_id">
 												<?php
-												$categories = new Category();
+												// $categories = new Category();
 												$selectedCtgs = $categories->getAllCategories();
 												foreach ($selectedCtgs as $ctg):
 												?>

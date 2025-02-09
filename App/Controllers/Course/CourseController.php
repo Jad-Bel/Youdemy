@@ -36,9 +36,31 @@ class CourseController
         $totalPages = $paginationData['totalPages'];
         $currentPage = $paginationData['currentPage'];
 
-        $categories = $this->categoryModel->getPopularCategories();
+        $categories = Category::getPopularCategories();
 
-        require_once __DIR__ . '/../../views/courses.php';
+        print_r($courses);
+
+        $keywords = $_GET['keywords'] ?? '';
+        if (!empty($keywords)) {
+            header("Location: Student/search=" . urlencode($keywords));
+            exit();
+        }
+
+        $this->renderView([
+            'courses' => $courses,
+            'totalPages' => $totalPages,
+            'currentPage' => $currentPage,
+            'categories' => $categories,
+            'search' => $search,
+            'categoryId' => $categoryId,
+        ]);
+    }
+
+    private function renderView($data)
+    {
+        extract($data);
+
+        require_once __DIR__ . '/../../Views/courses.php';
     }
 
     public function show($id)
@@ -88,6 +110,9 @@ class CourseController
     public function add()
     {
         require_once __DIR__ . '/../../Core/Includes/session_check.php';
+
+        $categories = new Category();
+
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $title = $_POST['title'];

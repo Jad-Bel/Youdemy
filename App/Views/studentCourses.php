@@ -36,23 +36,23 @@
 	<![endif]-->
 
     <!-- All PLUGINS CSS ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/assets.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/assets.css">
 
     <!-- TYPOGRAPHY ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/typography.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/typography.css">
 
     <!-- SHORTCODES ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/shortcodes/shortcodes.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/shortcodes/shortcodes.css">
 
     <!-- STYLESHEETS ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-    <link class="skin" rel="stylesheet" type="text/css" href="../assets/css/color/color-1.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link class="skin" rel="stylesheet" type="text/css" href="assets/css/color/color-1.css">
 
 </head>
 
 <body id="bg">
     <div class="page-wraper">
-        <div id="loading-icon-bx"></div>
+        <!-- <div id="loading-icon-bx"></div> -->
 
         <!-- Header Top ==== -->
         <header class="header rs-nav header-transparent">
@@ -244,15 +244,14 @@
                                         </div>
                                     <?php endif; ?>
                                     <?php
-                                    // $paginationData = $courseService->getPaginatedCourses($page, $perPage, $search, $categoryId);
-                                    $courses = $paginationData['courses'];
+                                       $courses = $paginationData['courses'];
                                     foreach ($courses as $course):
                                     ?>
                                         <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
                                             <div class="cours-bx">
                                                 <div class="action-box">
                                                     <img src="<?= $course['banner'] ?>" alt="">
-                                                    <a href="studentCourse_details.php?course_id=<?= $course['id'] ?>?crs='<?= $course['title'] ?>" class="btn">Read More</a>
+                                                    <a href="Courses/{<?= $course['id'] ?>}?crs='<?= $course['title'] ?>" class="btn">Read More</a>
                                                 </div>
                                                 <div class="info-bx text-center">
                                                     <h6><a href="?"><?= $course['title'] ?></a></h6>

@@ -443,11 +443,11 @@ Theme Version:	1.0.0
 					});
 				}
 				
-				var manageLoader = function() {
-					setTimeout(function(){
-						jQuery('#loading-icon-bx').remove();
-					}, 0);
-				}
+				// var manageLoader = function() {
+				// 	setTimeout(function(){
+				// 		jQuery('#loading-icon-bx').remove();
+				// 	}, 0);
+				// }
 				
 				var codeSecurity = function() {
 					document.onkeydown = function(e) {

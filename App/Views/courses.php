@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <!-- META ============================================= -->
@@ -43,96 +44,95 @@
     <link rel="stylesheet" type="text/css" href="assets/css/shortcodes/shortcodes.css">
 
     <!-- STYLESHEETS ============================================= -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link class="skin" rel="stylesheet" type="text/css" href="assets/css/color/color-1.css">
 
 </head>
 
 <body id="bg">
     <div class="page-wraper">
-        <div id="loading-icon-bx"></div>
 
         <!-- Header Top ==== -->
         <header class="header rs-nav header-transparent">
-			<div class="top-bar">
-				<div class="container">
-					<div class="row d-flex justify-content-between">
-						<div class="topbar-left">
-							<ul>
-								<li><a href="faq-1.html"><i class="fa fa-question-circle"></i>Ask a Question</a></li>
-								<li><a href="javascript:;"><i class="fa fa-envelope-o"></i>jad.belassiria@ux4mation.com</a></li>
-							</ul>
-						</div>
-						<div class="topbar-right">
-							<ul>
-								<li><a href="login.php">Login</a></li>
-								<li><a href="register.php">Register</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="sticky-header navbar-expand-lg">
-				<div class="menu-bar clearfix">
-					<div class="container clearfix">
-						<!-- Header Logo ==== -->
-						<div class="menu-logo">
-							<a href="index.html"><img src="assets/images/logo-white.png" alt=""></a>
-						</div>
-						<!-- Mobile Nav Button ==== -->
-						<button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
-							<span></span>
-							<span></span>
-							<span></span>
-						</button>
-						<!-- Author Nav ==== -->
-						<div class="secondary-menu">
-							<div class="secondary-inner">
-								<ul>
-									<!-- Search Button ==== -->
-									<li class="search-btn"><button id="quik-search-btn" type="button" class="btn-link"><i class="fa fa-search"></i></button></li>
-								</ul>
-							</div>
-						</div>
-						<!-- Search Box ==== -->
-						<div class="nav-search-bar">
-							<form action="" method="GET">
-								<input name="keywords" value="" type="text" class="form-control" placeholder="Type to search">
-								<span><i class="ti-search"></i></span>
-							</form>
-							<span id="search-remove"><i class="ti-close"></i></span>
-						</div>
-						<!-- Navigation Menu ==== -->
-						<div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
-							<div class="menu-logo">
-								<a href="index.html"><img src="assets/images/logo.png" alt=""></a>
-							</div>
-							<ul class="nav navbar-nav">
-								<li class="active"><a href="javascript:;">Home <i class="fa fa-chevron-down"></i></a>
-									<ul class="sub-menu">
-										<li><a href="/youdemy/">Home Page</a></li>
-									</ul>
-								</li>
-								<li class="add-mega-menu"><a href="javascript:;">Our Courses <i class="fa fa-chevron-down"></i></a>
-									<ul class="sub-menu add-menu">
-										<li class="add-menu-left">
-											<h5 class="menu-adv-title">Our Courses</h5>
-											<ul>
-												<li><a href="courses.php">Courses </a></li>
-											</ul>
-										</li>
-										<li class="add-menu-right">
-											<img src="assets/images/adv/adv.jpg" alt="" />
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</div>
-						<!-- Navigation Menu END ==== -->
-					</div>
-				</div>
-			</div>
-		</header>
+            <div class="top-bar">
+                <div class="container">
+                    <div class="row d-flex justify-content-between">
+                        <div class="topbar-left">
+                            <ul>
+                                <li><a href="faq-1.html"><i class="fa fa-question-circle"></i>Ask a Question</a></li>
+                                <li><a href="javascript:;"><i class="fa fa-envelope-o"></i>jad.belassiria@ux4mation.com</a></li>
+                            </ul>
+                        </div>
+                        <div class="topbar-right">
+                            <ul>
+                                <li><a href="login.php">Login</a></li>
+                                <li><a href="register.php">Register</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sticky-header navbar-expand-lg">
+                <div class="menu-bar clearfix">
+                    <div class="container clearfix">
+                        <!-- Header Logo ==== -->
+                        <div class="menu-logo">
+                            <a href="index.html"><img src="assets/images/logo-white.png" alt=""></a>
+                        </div>
+                        <!-- Mobile Nav Button ==== -->
+                        <button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                        <!-- Author Nav ==== -->
+                        <div class="secondary-menu">
+                            <div class="secondary-inner">
+                                <ul>
+                                    <!-- Search Button ==== -->
+                                    <li class="search-btn"><button id="quik-search-btn" type="button" class="btn-link"><i class="fa fa-search"></i></button></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Search Box ==== -->
+                        <div class="nav-search-bar">
+                            <form action="" method="GET">
+                                <input name="keywords" value="" type="text" class="form-control" placeholder="Type to search">
+                                <span><i class="ti-search"></i></span>
+                            </form>
+                            <span id="search-remove"><i class="ti-close"></i></span>
+                        </div>
+                        <!-- Navigation Menu ==== -->
+                        <div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
+                            <div class="menu-logo">
+                                <a href="index.html"><img src="assets/images/logo.png" alt=""></a>
+                            </div>
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="javascript:;">Home <i class="fa fa-chevron-down"></i></a>
+                                    <ul class="sub-menu">
+                                        <li><a href="/youdemy/">Home Page</a></li>
+                                    </ul>
+                                </li>
+                                <li class="add-mega-menu"><a href="javascript:;">Our Courses <i class="fa fa-chevron-down"></i></a>
+                                    <ul class="sub-menu add-menu">
+                                        <li class="add-menu-left">
+                                            <h5 class="menu-adv-title">Our Courses</h5>
+                                            <ul>
+                                                <li><a href="courses.php">Courses </a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="add-menu-right">
+                                            <img src="assets/images/adv/adv.jpg" alt="" />
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Navigation Menu END ==== -->
+                    </div>
+                </div>
+            </div>
+        </header>
         <!-- header END ==== -->
         <!-- Content -->
         <div class="page-content bg-white">
@@ -231,13 +231,13 @@
                             </div>
                             <div class="col-lg-9 col-md-8 col-sm-12">
                                 <div class="row">
-                                <?php if (empty($courses)): ?>
+                                    <?php if (empty($courses)): ?>
                                         <div class="col-12">
                                             <div class="alert alert-info">No courses found.</div>
                                         </div>
                                     <?php endif; ?>
                                     <?php
-                                       $courses = $paginationData['courses'];
+                                    $courses = $paginationData['courses'];
                                     foreach ($courses as $course):
                                     ?>
                                         <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
