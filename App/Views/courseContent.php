@@ -133,7 +133,7 @@
                     </div>
                     <div class="topbar-right">
                         <ul>
-                            <li><a href="logout.php">Log-out</a></li>
+                            <li><a href="Logout">Log-out</a></li>
                         </ul>
                     </div>
                 </div>

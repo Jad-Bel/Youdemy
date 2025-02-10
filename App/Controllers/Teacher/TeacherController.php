@@ -35,7 +35,11 @@ class TeacherController
 
         $courses = $this->courses;
 
+        
         $coursesForTeacher = $courses->getAllCoursesForTeacher($teacher_id);
+        
+        print_r($coursesForTeacher);
+        echo "<br>";
 
         $statistics = $this->teacherModal->getStatistics($teacher_id);
 

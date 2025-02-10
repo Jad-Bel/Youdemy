@@ -65,8 +65,8 @@
                         </div>
                         <div class="topbar-right">
                             <ul>
-                                <li><a href="login.php">Login</a></li>
-                                <li><a href="register.php">Register</a></li>
+                                <li><a href="Login">Login</a></li>
+                                <li><a href="Register">Register</a></li>
                             </ul>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                             <ul class="nav navbar-nav">
                                 <li class="active"><a href="javascript:;">Home <i class="fa fa-chevron-down"></i></a>
                                     <ul class="sub-menu">
-                                        <li><a href="/youdemy/">Home Page</a></li>
+                                        <li><a href="">Home Page</a></li>
                                     </ul>
                                 </li>
                                 <li class="add-mega-menu"><a href="javascript:;">Our Courses <i class="fa fa-chevron-down"></i></a>
@@ -118,7 +118,7 @@
                                         <li class="add-menu-left">
                                             <h5 class="menu-adv-title">Our Courses</h5>
                                             <ul>
-                                                <li><a href="courses.php">Courses </a></li>
+                                                <li><a href="courses">Courses </a></li>
                                             </ul>
                                         </li>
                                         <li class="add-menu-right">
@@ -148,7 +148,7 @@
             <div class="breadcrumb-row">
                 <div class="container">
                     <ul class="list-inline">
-                        <li><a href="index.php">Home</a></li>
+                        <li><a href="">Home</a></li>
                         <li>Our Courses</li>
                     </ul>
                 </div>
@@ -344,7 +344,7 @@
                                     <div class="widget footer_widget">
                                         <h5 class="footer-title">Company</h5>
                                         <ul>
-                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="">Home</a></li>
                                             <li><a href="about-1.html">About</a></li>
                                             <li><a href="faq-1.html">FAQs</a></li>
                                             <li><a href="contact-1.html">Contact</a></li>

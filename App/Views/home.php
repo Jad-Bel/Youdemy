@@ -82,7 +82,7 @@
 					<div class="container clearfix">
 						<!-- Header Logo ==== -->
 						<div class="menu-logo">
-							<a href="index.html"><img src="assets/images/logo-white.png" alt=""></a>
+							<a href=""><img src="assets/images/logo-white.png" alt=""></a>
 						</div>
 						<!-- Mobile Nav Button ==== -->
 						<button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -110,12 +110,12 @@
 						<!-- Navigation Menu ==== -->
 						<div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
 							<div class="menu-logo">
-								<a href="index.html"><img src="assets/images/logo.png" alt=""></a>
+								<a href=""><img src="assets/images/logo.png" alt=""></a>
 							</div>
 							<ul class="nav navbar-nav">
 								<li class="active"><a href="javascript:;">Home <i class="fa fa-chevron-down"></i></a>
 									<ul class="sub-menu">
-										<li><a href="index.php">Home Page</a></li>
+										<li><a href="">Home Page</a></li>
 									</ul>
 								</li>
 								<li class="add-mega-menu"><a href="javascript:;">Our Courses <i class="fa fa-chevron-down"></i></a>
@@ -123,7 +123,7 @@
 										<li class="add-menu-left">
 											<h5 class="menu-adv-title">Our Courses</h5>
 											<ul>
-												<li><a href="courses.php">Courses </a></li>
+												<li><a href="courses">Courses </a></li>
 											</ul>
 										</li>
 										<li class="add-menu-right">
@@ -824,7 +824,7 @@
 					<div class="container">
 						<div class="d-flex align-items-stretch">
 							<div class="pt-logo mr-auto">
-								<a href="index.php"><img src="../../assets/images/logo-white.png" alt="" /></a>
+								<a href="/"><img src="../../assets/images/logo-white.png" alt="" /></a>
 							</div>
 							<div class="pt-btn-join">
 								<a href="#" class="btn ">Join Now</a>
@@ -857,7 +857,7 @@
 									<div class="widget footer_widget">
 										<h5 class="footer-title">Company</h5>
 										<ul>
-											<li><a href="index.php">Home</a></li>
+											<li><a href="">Home</a></li>
 											<li><a href="about-1.html">About</a></li>
 											<li><a href="faq-1.html">FAQs</a></li>
 											<li><a href="contact-1.html">Contact</a></li>

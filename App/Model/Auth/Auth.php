@@ -60,9 +60,9 @@ class Auth {
                 if ($_SESSION['role'] == 'admin') {
                     header('location: admin');
                 } elseif ($_SESSION['role'] == 'student') {
-                    header('location: Student');
+                    header('location: StudentCourses');
                 } elseif ($_SESSION['role'] == 'teacher') {
-                    header('location: teacher');
+                    header('location: Teacher');
                 }
                 return true;
             }

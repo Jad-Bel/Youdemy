@@ -38,7 +38,7 @@ $router->add('/mod_course/{id}', 'App\Controllers\Course\CourseController@mod');
 
 $router->add('/StudentCourses', 'App\Controllers\Student\StudentController@index');
 $router->add('/studentCourse/{id}', 'App\Controllers\Course\CourseController@show');
-$router->add('/studentCourse_details/{id}', 'App\Controllers\Course\CourseController@display');
+$router->add('/studentCourse_details/{id}', 'App\Controllers\Student\StudentController@showCourseDetails');
 
 $router->add('/Teacher', 'App\Controllers\Teacher\TeacherController@index');
 $router->add('/admin', 'App\Controllers\Admin\AdminController@dashboard');

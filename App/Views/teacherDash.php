@@ -1,3 +1,7 @@
+<?php 
+print_r($_SESSION);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,7 +85,7 @@
                         <a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="assets/assets/images/testimonials/pic3.jpg" width="32" height="32"></span></a>
                         <div class="ttr-header-submenu">
                             <ul>
-                                <li><a href="logout">Logout</a></li>
+                                <li><a href="Logout">Logout</a></li>
                             </ul>
                         </div>
                     </li>
@@ -111,7 +115,7 @@
             <nav class="ttr-sidebar-navi">
                 <ul>
                     <li>
-                        <a href="teacherDash.php" class="ttr-material-button">
+                        <a href="Teacher" class="ttr-material-button">
                             <span class="ttr-icon"><i class="ti-home"></i></span>
                             <span class="ttr-label">Dashborad</span>
                         </a>

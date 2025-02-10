@@ -1,81 +1,6 @@
 <?php
 
-require_once '../vendor/autoload.php';
-require_once '../includes/session_check.php';
 
-use Youco\Youdemy\App\Course\ConcreteCourse;
-use Youco\Youdemy\App\CourseService\CourseService;
-
-
-use Youco\Youdemy\App\Student\Student;
-
-$course_id = isset($_GET['course_id']) ? intval(explode('?', $_GET['course_id'])[0]) : null;
-$student_id = $_SESSION['user_id'] ?? null;
-
-$student = new Student(null, null, null, null, null);
-
-$is_enrolled = $student->isEnrolled($student_id, $course_id);
-
-if (isset($_POST['course_id'])) {
-	$course_id = $_POST['course_id'];
-	$student_id = $_SESSION['user_id'];
-
-	$enrolled = $student->enroll($student_id, $course_id);
-
-	if ($enrolled) {
-		$_SESSION['enrollment_success'] = true;
-	} else {
-		$_SESSION['enrollment_error'] = "Enrollment failed. Please try again.";
-	}
-
-	header("Location: courseContent.php?course_id=" . $course_id);
-	exit();
-}
-
-if (isset($_SESSION['enrollment_success']) && $_SESSION['enrollment_success']) {
-	echo '
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        Swal.fire({
-            title: "Success!",
-            text: "You have been enrolled successfully.",
-            icon: "success",
-            confirmButtonText: "OK"
-        });
-    });
-    </script>
-    ';
-	unset($_SESSION['enrollment_success']);
-}
-
-if (isset($_SESSION['enrollment_error'])) {
-	echo '
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        Swal.fire({
-            title: "Error!",
-            text: "' . $_SESSION['enrollment_error'] . '",
-            icon: "error",
-            confirmButtonText: "OK"
-        });
-    });
-    </script>
-    ';
-	unset($_SESSION['enrollment_error']);
-}
-
-$courseModal = new concreteCourse(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-$courseService = new courseService($courseModal, null);
-$course = $courseService->getCourseById($course_id);
-
-$keywords = $_GET['keywords'] ?? '';
-
-if (!empty($keywords)) {
-    header("Location: studentCourses.php?search=" . urlencode($keywords));
-    exit();
-}
 ?>
 
 <!DOCTYPE html>
@@ -144,7 +69,7 @@ if (!empty($keywords)) {
                         </div>
                         <div class="topbar-right">
                             <ul>
-                                <li><a href="logout.php">Log-out</a></li>
+                                <li><a href="Logout">Log-out</a></li>
                             </ul>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 <?php 
 
 namespace App\Model\Course;
+use App\Model\Course\Course;
 
 class ConcreteCourse extends Course
 {

@@ -45,7 +45,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.php"><i class="bi bi-box-arrow-right"></i> Déconnexion</a>
+                        <a class="nav-link" href="Logout"><i class="bi bi-box-arrow-right"></i> Déconnexion</a>
                     </li>
                 </ul>
             </div>

@@ -10,6 +10,7 @@ use App\Model\Course\ConcreteCourse;
 class StudentController
 {
     private $courseService;
+    private $student;
 
     public function __construct()
     {
@@ -56,4 +57,89 @@ class StudentController
 
         require_once __DIR__ . '/../../Views/studentCourses.php';
     }
+
+    public function renderDetailsView($data) 
+        {
+            extract($data);
+
+            require_once __DIR__ . '/../../Views/studentCourse_details.php';
+        }
+
+    public function showCourseDetails($id)
+    {
+        require_once __DIR__ . '/../../Core/Includes/session_check.php';
+
+        $id = intval($id);
+        $course_id = $id;
+        $student_id = $_SESSION['user_id'] ?? null;
+
+        $is_enrolled = $this->student->isEnrolled($student_id, $course_id);
+
+        if (isset($_POST['course_id'])) {
+            $course_id = $_POST['course_id'];
+            $student_id = $_SESSION['user_id'];
+
+            $enrolled = $this->student->enroll($student_id, $course_id);
+
+            if ($enrolled) {
+                $_SESSION['enrollment_success'] = true;
+            } else {
+                $_SESSION['enrollment_error'] = "Enrollment failed. Please try again.";
+            }
+
+            header("Location: courseContent.php?course_id=" . $course_id);
+            exit();
+        }
+
+        if (isset($_SESSION['enrollment_success']) && $_SESSION['enrollment_success']) {
+            echo '
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    title: "Success!",
+                    text: "You have been enrolled successfully.",
+                    icon: "success",
+                    confirmButtonText: "OK"
+                });
+            });
+            </script>
+            ';
+            unset($_SESSION['enrollment_success']);
+        }
+
+        if (isset($_SESSION['enrollment_error'])) {
+            echo '
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    title: "Error!",
+                    text: "' . $_SESSION['enrollment_error'] . '",
+                    icon: "error",
+                    confirmButtonText: "OK"
+                });
+            });
+            </script>
+            ';
+            unset($_SESSION['enrollment_error']);
+        }
+
+        $course = $this->courseService->getCourseById($course_id);
+
+        $keywords = $_GET['keywords'] ?? '';
+        if (!empty($keywords)) {
+            header("Location: studentCourses.php?search=" . urlencode($keywords));
+            exit();
+        }
+
+        
+
+        $this->renderDetailsView([
+            'course' => $course,
+            'is_enrolled' => $is_enrolled,
+            'course_id' => $course_id,
+        ]);
+    }
+
 }

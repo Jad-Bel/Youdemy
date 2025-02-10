@@ -51,7 +51,7 @@ class AuthController
     public function handleLogout()
     {
         $this->auth->logout();
-        header('Location: login');
+        header('Location: Login');
         exit();
     }
 }
